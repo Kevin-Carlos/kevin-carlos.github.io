@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "esnext",
+    "jsx": "preserve",
+    "lib": ["dom", "es2015", "es2017"],
+    "strict": true,
+    "noEmit": false,
+    // "isolatedModules": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "removeComments": false,
+    "preserveConstEnums": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./src",
+    "resolveJsonModule": true
+  },
+  "include": ["./src/**/*"],
+  "exclude": ["node_modules"]
+}
