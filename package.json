@@ -1,7 +1,18 @@
 {
   "name": "kevin-carlos.github.io",
+  "homepage": "http://kevin-carlos.github.io",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d public -b master"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -10,14 +21,8 @@
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
+  "devDependencies": {
+    "gh-pages": "^3.1.0"
   },
   "browserslist": {
     "production": [
