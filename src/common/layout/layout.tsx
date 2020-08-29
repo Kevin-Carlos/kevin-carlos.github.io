@@ -1,8 +1,9 @@
 import React, { FC } from "react";
-import styled, { ThemeProvider } from "styled-components";
-
+import styled, { ThemeProvider, useTheme } from "styled-components";
 import { Header, Footer } from "./menu";
 import { theme } from "common/styles";
+import { Helmet } from "react-helmet";
+import { GlobalStyle } from "common/styles/global";
 
 
 type LayoutProps = {};
@@ -10,6 +11,8 @@ type LayoutProps = {};
 export const Layout: FC<LayoutProps> = ({ children }) => {
   return (
     <ThemeProvider theme={theme}>
+      <Fonts />
+      <GlobalStyle />
       <GridLayout>
         <GridHeader />
         <GridContent>{children}</GridContent>
@@ -19,6 +22,14 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
   )
 }
 
+const Fonts = () => {
+  const theme = useTheme();
+  return (
+    <Helmet>
+      <link rel="stylesheet" href={theme.fontLink} />
+    </Helmet>
+  )
+}
 
 const GridLayout = styled.article`
   display: grid;

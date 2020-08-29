@@ -42,6 +42,8 @@ const HeaderWrapper = styled.header`
 
 const ContentWrapper = styled.div`
   width: 100%;
+  max-width: 140rem;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -50,8 +52,8 @@ const ContentWrapper = styled.div`
 const Circle = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
   border-radius: 100%;
-  width: 3rem;
-  height: 3rem;
+  width: 4rem;
+  height: 4rem;
   position: absolute;
   border-width: 0;
   
@@ -60,17 +62,16 @@ const Circle = styled.div`
 
 const Logo = styled.img`
   position: absolute;
-  width: 3rem;
+  width: 4rem;
 `;
 
 const LogoWrapper = styled.div`
   position: relative;
-  height: 3rem;
-  width: 3rem;
+  height: 4rem;
+  width: 4rem;
   &:hover {
     ${Circle} {
       background-color: ${({ theme }) => transparentize(0.2, theme.colors.white)};
-      /* border: 1px solid ${({ theme }) => theme.colors.orange}; */
     }
   }
 `;
