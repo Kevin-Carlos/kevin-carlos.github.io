@@ -135,13 +135,6 @@ const BarWrapper = styled.div`
   };
 `;
 
-const Line = styled(animated.polyline)`
-  stroke-width: 3px;
-  stroke: ${({ theme }) => theme.colors.light_Teal};
-  fill: none;
-  stroke-dasharray: 300rem;
-  transition: stroke-dasharray 0.2s ease-in-out;
-`;
 
 const Bar = styled(animated.div)`
   background-color: ${({ theme }) => theme.colors.orange};
