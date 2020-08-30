@@ -1,4 +1,5 @@
 import { colors } from "./colors";
+import { mediaQuery } from "./media-queries";
 
 export const theme = {
   colors,
@@ -8,5 +9,6 @@ export const theme = {
     small: "1.2rem",
     large: "2rem",
     xl: "3rem",
-  }
+  },
+  mediaQuery,
 };
