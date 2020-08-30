@@ -21,10 +21,11 @@ const ContentWrapper = styled.div`
   width: 100%;
   height: 100%;
   padding: 0 2rem;
-  margin: 0 auto;
+  margin: 0 auto 4rem;
 
   ${({ theme }) => theme.mediaQuery.desktop} {
     width: 140rem;
+    margin: 0 auto 8rem;
     padding: 0;
   }
 `;
