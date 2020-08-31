@@ -77,7 +77,7 @@ export const hiItems = [
   },
   {
     key: 20,
-    item: "Shalom",
+    item: "Shalom,",
   },
   {
     key: 21,

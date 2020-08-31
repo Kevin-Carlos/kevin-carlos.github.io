@@ -51,7 +51,7 @@ export const Hero: FC<HeroProps> = ({ className }) => {
             </HeroHeaderAnimatedText>
           )
         })}
-          <Text length={length * 1.8}>
+          <Text length={length * 1.9}>
             Everyone{`>`}
           </Text>
         </HeroHeader>
