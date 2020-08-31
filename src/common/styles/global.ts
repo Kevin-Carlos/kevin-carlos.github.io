@@ -23,6 +23,9 @@ export const GlobalStyle = createGlobalStyle`
     text-decoration: none;
     color: ${({ theme }) => theme.colors.blue};
   }
+  ul {
+    line-height: 1.7;
+  }
   h1 {
     font-size: 4rem;
   }

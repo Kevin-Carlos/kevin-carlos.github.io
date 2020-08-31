@@ -25,7 +25,7 @@ export const Hero: FC<HeroProps> = ({ className }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((state) => (state + 1) % hiItems.length);
-    }, 1000 * 4);
+    }, 1000 * 3);
 
     return () => clearInterval(interval);
   }, []);
