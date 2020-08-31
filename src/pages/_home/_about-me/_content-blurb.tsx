@@ -151,6 +151,6 @@ const Divider = styled.div`
   background: radial-gradient(
     circle,
     ${({ theme }) => theme.colors.orange} 0%,
-    ${({ theme }) => transparentize(1, theme.colors.light_Gray)} 100%
+    ${({ theme }) => transparentize(1, theme.colors.light_gray)} 100%
   );
 `;

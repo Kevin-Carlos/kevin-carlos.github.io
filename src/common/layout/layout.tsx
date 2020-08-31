@@ -1,7 +1,6 @@
 import React, { FC } from "react";
-import styled, { ThemeProvider, useTheme } from "styled-components";
+import styled, { useTheme } from "styled-components";
 import { Header, Footer } from "./menu";
-import { theme } from "common/styles";
 import { Helmet } from "react-helmet";
 import { GlobalStyle } from "common/styles/global";
 
@@ -10,7 +9,7 @@ type LayoutProps = {};
 
 export const Layout: FC<LayoutProps> = ({ children }) => {
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <Fonts />
       <GlobalStyle />
       <GridLayout>
@@ -18,7 +17,7 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
         <GridContent>{children}</GridContent>
         {/* <GridFooter /> */}
       </GridLayout>
-    </ThemeProvider>
+    </>
   )
 }
 

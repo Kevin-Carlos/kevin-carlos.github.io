@@ -10,6 +10,7 @@ module.exports = {
       options: {
         pages: `${__dirname}/src/pages`,
         common: `${__dirname}/src/common`,
+        state: `${__dirname}/src/state`,
       },
     },
     `gatsby-plugin-styled-components`,
