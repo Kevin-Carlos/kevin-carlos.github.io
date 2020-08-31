@@ -11,9 +11,9 @@ export const CurrentEvents: FC = () => {
         <li>
           Work on this website
           <ul style={{ listStyle: "disc" }}>
-            <li>Mobile friendly</li>
             <li>Finish layout</li>
             <li>Define <span style={{ fontStyle: "italic" }}>branding</span></li>
+            <li>Mobile friendly</li>
             <li>Additional svg elements</li>
             <li>Theme toggle</li>
             <li>Add to projects</li>

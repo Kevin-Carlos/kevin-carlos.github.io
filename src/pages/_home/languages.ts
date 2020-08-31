@@ -13,74 +13,70 @@ export const hiItems = [
   },
   {
     key: 4,
-    item: "Zdravstvuyte,",
+    item: "Здравейте,",
   },
   {
     key: 5,
-    item: "Nǐn hǎo,",
+    item: "مرحبا,",
   },
   {
     key: 6,
-    item: "Salve,",
+    item: "你好,",
   },
   {
     key: 7,
-    item: "Konnichiwa,",
+    item: "Ahoj,",
   },
   {
     key: 8,
-    item: "Guten Tag,",
+    item: "Hallo,",
   },
   {
     key: 9,
-    item: "Olá,",
+    item: "Kamusta,",
   },
   {
     key: 10,
-    item: "Anyoung haseyo,",
+    item: "Χαίρετε,",
   },
   {
     key: 11,
-    item: "Asalaam alaikum,",
+    item: "Aloha,",
   },
   {
     key: 12,
-    item: "Goddag,",
+    item: "שלום,",
   },
   {
     key: 13,
-    item: "Shikamoo,",
+    item: "हैलो,",
   },
   {
     key: 14,
-    item: "Goedendag,",
+    item: "Ciao,",
   },
   {
     key: 15,
-    item: "Yassas,",
+    item: "こんにちは,"
   },
   {
     key: 16,
-    item: "Dzień dobry,",
+    item: "Сайн уу,",
   },
   {
     key: 17,
-    item: "Selamat siang,",
+    item: "Olá,"
   },
   {
     key: 18,
-    item: "Namaste, Namaskar,",
+    item: "Привет,"
   },
   {
     key: 19,
-    item: "Merhaba,",
+    item: "Hallå,"
   },
   {
     key: 20,
-    item: "Shalom,",
-  },
-  {
-    key: 21,
-    item: "God dag,",
-  },
+    item: "xin chào,"
+  }
 ];
