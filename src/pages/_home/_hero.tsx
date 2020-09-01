@@ -3,7 +3,7 @@ import styled from "styled-components";
 import heroSvg from "common/assets/images/hero.svg";
 import { Section } from "common/layout/sections";
 import { useTransition, animated } from "react-spring";
-import { hiItems } from "./languages";
+import { hiItems } from "./_languages";
 import { Input } from "common/ui-elements/forms";
 import { useRecoilState } from "recoil";
 import { heroState } from "state/home";

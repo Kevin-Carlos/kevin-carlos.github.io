@@ -5,6 +5,7 @@ module.exports = {
     description: `My personal website`,
   },
   plugins: [
+    `gatsby-plugin-styled-components`,
     {
       resolve: "gatsby-plugin-root-import",
       options: {
@@ -13,7 +14,6 @@ module.exports = {
         state: `${__dirname}/src/state`,
       },
     },
-    `gatsby-plugin-styled-components`,
     `gatsby-plugin-react-helmet`,
   ],
 }

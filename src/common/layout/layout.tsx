@@ -23,6 +23,11 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
 
 const Fonts = () => {
   const theme = useTheme();
+  
+  if (!theme) {
+    return null;
+  }
+  
   return (
     <Helmet>
       <link rel="stylesheet" href={theme.fontLink} />

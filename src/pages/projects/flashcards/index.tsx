@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { ChevronLeft, ChevronRight } from "common/ui-elements/icons";
-import { FlashcardInputs } from "./_form";
 import { Section } from "common/layout/sections";
 import { useRecoilValue } from "recoil";
 import { flashcardState } from "state/flashcards";
 import { Layout } from "common/layout";
 import { LinkButton } from "common/ui-elements";
+import { FlashcardInputs } from "./_form/_flashcard-inputs";
 
 
 type CardSide = "front" | "back";

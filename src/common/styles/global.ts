@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { theme } from "./theme";
 
 
 export const GlobalStyle = createGlobalStyle`
@@ -21,7 +22,7 @@ export const GlobalStyle = createGlobalStyle`
   a {
     font-size: 1.5rem;
     text-decoration: none;
-    color: ${({ theme }) => theme.colors.blue};
+    color: ${theme.colors.blue};
   }
   ul {
     line-height: 1.7;

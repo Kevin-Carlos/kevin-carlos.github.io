@@ -1,9 +1,9 @@
 import React from "react";
 import { Layout } from "common/layout";
 import { Hero } from "./_home/_hero";
-import { Bars } from "./_home/_about-me";
-import { CurrentEvents } from "./_home/_current-events";
 import styled from "styled-components";
+import { Bars } from "./_home/_about-me/_bars";
+import { CurrentEvents } from "./_home/_current-events/_current-events";
 
 export default () => (
   <Layout>
