@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useRef } from "react";
 import styled from "styled-components";
 import { menuItems } from "./nav-items";
 // import { LinkButton } from "src/common/ui-elements/button/link-button";
@@ -8,6 +8,7 @@ import { links } from "common/links";
 import { LinkButton } from "common/ui-elements";
 import { HamburgerIcon } from "./hamburger-icon";
 import { HamburgerMenu } from "./hamburger-menu";
+import { useClickOutside } from "common/hooks";
 
 
 interface HeaderProps {
@@ -15,7 +16,10 @@ interface HeaderProps {
 }
 
 export const Header: FC<HeaderProps> = ({ className }) => {
-  const [active, setActive] = useState(false);
+  const [mobileNav, toggleMobileNav] = useState(false);
+
+  const menuRef = useRef<HTMLDivElement | null>(null);
+  useClickOutside(menuRef, () => toggleMobileNav(false));
 
   return (
     <HeaderWrapper className={className}>
@@ -33,11 +37,16 @@ export const Header: FC<HeaderProps> = ({ className }) => {
             </LinkButton>
           ))}
         </Nav>
-        <HamburgerIcon
-          isOpen={active}
-          setIsOpen={setActive}
-        />
-        <HamburgerMenu isOpen={active} />
+        <HamburgerMenuWrapper ref={menuRef}>
+          <HamburgerIcon
+            isOpen={mobileNav}
+            setIsOpen={toggleMobileNav}
+          />
+          <HamburgerMenu
+            isOpen={mobileNav}
+            setIsOpen={toggleMobileNav}
+          />
+        </HamburgerMenuWrapper>
       </ContentWrapper>
     </HeaderWrapper>
   );
@@ -94,4 +103,8 @@ const Nav = styled.nav`
       margin-left: 2rem;
     }
   }
+`;
+
+const HamburgerMenuWrapper = styled.div`
+  z-index: ${({ theme }) => theme.zIndices.overlay - 1};
 `;

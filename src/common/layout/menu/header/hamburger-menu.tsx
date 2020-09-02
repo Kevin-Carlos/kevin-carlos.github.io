@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import styled from "styled-components";
 import { animated, useSpring } from "react-spring";
 import { menuItems } from "./nav-items";
@@ -6,9 +6,10 @@ import { LinkButton } from "common/ui-elements";
 
 type HamburgerMenuProps = {
   isOpen: boolean;
+  setIsOpen: (v: boolean) => void;
 }
 
-export const HamburgerMenu: FC<HamburgerMenuProps> = ({ isOpen }) => {
+export const HamburgerMenu: FC<HamburgerMenuProps> = ({ isOpen, setIsOpen }) => {
   const spring = useSpring({
     from: { opacity: 0, transform: `translateX(100vw)` },
     to: isOpen
@@ -16,10 +17,23 @@ export const HamburgerMenu: FC<HamburgerMenuProps> = ({ isOpen }) => {
       : { opacity: 0, transform: `translateX(100vw)` },
   });
 
+  useEffect(() => {
+    const handleResize = () => {
+      // breakpoint
+      if (window.innerWidth > 1200) {
+        setIsOpen(false);
+      }
+    }
+
+    if (isOpen) {
+      window.addEventListener("resize", handleResize);
+    }
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, [isOpen])
+
   return (
-    <Menu
-      style={spring}
-    >
+    <Menu style={spring}>
       <MenuList>
         {menuItems.map(i => (
           <MenuListItem>
@@ -37,7 +51,7 @@ const Menu = styled(animated.nav)`
   position: absolute;
   top: 0;
   right: 0;
-  left: 0;
+  width: 100vw;
   height: 100vh;
   padding: 2rem;
   display: flex;
@@ -45,6 +59,10 @@ const Menu = styled(animated.nav)`
   text-align: left;
   background-color: ${({ theme }) => theme.colors.dark_teal};
   z-index: ${({ theme }) => theme.zIndices.overlay};
+
+  ${({ theme }) => theme.mediaQuery.tablet} {
+    width: 50vw;
+  }
 `;
 
 const MenuList = styled.ul`

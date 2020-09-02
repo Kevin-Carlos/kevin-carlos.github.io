@@ -12,7 +12,10 @@ export const HamburgerIcon: FC<HamburgerIconProps> = ({
 }) => {
 
   return (
-    <Hamburger onClick={() => setIsOpen(!isOpen)}>
+    <Hamburger
+      onClick={() => setIsOpen(!isOpen)}
+      isOpen={isOpen}
+    >
       <div />
       <div />
       <div />
@@ -20,7 +23,7 @@ export const HamburgerIcon: FC<HamburgerIconProps> = ({
   )
 }
 
-const Hamburger = styled.button`
+const Hamburger = styled.button<{ isOpen: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -32,6 +35,7 @@ const Hamburger = styled.button`
   padding: 0;
   margin-right: 1rem;
   z-index: ${({ theme }) => theme.zIndices.overlay + 1};
+  position: relative;
 
   &:focus {
     outline: none;
@@ -49,6 +53,20 @@ const Hamburger = styled.button`
     transition: all 0.25s ease-in-out;
     position: relative;
     transform-origin: 0.1rem;
+
+    :first-child {
+      transform: ${({ isOpen }) => isOpen ? 'rotate(45deg)' : 'rotate(0)'};
+    }
+
+    :nth-child(2) {
+      opacity: ${({ isOpen }) => isOpen ? '0' : '1'};
+      transform: ${({ isOpen }) => isOpen ? 'translateX(20px)' : 'translateX(0)'};
+    }
+
+    :nth-child(3) {
+      transform: ${({ isOpen }) => isOpen ? 'rotate(-45deg)' : 'rotate(0)'};
+    }
+
   }
 
   ${({ theme }) => theme.mediaQuery.laptop} {
