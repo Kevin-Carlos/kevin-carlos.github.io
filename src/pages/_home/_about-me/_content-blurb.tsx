@@ -123,9 +123,15 @@ const Content = styled.div`
 
 const Education = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: center;
   height: 100%;
+
+  ${({ theme }) => theme.mediaQuery.tablet} {
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: flex-start;
+  }
 `;
 
 const TabbedDescription = styled.p`
