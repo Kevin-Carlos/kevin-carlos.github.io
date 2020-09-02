@@ -26,16 +26,18 @@ export const GlobalStyle = createGlobalStyle`
   }
   ul {
     line-height: 1.7;
+    margin: 0;
+  }
+  h1, h2, h3, h4 {
+    margin: 0 0 2rem 0;
   }
   h1 {
     font-size: 4rem;
   }
   h2 {
-    margin-top: 0;
     font-size: 3rem;
   }
   h3 {
-    margin-top: 0;
   }
   p {
     margin: 0;

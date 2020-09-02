@@ -100,18 +100,25 @@ const ContentWrapper = styled.div`
   display: flex;
   align-items: center;
   flex-grow: 1;
-  margin: 2rem 0;
+  margin: -5rem 0 2rem 0;
+
+  ${({ theme }) => theme.mediaQuery.laptop} {
+    margin: 2rem 0;
+  }
 `;
 
 const Content = styled.div`
   padding: 2rem;
   position: relative;
   width: 100%;
-  /* To eliminate content moving around */
-  min-width: 40rem;
-  min-height: 20rem;
-  max-width: 80rem;
-  max-height: 20rem;
+
+  ${({ theme }) => theme.mediaQuery.laptop} {
+    /* To eliminate content moving around */
+    min-width: 40rem;
+    min-height: 20rem;
+    max-width: 80rem;
+    max-height: 20rem;
+  }
 `;
 
 const Education = styled.div`

@@ -66,9 +66,9 @@ export const Bars: FC<BarsProps> = ({
             }}
             style={{ transform: y1.interpolate(v => `translateY(${v}%`) }}
           >
-            <VerticalWord>
+            <Word>
               Career
-            </VerticalWord>
+            </Word>
           </Bar1>
           <Bar2
             onMouseEnter={() => {
@@ -81,9 +81,9 @@ export const Bars: FC<BarsProps> = ({
             }}
             style={{ transform: y2.interpolate(v => `translateY(${v}%`) }}
           >
-            <VerticalWord>
+            <Word>
               Education
-            </VerticalWord>
+            </Word>
           </Bar2>
           <Bar3
             onMouseEnter={() => {
@@ -96,9 +96,9 @@ export const Bars: FC<BarsProps> = ({
             }}
             style={{ transform: y3.interpolate(v => `translateY(${v}%`) }}
           >
-            <VerticalWord>
+            <Word>
               About
-            </VerticalWord>
+            </Word>
           </Bar3>
         </BarWrapper>
 
@@ -110,29 +110,63 @@ export const Bars: FC<BarsProps> = ({
 
 const StyledSection = styled(Section)``;
 
+/** Started on desktop with this, funky styling is because I worked backwards
+ * for mobile
+ */
 const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
   ${({ theme }) => theme.mediaQuery.tablet} {
-    display: flex;
+    
+  };
+
+  ${({ theme }) => theme.mediaQuery.laptop} {
+    flex-direction: row;
     justify-content: space-between;
   };
 `;
 
+/** Started on desktop with this, funky styling is because I worked backwards
+ * for mobile
+ */
 const BarWrapper = styled.div`
   display: flex;
-  margin-bottom: 7rem;
-  margin-left: 20rem;
+  transform: rotate(-90deg);
+  margin-top: -5rem;
+  transition: transform 0.2s ease-in;
+
   & > div:first-child {
-    margin-top: -2rem;
-  }
+      margin-top: -4rem;
+    }
   & > div:nth-child(2) {
     margin-top: -3rem;
   }
   & > div:last-child {
-    margin-top: -4rem;
+    margin-top: -2rem;
   }
+
   ${({ theme }) => theme.mediaQuery.tablet} {
     margin-bottom: 0;
   };
+
+  ${({ theme }) => theme.mediaQuery.laptop} {
+    transform: rotate(0deg);
+    margin-bottom: 7rem;
+    margin-left: 20rem;
+    margin-top: unset;
+
+    & > div:first-child {
+      margin-top: -2rem;
+    }
+    & > div:nth-child(2) {
+      margin-top: -3rem;
+    }
+    & > div:last-child {
+      margin-top: -4rem;
+    }
+  }
 `;
 
 
@@ -141,26 +175,34 @@ const Bar = styled(animated.div)`
   height: 30rem;
   width: 3rem;
   display: flex;
-  margin-right: 4rem;
+  margin-right: 2rem;
   border-radius: 0.2rem;
   position: relative;
   cursor: pointer;
+  transition: margin 0.2s ease-in;
+
   ${({ theme }) => theme.mediaQuery.tablet} {
     margin-bottom: 0;
   };
+  ${({ theme }) => theme.mediaQuery.laptop} {
+    margin-right: 4rem;
+  }
 `;
 
 const Bar1 = styled(Bar)``;
 const Bar2 = styled(Bar)``;
 const Bar3 = styled(Bar)``;
 
-const VerticalWord = styled.span`
+const Word = styled.span`
   writing-mode: vertical-rl;
-  text-orientation: upright;
   letter-spacing: 0.8rem;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   width: 100%;
   font-size: 1.8rem;
+
+  ${({ theme }) => theme.mediaQuery.laptop} {
+    text-orientation: upright;
+  }
 `;

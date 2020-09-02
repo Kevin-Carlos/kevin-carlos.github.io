@@ -107,4 +107,8 @@ const Nav = styled.nav`
 
 const HamburgerMenuWrapper = styled.div`
   z-index: ${({ theme }) => theme.zIndices.overlay - 1};
+
+  ${({ theme }) => theme.mediaQuery.laptop} {
+    display: none;
+  }
 `;
