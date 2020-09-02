@@ -104,8 +104,8 @@ const StyledSection = styled(Section) <{ src: string }>`
 `;
 
 const HeroHeader = styled.h1`
+  max-width: 100vw;
   margin: 0;
-  overflow: hidden;
 `;
 
 const HeroHeaderAnimatedText = styled(animated.span)``;

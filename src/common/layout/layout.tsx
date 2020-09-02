@@ -55,7 +55,7 @@ const GridHeader = styled(Header)`
   left: 0;
   display: flex;
   align-items: center;
-  z-index: 100;
+  z-index: ${({ theme }) => theme.zIndices.standard};
 `;
 
 const GridFooter = styled(Footer)`

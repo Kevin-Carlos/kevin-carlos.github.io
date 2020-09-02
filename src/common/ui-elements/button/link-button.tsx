@@ -23,6 +23,7 @@ const Underline = styled.hr`
   left: 0;
   width: 0;
   transition: all 0.2s ease-in-out;
+  
 `;
 
 const StyledA = styled.a`

@@ -13,15 +13,15 @@ export default () => (
   </Layout>
 )
 
-const StyledHero = styled(Hero)`
-  z-index: 10;
-  position: relative;
-`;
+const StyledHero = styled(Hero)``;
 
 const StyledBars = styled(Bars)`
-  z-index: 2;
-  position: relative;
-  & > div {
-    margin: 0 auto 10rem !important;
+  display: none;
+
+  ${({ theme }) => theme.mediaQuery.laptop} {
+    display: initial;
+    & > div {
+      margin: 0 auto 10rem !important;
+    }
   }
 `;

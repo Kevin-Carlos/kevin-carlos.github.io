@@ -68,4 +68,8 @@ const IconWrapper = styled.a`
 const Icon = styled.img<{ size?: number }>`
   height: 3.2rem;
   width: ${({ size }) => size ? `${size}rem` : "3.2rem"};
+
+  &:hover {
+    opacity: 0.8;
+  }
 `;

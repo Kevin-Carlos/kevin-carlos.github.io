@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import styled from "styled-components";
 import { menuItems } from "./nav-items";
 // import { LinkButton } from "src/common/ui-elements/button/link-button";
@@ -6,6 +6,8 @@ import darkLogo from "common/assets/images/logo-dark.png";
 import { transparentize } from "polished";
 import { links } from "common/links";
 import { LinkButton } from "common/ui-elements";
+import { HamburgerIcon } from "./hamburger-icon";
+import { HamburgerMenu } from "./hamburger-menu";
 
 
 interface HeaderProps {
@@ -13,6 +15,8 @@ interface HeaderProps {
 }
 
 export const Header: FC<HeaderProps> = ({ className }) => {
+  const [active, setActive] = useState(false);
+
   return (
     <HeaderWrapper className={className}>
       <ContentWrapper>
@@ -29,6 +33,11 @@ export const Header: FC<HeaderProps> = ({ className }) => {
             </LinkButton>
           ))}
         </Nav>
+        <HamburgerIcon
+          isOpen={active}
+          setIsOpen={setActive}
+        />
+        <HamburgerMenu isOpen={active} />
       </ContentWrapper>
     </HeaderWrapper>
   );
@@ -77,7 +86,12 @@ const LogoWrapper = styled.div`
 `;
 
 const Nav = styled.nav`
-  & > a:not(:first-child) {
-    margin-left: 2rem;
+  display: none;
+
+  ${({ theme }) => theme.mediaQuery.laptop} {
+    display: inherit;
+    & > a:not(:first-child) {
+      margin-left: 2rem;
+    }
   }
 `;
