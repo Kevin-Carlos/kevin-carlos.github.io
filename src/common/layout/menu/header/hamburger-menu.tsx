@@ -59,6 +59,7 @@ const Menu = styled(animated.nav)`
   text-align: left;
   background-color: ${({ theme }) => theme.colors.dark_teal};
   z-index: ${({ theme }) => theme.zIndices.overlay};
+  transition: width 0.15s ease-in-out;
 
   ${({ theme }) => theme.mediaQuery.tablet} {
     width: 50vw;
