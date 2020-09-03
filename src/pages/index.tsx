@@ -21,12 +21,12 @@ const StyledHero = styled(Hero)`
 `;
 
 const StyledBars = styled(Bars)`
+  /* & > div {
+    margin: 0 auto 10rem !important;
+  } */
+
   ${({ theme }) => theme.mediaQuery.laptop} {
     z-index: ${({ theme }) => theme.zIndices.underlay};
     position: relative; 
-
-    & > div {
-      margin: 0 auto 10rem !important;
-    }
   }
 `;
