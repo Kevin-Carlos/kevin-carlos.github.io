@@ -14,8 +14,13 @@ export const projectItems: Items[] = [
       <p>
         This project was built to demonstrate my ability to quickly learn a MERN
         stack and Redux. The original can be seen on{" "}
-        <a href="https://github.com/Kevin-Carlos/ReactFlashcards">GitHub</a>.{" "}
-        This is a local version made using recoil for state management.
+        <a
+          href="https://github.com/Kevin-Carlos/ReactFlashcards"
+          target="_blank"
+        >
+          GitHub
+        </a>
+        . This is a local version made using recoil for state management.
       </p>
     ),
     path: links.projects().project().flashcards(),
@@ -25,8 +30,12 @@ export const projectItems: Items[] = [
     path: null,
     description: (
       <p>
-        Using <a href="https://snowpack.dev">Snowpack</a>
-        to develop this site and experiment with new development tools.
+        Using <a href="https://snowpack.dev">Snowpack</a> to develop this site
+        and experiment with new development tools. The code can be found{" "}
+        <a href="https://github.com/Kevin-Carlos/Website" target="_blank">
+          here
+        </a>
+        .
       </p>
     ),
   },
