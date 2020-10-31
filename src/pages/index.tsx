@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MenuContext, MenuLayout } from "common/layout";
 import { Homepage } from "./_home/_home";
 
@@ -7,8 +7,12 @@ export default () => {
     "hide"
   );
   const [transparentizeHeaderBG, setHeaderBGVisibility] = useState<Visibility>(
-    "hide"
+    "show"
   );
+
+  useEffect(() => {
+    setTimeout(() => setHeaderBGVisibility("hide"), 500);
+  }, []);
 
   return (
     // This will fallback to its default on unmount
