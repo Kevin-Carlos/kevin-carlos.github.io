@@ -34,7 +34,6 @@ export default () => {
           </h1>
           <CircleWrapper>
             {transitionedHeaderItems.map(({ item, key, props }) => {
-              console.log("isActive", item.key === headerType);
               return (
                 <Circle
                   size={item.size}

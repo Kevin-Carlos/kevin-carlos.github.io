@@ -1,22 +1,25 @@
 import React, { FC, useContext } from "react";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import { Header } from "./menu/header";
 import { Footer } from "./menu/footer";
 import { MenuContext } from "./menu-context";
+import { GlobalStyle } from "common/styles/global";
+import { theme } from "common/styles";
 
 type MenuLayoutProps = {};
 
 export const MenuLayout: FC<MenuLayoutProps> = ({ children }) => {
   const menuCtx = useContext(MenuContext);
 
-  console.log("menulayout", menuCtx);
-
   return (
-    <GridLayout>
-      <GridHeader backgroundVisibility={menuCtx.transparentizeHeaderBG} />
-      <GridContent>{children}</GridContent>
-      <GridFooter hideFooterItems={menuCtx.hideFooterItems} />
-    </GridLayout>
+    <ThemeProvider theme={theme}>
+      <GridLayout>
+        <GlobalStyle />
+        <GridHeader backgroundVisibility={menuCtx.transparentizeHeaderBG} />
+        <GridContent>{children}</GridContent>
+        <GridFooter hideFooterItems={menuCtx.hideFooterItems} />
+      </GridLayout>
+    </ThemeProvider>
   );
 };
 
