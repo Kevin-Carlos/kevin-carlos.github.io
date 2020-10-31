@@ -1,32 +1,28 @@
-import React from "react";
-import { Layout } from "common/layout";
-import { Hero } from "./_home/_hero";
-import styled from "styled-components";
-import { Bars } from "./_home/_about-me/_bars";
-import { CurrentEvents } from "./_home/_current-events/_current-events";
+import React, { useState } from "react";
+import { MenuContext, MenuLayout } from "common/layout";
+import { Homepage } from "./_home/_home";
 
-export default () => (
-  <Layout>
-    <StyledHero />
-    <StyledBars />
-    <CurrentEvents />
-  </Layout>
-)
+export default () => {
+  const [hideFooterItems, setFooterItemVisibility] = useState<Visibility>(
+    "hide"
+  );
+  const [transparentizeHeaderBG, setHeaderBGVisibility] = useState<Visibility>(
+    "hide"
+  );
 
-const StyledHero = styled(Hero)`
-  ${({ theme }) => theme.mediaQuery.laptop} {
-    z-index: ${({ theme }) => theme.zIndices.standard};
-    position: relative; 
-  }
-`;
-
-const StyledBars = styled(Bars)`
-  /* & > div {
-    margin: 0 auto 10rem !important;
-  } */
-
-  ${({ theme }) => theme.mediaQuery.laptop} {
-    z-index: ${({ theme }) => theme.zIndices.underlay};
-    position: relative; 
-  }
-`;
+  return (
+    // This will fallback to its default on unmount
+    <MenuContext.Provider
+      value={{
+        hideFooterItems,
+        setFooterItemVisibility,
+        transparentizeHeaderBG,
+        setHeaderBGVisibility,
+      }}
+    >
+      <MenuLayout>
+        <Homepage />
+      </MenuLayout>
+    </MenuContext.Provider>
+  );
+};

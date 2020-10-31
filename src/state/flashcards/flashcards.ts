@@ -8,12 +8,8 @@ export const flashcardState = atom({
       description: "https://www.youtube.com/watch?v=9D05ej8u-gU",
     },
     {
-      subject: "Cat",
-      description: "Meow",
+      subject: "What kind of car do you want?",
+      description: "A Tesla",
     },
-    {
-      subject: "Cow",
-      description: "Moo"
-    }
-  ]
+  ],
 });

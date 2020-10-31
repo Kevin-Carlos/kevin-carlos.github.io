@@ -1,82 +1,82 @@
 export const hiItems = [
   {
     key: 1,
-    item: "Hi,",
+    item: "Hi",
   },
   {
     key: 2,
-    item: "Hola,",
+    item: "Bonjour",
   },
   {
     key: 3,
-    item: "Bonjour,",
+    item: "Olá",
   },
   {
     key: 4,
-    item: "Здравейте,",
+    item: "Hola",
   },
   {
     key: 5,
-    item: "مرحبا,",
+    item: "Здравейте",
   },
   {
     key: 6,
-    item: "你好,",
+    item: "Kamusta",
   },
   {
     key: 7,
-    item: "Ahoj,",
+    item: "Aloha",
   },
   {
     key: 8,
-    item: "Hallo,",
+    item: "Halló",
   },
   {
     key: 9,
-    item: "Kamusta,",
+    item: "مرحبا",
   },
   {
     key: 10,
-    item: "Χαίρετε,",
+    item: "Ahoj",
   },
   {
     key: 11,
-    item: "Aloha,",
-  },
-  {
-    key: 12,
-    item: "שלום,",
+    item: "Ciao",
   },
   {
     key: 13,
-    item: "हैलो,",
+    item: "こんにちは",
   },
   {
-    key: 14,
-    item: "Ciao,",
+    key: 6,
+    item: "你好",
   },
   {
-    key: 15,
-    item: "こんにちは,"
+    key: 10,
+    item: "Χαίρετε",
+  },
+  {
+    key: 12,
+    item: "שלום",
+  },
+  {
+    key: 13,
+    item: "हैलो",
   },
   {
     key: 16,
-    item: "Сайн уу,",
-  },
-  {
-    key: 17,
-    item: "Olá,"
+    item: "Сайн уу",
   },
   {
     key: 18,
-    item: "Привет,"
+    item: "Привет",
   },
   {
     key: 19,
-    item: "Hallå,"
+    item: "Hallå",
   },
   {
     key: 20,
-    item: "xin chào,"
-  }
+    item: "xin chào",
+  },
 ];
