@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { animated, useSpring } from "react-spring";
 import styled from "styled-components";
-import { CareerBlurb } from "./career";
+import { CareerBlurb } from "./_career";
 import { AboutMeBlurb } from "./_about-me-blurb";
 import { EducationBlurb } from "./_education";
 
