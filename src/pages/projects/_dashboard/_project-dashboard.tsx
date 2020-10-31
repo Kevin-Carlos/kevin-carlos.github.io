@@ -13,12 +13,21 @@ export const ProjectDashboard: FC<ProjectDashboardProps> = () => {
         <h1>Projects</h1>
         <ProjectGrid>
           {projectItems.map((i) => (
-            <CardLink to={i.path}>
-              <Card>
-                <h3>{i.name}</h3>
-                <p>{i.description}</p>
-              </Card>
-            </CardLink>
+            <>
+              {i.path ? (
+                <CardLink to={i.path}>
+                  <Card>
+                    <h3>{i.name}</h3>
+                    <p>{i.description}</p>
+                  </Card>
+                </CardLink>
+              ) : (
+                <Card>
+                  <h3>{i.name}</h3>
+                  <p>{i.description}</p>
+                </Card>
+              )}
+            </>
           ))}
         </ProjectGrid>
       </HeaderWrapper>

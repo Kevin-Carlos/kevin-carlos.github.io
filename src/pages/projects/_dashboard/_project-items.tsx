@@ -4,22 +4,30 @@ import { links } from "common/links";
 interface Items {
   name: string;
   description: React.ReactChild;
-  path: string;
-};
+  path: string | null;
+}
 
 export const projectItems: Items[] = [
   {
     name: "Flashcards",
-    description:
+    description: (
       <p>
-        This project was built to demonstrate my ability to quickly learn a MERN stack and Redux.
-        The original can be seen on{" "}
-        <a href="https://github.com/Kevin-Carlos/ReactFlashcards">
-          GitHub
-        </a>.{" "}
-        For the initial launch of this site, I am creating a local version tied into recoil (a state
-        management library).
-      </p>,
-    path: links.projects().project().flashcards()
-  }
+        This project was built to demonstrate my ability to quickly learn a MERN
+        stack and Redux. The original can be seen on{" "}
+        <a href="https://github.com/Kevin-Carlos/ReactFlashcards">GitHub</a>.{" "}
+        This is a local version made using recoil for state management.
+      </p>
+    ),
+    path: links.projects().project().flashcards(),
+  },
+  {
+    name: "Snowpack Site",
+    path: null,
+    description: (
+      <p>
+        Using <a href="https://snowpack.dev">Snowpack</a>
+        to develop this site and experiment with new development tools.
+      </p>
+    ),
+  },
 ];
