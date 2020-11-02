@@ -47,6 +47,7 @@ const SocialRow = styled.div`
 
   & > a {
     margin-right: 2rem;
+    z-index: 5;
   }
 
   & > a:last-child {

@@ -1,3 +1,4 @@
+// addsnowpack
 import React, { FC, useEffect } from "react";
 import styled from "styled-components";
 import { animated, useSpring } from "react-spring";
@@ -7,9 +8,12 @@ import { LinkButton } from "common/ui-elements";
 type HamburgerMenuProps = {
   isOpen: boolean;
   setIsOpen: (v: boolean) => void;
-}
+};
 
-export const HamburgerMenu: FC<HamburgerMenuProps> = ({ isOpen, setIsOpen }) => {
+export const HamburgerMenu: FC<HamburgerMenuProps> = ({
+  isOpen,
+  setIsOpen,
+}) => {
   const spring = useSpring({
     from: { opacity: 0, transform: `translateX(100vw)` },
     to: isOpen
@@ -23,37 +27,39 @@ export const HamburgerMenu: FC<HamburgerMenuProps> = ({ isOpen, setIsOpen }) => 
       if (window.innerWidth > 1200) {
         setIsOpen(false);
       }
-    }
+    };
 
     if (isOpen) {
       window.addEventListener("resize", handleResize);
     }
 
     return () => window.removeEventListener("resize", handleResize);
-  }, [isOpen])
+  }, [isOpen]);
 
   return (
     <Menu style={spring}>
-      <MenuList>
-        {menuItems.map(i => (
-          <MenuListItem>
-            <LinkButton href={i.path}>
-              {i.name}
-            </LinkButton>
-          </MenuListItem>
-        ))}
-      </MenuList>
+      <nav>
+        <MenuList>
+          {menuItems.map((i, idx) => (
+            <MenuListItem key={`${i.name}_${idx}`}>
+              {i.icon}
+              <LinkButton href={i.path}>{i.name}</LinkButton>
+            </MenuListItem>
+          ))}
+        </MenuList>
+      </nav>
     </Menu>
-  )
-}
+  );
+};
 
-const Menu = styled(animated.nav)`
+const Menu = styled(animated.menu)`
   position: absolute;
   top: 0;
   right: 0;
   width: 100vw;
   height: 100vh;
-  padding: 2rem;
+  padding: 4rem 2rem 2rem 4rem;
+  margin: 0;
   display: flex;
   flex-direction: column;
   text-align: left;
@@ -79,7 +85,18 @@ const MenuList = styled.ul`
 `;
 
 const MenuListItem = styled.li`
+  display: flex;
+  align-items: center;
+
   & > a {
     font-size: 2.5rem;
+  }
+
+  &:hover > svg {
+    stroke: ${({ theme }) => theme.colors.orange};
+  }
+
+  &:hover > img {
+    opacity: 0.8;
   }
 `;

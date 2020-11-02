@@ -30,7 +30,7 @@ export default () => {
 
   return (
     <MenuLayout>
-      <Section>
+      <Section isFirst centered>
         <h1>Flashcards</h1>
         <CardWrapper>
           <StyledChevronLeft

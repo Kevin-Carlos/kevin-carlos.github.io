@@ -8,7 +8,7 @@ interface ProjectDashboardProps {}
 
 export const ProjectDashboard: FC<ProjectDashboardProps> = () => {
   return (
-    <Section>
+    <Section isFirst>
       <HeaderWrapper>
         <h1>Projects</h1>
         <ProjectGrid>

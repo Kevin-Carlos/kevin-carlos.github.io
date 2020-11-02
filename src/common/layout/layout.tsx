@@ -55,7 +55,7 @@ const GridContent = styled.main`
     background-color: rgba(0, 0, 0, 0.2);
     width: 100vw;
     height: 100%;
-    bottom: -70rem;
+    bottom: -62rem;
     transform: skewY(-12deg);
     pointer-events: none;
     z-index: ${({ theme }) => theme.zIndices.underlay};

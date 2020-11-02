@@ -21,7 +21,7 @@ export default () => {
 
   return (
     <MenuLayout>
-      <FullHeightSection>
+      <FullHeightSection isFirst centered>
         <div>
           <h1
             style={{
@@ -85,11 +85,9 @@ const circleItems: ContentHeaderItemsT[] = [
 
 const FullHeightSection = styled(Section)`
   & > div {
-    min-height: calc(100vh - 24rem);
     display: flex;
     align-items: flex-start;
     flex-direction: column;
-    padding-top: 4rem;
 
     ${({ theme }) => theme.mediaQuery.laptop} {
       align-items: center;
@@ -101,15 +99,12 @@ const FullHeightSection = styled(Section)`
 
 const CircleWrapper = styled.ul`
   display: flex;
-  margin-bottom: 2rem;
-
-  & > li:not(:last-child) {
-    margin-right: 1.5rem;
-  }
+  flex-wrap: wrap;
+  justify-content: center;
 
   ${({ theme }) => theme.mediaQuery.laptop} {
-    margin-bottom: unset;
-    margin-right: 4rem;
+    justify-content: unset;
+    flex-wrap: unset;
   }
 `;
 
@@ -130,12 +125,16 @@ const Circle = styled(animated.li)<{
   transition-property: scale3d;
   transition-duration: 0.25s;
   transition-timing-function: ease-in-out;
+  margin: 1rem;
 
   ${({ active }) =>
     active &&
     `
     transform: scale3d(1.1, 1.1, 1) !important;
   `};
+
+  ${({ theme }) => theme.mediaQuery.laptop} {
+  }
 `;
 
 const CircleHeaders = styled.h2`

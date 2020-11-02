@@ -38,11 +38,17 @@ export const Header: FC<HeaderProps> = ({
           </Link>
         </LogoWrapper>
         <Nav>
-          {menuItems.map((i) => (
-            <LinkButton href={i.path} key={i.name}>
-              {i.name}
-            </LinkButton>
-          ))}
+          {menuItems.map((i) => {
+            if (i.mobileOnly) {
+              return;
+            }
+
+            return (
+              <LinkButton href={i.path} key={i.name}>
+                {i.name}
+              </LinkButton>
+            );
+          })}
         </Nav>
         <HamburgerMenuWrapper ref={menuRef}>
           <HamburgerIcon isOpen={mobileNav} setIsOpen={toggleMobileNav} />
@@ -67,7 +73,11 @@ const ContentWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 6rem 0 2rem;
+  padding: 0 2rem;
+
+  ${({ theme }) => theme.mediaQuery.laptop} {
+    padding: 0 6rem 0 2rem;
+  }
 
   /* ${({ theme }) => theme.mediaQuery.desktop} {
     max-width: 120rem;
