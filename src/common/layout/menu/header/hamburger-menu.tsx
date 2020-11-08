@@ -14,6 +14,7 @@ export const HamburgerMenu: FC<HamburgerMenuProps> = ({
   isOpen,
   setIsOpen,
 }) => {
+  // animate the menu opening
   const spring = useSpring({
     from: { opacity: 0, transform: `translateX(100vw)` },
     to: isOpen

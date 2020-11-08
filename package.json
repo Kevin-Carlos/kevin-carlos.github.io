@@ -27,7 +27,7 @@
     "*.{ts,tsx}": [
       "npm run type-check",
       "npm run format",
-      "npm run lint"
+      "npm run eslint --fix"
     ]
   },
   "dependencies": {
