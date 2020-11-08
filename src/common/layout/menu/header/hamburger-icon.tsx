@@ -4,24 +4,20 @@ import styled from "styled-components";
 type HamburgerIconProps = {
   isOpen: boolean;
   setIsOpen: (v: boolean) => void;
-}
+};
 
 export const HamburgerIcon: FC<HamburgerIconProps> = ({
   isOpen,
-  setIsOpen
+  setIsOpen,
 }) => {
-
   return (
-    <Hamburger
-      onClick={() => setIsOpen(!isOpen)}
-      isOpen={isOpen}
-    >
+    <Hamburger onClick={() => setIsOpen(!isOpen)} isOpen={isOpen}>
       <div />
       <div />
       <div />
     </Hamburger>
-  )
-}
+  );
+};
 
 const Hamburger = styled.button<{ isOpen: boolean }>`
   display: flex;
@@ -55,18 +51,18 @@ const Hamburger = styled.button<{ isOpen: boolean }>`
     transform-origin: 0.1rem;
 
     :first-child {
-      transform: ${({ isOpen }) => isOpen ? 'rotate(45deg)' : 'rotate(0)'};
+      transform: ${({ isOpen }) => (isOpen ? "rotate(45deg)" : "rotate(0)")};
     }
 
     :nth-child(2) {
-      opacity: ${({ isOpen }) => isOpen ? '0' : '1'};
-      transform: ${({ isOpen }) => isOpen ? 'translateX(20px)' : 'translateX(0)'};
+      opacity: ${({ isOpen }) => (isOpen ? "0" : "1")};
+      transform: ${({ isOpen }) =>
+        isOpen ? "translateX(20px)" : "translateX(0)"};
     }
 
     :nth-child(3) {
-      transform: ${({ isOpen }) => isOpen ? 'rotate(-45deg)' : 'rotate(0)'};
+      transform: ${({ isOpen }) => (isOpen ? "rotate(-45deg)" : "rotate(0)")};
     }
-
   }
 
   ${({ theme }) => theme.mediaQuery.laptop} {

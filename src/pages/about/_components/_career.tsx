@@ -2,7 +2,7 @@ import React from "react";
 import { Blockquote } from "common/components";
 import styled from "styled-components";
 
-export const CareerBlurb = ({}) => {
+export const CareerBlurb = (): React.ReactElement => {
   return (
     <div>
       <p>
@@ -15,9 +15,9 @@ export const CareerBlurb = ({}) => {
 
       <Blockquote>
         <p>
-          Too many companies have been led down the path of believing they have
+          {`Too many companies have been led down the path of believing they have
           the same technical requirements as Fortune 100 enterprises, and we're
-          here to fix that.
+          here to fix that.`}
         </p>
         <p>
           Our goal is simple: enable developers to spend more time building
@@ -38,7 +38,7 @@ export const CareerBlurb = ({}) => {
         our now-rebranded site, check it out!
       </p>
 
-      <h2>I've also written some blog posts!</h2>
+      <h2>{`I've also written some blog posts!`}</h2>
       <ul>
         <li>
           <BlueLink
@@ -53,7 +53,7 @@ export const CareerBlurb = ({}) => {
             href="https://cycle.io/blog/2020/10/a-deep-dive-into-cycles-frontend-stack/"
             target="_blank"
           >
-            A Deep Dive Into Cycle's Frontend Stack
+            {`A Deep Dive Into Cycle's Frontend Stack`}
           </BlueLink>
         </li>
       </ul>

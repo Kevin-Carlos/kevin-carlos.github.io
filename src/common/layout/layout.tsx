@@ -6,9 +6,7 @@ import { MenuContext } from "./menu-context";
 import { GlobalStyle } from "common/styles/global";
 import { theme } from "common/styles";
 
-type MenuLayoutProps = {};
-
-export const MenuLayout: FC<MenuLayoutProps> = ({ children }) => {
+export const MenuLayout: FC = ({ children }) => {
   const menuCtx = useContext(MenuContext);
 
   return (

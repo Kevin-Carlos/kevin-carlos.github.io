@@ -2,7 +2,7 @@ import { Divider } from "common/components";
 import React from "react";
 import styled from "styled-components";
 
-export const EducationBlurb = ({}) => {
+export const EducationBlurb = (): React.ReactElement => {
   return (
     <>
       <h2 style={{ marginTop: 0 }}>University of Nevada, Reno</h2>

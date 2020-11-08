@@ -2,19 +2,11 @@ import React, { FC } from "react";
 import styled from "styled-components";
 import { darken } from "polished";
 
+type InputProps = React.InputHTMLAttributes<HTMLInputElement>;
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> { };
-
-export const Input: FC<InputProps> = ({
-  ...props
-}) => {
-  return (
-    <StyledInput
-      type="text"
-      {...props}
-    />
-  )
-}
+export const Input: FC<InputProps> = ({ ...props }) => {
+  return <StyledInput type="text" {...props} />;
+};
 
 const StyledInput = styled.input`
   width: 100%;

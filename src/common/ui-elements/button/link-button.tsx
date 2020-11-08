@@ -2,8 +2,7 @@ import { Link } from "gatsby";
 import React, { FC } from "react";
 import styled from "styled-components";
 
-interface LinkButtonProps
-  extends React.AnchorHTMLAttributes<HTMLAnchorElement> {}
+type LinkButtonProps = React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
 export const LinkButton: FC<LinkButtonProps> = ({ children, ...props }) => {
   if (props.href?.includes("http")) {

@@ -4,9 +4,7 @@ import { Section } from "common/layout/sections";
 import { projectItems } from "./_project-items";
 import { Link } from "gatsby";
 
-interface ProjectDashboardProps {}
-
-export const ProjectDashboard: FC<ProjectDashboardProps> = () => {
+export const ProjectDashboard: FC = () => {
   return (
     <Section isFirst>
       <HeaderWrapper>

@@ -52,7 +52,7 @@ export const Hero: FC<HeroProps> = ({ className }) => {
               </animated.span>
             );
           })}
-          <Text length={length + 15}>I'm</Text>
+          <Text length={length + 15}>{"I'm"}</Text>
         </span>
         <ColoredName>Kevin Carlos</ColoredName>
       </h1>

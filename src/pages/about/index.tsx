@@ -5,7 +5,7 @@ import { ColorNames } from "common/styles";
 import { animated, useTransition } from "react-spring";
 import { BlurbType, ContentBlurb } from "./_components/_content-blurb";
 
-export default () => {
+export default (): React.ReactElement => {
   const [headerType, setHeaderType] = useState<BlurbType>("about");
 
   const transitionedHeaderItems = useTransition(

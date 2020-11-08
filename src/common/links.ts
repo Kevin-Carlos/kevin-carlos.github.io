@@ -1,3 +1,4 @@
+/* eslint-disable */
 export const links = {
   home: () => `/`,
   linkedIn: () => `https://www.linkedin.com/in/kevin-carlos/`,

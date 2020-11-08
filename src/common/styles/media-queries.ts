@@ -8,4 +8,4 @@ export const mediaQuery = {
   laptop: `@media screen and (min-width: 1200px)`,
   desktop: `@media screen and (min-width: 1400px)`,
   xl_desktop: `@media screen and (min-width: 2000px)`,
-}
+};

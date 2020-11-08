@@ -10,7 +10,7 @@ import { FlashcardInputs } from "./_form/_flashcard-inputs";
 
 type CardSide = "front" | "back";
 
-export default () => {
+export default (): React.ReactElement => {
   const [index, setIndex] = useState(0);
   const [sideOfCard, setSideOfCard] = useState<{ idx: number; side: CardSide }>(
     {
@@ -61,7 +61,11 @@ export default () => {
                 ) : (
                   <>
                     {cards[index].description.includes("http") ? (
-                      <a href={cards[index].description} target="_blank">
+                      <a
+                        href={cards[index].description}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
                         {cards[index].description}
                       </a>
                     ) : (

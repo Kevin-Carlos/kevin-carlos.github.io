@@ -17,6 +17,7 @@ export const projectItems: Items[] = [
         <a
           href="https://github.com/Kevin-Carlos/ReactFlashcards"
           target="_blank"
+          rel="noreferrer"
         >
           GitHub
         </a>
@@ -32,7 +33,11 @@ export const projectItems: Items[] = [
       <p>
         Using <a href="https://snowpack.dev">Snowpack</a> to develop this site
         and experiment with new development tools. The code can be found{" "}
-        <a href="https://github.com/Kevin-Carlos/Website" target="_blank">
+        <a
+          href="https://github.com/Kevin-Carlos/Website"
+          target="_blank"
+          rel="noreferrer"
+        >
           here
         </a>
         .

@@ -1,7 +1,7 @@
 import { Divider } from "common/components";
 import React from "react";
 
-export const AboutMeBlurb = ({}) => {
+export const AboutMeBlurb = (): React.ReactElement => {
   return (
     <div>
       <Divider style={{ marginBottom: "2rem" }} />

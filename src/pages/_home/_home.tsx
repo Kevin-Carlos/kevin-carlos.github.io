@@ -1,20 +1,18 @@
-import React, { FC } from "react";
+import React from "react";
 import Particles from "react-tsparticles";
 import { useTheme } from "styled-components";
 import { theme as DefaultSiteTheme } from "common/styles";
 import styled from "styled-components";
 import { Hero } from "./_hero";
 
-type HomepageProps = {};
-
-export const Homepage: FC<HomepageProps> = ({}) => {
+export const Homepage = (): React.ReactNode => {
   const theme = useTheme();
 
   return (
     <HomeWrapper>
       <StyledParticles
         id="tsparticles-home-bg"
-        options={particleOptions(theme)}
+        options={particleOptions(theme as typeof DefaultSiteTheme)}
       />
       <Hero />
     </HomeWrapper>

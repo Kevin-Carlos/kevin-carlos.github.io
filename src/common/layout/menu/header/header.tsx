@@ -1,4 +1,4 @@
-import React, { FC, useState, useRef } from "react";
+import React, { FC, useState, useRef, useCallback } from "react";
 import styled from "styled-components";
 import { menuItems } from "./nav-items";
 import darkLogo from "common/assets/images/logo-dark.png";
@@ -24,6 +24,10 @@ export const Header: FC<HeaderProps> = ({
 
   const menuRef = useRef<HTMLDivElement | null>(null);
   useClickOutside(menuRef, () => toggleMobileNav(false));
+
+  const setIsOpen = useCallback(() => {
+    toggleMobileNav(!mobileNav);
+  }, [mobileNav]);
 
   return (
     <HeaderWrapper
@@ -51,8 +55,8 @@ export const Header: FC<HeaderProps> = ({
           })}
         </Nav>
         <HamburgerMenuWrapper ref={menuRef}>
-          <HamburgerIcon isOpen={mobileNav} setIsOpen={toggleMobileNav} />
-          <HamburgerMenu isOpen={mobileNav} setIsOpen={toggleMobileNav} />
+          <HamburgerIcon isOpen={mobileNav} setIsOpen={setIsOpen} />
+          <HamburgerMenu isOpen={mobileNav} setIsOpen={setIsOpen} />
         </HamburgerMenuWrapper>
       </ContentWrapper>
     </HeaderWrapper>

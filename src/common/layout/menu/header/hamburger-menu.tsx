@@ -34,7 +34,7 @@ export const HamburgerMenu: FC<HamburgerMenuProps> = ({
     }
 
     return () => window.removeEventListener("resize", handleResize);
-  }, [isOpen]);
+  }, [isOpen, setIsOpen]);
 
   return (
     <Menu style={spring}>
