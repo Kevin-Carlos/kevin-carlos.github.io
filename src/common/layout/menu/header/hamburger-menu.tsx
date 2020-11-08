@@ -21,6 +21,9 @@ export const HamburgerMenu: FC<HamburgerMenuProps> = ({
       : { opacity: 0, transform: `translateX(100vw)` },
   });
 
+  /**
+   * If the screen resizes to a size that no longer needs the mobile menu, close it
+   */
   useEffect(() => {
     const handleResize = () => {
       // breakpoint
