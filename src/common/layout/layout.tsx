@@ -10,6 +10,7 @@ export const MenuLayout: FC = ({ children }) => {
   const menuCtx = useContext(MenuContext);
 
   return (
+    // Wrap theme here because seems to not work in gatsby-* files, theres a flash
     <ThemeProvider theme={theme}>
       <GridLayout>
         <GlobalStyle />

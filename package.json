@@ -24,7 +24,7 @@
     }
   },
   "lint-staged": {
-    "**/*.{ts,tsx}": [
+    "src/**/*.{ts,tsx}": [
       "npm run type-check",
       "npm run format",
       "npm run lint"
