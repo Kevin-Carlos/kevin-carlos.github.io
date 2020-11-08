@@ -22,7 +22,7 @@ export default () => {
   return (
     <MenuLayout>
       <FullHeightSection isFirst centered>
-        <div>
+        <InteractiveWrapper>
           <h1
             style={{
               textAlign: "center",
@@ -48,7 +48,7 @@ export default () => {
               );
             })}
           </CircleWrapper>
-        </div>
+        </InteractiveWrapper>
         <ContentBlurb type={headerType} />
       </FullHeightSection>
     </MenuLayout>
@@ -94,6 +94,14 @@ const FullHeightSection = styled(Section)`
       justify-content: space-between;
       flex-direction: row;
     }
+  }
+`;
+
+const InteractiveWrapper = styled.div`
+  margin-bottom: 2rem;
+
+  ${({ theme }) => theme.mediaQuery.laptop} {
+    margin-right: 2rem;
   }
 `;
 

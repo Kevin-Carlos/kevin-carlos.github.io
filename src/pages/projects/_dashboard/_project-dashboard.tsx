@@ -58,12 +58,27 @@ const Card = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.dark_teal};
   padding: 2rem;
   border-radius: 0.3rem;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  border-top-color: transparent;
   transition: box-shadow 0.25s ease-in-out, transform 0.25s ease-in-out;
   cursor: pointer;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-top-left-radius: 3rem;
+    border-top-right-radius: 3rem;
+    border-top: 5px solid ${({ theme }) => theme.colors.orange};
+  }
 
   &:hover {
     transform: scale3d(0.99, 0.99, 1);
-    box-shadow: -2px 2px 5px rgba(255, 255, 255, 0.05);
+    box-shadow: -1px 1px 5px rgba(255, 255, 255, 0.05);
   }
 
   & a {
