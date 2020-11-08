@@ -20,13 +20,11 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": [
-        "lint-staged"
-      ]
+      "pre-push": "lint-staged"
     }
   },
   "lint-staged": {
-    "*.{ts,tsx}": [
+    "**/*.{ts,tsx}": [
       "npm run type-check",
       "npm run format",
       "npm run lint"

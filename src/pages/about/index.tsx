@@ -8,6 +8,7 @@ import { BlurbType, ContentBlurb } from "./_components/_content-blurb";
 export default (): React.ReactElement => {
   const [headerType, setHeaderType] = useState<BlurbType>("about");
 
+  // Transition the circle items in to make them 'pop'
   const transitionedHeaderItems = useTransition(
     circleItems,
     (item) => item.key,
