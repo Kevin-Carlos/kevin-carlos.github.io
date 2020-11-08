@@ -21,12 +21,13 @@
   "husky": {
     "hooks": {
       "pre-push": [
-        "npm run type-check && lint-staged"
+        "lint-staged"
       ]
     }
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
+    "*.{ts,tsx}": [
+      "npm run type-check",
       "npm run lint"
     ]
   },

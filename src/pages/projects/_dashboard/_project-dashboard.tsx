@@ -65,6 +65,7 @@ const Card = styled.div`
   cursor: pointer;
   position: relative;
 
+  /* Orange border */
   &::before {
     content: "";
     position: absolute;
