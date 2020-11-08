@@ -1,7 +1,7 @@
 {
   "name": "kevin-carlos.github.io",
   "homepage": "https://kevin-carlos.github.io",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "npm run develop",
@@ -10,7 +10,7 @@
     "clean": "gatsby clean",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
     "lint": "eslint --fix \"src/**/*.{js,jsx,ts,tsx}\"",
-    "type-check": "tsc",
+    "type-check": "tsc --noEmit",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy": "gatsby build && gh-pages -d public -b master"

@@ -38,7 +38,7 @@ export const Hero: FC<HeroProps> = ({ className }) => {
   }, [index]);
 
   return (
-    <Content>
+    <Content className={className}>
       <h1>
         <span>
           {transitions.map(({ item: language, props, key }) => {

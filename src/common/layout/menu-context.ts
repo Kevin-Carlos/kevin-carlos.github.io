@@ -9,7 +9,7 @@ type MenuContextT = {
 
 export const MenuContext = createContext<MenuContextT>({
   hideFooterItems: "show",
-  setFooterItemVisibility: (v: Visibility) => null,
+  setFooterItemVisibility: () => null,
   transparentizeHeaderBG: "show",
-  setHeaderBGVisibility: (v: Visibility) => null,
+  setHeaderBGVisibility: () => null,
 });
