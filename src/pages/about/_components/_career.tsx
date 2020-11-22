@@ -42,10 +42,10 @@ export const CareerBlurb = (): React.ReactElement => {
       <ul>
         <li>
           <BlueLink
-            href="https://cycle.io/blog/2020/02/thrown-into-the-fire---learning-containers-as-a-new-college-grad/"
+            href="https://cycle.io/blog/2020/11/snowpack_and_cycle/"
             target="_blank"
           >
-            Thrown Into the Fire — Learning Containers as a New College Grad
+            {`Snowpack + Cycle: Building a MERN application`}
           </BlueLink>
         </li>
         <li>
@@ -54,6 +54,14 @@ export const CareerBlurb = (): React.ReactElement => {
             target="_blank"
           >
             {`A Deep Dive Into Cycle's Frontend Stack`}
+          </BlueLink>
+        </li>
+        <li>
+          <BlueLink
+            href="https://cycle.io/blog/2020/02/thrown-into-the-fire---learning-containers-as-a-new-college-grad/"
+            target="_blank"
+          >
+            Thrown Into the Fire — Learning Containers as a New College Grad
           </BlueLink>
         </li>
       </ul>

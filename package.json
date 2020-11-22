@@ -10,7 +10,6 @@
     "clean": "gatsby clean",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
     "lint": "eslint --fix \"src/**/*.{js,jsx,ts,tsx}\"",
-    "type-check": "tsc --noEmit",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy": "gatsby build && gh-pages -d public -b master"
@@ -25,13 +24,12 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "npm run type-check",
       "npm run format",
-      "npm run eslint --fix"
+      "eslint --fix"
     ]
   },
   "dependencies": {
-    "formik": "^2.2.1",
+    "formik": "^2.2.5",
     "gatsby": "^2.24.91",
     "gatsby-plugin-manifest": "^2.4.37",
     "react": "^17.0.1",

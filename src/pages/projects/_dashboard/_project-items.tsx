@@ -28,19 +28,21 @@ export const projectItems: Items[] = [
   },
   {
     name: "Snowpack Site",
-    path: null,
+    path: "https://github.com/Kevin-Carlos/Website",
     description: (
       <p>
         Using <a href="https://snowpack.dev">Snowpack</a> to develop this site
-        and experiment with new development tools. The code can be found{" "}
-        <a
-          href="https://github.com/Kevin-Carlos/Website"
-          target="_blank"
-          rel="noreferrer"
-        >
-          here
-        </a>
-        .
+        and experiment with new development tools.
+      </p>
+    ),
+  },
+  {
+    name: "Sublimity-UI",
+    path: "https://github.com/Kevin-Carlos/sublimity-ui",
+    description: (
+      <p>
+        For general use of this website, publishing packages, and display
+        Storybook uses.
       </p>
     ),
   },

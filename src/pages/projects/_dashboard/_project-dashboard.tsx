@@ -10,23 +10,29 @@ export const ProjectDashboard: FC = () => {
       <HeaderWrapper>
         <h1>Projects</h1>
         <ProjectGrid>
-          {projectItems.map((i) => (
-            <>
-              {i.path ? (
-                <CardLink to={i.path}>
-                  <Card>
-                    <h3>{i.name}</h3>
-                    <p>{i.description}</p>
-                  </Card>
-                </CardLink>
-              ) : (
-                <Card>
-                  <h3>{i.name}</h3>
-                  <p>{i.description}</p>
-                </Card>
-              )}
-            </>
-          ))}
+          {projectItems.map((i) => {
+            const hasOutsideLink = i.path?.includes("http");
+
+            return (
+              <>
+                {i.path && hasOutsideLink ? (
+                  <a href={i.path} target="_blank" rel="noreferrer">
+                    <Card>
+                      <h3>{i.name}</h3>
+                      <p>{i.description}</p>
+                    </Card>
+                  </a>
+                ) : (
+                  <CardLink to={i.path!}>
+                    <Card>
+                      <h3>{i.name}</h3>
+                      <p>{i.description}</p>
+                    </Card>
+                  </CardLink>
+                )}
+              </>
+            );
+          })}
         </ProjectGrid>
       </HeaderWrapper>
     </Section>
@@ -62,6 +68,7 @@ const Card = styled.div`
   transition: box-shadow 0.25s ease-in-out, transform 0.25s ease-in-out;
   cursor: pointer;
   position: relative;
+  height: 100%;
 
   /* Orange border */
   &::before {
