@@ -1,5 +1,7 @@
-import { Divider } from "common/components";
 import React from "react";
+import { Divider } from "common/components";
+import { colors } from "common/styles";
+import styled from "styled-components";
 
 export const AboutMeBlurb = (): React.ReactElement => {
   return (
@@ -24,7 +26,16 @@ export const AboutMeBlurb = (): React.ReactElement => {
         there are more ways to impact and shape the world than disrupting the
         automotive industry.
       </p>
+      <p>
+        <BlueLink href="/resume.pdf" target="_blank" rel="noreferrer">
+          See my resume
+        </BlueLink>
+      </p>
       <Divider />
     </div>
   );
 };
+
+const BlueLink = styled.a`
+  color: ${colors.blue};
+`;
