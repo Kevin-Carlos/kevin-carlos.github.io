@@ -12,6 +12,8 @@ export const Head: FC = () => {
   const { site } = useStaticQuery(query);
   const siteMeta: SiteMetaProps = site.siteMetadata;
 
+  console.log("site", site);
+
   return (
     <Helmet>
       <title>{siteMeta.title}</title>

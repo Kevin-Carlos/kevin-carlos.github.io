@@ -5,6 +5,7 @@ import { Footer } from "./menu/footer";
 import { MenuContext } from "./menu-context";
 import { GlobalStyle } from "common/styles/global";
 import { theme } from "common/styles";
+import { Head } from "common/site-head";
 
 export const MenuLayout: FC = ({ children }) => {
   const menuCtx = useContext(MenuContext);
@@ -14,6 +15,7 @@ export const MenuLayout: FC = ({ children }) => {
     <ThemeProvider theme={theme}>
       <GridLayout>
         <GlobalStyle />
+        <Head />
         <GridHeader backgroundVisibility={menuCtx.transparentizeHeaderBG} />
         <GridContent>{children}</GridContent>
         <GridFooter hideFooterItems={menuCtx.hideFooterItems} />

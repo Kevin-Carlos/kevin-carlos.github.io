@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `Kevin Carlos`,
     siteUrl: `https://kevin-carlos.github.io`,
-    description: `My personal website`,
+    description: `Portfolio Website`,
   },
   plugins: [
     `gatsby-plugin-styled-components`,
