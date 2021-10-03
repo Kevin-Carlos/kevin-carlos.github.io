@@ -1,5 +1,2 @@
 node_modules
-.gitignore
-gatsby-*
-package*
-tsconfig*
+.eslintrc.js

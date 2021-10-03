@@ -1,8 +1,7 @@
-import React, { FC } from 'react';
-import { IconProps } from 'phosphor-react';
 import { darken, lighten } from 'polished';
+import React, { FC } from 'react';
 import styled from 'styled-components';
-import { colors, ColorNames } from '../../theme';
+import { ColorNames, colors } from '../../theme';
 
 export type ButtonProps = {
   color?: ColorNames;
