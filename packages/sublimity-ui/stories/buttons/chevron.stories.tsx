@@ -1,3 +1,4 @@
+import React from 'react';
 import { Story } from '@storybook/react';
 import { ChevronLeft as CL, ChevronRight as CR } from '../../src';
 

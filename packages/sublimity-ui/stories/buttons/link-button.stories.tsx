@@ -1,4 +1,5 @@
 import { Story } from '@storybook/react';
+import React from 'react';
 import { LinkButton as Link } from '../../src';
 import type { LinkButtonProps } from '../../src/buttons/link-button/link-button';
 

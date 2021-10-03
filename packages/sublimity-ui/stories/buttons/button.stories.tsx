@@ -1,3 +1,4 @@
+import React from 'react';
 import { Story } from '@storybook/react';
 import { Plus, Trash } from 'phosphor-react';
 import { Button as UIButton } from '../../src';

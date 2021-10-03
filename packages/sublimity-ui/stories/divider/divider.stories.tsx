@@ -1,5 +1,6 @@
-import { Divider } from '../../src';
+import React from 'react';
 import styled from 'styled-components';
+import { Divider } from '../../src';
 
 export default {
   title: 'Atoms/Dividers',

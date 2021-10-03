@@ -1,5 +1,6 @@
-import { colors } from '../../src';
+import React from 'react';
 import styled from 'styled-components';
+import { colors } from '../../src';
 
 // Component section
 

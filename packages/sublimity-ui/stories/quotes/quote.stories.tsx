@@ -1,6 +1,7 @@
-import { Blockquote } from '../../src';
-import styled from 'styled-components';
 import { Story } from '@storybook/react';
+import React from 'react';
+import styled from 'styled-components';
+import { Blockquote } from '../../src';
 import type { BlockquoteProps } from '../../src/quotes';
 
 // Components Section
