@@ -3,11 +3,11 @@
   "tabWidth": 2,
   "bracketSpacing": true,
   "semi": true,
-  "singleQuote": false,
+  "singleQuote": true,
   "printWidth": 80,
   "useTabs": false,
   "quoteProps": "consistent",
-  "jsxBracketSameLine": false,
+  "bracketSameLine": false,
   "jsxSingleQuote": false,
   "arrowParens": "always"
 }
