@@ -6592,6 +6592,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "npm:1.2.0"
       ],
       [
+        "state",
+        "link:./src/state::locator=kevin-carlos.github.io%40workspace%3Apackages%2Fkevin-carlos.github.io"
+      ],
+      [
         "state-toggle",
         "npm:1.0.3"
       ],
@@ -29783,6 +29787,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-spring", "npm:9.2.4"],
             ["react-tsparticles", "virtual:21ddbbdcbe0fc15cdd4627b59e61d66f5d851063a44321880016bbfbc723e2948ac35361a5ca4416c98100091a85359acae37781b70d46a89c1a0680dbfee85e#npm:1.35.2"],
             ["recoil", "virtual:21ddbbdcbe0fc15cdd4627b59e61d66f5d851063a44321880016bbfbc723e2948ac35361a5ca4416c98100091a85359acae37781b70d46a89c1a0680dbfee85e#npm:0.4.1"],
+            ["state", "link:./src/state::locator=kevin-carlos.github.io%40workspace%3Apackages%2Fkevin-carlos.github.io"],
             ["styled-components", "virtual:21ddbbdcbe0fc15cdd4627b59e61d66f5d851063a44321880016bbfbc723e2948ac35361a5ca4416c98100091a85359acae37781b70d46a89c1a0680dbfee85e#npm:5.3.1"],
             ["sublimity-ui", "virtual:21ddbbdcbe0fc15cdd4627b59e61d66f5d851063a44321880016bbfbc723e2948ac35361a5ca4416c98100091a85359acae37781b70d46a89c1a0680dbfee85e#workspace:packages/sublimity-ui"],
             ["typescript", "patch:typescript@npm%3A4.4.3#~builtin<compat/typescript>::version=4.4.3&hash=32657b"],
@@ -37552,6 +37557,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["stackframe", "npm:1.2.0"]
           ],
           "linkType": "HARD",
+        }]
+      ]],
+      ["state", [
+        ["link:./src/state::locator=kevin-carlos.github.io%40workspace%3Apackages%2Fkevin-carlos.github.io", {
+          "packageLocation": "./packages/kevin-carlos.github.io/src/state/",
+          "packageDependencies": [
+            ["state", "link:./src/state::locator=kevin-carlos.github.io%40workspace%3Apackages%2Fkevin-carlos.github.io"]
+          ],
+          "linkType": "SOFT",
+          "discardFromLookup": true
         }]
       ]],
       ["state-toggle", [

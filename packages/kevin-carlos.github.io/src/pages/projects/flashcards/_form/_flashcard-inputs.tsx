@@ -2,7 +2,7 @@ import { Input, Label, SubmitButton } from 'common/ui-elements/forms';
 import { Formik, FormikHelpers } from 'formik';
 import React, { FC } from 'react';
 import { useRecoilState } from 'recoil';
-import { flashcardState } from 'state/flashcards';
+import { flashcardState } from 'state';
 import styled from 'styled-components';
 
 interface FlashcardInputsProps {

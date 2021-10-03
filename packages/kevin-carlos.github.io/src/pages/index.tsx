@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Homepage } from './_home/_home';
 
 // eslint-disable-next-line react/display-name
-export default () => {
+export default (): JSX.Element => {
   const [hideFooterItems, setFooterItemVisibility] =
     useState<Visibility>('hide');
   const [transparentizeHeaderBG, setHeaderBGVisibility] =

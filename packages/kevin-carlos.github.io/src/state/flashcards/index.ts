@@ -1,1 +1,1 @@
-export * from './flashcards';
+export { flashcardState } from './flashcards';

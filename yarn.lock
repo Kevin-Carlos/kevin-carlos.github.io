@@ -15194,6 +15194,7 @@ fsevents@^1.2.7:
     react-spring: ^9.2.4
     react-tsparticles: ^1.35.2
     recoil: ^0.4.1
+    state: "link:./src/state"
     styled-components: ^5.3.1
     sublimity-ui: "workspace:*"
     typescript: ^4.4.3
@@ -21531,6 +21532,12 @@ resolve@^2.0.0-next.3:
   checksum: 17398af928413e8d8b866cf0c81fd1b1348bb7d65d8983126ff6ff2317a80d6ee023484fba0c54d8169f5aa544f125434a650ae3a71eddc935cae307d4692b4f
   languageName: node
   linkType: hard
+
+"state@link:./src/state::locator=kevin-carlos.github.io%40workspace%3Apackages%2Fkevin-carlos.github.io":
+  version: 0.0.0-use.local
+  resolution: "state@link:./src/state::locator=kevin-carlos.github.io%40workspace%3Apackages%2Fkevin-carlos.github.io"
+  languageName: node
+  linkType: soft
 
 "static-extend@npm:^0.1.1":
   version: 0.1.2

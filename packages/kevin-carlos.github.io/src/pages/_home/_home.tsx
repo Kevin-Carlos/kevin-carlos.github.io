@@ -1,6 +1,6 @@
 import { theme as DefaultSiteTheme } from 'common/styles';
 import React, { FC } from 'react';
-import Particles from 'react-tsparticles';
+import Particles, { ISourceOptions } from 'react-tsparticles';
 import styled, { useTheme } from 'styled-components';
 import { Hero } from './_hero';
 
@@ -32,7 +32,7 @@ const StyledParticles = styled(Particles)`
   right: 0;
 `;
 
-const particleOptions = (theme: typeof DefaultSiteTheme) => ({
+const particleOptions = (theme: typeof DefaultSiteTheme): ISourceOptions => ({
   background: {
     color: {
       value: theme.colors.black,
@@ -40,6 +40,7 @@ const particleOptions = (theme: typeof DefaultSiteTheme) => ({
   },
   fpsLimit: 60,
   detectRetina: true,
+  retina_detect: true,
   interactivity: {
     detectsOn: 'canvas',
     events: {
@@ -65,7 +66,7 @@ const particleOptions = (theme: typeof DefaultSiteTheme) => ({
         size: 40,
         duration: 2,
         opacity: 8,
-        speed: 3,
+        // speed: 3,
       },
       repulse: {
         distance: 200,
@@ -79,10 +80,6 @@ const particleOptions = (theme: typeof DefaultSiteTheme) => ({
       },
     },
   },
-  // backgroundMode: {
-  //   enable: true,
-  //   zIndex: -1,
-  // },
   particles: {
     number: {
       value: 27,
@@ -109,9 +106,6 @@ const particleOptions = (theme: typeof DefaultSiteTheme) => ({
     },
     opacity: {
       value: 0.7,
-      random: {
-        enable: true,
-      },
       animation: {
         enable: false,
         minimumValue: 0.1,
@@ -141,7 +135,7 @@ const particleOptions = (theme: typeof DefaultSiteTheme) => ({
     },
     move: {
       enable: true,
-      speed: 6,
+      speed: 2.5,
       direction: 'none',
       random: false,
       straight: false,
@@ -154,8 +148,8 @@ const particleOptions = (theme: typeof DefaultSiteTheme) => ({
       },
       attract: {
         enable: false,
-        x: 600,
-        y: 1200,
+        rotateX: 600,
+        rotateY: 1200,
       },
     },
   },
