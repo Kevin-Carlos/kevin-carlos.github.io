@@ -1,24 +1,20 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "esnext",
-    "jsx": "preserve",
-    "lib": ["dom", "es2015", "es2017", "ES2018", "ES2019", "ES2020"],
-    "strict": true,
-    "noEmit": false,
-    // "isolatedModules": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "removeComments": false,
-    "preserveConstEnums": true,
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "allowJs": false,
+    "skipLibCheck": false,
+    "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
-    "baseUrl": "./src",
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
     "resolveJsonModule": true,
-    "pretty": true
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx"
   },
-  "include": ["./src/**/*", "wrap-with-recoil.tsx"],
-  "exclude": ["node_modules"]
+  "include": ["./src"]
 }
