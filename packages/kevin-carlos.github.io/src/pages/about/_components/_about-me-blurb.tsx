@@ -1,6 +1,5 @@
-import React from 'react';
 import { Divider } from 'common/components';
-import { colors } from 'common/styles';
+import React from 'react';
 import styled from 'styled-components';
 
 export const AboutMeBlurb = (): React.ReactElement => {
@@ -37,5 +36,5 @@ export const AboutMeBlurb = (): React.ReactElement => {
 };
 
 const BlueLink = styled.a`
-  color: ${colors.blue};
+  color: ${({ theme }) => theme.colors.blue};
 `;

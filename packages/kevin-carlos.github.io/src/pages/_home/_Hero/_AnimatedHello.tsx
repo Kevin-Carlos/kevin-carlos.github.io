@@ -1,12 +1,17 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
 import { animated, useSpring, useTransition } from 'react-spring';
-import { hiItems } from '../_languages';
+import { helloInLanguages } from './_languages';
 
+/**
+ * Controls the animations for 'Hello' and animating the margin of `I'm`
+ *
+ * Separating it into this component isolates the re-renders
+ */
 export const AnimatedHello: FC = () => {
   const valueRef = useRef<HTMLSpanElement | null>(null);
 
   const [index, setIndex] = useState(0);
-  const [length, setLength] = useState(hiItems[index].item.length);
+  const [length, setLength] = useState(helloInLanguages[index].length);
 
   // Transition the 'hiItems' to fade in and out
   const transitions = useTransition(index, {
@@ -34,14 +39,14 @@ export const AnimatedHello: FC = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setIndex((state) => (state + 1) % hiItems.length);
+      setIndex((state) => (state + 1) % helloInLanguages.length);
     }, 1000 * 3.9);
 
     return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
-    setLength(valueRef.current?.clientWidth || hiItems[index].item.length);
+    setLength(valueRef.current?.clientWidth || helloInLanguages[index].length);
   }, [index]);
 
   return (
@@ -51,7 +56,7 @@ export const AnimatedHello: FC = () => {
           ref={valueRef}
           style={{ ...styles, position: 'absolute' }}
         >
-          {hiItems[i].item},
+          {helloInLanguages[i]},
         </animated.span>
       ))}
       <animated.span

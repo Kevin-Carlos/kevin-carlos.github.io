@@ -1,4 +1,4 @@
-import { colors } from './colors';
+import { colors } from 'sublimity-ui';
 import { mediaQuery } from './media-queries';
 import { zIndices } from './z-index';
 
@@ -14,4 +14,4 @@ export const theme = {
   },
   mediaQuery,
   zIndices,
-};
+} as const;

@@ -24,7 +24,7 @@ export const MenuLayout: FC = ({ children }) => {
   );
 };
 
-const GridLayout = styled.article`
+const GridLayout = styled.div`
   display: grid;
   grid-template-rows: 6rem 1fr 6rem;
   grid-template-columns: 1fr;

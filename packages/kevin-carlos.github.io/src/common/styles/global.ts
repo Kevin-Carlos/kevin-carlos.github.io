@@ -48,6 +48,9 @@ export const GlobalStyle = createGlobalStyle`
   blockquote {
     margin: 0 0 0 3rem;
   }
+  button {
+    font-family: 'Poppins', sans-serif;
+  }
   input, button {
     font-family: inherit;
     font-size: inherit;

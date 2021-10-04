@@ -48,7 +48,7 @@ const ColoredName = styled.p`
 `;
 
 const StyledDivider = styled(Divider)`
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 `;
 
 const StyledButton = styled.button`

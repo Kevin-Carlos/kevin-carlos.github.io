@@ -1,6 +1,5 @@
-import { colors } from 'common/styles';
 import React from 'react';
-import { Blockquote } from 'sublimity-ui';
+import { Blockquote, colors } from 'sublimity-ui';
 
 export const CareerBlurb = (): React.ReactElement => {
   return (
@@ -25,7 +24,7 @@ export const CareerBlurb = (): React.ReactElement => {
       </Blockquote>
 
       <p>
-        I help manage and maintain five different frontend applications and my
+        I helped manage and maintain five different frontend applications and my
         most recent noteworthy project has been developing the views/pages of
         our now-rebranded site, check it out!
       </p>

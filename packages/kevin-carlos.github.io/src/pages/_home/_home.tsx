@@ -5,7 +5,7 @@ import styled, { useTheme } from 'styled-components';
 import { Hero } from './_Hero/_hero';
 
 export const Homepage: FC = () => {
-  const theme = useTheme();
+  const theme: typeof DefaultSiteTheme = useTheme();
 
   return (
     <HomeWrapper>
