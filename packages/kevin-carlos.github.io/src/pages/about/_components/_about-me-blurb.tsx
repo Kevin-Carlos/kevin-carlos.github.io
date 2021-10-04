@@ -6,6 +6,7 @@ export const AboutMeBlurb = (): React.ReactElement => {
   return (
     <div>
       <Divider style={{ marginBottom: '2rem' }} />
+      <p>{`Hi, I'm Kevin!`}</p>
       <p>
         From an early age, I was introduced to Halo by a friend and got hooked
         into gaming. Like many, I got into Computer Science to build games, but
@@ -22,8 +23,7 @@ export const AboutMeBlurb = (): React.ReactElement => {
       <p>
         Near the end of my schooling career, I was afforded an opportunity to
         become a Frontend Software Engineer and in doing so have found that
-        there are more ways to impact and shape the world than disrupting the
-        automotive industry.
+        there are more ways to impact and shape the world.
       </p>
       <p>
         <BlueLink href="/resume.pdf" target="_blank" rel="noreferrer">

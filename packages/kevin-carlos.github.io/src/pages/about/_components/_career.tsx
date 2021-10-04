@@ -1,33 +1,27 @@
-import React from 'react';
-import { Blockquote, colors } from 'sublimity-ui';
+import React, { useState } from 'react';
+import { Tab, TabsList } from 'sublimity-ui';
+import { CareerCycle } from './_career-items/_cycle';
+import { CareerStealth } from './_career-items/_stealth';
 
 export const CareerBlurb = (): React.ReactElement => {
+  const [tab, setTab] = useState<'stealth' | 'cycle'>('stealth');
+
   return (
-    <div>
-      <p>Back in October of 2019, I joined Cycle.</p>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        height: '50vh',
+      }}
+    >
+      <TabsList>
+        <Tab onClick={() => setTab('stealth')}>Stealth</Tab>
+        <Tab onClick={() => setTab('cycle')}>Cycle</Tab>
+      </TabsList>
 
-      <Blockquote
-        author="Platform"
-        color={colors.orange}
-        highlightColor={colors.light_gray}
-      >
-        <p>
-          {`Too many companies have been led down the path of believing they have
-          the same technical requirements as Fortune 100 enterprises, and we're
-          here to fix that.`}
-        </p>
-        <p>
-          Our goal is simple: enable developers to spend more time building
-          awesome products and less time managing infrastructure, pushing
-          deployments, and patching orchestrators.
-        </p>
-      </Blockquote>
-
-      <p>
-        I helped manage and maintain five different frontend applications and my
-        most recent noteworthy project has been developing the views/pages of
-        our now-rebranded site, check it out!
-      </p>
+      {tab === 'cycle' ? <CareerCycle /> : null}
+      {tab === 'stealth' ? <CareerStealth /> : null}
     </div>
   );
 };
