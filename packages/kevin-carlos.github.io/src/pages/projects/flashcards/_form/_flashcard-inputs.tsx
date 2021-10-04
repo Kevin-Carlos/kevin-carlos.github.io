@@ -1,16 +1,15 @@
 import { Input, Label } from 'common/ui-elements/forms';
-// import { Formik, FormikHelpers } from 'formik';
 import React, { FC } from 'react';
 import { useForm } from 'react-hook-form';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { Button } from 'sublimity-ui';
+import { flashcardState } from '../../../../state';
 
 interface FlashcardInputsProps {
   cardIndex: number;
   disable: boolean;
   setIndex: (v: number) => void;
-  addCard: (s: string, d: string) => void;
-  removeCard: (idx: number) => void;
 }
 
 interface FormValues {
@@ -24,9 +23,9 @@ export const FlashcardInputs: FC<FlashcardInputsProps> = ({
   cardIndex,
   disable,
   setIndex,
-  addCard,
-  removeCard,
 }) => {
+  const [, updateCards] = useRecoilState(flashcardState);
+
   const { register, getValues } = useForm<FormValues>({
     defaultValues: {
       subject: '',
@@ -38,6 +37,8 @@ export const FlashcardInputs: FC<FlashcardInputsProps> = ({
 
   const submitForm = (type: FormValues['type']) => {
     const formData = getValues();
+
+    console.log('FORM DATA', formData);
 
     switch (type) {
       case 'adding': {
@@ -55,15 +56,21 @@ export const FlashcardInputs: FC<FlashcardInputsProps> = ({
     }
   };
 
+  const addCard = (s: string, d: string) =>
+    updateCards((prev) => [{ subject: s, description: d }, ...prev]);
+
+  const removeCard = (idx: number) =>
+    updateCards((curCards) => curCards.filter((_, index) => index === idx));
+
   return (
     <form style={{ width: '70%' }}>
       <FormInputGrid>
-        <StyledLabel1 label="Subject">
+        <Label label="Subject">
           <Input {...register(`subject`)} />
-        </StyledLabel1>
-        <StyledLabel2 label="Description">
+        </Label>
+        <Label label="Description">
           <Input {...register(`description`)} />
-        </StyledLabel2>
+        </Label>
         <Button onClick={() => submitForm('adding')} color="light_teal">
           <span
             style={{
@@ -120,35 +127,6 @@ export const FlashcardInputs: FC<FlashcardInputsProps> = ({
     </form>
   );
 };
-
-// function submit(
-//   values: FormValues,
-//   { setSubmitting, resetForm }: FormikHelpers<FormValues>,
-//   addCard: (s: string, d: string) => void,
-//   removeCard: (index: number) => void,
-//   setIndex: (v: number) => void
-// ) {
-//   setSubmitting(true);
-
-//   if (values.type === 'deleting') {
-//     // Decrement index to account for removing unless already at 0;
-//     values.index !== 0 ? setIndex(values.index - 1) : null;
-//     removeCard(values.index);
-
-//     setSubmitting(false);
-//     resetForm();
-//     return;
-//   }
-
-//   addCard(values.subject, values.description);
-
-//   setSubmitting(false);
-//   resetForm();
-//   return;
-// }
-
-const StyledLabel1 = styled(Label)``;
-const StyledLabel2 = styled(Label)``;
 
 const FormInputGrid = styled.div`
   display: grid;

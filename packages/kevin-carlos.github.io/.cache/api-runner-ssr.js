@@ -10,10 +10,6 @@ var plugins = [{
       name: 'gatsby-plugin-manifest',
       plugin: require('/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/.yarn/__virtual__/gatsby-plugin-manifest-virtual-ffa146be37/0/cache/gatsby-plugin-manifest-npm-3.14.0-2322bdf147-4abbfe8953.zip/node_modules/gatsby-plugin-manifest/gatsby-ssr'),
       options: {"plugins":[],"icon":"src/images/android-chrome-512x512.png","name":"Kevin Carlos","short_name":"Personal website to host fun side projects.","start_url":"/","background_color":"#ffffff","theme_color":"#ffffff","display":"standalone","legacy":true,"theme_color_in_head":true,"cache_busting_mode":"query","crossOrigin":"anonymous","include_favicon":true,"cacheDigest":"6e75cb78dc6b7838e295b9f6ac0585b5"},
-    },{
-      name: 'default-site-plugin',
-      plugin: require('/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/packages/kevin-carlos.github.io/gatsby-ssr'),
-      options: {"plugins":[]},
     }]
 /* global plugins */
 // During bootstrap, we write requires at top of this file which looks like:

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { animated, useTransition } from 'react-spring';
 import styled from 'styled-components';
-import { ColorNames } from '../../common/styles';
+import { ColorNames } from 'sublimity-ui';
 import { circleItems } from './_items';
 
 type CirclesProps = {

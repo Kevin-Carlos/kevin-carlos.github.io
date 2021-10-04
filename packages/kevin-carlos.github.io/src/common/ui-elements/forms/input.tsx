@@ -1,12 +1,13 @@
-import React, { FC } from 'react';
-import styled from 'styled-components';
 import { darken } from 'polished';
+import React, { forwardRef } from 'react';
+import styled from 'styled-components';
 
 type InputProps = React.InputHTMLAttributes<HTMLInputElement>;
 
-export const Input: FC<InputProps> = ({ ...props }) => {
-  return <StyledInput type="text" {...props} />;
-};
+// eslint-disable-next-line react/display-name
+export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+  return <StyledInput type="text" {...props} ref={ref} />;
+});
 
 const StyledInput = styled.input`
   width: 100%;

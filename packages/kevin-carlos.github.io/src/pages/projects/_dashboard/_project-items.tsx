@@ -27,22 +27,12 @@ export const projectItems: Items[] = [
     path: links.projects().project().flashcards(),
   },
   {
-    name: 'Snowpack Site',
-    path: 'https://github.com/Kevin-Carlos/Website',
+    name: 'GH Pages Site + UI Library Monorepo',
+    path: 'https://github.com/Kevin-Carlos/kevin-carlos.github.io',
     description: (
       <p>
-        Using <a href="https://snowpack.dev">Snowpack</a> to develop this site
-        and experiment with new development tools.
-      </p>
-    ),
-  },
-  {
-    name: 'Sublimity-UI',
-    path: 'https://github.com/Kevin-Carlos/sublimity-ui',
-    description: (
-      <p>
-        For general use of this website, publishing packages, and display
-        Storybook uses.
+        Updated this website to a yarn 2 monorepo containing the GH Pages
+        project + the UI library I created meant for it.
       </p>
     ),
   },

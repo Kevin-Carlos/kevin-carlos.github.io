@@ -2,6 +2,7 @@ import { Head } from 'common/site-head';
 import { theme } from 'common/styles';
 import { GlobalStyle } from 'common/styles/global';
 import React, { FC, useContext } from 'react';
+import { RecoilRoot } from 'recoil';
 import styled, { ThemeProvider } from 'styled-components';
 import { MenuContext } from './menu-context';
 import { Footer } from './menu/footer';
@@ -11,16 +12,19 @@ export const MenuLayout: FC = ({ children }) => {
   const menuCtx = useContext(MenuContext);
 
   return (
-    // Wrap theme here because seems to not work in gatsby-* files, theres a flash
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <Head />
-      <GridLayout>
-        <GridHeader backgroundVisibility={menuCtx.transparentizeHeaderBG} />
-        <GridContent>{children}</GridContent>
-        <GridFooter hideFooterItems={menuCtx.hideFooterItems} />
-      </GridLayout>
-    </ThemeProvider>
+    <RecoilRoot>
+      {/* Wrap theme here because seems to not work in gatsby-* files, theres a
+      flash */}
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <Head />
+        <GridLayout>
+          <GridHeader backgroundVisibility={menuCtx.transparentizeHeaderBG} />
+          <GridContent>{children}</GridContent>
+          <GridFooter hideFooterItems={menuCtx.hideFooterItems} />
+        </GridLayout>
+      </ThemeProvider>
+    </RecoilRoot>
   );
 };
 

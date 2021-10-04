@@ -1,19 +1,14 @@
 import { MenuLayout, Section } from 'common/layout';
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { Circles } from './_Circles';
-import { ContentBlurb } from './_components/_content-blurb';
-import { circleItems } from './_items';
+import { Information } from './_Information';
 
 // eslint-disable-next-line react/display-name
 export default (): React.ReactElement => {
-  const [index, setIndex] = useState(0);
-
   return (
     <MenuLayout>
       <FullHeightSection isFirst centered>
-        <Circles index={index} setIndex={(n) => setIndex(n)} />
-        <ContentBlurb type={circleItems[index].key} />
+        <Information />
       </FullHeightSection>
     </MenuLayout>
   );

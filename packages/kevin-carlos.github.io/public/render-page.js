@@ -814,6 +814,1451 @@ exports.shallowCompare = shallowCompare;
 
 /***/ }),
 
+/***/ "../../.yarn/__virtual__/@react-spring-animated-virtual-67a11736df/0/cache/@react-spring-animated-npm-9.2.4-503ae5ad1d-5fba22b5df.zip/node_modules/@react-spring/animated/dist/react-spring-animated.esm.js":
+/*!******************************************************************************************************************************************************************************************************************!*\
+  !*** ../../.yarn/__virtual__/@react-spring-animated-virtual-67a11736df/0/cache/@react-spring-animated-npm-9.2.4-503ae5ad1d-5fba22b5df.zip/node_modules/@react-spring/animated/dist/react-spring-animated.esm.js ***!
+  \******************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Animated": () => (/* binding */ Animated),
+/* harmony export */   "AnimatedArray": () => (/* binding */ AnimatedArray),
+/* harmony export */   "AnimatedObject": () => (/* binding */ AnimatedObject),
+/* harmony export */   "AnimatedString": () => (/* binding */ AnimatedString),
+/* harmony export */   "AnimatedValue": () => (/* binding */ AnimatedValue),
+/* harmony export */   "createHost": () => (/* binding */ createHost),
+/* harmony export */   "getAnimated": () => (/* binding */ getAnimated),
+/* harmony export */   "getAnimatedType": () => (/* binding */ getAnimatedType),
+/* harmony export */   "getPayload": () => (/* binding */ getPayload),
+/* harmony export */   "isAnimated": () => (/* binding */ isAnimated),
+/* harmony export */   "setAnimated": () => (/* binding */ setAnimated)
+/* harmony export */ });
+/* harmony import */ var _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @react-spring/shared */ "../../.yarn/__virtual__/@react-spring-shared-virtual-c5425cdfcb/0/cache/@react-spring-shared-npm-9.2.4-b67476cbae-98cc71cb5c.zip/node_modules/@react-spring/shared/dist/react-spring-shared.esm.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+
+const $node = Symbol.for('Animated:node');
+const isAnimated = value => !!value && value[$node] === value;
+const getAnimated = owner => owner && owner[$node];
+const setAnimated = (owner, node) => (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.defineHidden)(owner, $node, node);
+const getPayload = owner => owner && owner[$node] && owner[$node].getPayload();
+class Animated {
+  constructor() {
+    this.payload = void 0;
+    setAnimated(this, this);
+  }
+
+  getPayload() {
+    return this.payload || [];
+  }
+
+}
+
+class AnimatedValue extends Animated {
+  constructor(_value) {
+    super();
+    this.done = true;
+    this.elapsedTime = void 0;
+    this.lastPosition = void 0;
+    this.lastVelocity = void 0;
+    this.v0 = void 0;
+    this.durationProgress = 0;
+    this._value = _value;
+
+    if (_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.num(this._value)) {
+      this.lastPosition = this._value;
+    }
+  }
+
+  static create(value) {
+    return new AnimatedValue(value);
+  }
+
+  getPayload() {
+    return [this];
+  }
+
+  getValue() {
+    return this._value;
+  }
+
+  setValue(value, step) {
+    if (_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.num(value)) {
+      this.lastPosition = value;
+
+      if (step) {
+        value = Math.round(value / step) * step;
+
+        if (this.done) {
+          this.lastPosition = value;
+        }
+      }
+    }
+
+    if (this._value === value) {
+      return false;
+    }
+
+    this._value = value;
+    return true;
+  }
+
+  reset() {
+    const {
+      done
+    } = this;
+    this.done = false;
+
+    if (_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.num(this._value)) {
+      this.elapsedTime = 0;
+      this.durationProgress = 0;
+      this.lastPosition = this._value;
+      if (done) this.lastVelocity = null;
+      this.v0 = null;
+    }
+  }
+
+}
+
+class AnimatedString extends AnimatedValue {
+  constructor(value) {
+    super(0);
+    this._string = null;
+    this._toString = void 0;
+    this._toString = (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.createInterpolator)({
+      output: [value, value]
+    });
+  }
+
+  static create(value) {
+    return new AnimatedString(value);
+  }
+
+  getValue() {
+    let value = this._string;
+    return value == null ? this._string = this._toString(this._value) : value;
+  }
+
+  setValue(value) {
+    if (_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.str(value)) {
+      if (value == this._string) {
+        return false;
+      }
+
+      this._string = value;
+      this._value = 1;
+    } else if (super.setValue(value)) {
+      this._string = null;
+    } else {
+      return false;
+    }
+
+    return true;
+  }
+
+  reset(goal) {
+    if (goal) {
+      this._toString = (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.createInterpolator)({
+        output: [this.getValue(), goal]
+      });
+    }
+
+    this._value = 0;
+    super.reset();
+  }
+
+}
+
+const TreeContext = {
+  dependencies: null
+};
+
+class AnimatedObject extends Animated {
+  constructor(source) {
+    super();
+    this.source = source;
+    this.setValue(source);
+  }
+
+  getValue(animated) {
+    const values = {};
+    (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.eachProp)(this.source, (source, key) => {
+      if (isAnimated(source)) {
+        values[key] = source.getValue(animated);
+      } else if ((0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.hasFluidValue)(source)) {
+        values[key] = (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.getFluidValue)(source);
+      } else if (!animated) {
+        values[key] = source;
+      }
+    });
+    return values;
+  }
+
+  setValue(source) {
+    this.source = source;
+    this.payload = this._makePayload(source);
+  }
+
+  reset() {
+    if (this.payload) {
+      (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)(this.payload, node => node.reset());
+    }
+  }
+
+  _makePayload(source) {
+    if (source) {
+      const payload = new Set();
+      (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.eachProp)(source, this._addToPayload, payload);
+      return Array.from(payload);
+    }
+  }
+
+  _addToPayload(source) {
+    if (TreeContext.dependencies && (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.hasFluidValue)(source)) {
+      TreeContext.dependencies.add(source);
+    }
+
+    const payload = getPayload(source);
+
+    if (payload) {
+      (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)(payload, node => this.add(node));
+    }
+  }
+
+}
+
+class AnimatedArray extends AnimatedObject {
+  constructor(source) {
+    super(source);
+  }
+
+  static create(source) {
+    return new AnimatedArray(source);
+  }
+
+  getValue() {
+    return this.source.map(node => node.getValue());
+  }
+
+  setValue(source) {
+    const payload = this.getPayload();
+
+    if (source.length == payload.length) {
+      return payload.map((node, i) => node.setValue(source[i])).some(Boolean);
+    }
+
+    super.setValue(source.map(makeAnimated));
+    return true;
+  }
+
+}
+
+function makeAnimated(value) {
+  const nodeType = (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.isAnimatedString)(value) ? AnimatedString : AnimatedValue;
+  return nodeType.create(value);
+}
+
+function getAnimatedType(value) {
+  const parentNode = getAnimated(value);
+  return parentNode ? parentNode.constructor : _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.arr(value) ? AnimatedArray : (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.isAnimatedString)(value) ? AnimatedString : AnimatedValue;
+}
+
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+const withAnimated = (Component, host) => {
+  const hasInstance = !_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.fun(Component) || Component.prototype && Component.prototype.isReactComponent;
+  return (0,react__WEBPACK_IMPORTED_MODULE_1__.forwardRef)((givenProps, givenRef) => {
+    const instanceRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
+    const ref = hasInstance && (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)(value => {
+      instanceRef.current = updateRef(givenRef, value);
+    }, [givenRef]);
+    const [props, deps] = getAnimatedState(givenProps, host);
+    const forceUpdate = (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.useForceUpdate)();
+
+    const callback = () => {
+      const instance = instanceRef.current;
+
+      if (hasInstance && !instance) {
+        return;
+      }
+
+      const didUpdate = instance ? host.applyAnimatedValues(instance, props.getValue(true)) : false;
+
+      if (didUpdate === false) {
+        forceUpdate();
+      }
+    };
+
+    const observer = new PropsObserver(callback, deps);
+    const observerRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
+    (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.useLayoutEffect)(() => {
+      const lastObserver = observerRef.current;
+      observerRef.current = observer;
+      (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)(deps, dep => (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.addFluidObserver)(dep, observer));
+
+      if (lastObserver) {
+        (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)(lastObserver.deps, dep => (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.removeFluidObserver)(dep, lastObserver));
+        _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.raf.cancel(lastObserver.update);
+      }
+    });
+    (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(callback, []);
+    (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.useOnce)(() => () => {
+      const observer = observerRef.current;
+      (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)(observer.deps, dep => (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.removeFluidObserver)(dep, observer));
+    });
+    const usedProps = host.getComponentProps(props.getValue());
+    return react__WEBPACK_IMPORTED_MODULE_1__.createElement(Component, _extends({}, usedProps, {
+      ref: ref
+    }));
+  });
+};
+
+class PropsObserver {
+  constructor(update, deps) {
+    this.update = update;
+    this.deps = deps;
+  }
+
+  eventObserved(event) {
+    if (event.type == 'change') {
+      _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.raf.write(this.update);
+    }
+  }
+
+}
+
+function getAnimatedState(props, host) {
+  const dependencies = new Set();
+  TreeContext.dependencies = dependencies;
+  if (props.style) props = _extends({}, props, {
+    style: host.createAnimatedStyle(props.style)
+  });
+  props = new AnimatedObject(props);
+  TreeContext.dependencies = null;
+  return [props, dependencies];
+}
+
+function updateRef(ref, value) {
+  if (ref) {
+    if (_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.fun(ref)) ref(value);else ref.current = value;
+  }
+
+  return value;
+}
+
+const cacheKey = Symbol.for('AnimatedComponent');
+const createHost = (components, {
+  applyAnimatedValues: _applyAnimatedValues = () => false,
+  createAnimatedStyle: _createAnimatedStyle = style => new AnimatedObject(style),
+  getComponentProps: _getComponentProps = props => props
+} = {}) => {
+  const hostConfig = {
+    applyAnimatedValues: _applyAnimatedValues,
+    createAnimatedStyle: _createAnimatedStyle,
+    getComponentProps: _getComponentProps
+  };
+
+  const animated = Component => {
+    const displayName = getDisplayName(Component) || 'Anonymous';
+
+    if (_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.str(Component)) {
+      Component = animated[Component] || (animated[Component] = withAnimated(Component, hostConfig));
+    } else {
+      Component = Component[cacheKey] || (Component[cacheKey] = withAnimated(Component, hostConfig));
+    }
+
+    Component.displayName = `Animated(${displayName})`;
+    return Component;
+  };
+
+  (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.eachProp)(components, (Component, key) => {
+    if (_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.arr(components)) {
+      key = getDisplayName(Component);
+    }
+
+    animated[key] = animated(Component);
+  });
+  return {
+    animated
+  };
+};
+
+const getDisplayName = arg => _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.str(arg) ? arg : arg && _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.str(arg.displayName) ? arg.displayName : _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.fun(arg) && arg.name || null;
+
+
+
+
+/***/ }),
+
+/***/ "../../.yarn/__virtual__/@react-spring-shared-virtual-c5425cdfcb/0/cache/@react-spring-shared-npm-9.2.4-b67476cbae-98cc71cb5c.zip/node_modules/@react-spring/shared/dist/react-spring-shared.esm.js":
+/*!**********************************************************************************************************************************************************************************************************!*\
+  !*** ../../.yarn/__virtual__/@react-spring-shared-virtual-c5425cdfcb/0/cache/@react-spring-shared-npm-9.2.4-b67476cbae-98cc71cb5c.zip/node_modules/@react-spring/shared/dist/react-spring-shared.esm.js ***!
+  \**********************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "raf": () => (/* reexport safe */ _react_spring_rafz__WEBPACK_IMPORTED_MODULE_0__.raf),
+/* harmony export */   "FluidValue": () => (/* binding */ FluidValue),
+/* harmony export */   "Globals": () => (/* binding */ globals),
+/* harmony export */   "addFluidObserver": () => (/* binding */ addFluidObserver),
+/* harmony export */   "callFluidObserver": () => (/* binding */ callFluidObserver),
+/* harmony export */   "callFluidObservers": () => (/* binding */ callFluidObservers),
+/* harmony export */   "colorToRgba": () => (/* binding */ colorToRgba),
+/* harmony export */   "colors": () => (/* binding */ colors),
+/* harmony export */   "createInterpolator": () => (/* binding */ createInterpolator),
+/* harmony export */   "createStringInterpolator": () => (/* binding */ createStringInterpolator),
+/* harmony export */   "defineHidden": () => (/* binding */ defineHidden),
+/* harmony export */   "deprecateDirectCall": () => (/* binding */ deprecateDirectCall),
+/* harmony export */   "deprecateInterpolate": () => (/* binding */ deprecateInterpolate),
+/* harmony export */   "each": () => (/* binding */ each),
+/* harmony export */   "eachProp": () => (/* binding */ eachProp),
+/* harmony export */   "flush": () => (/* binding */ flush),
+/* harmony export */   "flushCalls": () => (/* binding */ flushCalls),
+/* harmony export */   "frameLoop": () => (/* binding */ frameLoop),
+/* harmony export */   "getFluidObservers": () => (/* binding */ getFluidObservers),
+/* harmony export */   "getFluidValue": () => (/* binding */ getFluidValue),
+/* harmony export */   "hasFluidValue": () => (/* binding */ hasFluidValue),
+/* harmony export */   "hex3": () => (/* binding */ hex3),
+/* harmony export */   "hex4": () => (/* binding */ hex4),
+/* harmony export */   "hex6": () => (/* binding */ hex6),
+/* harmony export */   "hex8": () => (/* binding */ hex8),
+/* harmony export */   "hsl": () => (/* binding */ hsl),
+/* harmony export */   "hsla": () => (/* binding */ hsla),
+/* harmony export */   "is": () => (/* binding */ is),
+/* harmony export */   "isAnimatedString": () => (/* binding */ isAnimatedString),
+/* harmony export */   "isEqual": () => (/* binding */ isEqual),
+/* harmony export */   "noop": () => (/* binding */ noop),
+/* harmony export */   "removeFluidObserver": () => (/* binding */ removeFluidObserver),
+/* harmony export */   "rgb": () => (/* binding */ rgb),
+/* harmony export */   "rgba": () => (/* binding */ rgba),
+/* harmony export */   "setFluidGetter": () => (/* binding */ setFluidGetter),
+/* harmony export */   "toArray": () => (/* binding */ toArray),
+/* harmony export */   "useForceUpdate": () => (/* binding */ useForceUpdate),
+/* harmony export */   "useLayoutEffect": () => (/* binding */ useLayoutEffect),
+/* harmony export */   "useMemoOne": () => (/* binding */ useMemoOne),
+/* harmony export */   "useOnce": () => (/* binding */ useOnce),
+/* harmony export */   "usePrev": () => (/* binding */ usePrev)
+/* harmony export */ });
+/* harmony import */ var _react_spring_rafz__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @react-spring/rafz */ "../../.yarn/cache/@react-spring-rafz-npm-9.2.4-98d53d569d-2b6aa95a7e.zip/node_modules/@react-spring/rafz/dist/react-spring-rafz.esm.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+
+
+function noop() {}
+const defineHidden = (obj, key, value) => Object.defineProperty(obj, key, {
+  value,
+  writable: true,
+  configurable: true
+});
+const is = {
+  arr: Array.isArray,
+  obj: a => !!a && a.constructor.name === 'Object',
+  fun: a => typeof a === 'function',
+  str: a => typeof a === 'string',
+  num: a => typeof a === 'number',
+  und: a => a === undefined
+};
+function isEqual(a, b) {
+  if (is.arr(a)) {
+    if (!is.arr(b) || a.length !== b.length) return false;
+
+    for (let i = 0; i < a.length; i++) {
+      if (a[i] !== b[i]) return false;
+    }
+
+    return true;
+  }
+
+  return a === b;
+}
+const each = (obj, fn) => obj.forEach(fn);
+function eachProp(obj, fn, ctx) {
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      fn.call(ctx, obj[key], key);
+    }
+  }
+}
+const toArray = a => is.und(a) ? [] : is.arr(a) ? a : [a];
+function flush(queue, iterator) {
+  if (queue.size) {
+    const items = Array.from(queue);
+    queue.clear();
+    each(items, iterator);
+  }
+}
+const flushCalls = (queue, ...args) => flush(queue, fn => fn(...args));
+
+let createStringInterpolator$1;
+let to;
+let colors$1 = null;
+let skipAnimation = false;
+let willAdvance = noop;
+const assign = globals => {
+  if (globals.to) to = globals.to;
+  if (globals.now) _react_spring_rafz__WEBPACK_IMPORTED_MODULE_0__.raf.now = globals.now;
+  if (globals.colors !== undefined) colors$1 = globals.colors;
+  if (globals.skipAnimation != null) skipAnimation = globals.skipAnimation;
+  if (globals.createStringInterpolator) createStringInterpolator$1 = globals.createStringInterpolator;
+  if (globals.requestAnimationFrame) _react_spring_rafz__WEBPACK_IMPORTED_MODULE_0__.raf.use(globals.requestAnimationFrame);
+  if (globals.batchedUpdates) _react_spring_rafz__WEBPACK_IMPORTED_MODULE_0__.raf.batchedUpdates = globals.batchedUpdates;
+  if (globals.willAdvance) willAdvance = globals.willAdvance;
+  if (globals.frameLoop) _react_spring_rafz__WEBPACK_IMPORTED_MODULE_0__.raf.frameLoop = globals.frameLoop;
+};
+
+var globals = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  get createStringInterpolator () { return createStringInterpolator$1; },
+  get to () { return to; },
+  get colors () { return colors$1; },
+  get skipAnimation () { return skipAnimation; },
+  get willAdvance () { return willAdvance; },
+  assign: assign
+});
+
+const startQueue = new Set();
+let currentFrame = [];
+let prevFrame = [];
+let priority = 0;
+const frameLoop = {
+  get idle() {
+    return !startQueue.size && !currentFrame.length;
+  },
+
+  start(animation) {
+    if (priority > animation.priority) {
+      startQueue.add(animation);
+      _react_spring_rafz__WEBPACK_IMPORTED_MODULE_0__.raf.onStart(flushStartQueue);
+    } else {
+      startSafely(animation);
+      (0,_react_spring_rafz__WEBPACK_IMPORTED_MODULE_0__.raf)(advance);
+    }
+  },
+
+  advance,
+
+  sort(animation) {
+    if (priority) {
+      _react_spring_rafz__WEBPACK_IMPORTED_MODULE_0__.raf.onFrame(() => frameLoop.sort(animation));
+    } else {
+      const prevIndex = currentFrame.indexOf(animation);
+
+      if (~prevIndex) {
+        currentFrame.splice(prevIndex, 1);
+        startUnsafely(animation);
+      }
+    }
+  },
+
+  clear() {
+    currentFrame = [];
+    startQueue.clear();
+  }
+
+};
+
+function flushStartQueue() {
+  startQueue.forEach(startSafely);
+  startQueue.clear();
+  (0,_react_spring_rafz__WEBPACK_IMPORTED_MODULE_0__.raf)(advance);
+}
+
+function startSafely(animation) {
+  if (!currentFrame.includes(animation)) startUnsafely(animation);
+}
+
+function startUnsafely(animation) {
+  currentFrame.splice(findIndex(currentFrame, other => other.priority > animation.priority), 0, animation);
+}
+
+function advance(dt) {
+  const nextFrame = prevFrame;
+
+  for (let i = 0; i < currentFrame.length; i++) {
+    const animation = currentFrame[i];
+    priority = animation.priority;
+
+    if (!animation.idle) {
+      willAdvance(animation);
+      animation.advance(dt);
+
+      if (!animation.idle) {
+        nextFrame.push(animation);
+      }
+    }
+  }
+
+  priority = 0;
+  prevFrame = currentFrame;
+  prevFrame.length = 0;
+  currentFrame = nextFrame;
+  return currentFrame.length > 0;
+}
+
+function findIndex(arr, test) {
+  const index = arr.findIndex(test);
+  return index < 0 ? arr.length : index;
+}
+
+const colors = {
+  transparent: 0x00000000,
+  aliceblue: 0xf0f8ffff,
+  antiquewhite: 0xfaebd7ff,
+  aqua: 0x00ffffff,
+  aquamarine: 0x7fffd4ff,
+  azure: 0xf0ffffff,
+  beige: 0xf5f5dcff,
+  bisque: 0xffe4c4ff,
+  black: 0x000000ff,
+  blanchedalmond: 0xffebcdff,
+  blue: 0x0000ffff,
+  blueviolet: 0x8a2be2ff,
+  brown: 0xa52a2aff,
+  burlywood: 0xdeb887ff,
+  burntsienna: 0xea7e5dff,
+  cadetblue: 0x5f9ea0ff,
+  chartreuse: 0x7fff00ff,
+  chocolate: 0xd2691eff,
+  coral: 0xff7f50ff,
+  cornflowerblue: 0x6495edff,
+  cornsilk: 0xfff8dcff,
+  crimson: 0xdc143cff,
+  cyan: 0x00ffffff,
+  darkblue: 0x00008bff,
+  darkcyan: 0x008b8bff,
+  darkgoldenrod: 0xb8860bff,
+  darkgray: 0xa9a9a9ff,
+  darkgreen: 0x006400ff,
+  darkgrey: 0xa9a9a9ff,
+  darkkhaki: 0xbdb76bff,
+  darkmagenta: 0x8b008bff,
+  darkolivegreen: 0x556b2fff,
+  darkorange: 0xff8c00ff,
+  darkorchid: 0x9932ccff,
+  darkred: 0x8b0000ff,
+  darksalmon: 0xe9967aff,
+  darkseagreen: 0x8fbc8fff,
+  darkslateblue: 0x483d8bff,
+  darkslategray: 0x2f4f4fff,
+  darkslategrey: 0x2f4f4fff,
+  darkturquoise: 0x00ced1ff,
+  darkviolet: 0x9400d3ff,
+  deeppink: 0xff1493ff,
+  deepskyblue: 0x00bfffff,
+  dimgray: 0x696969ff,
+  dimgrey: 0x696969ff,
+  dodgerblue: 0x1e90ffff,
+  firebrick: 0xb22222ff,
+  floralwhite: 0xfffaf0ff,
+  forestgreen: 0x228b22ff,
+  fuchsia: 0xff00ffff,
+  gainsboro: 0xdcdcdcff,
+  ghostwhite: 0xf8f8ffff,
+  gold: 0xffd700ff,
+  goldenrod: 0xdaa520ff,
+  gray: 0x808080ff,
+  green: 0x008000ff,
+  greenyellow: 0xadff2fff,
+  grey: 0x808080ff,
+  honeydew: 0xf0fff0ff,
+  hotpink: 0xff69b4ff,
+  indianred: 0xcd5c5cff,
+  indigo: 0x4b0082ff,
+  ivory: 0xfffff0ff,
+  khaki: 0xf0e68cff,
+  lavender: 0xe6e6faff,
+  lavenderblush: 0xfff0f5ff,
+  lawngreen: 0x7cfc00ff,
+  lemonchiffon: 0xfffacdff,
+  lightblue: 0xadd8e6ff,
+  lightcoral: 0xf08080ff,
+  lightcyan: 0xe0ffffff,
+  lightgoldenrodyellow: 0xfafad2ff,
+  lightgray: 0xd3d3d3ff,
+  lightgreen: 0x90ee90ff,
+  lightgrey: 0xd3d3d3ff,
+  lightpink: 0xffb6c1ff,
+  lightsalmon: 0xffa07aff,
+  lightseagreen: 0x20b2aaff,
+  lightskyblue: 0x87cefaff,
+  lightslategray: 0x778899ff,
+  lightslategrey: 0x778899ff,
+  lightsteelblue: 0xb0c4deff,
+  lightyellow: 0xffffe0ff,
+  lime: 0x00ff00ff,
+  limegreen: 0x32cd32ff,
+  linen: 0xfaf0e6ff,
+  magenta: 0xff00ffff,
+  maroon: 0x800000ff,
+  mediumaquamarine: 0x66cdaaff,
+  mediumblue: 0x0000cdff,
+  mediumorchid: 0xba55d3ff,
+  mediumpurple: 0x9370dbff,
+  mediumseagreen: 0x3cb371ff,
+  mediumslateblue: 0x7b68eeff,
+  mediumspringgreen: 0x00fa9aff,
+  mediumturquoise: 0x48d1ccff,
+  mediumvioletred: 0xc71585ff,
+  midnightblue: 0x191970ff,
+  mintcream: 0xf5fffaff,
+  mistyrose: 0xffe4e1ff,
+  moccasin: 0xffe4b5ff,
+  navajowhite: 0xffdeadff,
+  navy: 0x000080ff,
+  oldlace: 0xfdf5e6ff,
+  olive: 0x808000ff,
+  olivedrab: 0x6b8e23ff,
+  orange: 0xffa500ff,
+  orangered: 0xff4500ff,
+  orchid: 0xda70d6ff,
+  palegoldenrod: 0xeee8aaff,
+  palegreen: 0x98fb98ff,
+  paleturquoise: 0xafeeeeff,
+  palevioletred: 0xdb7093ff,
+  papayawhip: 0xffefd5ff,
+  peachpuff: 0xffdab9ff,
+  peru: 0xcd853fff,
+  pink: 0xffc0cbff,
+  plum: 0xdda0ddff,
+  powderblue: 0xb0e0e6ff,
+  purple: 0x800080ff,
+  rebeccapurple: 0x663399ff,
+  red: 0xff0000ff,
+  rosybrown: 0xbc8f8fff,
+  royalblue: 0x4169e1ff,
+  saddlebrown: 0x8b4513ff,
+  salmon: 0xfa8072ff,
+  sandybrown: 0xf4a460ff,
+  seagreen: 0x2e8b57ff,
+  seashell: 0xfff5eeff,
+  sienna: 0xa0522dff,
+  silver: 0xc0c0c0ff,
+  skyblue: 0x87ceebff,
+  slateblue: 0x6a5acdff,
+  slategray: 0x708090ff,
+  slategrey: 0x708090ff,
+  snow: 0xfffafaff,
+  springgreen: 0x00ff7fff,
+  steelblue: 0x4682b4ff,
+  tan: 0xd2b48cff,
+  teal: 0x008080ff,
+  thistle: 0xd8bfd8ff,
+  tomato: 0xff6347ff,
+  turquoise: 0x40e0d0ff,
+  violet: 0xee82eeff,
+  wheat: 0xf5deb3ff,
+  white: 0xffffffff,
+  whitesmoke: 0xf5f5f5ff,
+  yellow: 0xffff00ff,
+  yellowgreen: 0x9acd32ff
+};
+
+const NUMBER = '[-+]?\\d*\\.?\\d+';
+const PERCENTAGE = NUMBER + '%';
+
+function call(...parts) {
+  return '\\(\\s*(' + parts.join(')\\s*,\\s*(') + ')\\s*\\)';
+}
+
+const rgb = new RegExp('rgb' + call(NUMBER, NUMBER, NUMBER));
+const rgba = new RegExp('rgba' + call(NUMBER, NUMBER, NUMBER, NUMBER));
+const hsl = new RegExp('hsl' + call(NUMBER, PERCENTAGE, PERCENTAGE));
+const hsla = new RegExp('hsla' + call(NUMBER, PERCENTAGE, PERCENTAGE, NUMBER));
+const hex3 = /^#([0-9a-fA-F]{1})([0-9a-fA-F]{1})([0-9a-fA-F]{1})$/;
+const hex4 = /^#([0-9a-fA-F]{1})([0-9a-fA-F]{1})([0-9a-fA-F]{1})([0-9a-fA-F]{1})$/;
+const hex6 = /^#([0-9a-fA-F]{6})$/;
+const hex8 = /^#([0-9a-fA-F]{8})$/;
+
+function normalizeColor(color) {
+  let match;
+
+  if (typeof color === 'number') {
+    return color >>> 0 === color && color >= 0 && color <= 0xffffffff ? color : null;
+  }
+
+  if (match = hex6.exec(color)) return parseInt(match[1] + 'ff', 16) >>> 0;
+
+  if (colors$1 && colors$1[color] !== undefined) {
+    return colors$1[color];
+  }
+
+  if (match = rgb.exec(color)) {
+    return (parse255(match[1]) << 24 | parse255(match[2]) << 16 | parse255(match[3]) << 8 | 0x000000ff) >>> 0;
+  }
+
+  if (match = rgba.exec(color)) {
+    return (parse255(match[1]) << 24 | parse255(match[2]) << 16 | parse255(match[3]) << 8 | parse1(match[4])) >>> 0;
+  }
+
+  if (match = hex3.exec(color)) {
+    return parseInt(match[1] + match[1] + match[2] + match[2] + match[3] + match[3] + 'ff', 16) >>> 0;
+  }
+
+  if (match = hex8.exec(color)) return parseInt(match[1], 16) >>> 0;
+
+  if (match = hex4.exec(color)) {
+    return parseInt(match[1] + match[1] + match[2] + match[2] + match[3] + match[3] + match[4] + match[4], 16) >>> 0;
+  }
+
+  if (match = hsl.exec(color)) {
+    return (hslToRgb(parse360(match[1]), parsePercentage(match[2]), parsePercentage(match[3])) | 0x000000ff) >>> 0;
+  }
+
+  if (match = hsla.exec(color)) {
+    return (hslToRgb(parse360(match[1]), parsePercentage(match[2]), parsePercentage(match[3])) | parse1(match[4])) >>> 0;
+  }
+
+  return null;
+}
+
+function hue2rgb(p, q, t) {
+  if (t < 0) t += 1;
+  if (t > 1) t -= 1;
+  if (t < 1 / 6) return p + (q - p) * 6 * t;
+  if (t < 1 / 2) return q;
+  if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+  return p;
+}
+
+function hslToRgb(h, s, l) {
+  const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+  const p = 2 * l - q;
+  const r = hue2rgb(p, q, h + 1 / 3);
+  const g = hue2rgb(p, q, h);
+  const b = hue2rgb(p, q, h - 1 / 3);
+  return Math.round(r * 255) << 24 | Math.round(g * 255) << 16 | Math.round(b * 255) << 8;
+}
+
+function parse255(str) {
+  const int = parseInt(str, 10);
+  if (int < 0) return 0;
+  if (int > 255) return 255;
+  return int;
+}
+
+function parse360(str) {
+  const int = parseFloat(str);
+  return (int % 360 + 360) % 360 / 360;
+}
+
+function parse1(str) {
+  const num = parseFloat(str);
+  if (num < 0) return 0;
+  if (num > 1) return 255;
+  return Math.round(num * 255);
+}
+
+function parsePercentage(str) {
+  const int = parseFloat(str);
+  if (int < 0) return 0;
+  if (int > 100) return 1;
+  return int / 100;
+}
+
+function colorToRgba(input) {
+  let int32Color = normalizeColor(input);
+  if (int32Color === null) return input;
+  int32Color = int32Color || 0;
+  let r = (int32Color & 0xff000000) >>> 24;
+  let g = (int32Color & 0x00ff0000) >>> 16;
+  let b = (int32Color & 0x0000ff00) >>> 8;
+  let a = (int32Color & 0x000000ff) / 255;
+  return `rgba(${r}, ${g}, ${b}, ${a})`;
+}
+
+const createInterpolator = (range, output, extrapolate) => {
+  if (is.fun(range)) {
+    return range;
+  }
+
+  if (is.arr(range)) {
+    return createInterpolator({
+      range,
+      output: output,
+      extrapolate
+    });
+  }
+
+  if (is.str(range.output[0])) {
+    return createStringInterpolator$1(range);
+  }
+
+  const config = range;
+  const outputRange = config.output;
+  const inputRange = config.range || [0, 1];
+  const extrapolateLeft = config.extrapolateLeft || config.extrapolate || 'extend';
+  const extrapolateRight = config.extrapolateRight || config.extrapolate || 'extend';
+
+  const easing = config.easing || (t => t);
+
+  return input => {
+    const range = findRange(input, inputRange);
+    return interpolate(input, inputRange[range], inputRange[range + 1], outputRange[range], outputRange[range + 1], easing, extrapolateLeft, extrapolateRight, config.map);
+  };
+};
+
+function interpolate(input, inputMin, inputMax, outputMin, outputMax, easing, extrapolateLeft, extrapolateRight, map) {
+  let result = map ? map(input) : input;
+
+  if (result < inputMin) {
+    if (extrapolateLeft === 'identity') return result;else if (extrapolateLeft === 'clamp') result = inputMin;
+  }
+
+  if (result > inputMax) {
+    if (extrapolateRight === 'identity') return result;else if (extrapolateRight === 'clamp') result = inputMax;
+  }
+
+  if (outputMin === outputMax) return outputMin;
+  if (inputMin === inputMax) return input <= inputMin ? outputMin : outputMax;
+  if (inputMin === -Infinity) result = -result;else if (inputMax === Infinity) result = result - inputMin;else result = (result - inputMin) / (inputMax - inputMin);
+  result = easing(result);
+  if (outputMin === -Infinity) result = -result;else if (outputMax === Infinity) result = result + outputMin;else result = result * (outputMax - outputMin) + outputMin;
+  return result;
+}
+
+function findRange(input, inputRange) {
+  for (var i = 1; i < inputRange.length - 1; ++i) if (inputRange[i] >= input) break;
+
+  return i - 1;
+}
+
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+const $get = Symbol.for('FluidValue.get');
+const $observers = Symbol.for('FluidValue.observers');
+
+const hasFluidValue = arg => Boolean(arg && arg[$get]);
+
+const getFluidValue = arg => arg && arg[$get] ? arg[$get]() : arg;
+
+const getFluidObservers = target => target[$observers] || null;
+
+function callFluidObserver(observer, event) {
+  if (observer.eventObserved) {
+    observer.eventObserved(event);
+  } else {
+    observer(event);
+  }
+}
+
+function callFluidObservers(target, event) {
+  let observers = target[$observers];
+
+  if (observers) {
+    observers.forEach(observer => {
+      callFluidObserver(observer, event);
+    });
+  }
+}
+
+class FluidValue {
+  constructor(get) {
+    this[$get] = void 0;
+    this[$observers] = void 0;
+
+    if (!get && !(get = this.get)) {
+      throw Error('Unknown getter');
+    }
+
+    setFluidGetter(this, get);
+  }
+
+}
+
+const setFluidGetter = (target, get) => setHidden(target, $get, get);
+
+function addFluidObserver(target, observer) {
+  if (target[$get]) {
+    let observers = target[$observers];
+
+    if (!observers) {
+      setHidden(target, $observers, observers = new Set());
+    }
+
+    if (!observers.has(observer)) {
+      observers.add(observer);
+
+      if (target.observerAdded) {
+        target.observerAdded(observers.size, observer);
+      }
+    }
+  }
+
+  return observer;
+}
+
+function removeFluidObserver(target, observer) {
+  let observers = target[$observers];
+
+  if (observers && observers.has(observer)) {
+    const count = observers.size - 1;
+
+    if (count) {
+      observers.delete(observer);
+    } else {
+      target[$observers] = null;
+    }
+
+    if (target.observerRemoved) {
+      target.observerRemoved(count, observer);
+    }
+  }
+}
+
+const setHidden = (target, key, value) => Object.defineProperty(target, key, {
+  value,
+  writable: true,
+  configurable: true
+});
+
+const numberRegex = /[+\-]?(?:0|[1-9]\d*)(?:\.\d*)?(?:[eE][+\-]?\d+)?/g;
+const colorRegex = /(#(?:[0-9a-f]{2}){2,4}|(#[0-9a-f]{3})|(rgb|hsl)a?\((-?\d+%?[,\s]+){2,3}\s*[\d\.]+%?\))/gi;
+let namedColorRegex;
+const rgbaRegex = /rgba\(([0-9\.-]+), ([0-9\.-]+), ([0-9\.-]+), ([0-9\.-]+)\)/gi;
+
+const rgbaRound = (_, p1, p2, p3, p4) => `rgba(${Math.round(p1)}, ${Math.round(p2)}, ${Math.round(p3)}, ${p4})`;
+
+const createStringInterpolator = config => {
+  if (!namedColorRegex) namedColorRegex = colors$1 ? new RegExp(`(${Object.keys(colors$1).join('|')})(?!\\w)`, 'g') : /^\b$/;
+  const output = config.output.map(value => getFluidValue(value).replace(colorRegex, colorToRgba).replace(namedColorRegex, colorToRgba));
+  const keyframes = output.map(value => value.match(numberRegex).map(Number));
+  const outputRanges = keyframes[0].map((_, i) => keyframes.map(values => {
+    if (!(i in values)) {
+      throw Error('The arity of each "output" value must be equal');
+    }
+
+    return values[i];
+  }));
+  const interpolators = outputRanges.map(output => createInterpolator(_extends({}, config, {
+    output
+  })));
+  return input => {
+    let i = 0;
+    return output[0].replace(numberRegex, () => String(interpolators[i++](input))).replace(rgbaRegex, rgbaRound);
+  };
+};
+
+const prefix = 'react-spring: ';
+
+const once = fn => {
+  const func = fn;
+  let called = false;
+
+  if (typeof func != 'function') {
+    throw new TypeError(`${prefix}once requires a function parameter`);
+  }
+
+  return (...args) => {
+    if (!called) {
+      func(...args);
+      called = true;
+    }
+  };
+};
+
+const warnInterpolate = once(console.warn);
+function deprecateInterpolate() {
+  warnInterpolate(`${prefix}The "interpolate" function is deprecated in v9 (use "to" instead)`);
+}
+const warnDirectCall = once(console.warn);
+function deprecateDirectCall() {
+  warnDirectCall(`${prefix}Directly calling start instead of using the api object is deprecated in v9 (use ".start" instead), this will be removed in later 0.X.0 versions`);
+}
+
+function isAnimatedString(value) {
+  return is.str(value) && (value[0] == '#' || /\d/.test(value) || value in (colors$1 || {}));
+}
+
+const useOnce = effect => (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(effect, emptyDeps);
+const emptyDeps = [];
+
+function useForceUpdate() {
+  const update = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)()[1];
+  const mounted = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(makeMountedRef)[0];
+  useOnce(mounted.unmount);
+  return () => {
+    if (mounted.current) {
+      update({});
+    }
+  };
+}
+
+function makeMountedRef() {
+  const mounted = {
+    current: true,
+    unmount: () => () => {
+      mounted.current = false;
+    }
+  };
+  return mounted;
+}
+
+function useMemoOne(getResult, inputs) {
+  const [initial] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(() => ({
+    inputs,
+    result: getResult()
+  }));
+  const committed = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
+  const prevCache = committed.current;
+  let cache = prevCache;
+
+  if (cache) {
+    const useCache = Boolean(inputs && cache.inputs && areInputsEqual(inputs, cache.inputs));
+
+    if (!useCache) {
+      cache = {
+        inputs,
+        result: getResult()
+      };
+    }
+  } else {
+    cache = initial;
+  }
+
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+    committed.current = cache;
+
+    if (prevCache == initial) {
+      initial.inputs = initial.result = undefined;
+    }
+  }, [cache]);
+  return cache.result;
+}
+
+function areInputsEqual(next, prev) {
+  if (next.length !== prev.length) {
+    return false;
+  }
+
+  for (let i = 0; i < next.length; i++) {
+    if (next[i] !== prev[i]) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+function usePrev(value) {
+  const prevRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+    prevRef.current = value;
+  });
+  return prevRef.current;
+}
+
+const useLayoutEffect = typeof window !== 'undefined' && window.document && window.document.createElement ? react__WEBPACK_IMPORTED_MODULE_1__.useLayoutEffect : react__WEBPACK_IMPORTED_MODULE_1__.useEffect;
+
+
+
+
+/***/ }),
+
+/***/ "../../.yarn/__virtual__/@react-spring-web-virtual-d07fd5a50c/0/cache/@react-spring-web-npm-9.2.4-1614758e56-2c8c648539.zip/node_modules/@react-spring/web/dist/react-spring-web.esm.js":
+/*!**********************************************************************************************************************************************************************************************!*\
+  !*** ../../.yarn/__virtual__/@react-spring-web-virtual-d07fd5a50c/0/cache/@react-spring-web-npm-9.2.4-1614758e56-2c8c648539.zip/node_modules/@react-spring/web/dist/react-spring-web.esm.js ***!
+  \**********************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "a": () => (/* binding */ animated),
+/* harmony export */   "animated": () => (/* binding */ animated)
+/* harmony export */ });
+/* harmony import */ var _react_spring_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @react-spring/core */ "../../.yarn/unplugged/@react-spring-core-virtual-58aea373b8/node_modules/@react-spring/core/dist/react-spring-core.esm.js");
+/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
+/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _react_spring_core__WEBPACK_IMPORTED_MODULE_0__) if(["default","a","animated"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _react_spring_core__WEBPACK_IMPORTED_MODULE_0__[__WEBPACK_IMPORT_KEY__]
+/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "../../.yarn/__virtual__/react-dom-virtual-5cbe5e0f60/0/cache/react-dom-npm-17.0.2-f551215af1-1c1eaa3bca.zip/node_modules/react-dom/index.js");
+/* harmony import */ var _react_spring_shared__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @react-spring/shared */ "../../.yarn/__virtual__/@react-spring-shared-virtual-c5425cdfcb/0/cache/@react-spring-shared-npm-9.2.4-b67476cbae-98cc71cb5c.zip/node_modules/@react-spring/shared/dist/react-spring-shared.esm.js");
+/* harmony import */ var _react_spring_animated__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @react-spring/animated */ "../../.yarn/__virtual__/@react-spring-animated-virtual-67a11736df/0/cache/@react-spring-animated-npm-9.2.4-503ae5ad1d-5fba22b5df.zip/node_modules/@react-spring/animated/dist/react-spring-animated.esm.js");
+
+
+
+
+
+
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  return target;
+}
+
+const _excluded$2 = ["style", "children", "scrollTop", "scrollLeft"];
+const isCustomPropRE = /^--/;
+
+function dangerousStyleValue(name, value) {
+  if (value == null || typeof value === 'boolean' || value === '') return '';
+  if (typeof value === 'number' && value !== 0 && !isCustomPropRE.test(name) && !(isUnitlessNumber.hasOwnProperty(name) && isUnitlessNumber[name])) return value + 'px';
+  return ('' + value).trim();
+}
+
+const attributeCache = {};
+function applyAnimatedValues(instance, props) {
+  if (!instance.nodeType || !instance.setAttribute) {
+    return false;
+  }
+
+  const isFilterElement = instance.nodeName === 'filter' || instance.parentNode && instance.parentNode.nodeName === 'filter';
+
+  const _ref = props,
+        {
+    style,
+    children,
+    scrollTop,
+    scrollLeft
+  } = _ref,
+        attributes = _objectWithoutPropertiesLoose(_ref, _excluded$2);
+
+  const values = Object.values(attributes);
+  const names = Object.keys(attributes).map(name => isFilterElement || instance.hasAttribute(name) ? name : attributeCache[name] || (attributeCache[name] = name.replace(/([A-Z])/g, n => '-' + n.toLowerCase())));
+
+  if (children !== void 0) {
+    instance.textContent = children;
+  }
+
+  for (let name in style) {
+    if (style.hasOwnProperty(name)) {
+      const value = dangerousStyleValue(name, style[name]);
+
+      if (isCustomPropRE.test(name)) {
+        instance.style.setProperty(name, value);
+      } else {
+        instance.style[name] = value;
+      }
+    }
+  }
+
+  names.forEach((name, i) => {
+    instance.setAttribute(name, values[i]);
+  });
+
+  if (scrollTop !== void 0) {
+    instance.scrollTop = scrollTop;
+  }
+
+  if (scrollLeft !== void 0) {
+    instance.scrollLeft = scrollLeft;
+  }
+}
+let isUnitlessNumber = {
+  animationIterationCount: true,
+  borderImageOutset: true,
+  borderImageSlice: true,
+  borderImageWidth: true,
+  boxFlex: true,
+  boxFlexGroup: true,
+  boxOrdinalGroup: true,
+  columnCount: true,
+  columns: true,
+  flex: true,
+  flexGrow: true,
+  flexPositive: true,
+  flexShrink: true,
+  flexNegative: true,
+  flexOrder: true,
+  gridRow: true,
+  gridRowEnd: true,
+  gridRowSpan: true,
+  gridRowStart: true,
+  gridColumn: true,
+  gridColumnEnd: true,
+  gridColumnSpan: true,
+  gridColumnStart: true,
+  fontWeight: true,
+  lineClamp: true,
+  lineHeight: true,
+  opacity: true,
+  order: true,
+  orphans: true,
+  tabSize: true,
+  widows: true,
+  zIndex: true,
+  zoom: true,
+  fillOpacity: true,
+  floodOpacity: true,
+  stopOpacity: true,
+  strokeDasharray: true,
+  strokeDashoffset: true,
+  strokeMiterlimit: true,
+  strokeOpacity: true,
+  strokeWidth: true
+};
+
+const prefixKey = (prefix, key) => prefix + key.charAt(0).toUpperCase() + key.substring(1);
+
+const prefixes = ['Webkit', 'Ms', 'Moz', 'O'];
+isUnitlessNumber = Object.keys(isUnitlessNumber).reduce((acc, prop) => {
+  prefixes.forEach(prefix => acc[prefixKey(prefix, prop)] = acc[prop]);
+  return acc;
+}, isUnitlessNumber);
+
+const _excluded$1 = ["x", "y", "z"];
+const domTransforms = /^(matrix|translate|scale|rotate|skew)/;
+const pxTransforms = /^(translate)/;
+const degTransforms = /^(rotate|skew)/;
+
+const addUnit = (value, unit) => _react_spring_shared__WEBPACK_IMPORTED_MODULE_2__.is.num(value) && value !== 0 ? value + unit : value;
+
+const isValueIdentity = (value, id) => _react_spring_shared__WEBPACK_IMPORTED_MODULE_2__.is.arr(value) ? value.every(v => isValueIdentity(v, id)) : _react_spring_shared__WEBPACK_IMPORTED_MODULE_2__.is.num(value) ? value === id : parseFloat(value) === id;
+
+class AnimatedStyle extends _react_spring_animated__WEBPACK_IMPORTED_MODULE_3__.AnimatedObject {
+  constructor(_ref) {
+    let {
+      x,
+      y,
+      z
+    } = _ref,
+        style = _objectWithoutPropertiesLoose(_ref, _excluded$1);
+
+    const inputs = [];
+    const transforms = [];
+
+    if (x || y || z) {
+      inputs.push([x || 0, y || 0, z || 0]);
+      transforms.push(xyz => [`translate3d(${xyz.map(v => addUnit(v, 'px')).join(',')})`, isValueIdentity(xyz, 0)]);
+    }
+
+    (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_2__.eachProp)(style, (value, key) => {
+      if (key === 'transform') {
+        inputs.push([value || '']);
+        transforms.push(transform => [transform, transform === '']);
+      } else if (domTransforms.test(key)) {
+        delete style[key];
+        if (_react_spring_shared__WEBPACK_IMPORTED_MODULE_2__.is.und(value)) return;
+        const unit = pxTransforms.test(key) ? 'px' : degTransforms.test(key) ? 'deg' : '';
+        inputs.push((0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_2__.toArray)(value));
+        transforms.push(key === 'rotate3d' ? ([x, y, z, deg]) => [`rotate3d(${x},${y},${z},${addUnit(deg, unit)})`, isValueIdentity(deg, 0)] : input => [`${key}(${input.map(v => addUnit(v, unit)).join(',')})`, isValueIdentity(input, key.startsWith('scale') ? 1 : 0)]);
+      }
+    });
+
+    if (inputs.length) {
+      style.transform = new FluidTransform(inputs, transforms);
+    }
+
+    super(style);
+  }
+
+}
+
+class FluidTransform extends _react_spring_shared__WEBPACK_IMPORTED_MODULE_2__.FluidValue {
+  constructor(inputs, transforms) {
+    super();
+    this._value = null;
+    this.inputs = inputs;
+    this.transforms = transforms;
+  }
+
+  get() {
+    return this._value || (this._value = this._get());
+  }
+
+  _get() {
+    let transform = '';
+    let identity = true;
+    (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_2__.each)(this.inputs, (input, i) => {
+      const arg1 = (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_2__.getFluidValue)(input[0]);
+      const [t, id] = this.transforms[i](_react_spring_shared__WEBPACK_IMPORTED_MODULE_2__.is.arr(arg1) ? arg1 : input.map(_react_spring_shared__WEBPACK_IMPORTED_MODULE_2__.getFluidValue));
+      transform += ' ' + t;
+      identity = identity && id;
+    });
+    return identity ? 'none' : transform;
+  }
+
+  observerAdded(count) {
+    if (count == 1) (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_2__.each)(this.inputs, input => (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_2__.each)(input, value => (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_2__.hasFluidValue)(value) && (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_2__.addFluidObserver)(value, this)));
+  }
+
+  observerRemoved(count) {
+    if (count == 0) (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_2__.each)(this.inputs, input => (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_2__.each)(input, value => (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_2__.hasFluidValue)(value) && (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_2__.removeFluidObserver)(value, this)));
+  }
+
+  eventObserved(event) {
+    if (event.type == 'change') {
+      this._value = null;
+    }
+
+    (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_2__.callFluidObservers)(this, event);
+  }
+
+}
+
+const primitives = ['a', 'abbr', 'address', 'area', 'article', 'aside', 'audio', 'b', 'base', 'bdi', 'bdo', 'big', 'blockquote', 'body', 'br', 'button', 'canvas', 'caption', 'cite', 'code', 'col', 'colgroup', 'data', 'datalist', 'dd', 'del', 'details', 'dfn', 'dialog', 'div', 'dl', 'dt', 'em', 'embed', 'fieldset', 'figcaption', 'figure', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'header', 'hgroup', 'hr', 'html', 'i', 'iframe', 'img', 'input', 'ins', 'kbd', 'keygen', 'label', 'legend', 'li', 'link', 'main', 'map', 'mark', 'menu', 'menuitem', 'meta', 'meter', 'nav', 'noscript', 'object', 'ol', 'optgroup', 'option', 'output', 'p', 'param', 'picture', 'pre', 'progress', 'q', 'rp', 'rt', 'ruby', 's', 'samp', 'script', 'section', 'select', 'small', 'source', 'span', 'strong', 'style', 'sub', 'summary', 'sup', 'table', 'tbody', 'td', 'textarea', 'tfoot', 'th', 'thead', 'time', 'title', 'tr', 'track', 'u', 'ul', 'var', 'video', 'wbr', 'circle', 'clipPath', 'defs', 'ellipse', 'foreignObject', 'g', 'image', 'line', 'linearGradient', 'mask', 'path', 'pattern', 'polygon', 'polyline', 'radialGradient', 'rect', 'stop', 'svg', 'text', 'tspan'];
+
+const _excluded = ["scrollTop", "scrollLeft"];
+_react_spring_core__WEBPACK_IMPORTED_MODULE_0__.Globals.assign({
+  batchedUpdates: react_dom__WEBPACK_IMPORTED_MODULE_1__.unstable_batchedUpdates,
+  createStringInterpolator: _react_spring_shared__WEBPACK_IMPORTED_MODULE_2__.createStringInterpolator,
+  colors: _react_spring_shared__WEBPACK_IMPORTED_MODULE_2__.colors
+});
+const host = (0,_react_spring_animated__WEBPACK_IMPORTED_MODULE_3__.createHost)(primitives, {
+  applyAnimatedValues,
+  createAnimatedStyle: style => new AnimatedStyle(style),
+  getComponentProps: _ref => {
+    let props = _objectWithoutPropertiesLoose(_ref, _excluded);
+
+    return props;
+  }
+});
+const animated = host.animated;
+
+
+
+
+/***/ }),
+
 /***/ "../../.yarn/__virtual__/gatsby-link-virtual-ea5bc112f6/0/cache/gatsby-link-npm-3.14.0-d4fdaa9c0c-c02d6ab46c.zip/node_modules/gatsby-link/index.js":
 /*!*********************************************************************************************************************************************************!*\
   !*** ../../.yarn/__virtual__/gatsby-link-virtual-ea5bc112f6/0/cache/gatsby-link-npm-3.14.0-d4fdaa9c0c-c02d6ab46c.zip/node_modules/gatsby-link/index.js ***!
@@ -1476,6 +2921,659 @@ function useScrollRestoration(identifier) {
     }
   };
 }
+
+/***/ }),
+
+/***/ "../../.yarn/__virtual__/phosphor-react-virtual-8fc42b3693/0/cache/phosphor-react-npm-1.3.1-070f50cad2-7b163c57c0.zip/node_modules/phosphor-react/dist/_virtual/_rollupPluginBabelHelpers.js":
+/*!***************************************************************************************************************************************************************************************************!*\
+  !*** ../../.yarn/__virtual__/phosphor-react-virtual-8fc42b3693/0/cache/phosphor-react-npm-1.3.1-070f50cad2-7b163c57c0.zip/node_modules/phosphor-react/dist/_virtual/_rollupPluginBabelHelpers.js ***!
+  \***************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "objectWithoutPropertiesLoose": () => (/* binding */ _objectWithoutPropertiesLoose)
+/* harmony export */ });
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  return target;
+}
+
+
+//# sourceMappingURL=_rollupPluginBabelHelpers.js.map
+
+
+/***/ }),
+
+/***/ "../../.yarn/__virtual__/phosphor-react-virtual-8fc42b3693/0/cache/phosphor-react-npm-1.3.1-070f50cad2-7b163c57c0.zip/node_modules/phosphor-react/dist/icons/Pen.esm.js":
+/*!******************************************************************************************************************************************************************************!*\
+  !*** ../../.yarn/__virtual__/phosphor-react-virtual-8fc42b3693/0/cache/phosphor-react-npm-1.3.1-070f50cad2-7b163c57c0.zip/node_modules/phosphor-react/dist/icons/Pen.esm.js ***!
+  \******************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _lib_index_esm_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../lib/index.esm.js */ "../../.yarn/__virtual__/phosphor-react-virtual-8fc42b3693/0/cache/phosphor-react-npm-1.3.1-070f50cad2-7b163c57c0.zip/node_modules/phosphor-react/dist/lib/index.esm.js");
+/* harmony import */ var _lib_IconBase_esm_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../lib/IconBase.esm.js */ "../../.yarn/__virtual__/phosphor-react-virtual-8fc42b3693/0/cache/phosphor-react-npm-1.3.1-070f50cad2-7b163c57c0.zip/node_modules/phosphor-react/dist/lib/IconBase.esm.js");
+
+
+
+
+/* GENERATED FILE */
+var pathsByWeight = /*#__PURE__*/new Map();
+pathsByWeight.set("bold", function (color) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M92.68629,216H48a8,8,0,0,1-8-8V163.31371a8,8,0,0,1,2.34315-5.65686l120-120a8,8,0,0,1,11.3137,0l44.6863,44.6863a8,8,0,0,1,0,11.3137l-120,120A8,8,0,0,1,92.68629,216Z",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "24"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default().createElement("line", {
+    x1: "136",
+    y1: "64",
+    x2: "192",
+    y2: "120",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "24"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default().createElement("polyline", {
+    points: "164 200 204 160 192 120",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "24"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default().createElement("line", {
+    x1: "43.99996",
+    y1: "155.99997",
+    x2: "99.99999",
+    y2: "212.00001",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "24"
+  }));
+});
+pathsByWeight.set("duotone", function (color) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M192,120,136,64l26.34315-26.34315a8,8,0,0,1,11.3137,0l44.6863,44.6863a8,8,0,0,1,0,11.3137Z",
+    opacity: "0.2"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M92.68629,216H48a8,8,0,0,1-8-8V163.31371a8,8,0,0,1,2.34315-5.65686l120-120a8,8,0,0,1,11.3137,0l44.6863,44.6863a8,8,0,0,1,0,11.3137l-120,120A8,8,0,0,1,92.68629,216Z",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "16"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default().createElement("line", {
+    x1: "136",
+    y1: "64",
+    x2: "192",
+    y2: "120",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "16"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default().createElement("polyline", {
+    points: "160 192 200 152 192 120",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "16"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default().createElement("line", {
+    x1: "40.5088",
+    y1: "160.5088",
+    x2: "95.49114",
+    y2: "215.49114",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "16"
+  }));
+});
+pathsByWeight.set("fill", function () {
+  return react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M228.68652,88A15.89427,15.89427,0,0,0,224,76.68652L179.31348,31.999A16.02162,16.02162,0,0,0,156.68555,32l-120,120.00049a15.953,15.953,0,0,0-3.56836,5.4458,7.95719,7.95719,0,0,0-.27149.75976A16.00722,16.00722,0,0,0,32,163.31348V208a16.01833,16.01833,0,0,0,16,16H92.68652a16.00666,16.00666,0,0,0,5.15869-.86377c.23829-.07324.47388-.15674.70582-.25244A15.94661,15.94661,0,0,0,104,219.31348l83.666-83.666,3.4746,13.89844-36.79785,36.79736a8.00018,8.00018,0,0,0,11.31446,11.31348l40-40a8.00081,8.00081,0,0,0,2.10351-7.59717l-6.90136-27.60547L223.999,99.31445A15.895,15.895,0,0,0,228.68652,88ZM192,108.68555,147.314,64,168,43.31348,212.68555,88Z"
+  }));
+});
+pathsByWeight.set("light", function (color) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M92.68629,216H48a8,8,0,0,1-8-8V163.31371a8,8,0,0,1,2.34315-5.65686l120-120a8,8,0,0,1,11.3137,0l44.6863,44.6863a8,8,0,0,1,0,11.3137l-120,120A8,8,0,0,1,92.68629,216Z",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "12"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default().createElement("line", {
+    x1: "136",
+    y1: "64",
+    x2: "192",
+    y2: "120",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "12"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default().createElement("polyline", {
+    points: "160 192 200 152 192 120",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "12"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default().createElement("line", {
+    x1: "40.50833",
+    y1: "160.50833",
+    x2: "95.49164",
+    y2: "215.49164",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "12"
+  }));
+});
+pathsByWeight.set("thin", function (color) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M92.68629,216H48a8,8,0,0,1-8-8V163.31371a8,8,0,0,1,2.34315-5.65686l120-120a8,8,0,0,1,11.3137,0l44.6863,44.6863a8,8,0,0,1,0,11.3137l-120,120A8,8,0,0,1,92.68629,216Z",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "8"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default().createElement("line", {
+    x1: "136",
+    y1: "64",
+    x2: "192",
+    y2: "120",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "8"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default().createElement("polyline", {
+    points: "160 192 200 152 192 120",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "8"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default().createElement("line", {
+    x1: "40.50826",
+    y1: "160.50826",
+    x2: "95.49177",
+    y2: "215.49177",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "8"
+  }));
+});
+pathsByWeight.set("regular", function (color) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M92.68629,216H48a8,8,0,0,1-8-8V163.31371a8,8,0,0,1,2.34315-5.65686l120-120a8,8,0,0,1,11.3137,0l44.6863,44.6863a8,8,0,0,1,0,11.3137l-120,120A8,8,0,0,1,92.68629,216Z",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "16"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default().createElement("line", {
+    x1: "136",
+    y1: "64",
+    x2: "192",
+    y2: "120",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "16"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default().createElement("polyline", {
+    points: "160 192 200 152 192 120",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "16"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default().createElement("line", {
+    x1: "40.50826",
+    y1: "160.50826",
+    x2: "95.49177",
+    y2: "215.49177",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "16"
+  }));
+});
+
+var renderPath = function renderPath(weight, color) {
+  return (0,_lib_index_esm_js__WEBPACK_IMPORTED_MODULE_1__.renderPathForWeight)(weight, color, pathsByWeight);
+};
+
+var Pen = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(function (props, ref) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_lib_IconBase_esm_js__WEBPACK_IMPORTED_MODULE_2__["default"], Object.assign({
+    ref: ref
+  }, props, {
+    renderPath: renderPath
+  }));
+});
+Pen.displayName = "Pen";
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Pen);
+//# sourceMappingURL=Pen.esm.js.map
+
+
+/***/ }),
+
+/***/ "../../.yarn/__virtual__/phosphor-react-virtual-8fc42b3693/0/cache/phosphor-react-npm-1.3.1-070f50cad2-7b163c57c0.zip/node_modules/phosphor-react/dist/icons/UserCircle.esm.js":
+/*!*************************************************************************************************************************************************************************************!*\
+  !*** ../../.yarn/__virtual__/phosphor-react-virtual-8fc42b3693/0/cache/phosphor-react-npm-1.3.1-070f50cad2-7b163c57c0.zip/node_modules/phosphor-react/dist/icons/UserCircle.esm.js ***!
+  \*************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _lib_index_esm_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../lib/index.esm.js */ "../../.yarn/__virtual__/phosphor-react-virtual-8fc42b3693/0/cache/phosphor-react-npm-1.3.1-070f50cad2-7b163c57c0.zip/node_modules/phosphor-react/dist/lib/index.esm.js");
+/* harmony import */ var _lib_IconBase_esm_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../lib/IconBase.esm.js */ "../../.yarn/__virtual__/phosphor-react-virtual-8fc42b3693/0/cache/phosphor-react-npm-1.3.1-070f50cad2-7b163c57c0.zip/node_modules/phosphor-react/dist/lib/IconBase.esm.js");
+
+
+
+
+/* GENERATED FILE */
+var pathsByWeight = /*#__PURE__*/new Map();
+pathsByWeight.set("bold", function (color) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "128",
+    cy: "128",
+    r: "96",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "24"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "128",
+    cy: "120",
+    r: "40",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "24"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M63.79905,199.37405a72.02812,72.02812,0,0,1,128.40177-.00026",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "24"
+  }));
+});
+pathsByWeight.set("duotone", function (color) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M128,32A96.00088,96.00088,0,0,0,63.79883,199.375v-.001A71.99731,71.99731,0,0,1,128,160a40,40,0,1,1,40-40,40.0001,40.0001,0,0,1-40,40,71.99731,71.99731,0,0,1,64.20117,39.374A96.0002,96.0002,0,0,0,128,32Z",
+    opacity: "0.2"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "128",
+    cy: "128",
+    r: "96",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "16"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "128",
+    cy: "120",
+    r: "40",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "16"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M63.79905,199.37405a72.02812,72.02812,0,0,1,128.40177-.00026",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "16"
+  }));
+});
+pathsByWeight.set("fill", function () {
+  return react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, react__WEBPACK_IMPORTED_MODULE_0___default().createElement("g", null, react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "128",
+    cy: "120",
+    r: "44"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M128,24A104,104,0,1,0,232,128,104.11791,104.11791,0,0,0,128,24Zm65.75806,162.41016a79.70266,79.70266,0,0,0-24.43091-22.97461,59.83641,59.83641,0,0,1-82.6543,0A79.7048,79.7048,0,0,0,62.2417,186.41016a88.00015,88.00015,0,1,1,131.51636,0Z"
+  })));
+});
+pathsByWeight.set("light", function (color) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "128",
+    cy: "128",
+    r: "96",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "12"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "128",
+    cy: "120",
+    r: "40",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "12"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M63.79905,199.37405a72.02812,72.02812,0,0,1,128.40177-.00026",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "12"
+  }));
+});
+pathsByWeight.set("thin", function (color) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "128",
+    cy: "128",
+    r: "96",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "8"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "128",
+    cy: "120",
+    r: "40",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "8"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M63.79905,199.37405a72.02812,72.02812,0,0,1,128.40177-.00026",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "8"
+  }));
+});
+pathsByWeight.set("regular", function (color) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "128",
+    cy: "128",
+    r: "96",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "16"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "128",
+    cy: "120",
+    r: "40",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "16"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M63.79905,199.37405a72.02812,72.02812,0,0,1,128.40177-.00026",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "16"
+  }));
+});
+
+var renderPath = function renderPath(weight, color) {
+  return (0,_lib_index_esm_js__WEBPACK_IMPORTED_MODULE_1__.renderPathForWeight)(weight, color, pathsByWeight);
+};
+
+var UserCircle = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(function (props, ref) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_lib_IconBase_esm_js__WEBPACK_IMPORTED_MODULE_2__["default"], Object.assign({
+    ref: ref
+  }, props, {
+    renderPath: renderPath
+  }));
+});
+UserCircle.displayName = "UserCircle";
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UserCircle);
+//# sourceMappingURL=UserCircle.esm.js.map
+
+
+/***/ }),
+
+/***/ "../../.yarn/__virtual__/phosphor-react-virtual-8fc42b3693/0/cache/phosphor-react-npm-1.3.1-070f50cad2-7b163c57c0.zip/node_modules/phosphor-react/dist/icons/Wrench.esm.js":
+/*!*********************************************************************************************************************************************************************************!*\
+  !*** ../../.yarn/__virtual__/phosphor-react-virtual-8fc42b3693/0/cache/phosphor-react-npm-1.3.1-070f50cad2-7b163c57c0.zip/node_modules/phosphor-react/dist/icons/Wrench.esm.js ***!
+  \*********************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _lib_index_esm_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../lib/index.esm.js */ "../../.yarn/__virtual__/phosphor-react-virtual-8fc42b3693/0/cache/phosphor-react-npm-1.3.1-070f50cad2-7b163c57c0.zip/node_modules/phosphor-react/dist/lib/index.esm.js");
+/* harmony import */ var _lib_IconBase_esm_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../lib/IconBase.esm.js */ "../../.yarn/__virtual__/phosphor-react-virtual-8fc42b3693/0/cache/phosphor-react-npm-1.3.1-070f50cad2-7b163c57c0.zip/node_modules/phosphor-react/dist/lib/IconBase.esm.js");
+
+
+
+
+/* GENERATED FILE */
+var pathsByWeight = /*#__PURE__*/new Map();
+pathsByWeight.set("bold", function (color) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M184.99131,37.06756,143.02944,79.02944l5.65685,28.28427,28.28427,5.65685,41.96188-41.96187.0041-.00174a64.02489,64.02489,0,0,1-89.88113,81.03367l.00123-.00214L72.97056,216.97056a24,24,0,0,1-33.94112-33.94112L103.9608,126.944l-.00137.0007a64.02489,64.02489,0,0,1,81.03363-89.88122Z",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "24"
+  }));
+});
+pathsByWeight.set("duotone", function (color) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M184.99131,37.06756,143.02944,79.02944l5.65685,28.28427,28.28427,5.65685,41.96188-41.96187.0041-.00174a64.02489,64.02489,0,0,1-89.88113,81.03367l.00123-.00214L72.97056,216.97056a24,24,0,0,1-33.94112-33.94112L103.9608,126.944l-.00137.0007a64.02489,64.02489,0,0,1,81.03363-89.88122Z",
+    opacity: "0.2"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M184.99131,37.06756,143.02944,79.02944l5.65685,28.28427,28.28427,5.65685,41.96188-41.96187.0041-.00174a64.02489,64.02489,0,0,1-89.88113,81.03367l.00123-.00214L72.97056,216.97056a24,24,0,0,1-33.94112-33.94112L103.9608,126.944l-.00137.0007a64.02489,64.02489,0,0,1,81.03363-89.88122Z",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "16"
+  }));
+});
+pathsByWeight.set("fill", function () {
+  return react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M210.91162,146.91211a72.37653,72.37653,0,0,1-79.84424,15.03613L79.0249,222.2002q-.19116.22119-.39746.42773a32.00021,32.00021,0,0,1-45.25537-45.25488c.1377-.1377.28076-.27051.42773-.39844l60.25293-52.043a72.02489,72.02489,0,0,1,94.06153-95.23437A8.004,8.004,0,0,1,190.648,42.72461L151.71387,81.6582l3.77148,18.85645,18.856,3.77148,38.93457-38.93457a8.00429,8.00429,0,0,1,13.02685,2.53418A71.72729,71.72729,0,0,1,210.91162,146.91211Z"
+  }));
+});
+pathsByWeight.set("light", function (color) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M184.99131,37.06756,143.02944,79.02944l5.65685,28.28427,28.28427,5.65685,41.96188-41.96187.0041-.00174a64.02489,64.02489,0,0,1-89.88113,81.03367l.00123-.00214L72.97056,216.97056a24,24,0,0,1-33.94112-33.94112L103.9608,126.944l-.00137.0007a64.02489,64.02489,0,0,1,81.03363-89.88122Z",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "12"
+  }));
+});
+pathsByWeight.set("thin", function (color) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M184.99131,37.06756,143.02944,79.02944l5.65685,28.28427,28.28427,5.65685,41.96188-41.96187.0041-.00174a64.02489,64.02489,0,0,1-89.88113,81.03367l.00123-.00214L72.97056,216.97056a24,24,0,0,1-33.94112-33.94112L103.9608,126.944l-.00137.0007a64.02489,64.02489,0,0,1,81.03363-89.88122Z",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "8"
+  }));
+});
+pathsByWeight.set("regular", function (color) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M184.99131,37.06756,143.02944,79.02944l5.65685,28.28427,28.28427,5.65685,41.96188-41.96187.0041-.00174a64.02489,64.02489,0,0,1-89.88113,81.03367l.00123-.00214L72.97056,216.97056a24,24,0,0,1-33.94112-33.94112L103.9608,126.944l-.00137.0007a64.02489,64.02489,0,0,1,81.03363-89.88122Z",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "16"
+  }));
+});
+
+var renderPath = function renderPath(weight, color) {
+  return (0,_lib_index_esm_js__WEBPACK_IMPORTED_MODULE_1__.renderPathForWeight)(weight, color, pathsByWeight);
+};
+
+var Wrench = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(function (props, ref) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_lib_IconBase_esm_js__WEBPACK_IMPORTED_MODULE_2__["default"], Object.assign({
+    ref: ref
+  }, props, {
+    renderPath: renderPath
+  }));
+});
+Wrench.displayName = "Wrench";
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Wrench);
+//# sourceMappingURL=Wrench.esm.js.map
+
+
+/***/ }),
+
+/***/ "../../.yarn/__virtual__/phosphor-react-virtual-8fc42b3693/0/cache/phosphor-react-npm-1.3.1-070f50cad2-7b163c57c0.zip/node_modules/phosphor-react/dist/lib/IconBase.esm.js":
+/*!*********************************************************************************************************************************************************************************!*\
+  !*** ../../.yarn/__virtual__/phosphor-react-virtual-8fc42b3693/0/cache/phosphor-react-npm-1.3.1-070f50cad2-7b163c57c0.zip/node_modules/phosphor-react/dist/lib/IconBase.esm.js ***!
+  \*********************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _index_esm_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index.esm.js */ "../../.yarn/__virtual__/phosphor-react-virtual-8fc42b3693/0/cache/phosphor-react-npm-1.3.1-070f50cad2-7b163c57c0.zip/node_modules/phosphor-react/dist/lib/index.esm.js");
+/* harmony import */ var _virtual_rollupPluginBabelHelpers_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../_virtual/_rollupPluginBabelHelpers.js */ "../../.yarn/__virtual__/phosphor-react-virtual-8fc42b3693/0/cache/phosphor-react-npm-1.3.1-070f50cad2-7b163c57c0.zip/node_modules/phosphor-react/dist/_virtual/_rollupPluginBabelHelpers.js");
+
+
+
+
+var IconBase = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(function (props, ref) {
+  var color = props.color,
+      size = props.size,
+      weight = props.weight,
+      mirrored = props.mirrored,
+      children = props.children,
+      renderPath = props.renderPath,
+      restProps = (0,_virtual_rollupPluginBabelHelpers_js__WEBPACK_IMPORTED_MODULE_1__.objectWithoutPropertiesLoose)(props, ["color", "size", "weight", "mirrored", "children", "renderPath"]);
+
+  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_index_esm_js__WEBPACK_IMPORTED_MODULE_2__.IconContext),
+      _useContext$color = _useContext.color,
+      contextColor = _useContext$color === void 0 ? "currentColor" : _useContext$color,
+      contextSize = _useContext.size,
+      _useContext$weight = _useContext.weight,
+      contextWeight = _useContext$weight === void 0 ? "regular" : _useContext$weight,
+      _useContext$mirrored = _useContext.mirrored,
+      contextMirrored = _useContext$mirrored === void 0 ? false : _useContext$mirrored,
+      restContext = (0,_virtual_rollupPluginBabelHelpers_js__WEBPACK_IMPORTED_MODULE_1__.objectWithoutPropertiesLoose)(_useContext, ["color", "size", "weight", "mirrored"]);
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", Object.assign({
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    width: size != null ? size : contextSize,
+    height: size != null ? size : contextSize,
+    fill: color != null ? color : contextColor,
+    viewBox: "0 0 256 256",
+    transform: mirrored || contextMirrored ? "scale(-1, 1)" : undefined
+  }, restContext, restProps), children, react__WEBPACK_IMPORTED_MODULE_0___default().createElement("rect", {
+    width: "256",
+    height: "256",
+    fill: "none"
+  }), renderPath(weight != null ? weight : contextWeight, color != null ? color : contextColor));
+});
+IconBase.displayName = "IconBase";
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (IconBase);
+//# sourceMappingURL=IconBase.esm.js.map
+
+
+/***/ }),
+
+/***/ "../../.yarn/__virtual__/phosphor-react-virtual-8fc42b3693/0/cache/phosphor-react-npm-1.3.1-070f50cad2-7b163c57c0.zip/node_modules/phosphor-react/dist/lib/index.esm.js":
+/*!******************************************************************************************************************************************************************************!*\
+  !*** ../../.yarn/__virtual__/phosphor-react-virtual-8fc42b3693/0/cache/phosphor-react-npm-1.3.1-070f50cad2-7b163c57c0.zip/node_modules/phosphor-react/dist/lib/index.esm.js ***!
+  \******************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "IconContext": () => (/* binding */ IconContext),
+/* harmony export */   "renderPathForWeight": () => (/* binding */ renderPathForWeight)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var IconContext = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.createContext)({
+  color: "currentColor",
+  size: "1em",
+  weight: "regular",
+  mirrored: false
+});
+var renderPathForWeight = function renderPathForWeight(weight, color, pathsByWeight) {
+  var path = pathsByWeight.get(weight);
+  if (!!path) return path(color);
+  console.error('Unsupported icon weight. Choose from "thin", "light", "regular", "bold", "fill", or "duotone".');
+  return null;
+};
+
+
+//# sourceMappingURL=index.esm.js.map
+
 
 /***/ }),
 
@@ -28732,6 +30830,1834 @@ HelmetExport.renderStatic = HelmetExport.rewind;
 
 /***/ }),
 
+/***/ "../../.yarn/__virtual__/react-hook-form-virtual-bbe20ce007/0/cache/react-hook-form-npm-7.17.0-e506359dc7-554064ec10.zip/node_modules/react-hook-form/dist/index.esm.js":
+/*!******************************************************************************************************************************************************************************!*\
+  !*** ../../.yarn/__virtual__/react-hook-form-virtual-bbe20ce007/0/cache/react-hook-form-npm-7.17.0-e506359dc7-554064ec10.zip/node_modules/react-hook-form/dist/index.esm.js ***!
+  \******************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Controller": () => (/* binding */ Controller),
+/* harmony export */   "FormProvider": () => (/* binding */ FormProvider),
+/* harmony export */   "appendErrors": () => (/* binding */ appendErrors),
+/* harmony export */   "get": () => (/* binding */ get),
+/* harmony export */   "set": () => (/* binding */ set),
+/* harmony export */   "useController": () => (/* binding */ useController),
+/* harmony export */   "useFieldArray": () => (/* binding */ useFieldArray),
+/* harmony export */   "useForm": () => (/* binding */ useForm),
+/* harmony export */   "useFormContext": () => (/* binding */ useFormContext),
+/* harmony export */   "useFormState": () => (/* binding */ useFormState),
+/* harmony export */   "useWatch": () => (/* binding */ useWatch)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var isCheckBoxInput = (element) => element.type === 'checkbox';
+
+var isDateObject = (data) => data instanceof Date;
+
+var isNullOrUndefined = (value) => value == null;
+
+const isObjectType = (value) => typeof value === 'object';
+var isObject = (value) => !isNullOrUndefined(value) &&
+    !Array.isArray(value) &&
+    isObjectType(value) &&
+    !isDateObject(value);
+
+var getControllerValue = (event) => isObject(event) && event.target
+    ? isCheckBoxInput(event.target)
+        ? event.target.checked
+        : event.target.value
+    : event;
+
+var getNodeParentName = (name) => name.substring(0, name.search(/.\d/)) || name;
+
+var isNameInFieldArray = (names, name) => [...names].some((current) => getNodeParentName(name) === current);
+
+var compact = (value) => value.filter(Boolean);
+
+var isUndefined = (val) => val === undefined;
+
+var get = (obj, path, defaultValue) => {
+    if (isObject(obj) && path) {
+        const result = compact(path.split(/[,[\].]+?/)).reduce((result, key) => (isNullOrUndefined(result) ? result : result[key]), obj);
+        return isUndefined(result) || result === obj
+            ? isUndefined(obj[path])
+                ? defaultValue
+                : obj[path]
+            : result;
+    }
+    return undefined;
+};
+
+const EVENTS = {
+    BLUR: 'blur',
+    CHANGE: 'change',
+};
+const VALIDATION_MODE = {
+    onBlur: 'onBlur',
+    onChange: 'onChange',
+    onSubmit: 'onSubmit',
+    onTouched: 'onTouched',
+    all: 'all',
+};
+const INPUT_VALIDATION_RULES = {
+    max: 'max',
+    min: 'min',
+    maxLength: 'maxLength',
+    minLength: 'minLength',
+    pattern: 'pattern',
+    required: 'required',
+    validate: 'validate',
+};
+
+var omit = (source, key) => {
+    const copy = Object.assign({}, source);
+    delete copy[key];
+    return copy;
+};
+
+const FormContext = react__WEBPACK_IMPORTED_MODULE_0__.createContext(null);
+FormContext.displayName = 'RHFContext';
+const useFormContext = () => react__WEBPACK_IMPORTED_MODULE_0__.useContext(FormContext);
+const FormProvider = (props) => (react__WEBPACK_IMPORTED_MODULE_0__.createElement(FormContext.Provider, { value: omit(props, 'children') }, props.children));
+
+var getProxyFormState = (formState, _proxyFormState, localProxyFormState, isRoot = true) => {
+    function createGetter(prop) {
+        return () => {
+            if (prop in formState) {
+                if (_proxyFormState[prop] !== VALIDATION_MODE.all) {
+                    _proxyFormState[prop] = !isRoot || VALIDATION_MODE.all;
+                }
+                localProxyFormState && (localProxyFormState[prop] = true);
+                return formState[prop];
+            }
+            return undefined;
+        };
+    }
+    const result = {};
+    for (const key in formState) {
+        Object.defineProperty(result, key, {
+            get: createGetter(key),
+        });
+    }
+    return result;
+};
+
+var isEmptyObject = (value) => isObject(value) && !Object.keys(value).length;
+
+var shouldRenderFormState = (formStateData, _proxyFormState, isRoot) => {
+    const formState = omit(formStateData, 'name');
+    return (isEmptyObject(formState) ||
+        Object.keys(formState).length >= Object.keys(_proxyFormState).length ||
+        Object.keys(formState).find((key) => _proxyFormState[key] ===
+            (!isRoot || VALIDATION_MODE.all)));
+};
+
+var convertToArrayPayload = (value) => Array.isArray(value) ? value : [value];
+
+function useSubscribe({ disabled, subject, callback }) {
+    const _subscription = react__WEBPACK_IMPORTED_MODULE_0__.useRef(subject);
+    const _unSubscribe = react__WEBPACK_IMPORTED_MODULE_0__.useRef();
+    if (disabled) {
+        if (_subscription.current) {
+            _unSubscribe.current && _unSubscribe.current.unsubscribe();
+            _subscription.current = _unSubscribe.current = undefined;
+        }
+    }
+    else {
+        if (!_subscription.current) {
+            _subscription.current = subject;
+        }
+        if (!_unSubscribe.current && _subscription.current) {
+            _unSubscribe.current = _subscription.current.subscribe({
+                next: callback,
+            });
+        }
+    }
+    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => () => {
+        _unSubscribe.current && _unSubscribe.current.unsubscribe();
+    }, []);
+}
+
+function useFormState(props) {
+    const methods = useFormContext();
+    const { control = methods.control, disabled, name } = props || {};
+    const [formState, updateFormState] = react__WEBPACK_IMPORTED_MODULE_0__.useState(control._formState);
+    const _localProxyFormState = react__WEBPACK_IMPORTED_MODULE_0__.useRef({
+        isDirty: false,
+        dirtyFields: false,
+        touchedFields: false,
+        isValidating: false,
+        isValid: false,
+        errors: false,
+    });
+    const _name = react__WEBPACK_IMPORTED_MODULE_0__.useRef(name);
+    _name.current = name;
+    useSubscribe({
+        disabled,
+        callback: (formState) => (!_name.current ||
+            !formState.name ||
+            convertToArrayPayload(_name.current).includes(formState.name)) &&
+            shouldRenderFormState(formState, _localProxyFormState.current) &&
+            updateFormState(Object.assign(Object.assign({}, control._formState), formState)),
+        subject: control._subjects.state,
+    });
+    return getProxyFormState(formState, control._proxyFormState, _localProxyFormState.current, false);
+}
+
+function useController(props) {
+    const methods = useFormContext();
+    const { name, control = methods.control, shouldUnregister } = props;
+    const [value, setInputStateValue] = react__WEBPACK_IMPORTED_MODULE_0__.useState(get(control._formValues, name, get(control._defaultValues, name, props.defaultValue)));
+    const formState = useFormState({
+        control: control || methods.control,
+        name,
+    });
+    const _name = react__WEBPACK_IMPORTED_MODULE_0__.useRef(name);
+    _name.current = name;
+    useSubscribe({
+        subject: control._subjects.control,
+        callback: (data) => (!data.name || _name.current === data.name) &&
+            setInputStateValue(get(data.values, name)),
+    });
+    const registerProps = control.register(name, Object.assign(Object.assign({}, props.rules), { value }));
+    const updateMounted = react__WEBPACK_IMPORTED_MODULE_0__.useCallback((name, value) => {
+        const field = get(control._fields, name);
+        if (field) {
+            field._f.mount = value;
+        }
+    }, [control]);
+    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => {
+        updateMounted(name, true);
+        return () => {
+            const _shouldUnregisterField = control._shouldUnregister || shouldUnregister;
+            if (isNameInFieldArray(control._names.array, name)
+                ? _shouldUnregisterField && !control._stateFlags.action
+                : _shouldUnregisterField) {
+                control.unregister(name);
+            }
+            else {
+                updateMounted(name, false);
+            }
+        };
+    }, [name, control, shouldUnregister, updateMounted]);
+    return {
+        field: {
+            onChange: (event) => {
+                const value = getControllerValue(event);
+                setInputStateValue(value);
+                registerProps.onChange({
+                    target: {
+                        value,
+                        name: name,
+                    },
+                    type: EVENTS.CHANGE,
+                });
+            },
+            onBlur: () => {
+                registerProps.onBlur({
+                    target: {
+                        value,
+                        name: name,
+                    },
+                    type: EVENTS.BLUR,
+                });
+            },
+            name,
+            value,
+            ref: (elm) => {
+                const field = get(control._fields, name);
+                if (elm && field && elm.focus) {
+                    field._f.ref = {
+                        focus: () => elm.focus(),
+                        setCustomValidity: (message) => elm.setCustomValidity(message),
+                        reportValidity: () => elm.reportValidity(),
+                    };
+                }
+            },
+        },
+        formState,
+        fieldState: {
+            invalid: !!get(formState.errors, name),
+            isDirty: !!get(formState.dirtyFields, name),
+            isTouched: !!get(formState.touchedFields, name),
+            error: get(formState.errors, name),
+        },
+    };
+}
+
+const Controller = (props) => props.render(useController(props));
+
+var appendErrors = (name, validateAllFieldCriteria, errors, type, message) => validateAllFieldCriteria
+    ? Object.assign(Object.assign({}, errors[name]), { types: Object.assign(Object.assign({}, (errors[name] && errors[name].types ? errors[name].types : {})), { [type]: message || true }) }) : {};
+
+var isKey = (value) => /^\w*$/.test(value);
+
+var stringToPath = (input) => compact(input.replace(/["|']|\]/g, '').split(/\.|\[/));
+
+function set(object, path, value) {
+    let index = -1;
+    const tempPath = isKey(path) ? [path] : stringToPath(path);
+    const length = tempPath.length;
+    const lastIndex = length - 1;
+    while (++index < length) {
+        const key = tempPath[index];
+        let newValue = value;
+        if (index !== lastIndex) {
+            const objValue = object[key];
+            newValue =
+                isObject(objValue) || Array.isArray(objValue)
+                    ? objValue
+                    : !isNaN(+tempPath[index + 1])
+                        ? []
+                        : {};
+        }
+        object[key] = newValue;
+        object = object[key];
+    }
+    return object;
+}
+
+const focusFieldBy = (fields, callback, fieldsNames) => {
+    for (const key of fieldsNames || Object.keys(fields)) {
+        const field = get(fields, key);
+        if (field) {
+            const _f = field._f;
+            const current = omit(field, '_f');
+            if (_f && callback(_f.name)) {
+                if (_f.ref.focus && isUndefined(_f.ref.focus())) {
+                    break;
+                }
+                else if (_f.refs) {
+                    _f.refs[0].focus();
+                    break;
+                }
+            }
+            else if (isObject(current)) {
+                focusFieldBy(current, callback);
+            }
+        }
+    }
+};
+
+var getFocusFieldName = (name, index, options = {}) => options.shouldFocus || isUndefined(options.shouldFocus)
+    ? options.focusName ||
+        `${name}.${isUndefined(options.focusIndex) ? index : options.focusIndex}.`
+    : '';
+
+var mapCurrentIds = (values, _fieldIds, keyName) => values.map((value, index) => {
+    const output = _fieldIds.current[index];
+    return Object.assign(Object.assign({}, value), (output ? { [keyName]: output[keyName] } : {}));
+});
+
+var generateId = () => {
+    const d = typeof performance === 'undefined' ? Date.now() : performance.now() * 1000;
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+        const r = (Math.random() * 16 + d) % 16 | 0;
+        return (c == 'x' ? r : (r & 0x3) | 0x8).toString(16);
+    });
+};
+
+var mapIds = (values = [], keyName) => values.map((value) => (Object.assign(Object.assign({}, (value[keyName] ? {} : { [keyName]: generateId() })), value)));
+
+function append(data, value) {
+    return [...convertToArrayPayload(data), ...convertToArrayPayload(value)];
+}
+
+var fillEmptyArray = (value) => Array.isArray(value) ? value.map(() => undefined) : undefined;
+
+function insert(data, index, value) {
+    return [
+        ...data.slice(0, index),
+        ...convertToArrayPayload(value),
+        ...data.slice(index),
+    ];
+}
+
+var moveArrayAt = (data, from, to) => {
+    if (Array.isArray(data)) {
+        if (isUndefined(data[to])) {
+            data[to] = undefined;
+        }
+        data.splice(to, 0, data.splice(from, 1)[0]);
+        return data;
+    }
+    return [];
+};
+
+var omitKey = (fields, keyName) => fields.map((field = {}) => omit(field, keyName));
+
+function prepend(data, value) {
+    return [...convertToArrayPayload(value), ...convertToArrayPayload(data)];
+}
+
+function removeAtIndexes(data, indexes) {
+    let i = 0;
+    const temp = [...data];
+    for (const index of indexes) {
+        temp.splice(index - i, 1);
+        i++;
+    }
+    return compact(temp).length ? temp : [];
+}
+var removeArrayAt = (data, index) => isUndefined(index)
+    ? []
+    : removeAtIndexes(data, convertToArrayPayload(index).sort((a, b) => a - b));
+
+var swapArrayAt = (data, indexA, indexB) => {
+    data[indexA] = [data[indexB], (data[indexB] = data[indexA])][0];
+};
+
+var updateAt = (fieldValues, index, value) => {
+    fieldValues[index] = value;
+    return fieldValues;
+};
+
+const useFieldArray = (props) => {
+    const methods = useFormContext();
+    const { control = methods.control, name, keyName = 'id', shouldUnregister, } = props;
+    const [fields, setFields] = react__WEBPACK_IMPORTED_MODULE_0__.useState(mapIds(control._getFieldArrayValue(name), keyName));
+    const _fieldIds = react__WEBPACK_IMPORTED_MODULE_0__.useRef(fields);
+    useSubscribe({
+        callback: ({ values, name: fieldArrayName }) => {
+            if (fieldArrayName === name || !fieldArrayName) {
+                setFields(mapIds(get(values, name), keyName));
+            }
+        },
+        subject: control._subjects.array,
+    });
+    _fieldIds.current = fields;
+    control._names.array.add(name);
+    const updateValues = react__WEBPACK_IMPORTED_MODULE_0__.useCallback((updatedFieldArrayValuesWithKey) => {
+        const updatedFieldArrayValues = omitKey(updatedFieldArrayValuesWithKey, keyName);
+        set(control._formValues, name, updatedFieldArrayValues);
+        setFields(updatedFieldArrayValuesWithKey);
+        return updatedFieldArrayValues;
+    }, [control, name, keyName]);
+    const append$1 = (value, options) => {
+        const appendValue = convertToArrayPayload(value);
+        const updatedFieldArrayValuesWithKey = append(mapCurrentIds(control._getFieldArrayValue(name), _fieldIds, keyName), mapIds(appendValue, keyName));
+        control._updateFieldArray(keyName, name, append, {
+            argA: fillEmptyArray(value),
+        }, updateValues(updatedFieldArrayValuesWithKey));
+        control._names.focus = getFocusFieldName(name, updatedFieldArrayValuesWithKey.length - appendValue.length, options);
+    };
+    const prepend$1 = (value, options) => {
+        const updatedFieldArrayValuesWithKey = prepend(mapCurrentIds(control._getFieldArrayValue(name), _fieldIds, keyName), mapIds(convertToArrayPayload(value), keyName));
+        control._updateFieldArray(keyName, name, prepend, {
+            argA: fillEmptyArray(value),
+        }, updateValues(updatedFieldArrayValuesWithKey));
+        control._names.focus = getFocusFieldName(name, 0, options);
+    };
+    const remove = (index) => {
+        const updatedFieldArrayValuesWithKey = removeArrayAt(mapCurrentIds(control._getFieldArrayValue(name), _fieldIds, keyName), index);
+        control._updateFieldArray(keyName, name, removeArrayAt, {
+            argA: index,
+        }, updateValues(updatedFieldArrayValuesWithKey));
+    };
+    const insert$1 = (index, value, options) => {
+        const updatedFieldArrayValuesWithKey = insert(mapCurrentIds(control._getFieldArrayValue(name), _fieldIds, keyName), index, mapIds(convertToArrayPayload(value), keyName));
+        control._updateFieldArray(keyName, name, insert, {
+            argA: index,
+            argB: fillEmptyArray(value),
+        }, updateValues(updatedFieldArrayValuesWithKey));
+        control._names.focus = getFocusFieldName(name, index, options);
+    };
+    const swap = (indexA, indexB) => {
+        const updatedFieldArrayValuesWithKey = mapCurrentIds(control._getFieldArrayValue(name), _fieldIds, keyName);
+        swapArrayAt(updatedFieldArrayValuesWithKey, indexA, indexB);
+        control._updateFieldArray(keyName, name, swapArrayAt, {
+            argA: indexA,
+            argB: indexB,
+        }, updateValues(updatedFieldArrayValuesWithKey), false);
+    };
+    const move = (from, to) => {
+        const updatedFieldArrayValuesWithKey = mapCurrentIds(control._getFieldArrayValue(name), _fieldIds, keyName);
+        moveArrayAt(updatedFieldArrayValuesWithKey, from, to);
+        control._updateFieldArray(keyName, name, moveArrayAt, {
+            argA: from,
+            argB: to,
+        }, updateValues(updatedFieldArrayValuesWithKey), false);
+    };
+    const update = (index, value) => {
+        const updatedFieldArrayValuesWithKey = mapCurrentIds(control._getFieldArrayValue(name), _fieldIds, keyName);
+        const updatedFieldArrayValues = updateAt(updatedFieldArrayValuesWithKey, index, value);
+        _fieldIds.current = mapIds(updatedFieldArrayValues, keyName);
+        control._updateFieldArray(keyName, name, updateAt, {
+            argA: index,
+            argB: value,
+        }, updateValues(_fieldIds.current), true, false);
+    };
+    const replace = (value) => {
+        const updatedFieldArrayValuesWithKey = mapIds(convertToArrayPayload(value), keyName);
+        control._updateFieldArray(keyName, name, () => updatedFieldArrayValuesWithKey, {}, updateValues(updatedFieldArrayValuesWithKey), true, false);
+    };
+    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => {
+        control._stateFlags.action = false;
+        if (control._names.watchAll) {
+            control._subjects.state.next({});
+        }
+        else {
+            for (const watchField of control._names.watch) {
+                if (name.startsWith(watchField)) {
+                    control._subjects.state.next({});
+                    break;
+                }
+            }
+        }
+        control._subjects.watch.next({
+            name,
+            values: control._formValues,
+        });
+        control._names.focus &&
+            focusFieldBy(control._fields, (key) => key.startsWith(control._names.focus));
+        control._names.focus = '';
+        control._proxyFormState.isValid && control._updateValid();
+    }, [fields, name, control, keyName]);
+    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => {
+        !get(control._formValues, name) && set(control._formValues, name, []);
+        return () => {
+            if (control._shouldUnregister || shouldUnregister) {
+                control.unregister(name);
+            }
+        };
+    }, [name, control, keyName, shouldUnregister]);
+    return {
+        swap: react__WEBPACK_IMPORTED_MODULE_0__.useCallback(swap, [updateValues, name, control, keyName]),
+        move: react__WEBPACK_IMPORTED_MODULE_0__.useCallback(move, [updateValues, name, control, keyName]),
+        prepend: react__WEBPACK_IMPORTED_MODULE_0__.useCallback(prepend$1, [updateValues, name, control, keyName]),
+        append: react__WEBPACK_IMPORTED_MODULE_0__.useCallback(append$1, [updateValues, name, control, keyName]),
+        remove: react__WEBPACK_IMPORTED_MODULE_0__.useCallback(remove, [updateValues, name, control, keyName]),
+        insert: react__WEBPACK_IMPORTED_MODULE_0__.useCallback(insert$1, [updateValues, name, control, keyName]),
+        update: react__WEBPACK_IMPORTED_MODULE_0__.useCallback(update, [updateValues, name, control, keyName]),
+        replace: react__WEBPACK_IMPORTED_MODULE_0__.useCallback(replace, [updateValues, name, control, keyName]),
+        fields: fields,
+    };
+};
+
+function cloneObject(data) {
+    let copy;
+    const isArray = Array.isArray(data);
+    if (data instanceof Date) {
+        copy = new Date(data);
+    }
+    else if (data instanceof Set) {
+        copy = new Set(data);
+    }
+    else if (isArray || isObject(data)) {
+        copy = isArray ? [] : {};
+        for (const key in data) {
+            copy[key] = cloneObject(data[key]);
+        }
+    }
+    else {
+        return data;
+    }
+    return copy;
+}
+
+var isPrimitive = (value) => isNullOrUndefined(value) || !isObjectType(value);
+
+function deepEqual(object1, object2) {
+    if (isPrimitive(object1) ||
+        isPrimitive(object2) ||
+        isDateObject(object1) ||
+        isDateObject(object2)) {
+        return object1 === object2;
+    }
+    const keys1 = Object.keys(object1);
+    const keys2 = Object.keys(object2);
+    if (keys1.length !== keys2.length) {
+        return false;
+    }
+    for (const key of keys1) {
+        const val1 = object1[key];
+        if (!keys2.includes(key)) {
+            return false;
+        }
+        if (key !== 'ref') {
+            const val2 = object2[key];
+            if ((isObject(val1) || Array.isArray(val1)) &&
+                (isObject(val2) || Array.isArray(val2))
+                ? !deepEqual(val1, val2)
+                : val1 !== val2) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+var getValidationModes = (mode) => ({
+    isOnSubmit: !mode || mode === VALIDATION_MODE.onSubmit,
+    isOnBlur: mode === VALIDATION_MODE.onBlur,
+    isOnChange: mode === VALIDATION_MODE.onChange,
+    isOnAll: mode === VALIDATION_MODE.all,
+    isOnTouch: mode === VALIDATION_MODE.onTouched,
+});
+
+var isBoolean = (value) => typeof value === 'boolean';
+
+var isFileInput = (element) => element.type === 'file';
+
+var isFunction = (value) => typeof value === 'function';
+
+var isHTMLElement = (value) => value instanceof HTMLElement;
+
+var isMultipleSelect = (element) => element.type === `select-multiple`;
+
+var isRadioInput = (element) => element.type === 'radio';
+
+var isRadioOrCheckboxFunction = (ref) => isRadioInput(ref) || isCheckBoxInput(ref);
+
+var isString = (value) => typeof value === 'string';
+
+var isWeb = typeof window !== 'undefined' &&
+    typeof window.HTMLElement !== 'undefined' &&
+    typeof document !== 'undefined';
+
+var live = (ref) => !isHTMLElement(ref) || !document.contains(ref);
+
+class Subscription {
+    constructor() {
+        this.tearDowns = [];
+    }
+    add(tearDown) {
+        this.tearDowns.push(tearDown);
+    }
+    unsubscribe() {
+        for (const teardown of this.tearDowns) {
+            teardown();
+        }
+        this.tearDowns = [];
+    }
+}
+class Subscriber {
+    constructor(observer, subscription) {
+        this.observer = observer;
+        this.closed = false;
+        subscription.add(() => (this.closed = true));
+    }
+    next(value) {
+        if (!this.closed) {
+            this.observer.next(value);
+        }
+    }
+}
+class Subject {
+    constructor() {
+        this.observers = [];
+    }
+    next(value) {
+        for (const observer of this.observers) {
+            observer.next(value);
+        }
+    }
+    subscribe(observer) {
+        const subscription = new Subscription();
+        const subscriber = new Subscriber(observer, subscription);
+        this.observers.push(subscriber);
+        return subscription;
+    }
+    unsubscribe() {
+        this.observers = [];
+    }
+}
+
+function baseGet(object, updatePath) {
+    const length = updatePath.slice(0, -1).length;
+    let index = 0;
+    while (index < length) {
+        object = isUndefined(object) ? index++ : object[updatePath[index++]];
+    }
+    return object;
+}
+function unset(object, path) {
+    const updatePath = isKey(path) ? [path] : stringToPath(path);
+    const childObject = updatePath.length == 1 ? object : baseGet(object, updatePath);
+    const key = updatePath[updatePath.length - 1];
+    let previousObjRef;
+    if (childObject) {
+        delete childObject[key];
+    }
+    for (let k = 0; k < updatePath.slice(0, -1).length; k++) {
+        let index = -1;
+        let objectRef;
+        const currentPaths = updatePath.slice(0, -(k + 1));
+        const currentPathsLength = currentPaths.length - 1;
+        if (k > 0) {
+            previousObjRef = object;
+        }
+        while (++index < currentPaths.length) {
+            const item = currentPaths[index];
+            objectRef = objectRef ? objectRef[item] : object[item];
+            if (currentPathsLength === index &&
+                ((isObject(objectRef) && isEmptyObject(objectRef)) ||
+                    (Array.isArray(objectRef) &&
+                        !objectRef.filter((data) => (isObject(data) && !isEmptyObject(data)) || isBoolean(data)).length))) {
+                previousObjRef ? delete previousObjRef[item] : delete object[item];
+            }
+            previousObjRef = objectRef;
+        }
+    }
+    return object;
+}
+
+const defaultResult = {
+    value: false,
+    isValid: false,
+};
+const validResult = { value: true, isValid: true };
+var getCheckboxValue = (options) => {
+    if (Array.isArray(options)) {
+        if (options.length > 1) {
+            const values = options
+                .filter((option) => option && option.checked && !option.disabled)
+                .map((option) => option.value);
+            return { value: values, isValid: !!values.length };
+        }
+        return options[0].checked && !options[0].disabled
+            ? // @ts-expect-error expected to work in the browser
+                options[0].attributes && !isUndefined(options[0].attributes.value)
+                    ? isUndefined(options[0].value) || options[0].value === ''
+                        ? validResult
+                        : { value: options[0].value, isValid: true }
+                    : validResult
+            : defaultResult;
+    }
+    return defaultResult;
+};
+
+var getFieldValueAs = (value, { valueAsNumber, valueAsDate, setValueAs }) => isUndefined(value)
+    ? value
+    : valueAsNumber
+        ? value === ''
+            ? NaN
+            : +value
+        : valueAsDate
+            ? new Date(value)
+            : setValueAs
+                ? setValueAs(value)
+                : value;
+
+const defaultReturn = {
+    isValid: false,
+    value: null,
+};
+var getRadioValue = (options) => Array.isArray(options)
+    ? options.reduce((previous, option) => option && option.checked && !option.disabled
+        ? {
+            isValid: true,
+            value: option.value,
+        }
+        : previous, defaultReturn)
+    : defaultReturn;
+
+function getFieldValue(_f) {
+    const ref = _f.ref;
+    if (_f.refs ? _f.refs.every((ref) => ref.disabled) : ref.disabled) {
+        return;
+    }
+    if (isFileInput(ref)) {
+        return ref.files;
+    }
+    if (isRadioInput(ref)) {
+        return getRadioValue(_f.refs).value;
+    }
+    if (isMultipleSelect(ref)) {
+        return [...ref.selectedOptions].map(({ value }) => value);
+    }
+    if (isCheckBoxInput(ref)) {
+        return getCheckboxValue(_f.refs).value;
+    }
+    return getFieldValueAs(isUndefined(ref.value) ? _f.ref.value : ref.value, _f);
+}
+
+var getResolverOptions = (fieldsNames, _fields, criteriaMode, shouldUseNativeValidation) => {
+    const fields = {};
+    for (const name of fieldsNames) {
+        const field = get(_fields, name);
+        field && set(fields, name, field._f);
+    }
+    return {
+        criteriaMode,
+        names: [...fieldsNames],
+        fields,
+        shouldUseNativeValidation,
+    };
+};
+
+var hasValidation = (options) => options.mount &&
+    (options.required ||
+        options.min ||
+        options.max ||
+        options.maxLength ||
+        options.minLength ||
+        options.pattern ||
+        options.validate);
+
+function deepMerge(target, source) {
+    if (isPrimitive(target) || isPrimitive(source)) {
+        return source;
+    }
+    for (const key in source) {
+        const targetValue = target[key];
+        const sourceValue = source[key];
+        try {
+            target[key] =
+                (isObject(targetValue) && isObject(sourceValue)) ||
+                    (Array.isArray(targetValue) && Array.isArray(sourceValue))
+                    ? deepMerge(targetValue, sourceValue)
+                    : sourceValue;
+        }
+        catch (_a) { }
+    }
+    return target;
+}
+
+function setDirtyFields(values, defaultValues, dirtyFields, parentNode, parentName) {
+    let index = -1;
+    while (++index < values.length) {
+        for (const key in values[index]) {
+            if (Array.isArray(values[index][key])) {
+                !dirtyFields[index] && (dirtyFields[index] = {});
+                dirtyFields[index][key] = [];
+                setDirtyFields(values[index][key], get(defaultValues[index] || {}, key, []), dirtyFields[index][key], dirtyFields[index], key);
+            }
+            else {
+                !isNullOrUndefined(defaultValues) &&
+                    deepEqual(get(defaultValues[index] || {}, key), values[index][key])
+                    ? set(dirtyFields[index] || {}, key)
+                    : (dirtyFields[index] = Object.assign(Object.assign({}, dirtyFields[index]), { [key]: true }));
+            }
+        }
+        parentNode &&
+            !dirtyFields.length &&
+            delete parentNode[parentName];
+    }
+    return dirtyFields;
+}
+var setFieldArrayDirtyFields = (values, defaultValues, dirtyFields) => deepMerge(setDirtyFields(values, defaultValues, dirtyFields.slice(0, values.length)), setDirtyFields(defaultValues, values, dirtyFields.slice(0, values.length)));
+
+var skipValidation = (isBlurEvent, isTouched, isSubmitted, reValidateMode, mode) => {
+    if (mode.isOnAll) {
+        return false;
+    }
+    else if (!isSubmitted && mode.isOnTouch) {
+        return !(isTouched || isBlurEvent);
+    }
+    else if (isSubmitted ? reValidateMode.isOnBlur : mode.isOnBlur) {
+        return !isBlurEvent;
+    }
+    else if (isSubmitted ? reValidateMode.isOnChange : mode.isOnChange) {
+        return isBlurEvent;
+    }
+    return true;
+};
+
+var unsetEmptyArray = (ref, name) => !compact(get(ref, name, [])).length && unset(ref, name);
+
+var isMessage = (value) => isString(value) || react__WEBPACK_IMPORTED_MODULE_0__.isValidElement(value);
+
+var isRegex = (value) => value instanceof RegExp;
+
+function getValidateError(result, ref, type = 'validate') {
+    if (isMessage(result) ||
+        (Array.isArray(result) && result.every(isMessage)) ||
+        (isBoolean(result) && !result)) {
+        return {
+            type,
+            message: isMessage(result) ? result : '',
+            ref,
+        };
+    }
+}
+
+var getValueAndMessage = (validationData) => isObject(validationData) && !isRegex(validationData)
+    ? validationData
+    : {
+        value: validationData,
+        message: '',
+    };
+
+var validateField = async (field, inputValue, validateAllFieldCriteria, shouldUseNativeValidation) => {
+    const { ref, refs, required, maxLength, minLength, min, max, pattern, validate, name, valueAsNumber, mount, disabled, } = field._f;
+    if (!mount || disabled) {
+        return {};
+    }
+    const inputRef = refs ? refs[0] : ref;
+    const setCustomValidty = (message) => {
+        if (shouldUseNativeValidation && inputRef.reportValidity) {
+            inputRef.setCustomValidity(isBoolean(message) ? '' : message || ' ');
+            inputRef.reportValidity();
+        }
+    };
+    const error = {};
+    const isRadio = isRadioInput(ref);
+    const isCheckBox = isCheckBoxInput(ref);
+    const isRadioOrCheckbox = isRadio || isCheckBox;
+    const isEmpty = ((valueAsNumber || isFileInput(ref)) && !ref.value) ||
+        inputValue === '' ||
+        (Array.isArray(inputValue) && !inputValue.length);
+    const appendErrorsCurry = appendErrors.bind(null, name, validateAllFieldCriteria, error);
+    const getMinMaxMessage = (exceedMax, maxLengthMessage, minLengthMessage, maxType = INPUT_VALIDATION_RULES.maxLength, minType = INPUT_VALIDATION_RULES.minLength) => {
+        const message = exceedMax ? maxLengthMessage : minLengthMessage;
+        error[name] = Object.assign({ type: exceedMax ? maxType : minType, message,
+            ref }, appendErrorsCurry(exceedMax ? maxType : minType, message));
+    };
+    if (required &&
+        ((!isRadioOrCheckbox && (isEmpty || isNullOrUndefined(inputValue))) ||
+            (isBoolean(inputValue) && !inputValue) ||
+            (isCheckBox && !getCheckboxValue(refs).isValid) ||
+            (isRadio && !getRadioValue(refs).isValid))) {
+        const { value, message } = isMessage(required)
+            ? { value: !!required, message: required }
+            : getValueAndMessage(required);
+        if (value) {
+            error[name] = Object.assign({ type: INPUT_VALIDATION_RULES.required, message, ref: inputRef }, appendErrorsCurry(INPUT_VALIDATION_RULES.required, message));
+            if (!validateAllFieldCriteria) {
+                setCustomValidty(message);
+                return error;
+            }
+        }
+    }
+    if (!isEmpty && (!isNullOrUndefined(min) || !isNullOrUndefined(max))) {
+        let exceedMax;
+        let exceedMin;
+        const maxOutput = getValueAndMessage(max);
+        const minOutput = getValueAndMessage(min);
+        if (!isNaN(inputValue)) {
+            const valueNumber = ref.valueAsNumber || parseFloat(inputValue);
+            if (!isNullOrUndefined(maxOutput.value)) {
+                exceedMax = valueNumber > maxOutput.value;
+            }
+            if (!isNullOrUndefined(minOutput.value)) {
+                exceedMin = valueNumber < minOutput.value;
+            }
+        }
+        else {
+            const valueDate = ref.valueAsDate || new Date(inputValue);
+            if (isString(maxOutput.value)) {
+                exceedMax = valueDate > new Date(maxOutput.value);
+            }
+            if (isString(minOutput.value)) {
+                exceedMin = valueDate < new Date(minOutput.value);
+            }
+        }
+        if (exceedMax || exceedMin) {
+            getMinMaxMessage(!!exceedMax, maxOutput.message, minOutput.message, INPUT_VALIDATION_RULES.max, INPUT_VALIDATION_RULES.min);
+            if (!validateAllFieldCriteria) {
+                setCustomValidty(error[name].message);
+                return error;
+            }
+        }
+    }
+    if ((maxLength || minLength) && !isEmpty && isString(inputValue)) {
+        const maxLengthOutput = getValueAndMessage(maxLength);
+        const minLengthOutput = getValueAndMessage(minLength);
+        const exceedMax = !isNullOrUndefined(maxLengthOutput.value) &&
+            inputValue.length > maxLengthOutput.value;
+        const exceedMin = !isNullOrUndefined(minLengthOutput.value) &&
+            inputValue.length < minLengthOutput.value;
+        if (exceedMax || exceedMin) {
+            getMinMaxMessage(exceedMax, maxLengthOutput.message, minLengthOutput.message);
+            if (!validateAllFieldCriteria) {
+                setCustomValidty(error[name].message);
+                return error;
+            }
+        }
+    }
+    if (pattern && !isEmpty && isString(inputValue)) {
+        const { value: patternValue, message } = getValueAndMessage(pattern);
+        if (isRegex(patternValue) && !inputValue.match(patternValue)) {
+            error[name] = Object.assign({ type: INPUT_VALIDATION_RULES.pattern, message,
+                ref }, appendErrorsCurry(INPUT_VALIDATION_RULES.pattern, message));
+            if (!validateAllFieldCriteria) {
+                setCustomValidty(message);
+                return error;
+            }
+        }
+    }
+    if (validate) {
+        if (isFunction(validate)) {
+            const result = await validate(inputValue);
+            const validateError = getValidateError(result, inputRef);
+            if (validateError) {
+                error[name] = Object.assign(Object.assign({}, validateError), appendErrorsCurry(INPUT_VALIDATION_RULES.validate, validateError.message));
+                if (!validateAllFieldCriteria) {
+                    setCustomValidty(validateError.message);
+                    return error;
+                }
+            }
+        }
+        else if (isObject(validate)) {
+            let validationResult = {};
+            for (const key in validate) {
+                if (!isEmptyObject(validationResult) && !validateAllFieldCriteria) {
+                    break;
+                }
+                const validateError = getValidateError(await validate[key](inputValue), inputRef, key);
+                if (validateError) {
+                    validationResult = Object.assign(Object.assign({}, validateError), appendErrorsCurry(key, validateError.message));
+                    setCustomValidty(validateError.message);
+                    if (validateAllFieldCriteria) {
+                        error[name] = validationResult;
+                    }
+                }
+            }
+            if (!isEmptyObject(validationResult)) {
+                error[name] = Object.assign({ ref: inputRef }, validationResult);
+                if (!validateAllFieldCriteria) {
+                    return error;
+                }
+            }
+        }
+    }
+    setCustomValidty(true);
+    return error;
+};
+
+const defaultOptions = {
+    mode: VALIDATION_MODE.onSubmit,
+    reValidateMode: VALIDATION_MODE.onChange,
+    shouldFocusError: true,
+};
+const isWindowUndefined = typeof window === 'undefined';
+function createFormControl(props = {}) {
+    let formOptions = Object.assign(Object.assign({}, defaultOptions), props);
+    let _delayCallback;
+    let _formState = {
+        isDirty: false,
+        isValidating: false,
+        dirtyFields: {},
+        isSubmitted: false,
+        submitCount: 0,
+        touchedFields: {},
+        isSubmitting: false,
+        isSubmitSuccessful: false,
+        isValid: false,
+        errors: {},
+    };
+    let _fields = {};
+    let _defaultValues = formOptions.defaultValues || {};
+    let _formValues = formOptions.shouldUnregister
+        ? {}
+        : cloneObject(_defaultValues);
+    let _stateFlags = {
+        action: false,
+        mount: false,
+        watch: false,
+    };
+    let _timer = 0;
+    let _names = {
+        mount: new Set(),
+        unMount: new Set(),
+        array: new Set(),
+        watch: new Set(),
+    };
+    let _validateCount = {};
+    const _proxyFormState = {
+        isDirty: false,
+        dirtyFields: false,
+        touchedFields: false,
+        isValidating: false,
+        isValid: false,
+        errors: false,
+    };
+    const _subjects = {
+        watch: new Subject(),
+        control: new Subject(),
+        array: new Subject(),
+        state: new Subject(),
+    };
+    const validationMode = getValidationModes(formOptions.mode);
+    const reValidateMode = getValidationModes(formOptions.reValidateMode);
+    const isValidateAllFieldCriteria = formOptions.criteriaMode === VALIDATION_MODE.all;
+    const debounce = (callback, wait) => (...args) => {
+        clearTimeout(_timer);
+        _timer = window.setTimeout(() => callback(...args), wait);
+    };
+    const isFieldWatched = (name) => _names.watchAll ||
+        _names.watch.has(name) ||
+        _names.watch.has((name.match(/\w+/) || [])[0]);
+    const updateErrorState = (name, error) => {
+        set(_formState.errors, name, error);
+        _subjects.state.next({
+            errors: _formState.errors,
+        });
+    };
+    const shouldRenderBaseOnError = async (shouldSkipRender, name, isValid, error, fieldState) => {
+        const previousError = get(_formState.errors, name);
+        const shouldUpdateValid = _proxyFormState.isValid && _formState.isValid !== isValid;
+        if (props.delayError && error) {
+            _delayCallback =
+                _delayCallback || debounce(updateErrorState, props.delayError);
+            _delayCallback(name, error);
+        }
+        else {
+            clearTimeout(_timer);
+            error
+                ? set(_formState.errors, name, error)
+                : unset(_formState.errors, name);
+        }
+        if (((error ? !deepEqual(previousError, error) : previousError) ||
+            !isEmptyObject(fieldState) ||
+            shouldUpdateValid) &&
+            !shouldSkipRender) {
+            const updatedFormState = Object.assign(Object.assign(Object.assign({}, fieldState), (shouldUpdateValid ? { isValid } : {})), { errors: _formState.errors, name });
+            _formState = Object.assign(Object.assign({}, _formState), updatedFormState);
+            _subjects.state.next(updatedFormState);
+        }
+        _validateCount[name]--;
+        if (_proxyFormState.isValidating && !_validateCount[name]) {
+            _subjects.state.next({
+                isValidating: false,
+            });
+            _validateCount = {};
+        }
+    };
+    const setFieldValue = (name, value, options = {}, shouldRender) => {
+        const field = get(_fields, name);
+        let fieldValue = value;
+        if (field) {
+            const _f = field._f;
+            if (_f) {
+                set(_formValues, name, getFieldValueAs(value, _f));
+                fieldValue =
+                    isWeb && isHTMLElement(_f.ref) && isNullOrUndefined(value)
+                        ? ''
+                        : value;
+                if (isFileInput(_f.ref) && !isString(fieldValue)) {
+                    _f.ref.files = fieldValue;
+                }
+                else if (isMultipleSelect(_f.ref)) {
+                    [..._f.ref.options].forEach((selectRef) => (selectRef.selected = fieldValue.includes(selectRef.value)));
+                }
+                else if (_f.refs) {
+                    if (isCheckBoxInput(_f.ref)) {
+                        _f.refs.length > 1
+                            ? _f.refs.forEach((checkboxRef) => (checkboxRef.checked = Array.isArray(fieldValue)
+                                ? !!fieldValue.find((data) => data === checkboxRef.value)
+                                : fieldValue === checkboxRef.value))
+                            : (_f.refs[0].checked = !!fieldValue);
+                    }
+                    else {
+                        _f.refs.forEach((radioRef) => (radioRef.checked = radioRef.value === fieldValue));
+                    }
+                }
+                else {
+                    _f.ref.value = fieldValue;
+                }
+                if (shouldRender) {
+                    _subjects.control.next({
+                        values: _formValues,
+                        name,
+                    });
+                }
+            }
+        }
+        (options.shouldDirty || options.shouldTouch) &&
+            updateTouchAndDirtyState(name, fieldValue, options.shouldTouch);
+        options.shouldValidate && trigger(name);
+    };
+    const updateTouchAndDirtyState = (name, inputValue, isCurrentTouched, shouldRender = true) => {
+        const state = {
+            name,
+        };
+        let isChanged = false;
+        if (_proxyFormState.isDirty) {
+            const previousIsDirty = _formState.isDirty;
+            _formState.isDirty = _getIsDirty();
+            state.isDirty = _formState.isDirty;
+            isChanged = previousIsDirty !== state.isDirty;
+        }
+        if (_proxyFormState.dirtyFields && !isCurrentTouched) {
+            const isPreviousFieldDirty = get(_formState.dirtyFields, name);
+            const isCurrentFieldDirty = !deepEqual(get(_defaultValues, name), inputValue);
+            isCurrentFieldDirty
+                ? set(_formState.dirtyFields, name, true)
+                : unset(_formState.dirtyFields, name);
+            state.dirtyFields = _formState.dirtyFields;
+            isChanged =
+                isChanged || isPreviousFieldDirty !== get(_formState.dirtyFields, name);
+        }
+        const isPreviousFieldTouched = get(_formState.touchedFields, name);
+        if (isCurrentTouched && !isPreviousFieldTouched) {
+            set(_formState.touchedFields, name, isCurrentTouched);
+            state.touchedFields = _formState.touchedFields;
+            isChanged =
+                isChanged ||
+                    (_proxyFormState.touchedFields &&
+                        isPreviousFieldTouched !== isCurrentTouched);
+        }
+        isChanged && shouldRender && _subjects.state.next(state);
+        return isChanged ? state : {};
+    };
+    const executeResolver = async (name) => {
+        return formOptions.resolver
+            ? await formOptions.resolver(Object.assign({}, _formValues), formOptions.context, getResolverOptions(name || _names.mount, _fields, formOptions.criteriaMode, formOptions.shouldUseNativeValidation))
+            : {};
+    };
+    const executeResolverValidation = async (names) => {
+        const { errors } = await executeResolver();
+        if (names) {
+            for (const name of names) {
+                const error = get(errors, name);
+                error
+                    ? set(_formState.errors, name, error)
+                    : unset(_formState.errors, name);
+            }
+        }
+        else {
+            _formState.errors = errors;
+        }
+        return errors;
+    };
+    const validateForm = async (_fields, shouldCheckValid, context = {
+        valid: true,
+    }) => {
+        for (const name in _fields) {
+            const field = _fields[name];
+            if (field) {
+                const _f = field._f;
+                const fieldValue = omit(field, '_f');
+                if (_f) {
+                    const fieldError = await validateField(field, get(_formValues, _f.name), isValidateAllFieldCriteria, formOptions.shouldUseNativeValidation);
+                    if (fieldError[_f.name]) {
+                        context.valid = false;
+                        if (shouldCheckValid) {
+                            break;
+                        }
+                    }
+                    if (!shouldCheckValid) {
+                        fieldError[_f.name]
+                            ? set(_formState.errors, _f.name, fieldError[_f.name])
+                            : unset(_formState.errors, _f.name);
+                    }
+                }
+                fieldValue &&
+                    (await validateForm(fieldValue, shouldCheckValid, context));
+            }
+        }
+        return context.valid;
+    };
+    const handleChange = async (event) => {
+        const target = event.target;
+        let name = target.name;
+        const field = get(_fields, name);
+        if (field) {
+            let error;
+            let isValid;
+            const inputValue = target.type ? getFieldValue(field._f) : target.value;
+            const isBlurEvent = event.type === EVENTS.BLUR;
+            if (isBlurEvent && field._f.onBlur) {
+                field._f.onBlur(event);
+            }
+            else if (field._f.onChange) {
+                field._f.onChange(event);
+            }
+            const shouldSkipValidation = (!hasValidation(field._f) &&
+                !formOptions.resolver &&
+                !get(_formState.errors, name) &&
+                !field._f.deps) ||
+                skipValidation(isBlurEvent, get(_formState.touchedFields, name), _formState.isSubmitted, reValidateMode, validationMode);
+            const isWatched = !isBlurEvent && isFieldWatched(name);
+            set(_formValues, name, inputValue);
+            const fieldState = updateTouchAndDirtyState(name, inputValue, isBlurEvent, false);
+            const shouldRender = !isEmptyObject(fieldState) || isWatched;
+            !isBlurEvent &&
+                _subjects.watch.next({
+                    name,
+                    type: event.type,
+                });
+            if (shouldSkipValidation) {
+                return (shouldRender &&
+                    _subjects.state.next(Object.assign({ name }, (isWatched ? {} : fieldState))));
+            }
+            !isBlurEvent && isWatched && _subjects.state.next({});
+            _validateCount[name] = _validateCount[name] ? +1 : 1;
+            _proxyFormState.isValidating &&
+                _subjects.state.next({
+                    isValidating: true,
+                });
+            if (formOptions.resolver) {
+                const { errors } = await executeResolver([name]);
+                error = get(errors, name);
+                if (isCheckBoxInput(target) && !error) {
+                    const parentNodeName = getNodeParentName(name);
+                    const parentField = get(_fields, parentNodeName);
+                    if (Array.isArray(parentField) &&
+                        parentField.every((field) => field._f && isCheckBoxInput(field._f.ref))) {
+                        const parentError = get(errors, parentNodeName, {});
+                        parentError.type && (error = parentError);
+                        name = parentNodeName;
+                    }
+                }
+                isValid = isEmptyObject(errors);
+            }
+            else {
+                error = (await validateField(field, get(_formValues, name), isValidateAllFieldCriteria, formOptions.shouldUseNativeValidation))[name];
+                isValid = await _updateValid(true);
+            }
+            if (field._f.deps) {
+                trigger(field._f.deps);
+            }
+            shouldRenderBaseOnError(false, name, isValid, error, fieldState);
+        }
+    };
+    const _updateValidAndInputValue = (name, shouldSkipValueAs, ref) => {
+        const field = get(_fields, name);
+        if (field) {
+            const fieldValue = get(_formValues, name);
+            const defaultValue = isUndefined(fieldValue)
+                ? get(_defaultValues, name)
+                : fieldValue;
+            if (isUndefined(defaultValue) ||
+                (ref && ref.defaultChecked) ||
+                shouldSkipValueAs) {
+                set(_formValues, name, shouldSkipValueAs ? defaultValue : getFieldValue(field._f));
+            }
+            else {
+                setFieldValue(name, defaultValue);
+            }
+        }
+        _stateFlags.mount && _updateValid();
+    };
+    const _getIsDirty = (name, data) => {
+        name && data && set(_formValues, name, data);
+        return !deepEqual(Object.assign({}, getValues()), _defaultValues);
+    };
+    const _updateValid = async (skipRender) => {
+        let isValid = false;
+        if (_proxyFormState.isValid) {
+            isValid = formOptions.resolver
+                ? isEmptyObject((await executeResolver()).errors)
+                : await validateForm(_fields, true);
+            if (!skipRender && isValid !== _formState.isValid) {
+                _formState.isValid = isValid;
+                _subjects.state.next({
+                    isValid,
+                });
+            }
+        }
+        return isValid;
+    };
+    const setValues = (name, value, options) => Object.entries(value).forEach(([fieldKey, fieldValue]) => {
+        const fieldName = `${name}.${fieldKey}`;
+        const field = get(_fields, fieldName);
+        (_names.array.has(name) ||
+            !isPrimitive(fieldValue) ||
+            (field && !field._f)) &&
+            !isDateObject(fieldValue)
+            ? setValues(fieldName, fieldValue, options)
+            : setFieldValue(fieldName, fieldValue, options, true);
+    });
+    const _getWatch = (fieldNames, defaultValue, isMounted, isGlobal) => {
+        const fieldValues = Object.assign({}, (isMounted || _stateFlags.mount
+            ? _formValues
+            : isUndefined(defaultValue)
+                ? _defaultValues
+                : isString(fieldNames)
+                    ? { [fieldNames]: defaultValue }
+                    : defaultValue));
+        if (!fieldNames) {
+            isGlobal && (_names.watchAll = true);
+            return fieldValues;
+        }
+        const result = [];
+        for (const fieldName of convertToArrayPayload(fieldNames)) {
+            isGlobal && _names.watch.add(fieldName);
+            result.push(get(fieldValues, fieldName));
+        }
+        return Array.isArray(fieldNames) ? result : result[0];
+    };
+    const _updateFieldArray = (keyName, name, method, args, values = [], shouldSet = true, shouldSetFields = true) => {
+        let output;
+        _stateFlags.action = true;
+        if (shouldSetFields && get(_fields, name)) {
+            output = method(get(_fields, name), args.argA, args.argB);
+            shouldSet && set(_fields, name, output);
+        }
+        if (Array.isArray(get(_formState.errors, name))) {
+            const output = method(get(_formState.errors, name), args.argA, args.argB);
+            shouldSet && set(_formState.errors, name, output);
+            unsetEmptyArray(_formState.errors, name);
+        }
+        if (_proxyFormState.touchedFields && get(_formState.touchedFields, name)) {
+            const output = method(get(_formState.touchedFields, name), args.argA, args.argB);
+            shouldSet && set(_formState.touchedFields, name, output);
+            unsetEmptyArray(_formState.touchedFields, name);
+        }
+        if (_proxyFormState.dirtyFields || _proxyFormState.isDirty) {
+            set(_formState.dirtyFields, name, setFieldArrayDirtyFields(omitKey(values, keyName), get(_defaultValues, name, []), get(_formState.dirtyFields, name, [])));
+            values &&
+                set(_formState.dirtyFields, name, setFieldArrayDirtyFields(omitKey(values, keyName), get(_defaultValues, name, []), get(_formState.dirtyFields, name, [])));
+            unsetEmptyArray(_formState.dirtyFields, name);
+        }
+        _subjects.state.next({
+            isDirty: _getIsDirty(name, omitKey(values, keyName)),
+            dirtyFields: _formState.dirtyFields,
+            errors: _formState.errors,
+            isValid: _formState.isValid,
+        });
+    };
+    const _getFieldArrayValue = (name) => get(_stateFlags.mount ? _formValues : _defaultValues, name, []);
+    const setValue = (name, value, options = {}) => {
+        const field = get(_fields, name);
+        const isFieldArray = _names.array.has(name);
+        set(_formValues, name, value);
+        if (isFieldArray) {
+            _subjects.array.next({
+                name,
+                values: _formValues,
+            });
+            if ((_proxyFormState.isDirty || _proxyFormState.dirtyFields) &&
+                options.shouldDirty) {
+                set(_formState.dirtyFields, name, setFieldArrayDirtyFields(value, get(_defaultValues, name, []), get(_formState.dirtyFields, name, [])));
+                _subjects.state.next({
+                    name,
+                    dirtyFields: _formState.dirtyFields,
+                    isDirty: _getIsDirty(name, value),
+                });
+            }
+        }
+        else {
+            field && !field._f && !isNullOrUndefined(value)
+                ? setValues(name, value, options)
+                : setFieldValue(name, value, options, true);
+        }
+        isFieldWatched(name) && _subjects.state.next({});
+        _subjects.watch.next({
+            name,
+        });
+    };
+    const trigger = async (name, options = {}) => {
+        const fieldNames = convertToArrayPayload(name);
+        let isValid;
+        let validationResult;
+        _subjects.state.next({
+            isValidating: true,
+        });
+        if (formOptions.resolver) {
+            const schemaResult = await executeResolverValidation(isUndefined(name) ? name : fieldNames);
+            isValid = isEmptyObject(schemaResult);
+            validationResult = name
+                ? !fieldNames.some((name) => get(schemaResult, name))
+                : isValid;
+        }
+        else if (name) {
+            validationResult = (await Promise.all(fieldNames.map(async (fieldName) => {
+                const field = get(_fields, fieldName);
+                return await validateForm(field && field._f ? { [fieldName]: field } : field);
+            }))).every(Boolean);
+            _updateValid();
+        }
+        else {
+            validationResult = isValid = await validateForm(_fields);
+        }
+        _subjects.state.next(Object.assign(Object.assign({}, (!isString(name) || isValid !== _formState.isValid ? {} : { name })), { errors: _formState.errors, isValid, isValidating: false }));
+        if (options.shouldFocus && !validationResult) {
+            focusFieldBy(_fields, (key) => get(_formState.errors, key), name ? fieldNames : _names.mount);
+        }
+        return validationResult;
+    };
+    const getValues = (fieldNames) => {
+        const values = Object.assign(Object.assign({}, _defaultValues), (_stateFlags.mount ? _formValues : {}));
+        return isUndefined(fieldNames)
+            ? values
+            : isString(fieldNames)
+                ? get(values, fieldNames)
+                : fieldNames.map((name) => get(values, name));
+    };
+    const clearErrors = (name) => {
+        name
+            ? convertToArrayPayload(name).forEach((inputName) => unset(_formState.errors, inputName))
+            : (_formState.errors = {});
+        _subjects.state.next({
+            errors: _formState.errors,
+        });
+    };
+    const setError = (name, error, options) => {
+        const ref = (get(_fields, name, { _f: {} })._f || {}).ref;
+        set(_formState.errors, name, Object.assign(Object.assign({}, error), { ref }));
+        _subjects.state.next({
+            name,
+            errors: _formState.errors,
+            isValid: false,
+        });
+        options && options.shouldFocus && ref && ref.focus && ref.focus();
+    };
+    const watch = (fieldName, defaultValue) => isFunction(fieldName)
+        ? _subjects.watch.subscribe({
+            next: (info) => fieldName(_getWatch(undefined, defaultValue), info),
+        })
+        : _getWatch(fieldName, defaultValue, false, true);
+    const unregister = (name, options = {}) => {
+        for (const inputName of name ? convertToArrayPayload(name) : _names.mount) {
+            _names.mount.delete(inputName);
+            _names.array.delete(inputName);
+            if (get(_fields, inputName)) {
+                if (!options.keepValue) {
+                    unset(_fields, inputName);
+                    unset(_formValues, inputName);
+                }
+                !options.keepError && unset(_formState.errors, inputName);
+                !options.keepDirty && unset(_formState.dirtyFields, inputName);
+                !options.keepTouched && unset(_formState.touchedFields, inputName);
+                !formOptions.shouldUnregister &&
+                    !options.keepDefaultValue &&
+                    unset(_defaultValues, inputName);
+            }
+        }
+        _subjects.watch.next({});
+        _subjects.state.next(Object.assign(Object.assign({}, _formState), (!options.keepDirty ? {} : { isDirty: _getIsDirty() })));
+        !options.keepIsValid && _updateValid();
+    };
+    const registerFieldRef = (name, fieldRef, options) => {
+        register(name, options);
+        let field = get(_fields, name);
+        const ref = isUndefined(fieldRef.value)
+            ? fieldRef.querySelectorAll
+                ? fieldRef.querySelectorAll('input,select,textarea')[0] ||
+                    fieldRef
+                : fieldRef
+            : fieldRef;
+        const isRadioOrCheckbox = isRadioOrCheckboxFunction(ref);
+        if (ref === field._f.ref ||
+            (isRadioOrCheckbox &&
+                compact(field._f.refs || []).find((option) => option === ref))) {
+            return;
+        }
+        field = {
+            _f: isRadioOrCheckbox
+                ? Object.assign(Object.assign({}, field._f), { refs: [
+                        ...compact(field._f.refs || []).filter((ref) => isHTMLElement(ref) && document.contains(ref)),
+                        ref,
+                    ], ref: { type: ref.type, name } }) : Object.assign(Object.assign({}, field._f), { ref }),
+        };
+        set(_fields, name, field);
+        (!options || !options.disabled) &&
+            _updateValidAndInputValue(name, false, ref);
+    };
+    const register = (name, options = {}) => {
+        const field = get(_fields, name);
+        set(_fields, name, {
+            _f: Object.assign(Object.assign(Object.assign({}, (field && field._f ? field._f : { ref: { name } })), { name, mount: true }), options),
+        });
+        _names.mount.add(name);
+        if (!isUndefined(options.value)) {
+            set(_formValues, name, options.value);
+        }
+        if (field && isBoolean(options.disabled)) {
+            set(_formValues, name, options.disabled
+                ? undefined
+                : get(_formValues, name, getFieldValue(field._f)));
+        }
+        !field && _updateValidAndInputValue(name, true);
+        return isWindowUndefined
+            ? { name: name }
+            : Object.assign(Object.assign({ name }, (isBoolean(options.disabled)
+                ? { disabled: options.disabled }
+                : {})), { onChange: handleChange, onBlur: handleChange, ref: (ref) => {
+                    if (ref) {
+                        registerFieldRef(name, ref, options);
+                    }
+                    else {
+                        const field = get(_fields, name, {});
+                        const _shouldUnregister = formOptions.shouldUnregister || options.shouldUnregister;
+                        if (field._f) {
+                            field._f.mount = false;
+                        }
+                        _shouldUnregister &&
+                            !(isNameInFieldArray(_names.array, name) && _stateFlags.action) &&
+                            _names.unMount.add(name);
+                    }
+                } });
+    };
+    const handleSubmit = (onValid, onInvalid) => async (e) => {
+        if (e) {
+            e.preventDefault && e.preventDefault();
+            e.persist && e.persist();
+        }
+        let hasNoPromiseError = true;
+        let fieldValues = Object.assign({}, _formValues);
+        _subjects.state.next({
+            isSubmitting: true,
+        });
+        try {
+            if (formOptions.resolver) {
+                const { errors, values } = await executeResolver();
+                _formState.errors = errors;
+                fieldValues = values;
+            }
+            else {
+                await validateForm(_fields);
+            }
+            if (isEmptyObject(_formState.errors) &&
+                Object.keys(_formState.errors).every((name) => get(fieldValues, name))) {
+                _subjects.state.next({
+                    errors: {},
+                    isSubmitting: true,
+                });
+                await onValid(fieldValues, e);
+            }
+            else {
+                onInvalid && (await onInvalid(_formState.errors, e));
+                formOptions.shouldFocusError &&
+                    focusFieldBy(_fields, (key) => get(_formState.errors, key), _names.mount);
+            }
+        }
+        catch (err) {
+            hasNoPromiseError = false;
+            throw err;
+        }
+        finally {
+            _formState.isSubmitted = true;
+            _subjects.state.next({
+                isSubmitted: true,
+                isSubmitting: false,
+                isSubmitSuccessful: isEmptyObject(_formState.errors) && hasNoPromiseError,
+                submitCount: _formState.submitCount + 1,
+                errors: _formState.errors,
+            });
+        }
+    };
+    const reset = (formValues, keepStateOptions = {}) => {
+        const updatedValues = formValues || _defaultValues;
+        const values = cloneObject(updatedValues);
+        if (!keepStateOptions.keepValues) {
+            _formValues = props.shouldUnregister ? {} : values;
+        }
+        if (isWeb && !keepStateOptions.keepValues) {
+            for (const name of _names.mount) {
+                const field = get(_fields, name);
+                if (field && field._f) {
+                    const inputRef = Array.isArray(field._f.refs)
+                        ? field._f.refs[0]
+                        : field._f.ref;
+                    try {
+                        isHTMLElement(inputRef) && inputRef.closest('form').reset();
+                        break;
+                    }
+                    catch (_a) { }
+                }
+            }
+        }
+        if (!keepStateOptions.keepDefaultValues) {
+            _defaultValues = Object.assign({}, updatedValues);
+        }
+        if (!keepStateOptions.keepValues) {
+            _fields = {};
+            _subjects.control.next({
+                values: keepStateOptions.keepDefaultValues
+                    ? _defaultValues
+                    : Object.assign({}, updatedValues),
+            });
+            _subjects.watch.next({});
+            _subjects.array.next({
+                values,
+            });
+        }
+        _names = {
+            mount: new Set(),
+            unMount: new Set(),
+            array: new Set(),
+            watch: new Set(),
+            watchAll: false,
+            focus: '',
+        };
+        _subjects.state.next({
+            submitCount: keepStateOptions.keepSubmitCount
+                ? _formState.submitCount
+                : 0,
+            isDirty: keepStateOptions.keepDirty
+                ? _formState.isDirty
+                : keepStateOptions.keepDefaultValues
+                    ? deepEqual(formValues, _defaultValues)
+                    : false,
+            isSubmitted: keepStateOptions.keepIsSubmitted
+                ? _formState.isSubmitted
+                : false,
+            dirtyFields: keepStateOptions.keepDirty
+                ? _formState.dirtyFields
+                : {},
+            touchedFields: keepStateOptions.keepTouched
+                ? _formState.touchedFields
+                : {},
+            errors: keepStateOptions.keepErrors
+                ? _formState.errors
+                : {},
+            isSubmitting: false,
+            isSubmitSuccessful: false,
+        });
+        _stateFlags.mount =
+            !_proxyFormState.isValid || !!keepStateOptions.keepIsValid;
+        _stateFlags.watch = !!props.shouldUnregister;
+    };
+    const setFocus = (name) => get(_fields, name)._f.ref.focus();
+    const _removeFields = () => {
+        for (const name of _names.unMount) {
+            const field = get(_fields, name);
+            field &&
+                (field._f.refs ? field._f.refs.every(live) : live(field._f.ref)) &&
+                unregister(name);
+        }
+        _names.unMount = new Set();
+    };
+    return {
+        control: {
+            register,
+            unregister,
+            _getWatch,
+            _getIsDirty,
+            _updateValid,
+            _removeFields,
+            _updateFieldArray,
+            _getFieldArrayValue,
+            _subjects,
+            _shouldUnregister: formOptions.shouldUnregister,
+            _proxyFormState,
+            get _fields() {
+                return _fields;
+            },
+            set _fields(value) {
+                _fields = value;
+            },
+            get _formValues() {
+                return _formValues;
+            },
+            set _formValues(value) {
+                _formValues = value;
+            },
+            get _stateFlags() {
+                return _stateFlags;
+            },
+            set _stateFlags(value) {
+                _stateFlags = value;
+            },
+            get _defaultValues() {
+                return _defaultValues;
+            },
+            set _defaultValues(value) {
+                _defaultValues = value;
+            },
+            get _names() {
+                return _names;
+            },
+            set _names(value) {
+                _names = value;
+            },
+            get _formState() {
+                return _formState;
+            },
+            set _formState(value) {
+                _formState = value;
+            },
+            _updateProps: (options) => {
+                formOptions = Object.assign(Object.assign({}, defaultOptions), options);
+            },
+        },
+        trigger,
+        register,
+        handleSubmit,
+        watch,
+        setValue,
+        getValues,
+        reset,
+        clearErrors,
+        unregister,
+        setError,
+        setFocus,
+    };
+}
+
+function useForm(props = {}) {
+    const _formControl = react__WEBPACK_IMPORTED_MODULE_0__.useRef();
+    const [formState, updateFormState] = react__WEBPACK_IMPORTED_MODULE_0__.useState({
+        isDirty: false,
+        isValidating: false,
+        dirtyFields: {},
+        isSubmitted: false,
+        submitCount: 0,
+        touchedFields: {},
+        isSubmitting: false,
+        isSubmitSuccessful: false,
+        isValid: false,
+        errors: {},
+    });
+    if (_formControl.current) {
+        _formControl.current.control._updateProps(props);
+    }
+    else {
+        _formControl.current = Object.assign(Object.assign({}, createFormControl(props)), { formState });
+    }
+    const control = _formControl.current.control;
+    useSubscribe({
+        subject: control._subjects.state,
+        callback: (formState) => {
+            if (shouldRenderFormState(formState, control._proxyFormState, true)) {
+                control._formState = Object.assign(Object.assign({}, control._formState), formState);
+                updateFormState(Object.assign({}, control._formState));
+            }
+        },
+    });
+    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => {
+        if (!control._stateFlags.mount) {
+            control._proxyFormState.isValid && control._updateValid();
+            control._stateFlags.mount = true;
+        }
+        if (control._stateFlags.watch) {
+            control._stateFlags.watch = false;
+            control._subjects.state.next({});
+        }
+        control._removeFields();
+    });
+    _formControl.current.formState = getProxyFormState(formState, control._proxyFormState);
+    return _formControl.current;
+}
+
+function useWatch(props) {
+    const methods = useFormContext();
+    const { control = methods.control, name, defaultValue, disabled, } = props || {};
+    const _name = react__WEBPACK_IMPORTED_MODULE_0__.useRef(name);
+    _name.current = name;
+    useSubscribe({
+        disabled,
+        subject: control._subjects.watch,
+        callback: ({ name }) => {
+            if (!_name.current ||
+                !name ||
+                convertToArrayPayload(_name.current).some((currentName) => name &&
+                    currentName &&
+                    (name.startsWith(currentName) ||
+                        currentName.startsWith(name)))) {
+                const result = control._getWatch(_name.current, defaultValue, true);
+                updateValue(isObject(result)
+                    ? Object.assign({}, result) : Array.isArray(result)
+                    ? [...result]
+                    : result);
+            }
+        },
+    });
+    const [value, updateValue] = react__WEBPACK_IMPORTED_MODULE_0__.useState(isUndefined(defaultValue)
+        ? control._getWatch(name)
+        : defaultValue);
+    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => {
+        control._removeFields();
+    });
+    return value;
+}
+
+
+//# sourceMappingURL=index.esm.js.map
+
+
+/***/ }),
+
 /***/ "../../.yarn/__virtual__/react-side-effect-virtual-a7379d3917/0/cache/react-side-effect-npm-2.1.1-52222d7f8f-324511ea8f.zip/node_modules/react-side-effect/lib/index.js":
 /*!******************************************************************************************************************************************************************************!*\
   !*** ../../.yarn/__virtual__/react-side-effect-virtual-a7379d3917/0/cache/react-side-effect-npm-2.1.1-52222d7f8f-324511ea8f.zip/node_modules/react-side-effect/lib/index.js ***!
@@ -36936,6 +40862,66 @@ function y(){return(y=Object.assign||function(e){for(var t=1;t<arguments.length;
 
 /***/ }),
 
+/***/ "./src/common/assets/icons/brands/github.png":
+/*!***************************************************!*\
+  !*** ./src/common/assets/icons/brands/github.png ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDIxIDc5LjE1NDkxMSwgMjAxMy8xMC8yOS0xMTo0NzoxNiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MzlFQkFERkU4NkJCMTFFM0FBNTJFRTMzNTJEMUJDNDYiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MzlFQkFERkQ4NkJCMTFFM0FBNTJFRTMzNTJEMUJDNDYiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkU1MTc4QTJFOTlBMDExRTI5QTE1QkMxMDQ2QTg5MDREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkU1MTc4QTJGOTlBMDExRTI5QTE1QkMxMDQ2QTg5MDREIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+Kk5lQwAABYxJREFUeNrkm29oVXUYx3+7bM3V1FnbqlltrtXWtYRa1nqxooY5E7EhKWGuaTDBagol9SIMDCKICASj+cISw/DPi16ZBakrUBnoC7nNoTMWy6I1c+LmVq6t78N9jpyu555znt855+536IHPi939/jzP95zznN+/kzc1NaUitirwJJgPasF94DZQDG7hMqNgBFwEZ5kU+AH0R+lcXgQCJMBT4EXwLKgM2N7P4FvwJegCk6YKUA5eB23grogu2C/gc7AN/GGKABTsZtAOZqjc2DjYAT5kUfSNBNCkAGwGo1PTZ6PsQ4FuHLp3QD3YDR5QZtgZsAac1ElYokcGbATHDApesS/kUwf7GEkOKAK7wAvKbNsPXgZjYQowG3wNnlDxsONgCbgchgAU/GHwiIqXUT5o8hLBKwfcDA7FMHgrUR/iGLQEoGTyBWhQ8bUGjiFPR4A3QIuKv7VwLKIcQMnue5Dv0fjT/IwtAM3g+RyMBmkU+BXf3qc5Rx3xqDPBE7LjfkaCheCcj1HYKYe6JeBt8GcEo75L3HaJQ7+nfNQ/x7H9p67TFX4L1Pi4EocdfhsGH4BPwVbwqu0xGwI/8vT2N/77Gv+vAJSCO3n6PJ//Vjz72w62cPtORnfAwx7+1nBsW93ugGow7vOKtPkYa9eDl0Clxji9kuvW+yjb5tPncY7xet3MhjoFt2RzgIlU2DQL/O6017W/Be4BawXJqMCgTH+ToOxajvWG1+AmYVBlBglQKrxwmzIFoB9XCzt91CABpL6sti62JcBiXtKS2GMGCSD1pZxjvi7AKmED9PraYJAAG2yvVL+2yi7AImHl90C3QQJ03/B+97ZF1lCYVlN6BBV/BffykNQkoyF4H5grqJOkO6BR2NF2A4O35gifCOs0JjTW9vYaPPPbJ11LJAFqBRVoDf68wQLQI3BBUL424XPiY1lvDOb/ZwRla0iAOYIKv8dAgEFB2VtJgJmCChMxEEAyHigmAQoFFWbFQIDZgrKF0p2hmTEQQOQjCTAmKD8vBgJUCcqOkQBXBBXosEORwcEXKdmBjCskwICgQr5h0+BMW6i8V7LtNkAC9As7WWqwAM8Jy/cnhBMhspVKvq2eC0uwbxLrSWhMa+dpdJQLW6mRpLtpOlyuMcL7CTwErhoSPG2ApjQEuD3BQ0fp0ZJqlT6pZYpt0wieYh60nuWDGp2+At4xIPgt7IvU0jHzBkFdgD27HWDGNGyGFHHfulaXuTN0IkBjZ8EykJeDwKmPFtAXwN8TTltjrVkKfwcawXJW3G3v8DTYCKoiCLwGvAl6QthpbnU6J5jP2f1uh1Wgxbbxwv0qvT/vtZRGA6wuzs50+Pkb8JdgQtPMq1VJld7bnxtSzhjgJD5hzwEW611OZK6xlSvzeYbAsl3Cx4PK7ozodOl6t93hfJByqbzOVnYh+MdHhxfBLI1bnuoMhRx8imPMKgDR5LG/nrSVfddHpx8HeO4/ClmApsw+snXsdk7gYMat+r5Hp0sDCLAkxOA7nfrI1nGxx2tmQUb5x8FuzgvD4Dw4wNm2MIAA1SEF38cx+RaAeBCMZGlwb44GOyUhBD/CsTj24TatpddXq3L+RIVmXnE4QzjJMaSylvBxFdqzKHsVrDD8Dmj36sOvIx0unewHDRENg4MI0BH2FyP0RcZOlzW3Ib7VLvPqDK0z1PEq7bDmLVwCLgnr0AhvnUp/0eJp0k9m6HO4fUp2nGZODgUY5PzUJVlHkxg1TEfnjxqY8I6yb12SSjqLm7T9/Ax4TaW/+JxuIx862KcL4toBk1QFT1omXZLRHQHaL3Npl/r8jH3QjiGsbJ3kGd/fDo6WBWi31KG9a9xXMgzfw35tVfCR9l52dk8Ibe7htnq57YowfY7i4+lYWUL9z+1fAQYACqstE4NCc18AAAAASUVORK5CYII=");
+
+/***/ }),
+
+/***/ "./src/common/assets/icons/brands/linkedin.png":
+/*!*****************************************************!*\
+  !*** ./src/common/assets/icons/brands/linkedin.png ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnsAAAIcCAYAAACOxWh1AAAACXBIWXMAAC4jAAAuIwF4pT92AAAgAElEQVR4nO3dzXEbSZ7w4ZyJvkuvBdTeFidxLBDHAITogajT1m3YFohtwbBvuA1lwVILA5qyYMgTjktZsKIF/UZSCQnCB4mPKqDqX88TgdAsyZZQBcXqF5mVmX/5888/0yENqvHLlNJxeb0sr+ODvikA6J6vKaXbmV9vJ6PhV58je4+9QTV+lVI6mXkdLfwQAFCHLyX8rlNKN5PR8N5d7Z+9xF4ZvTsrr9cLPwAA7MNdSukqv4z69UejsTeoxnk69jyl9G7hmwDAIX0s0XfjU4itkdgbVOM8PXuRUnqz8E0AoE0+53+zRV9ctcZeeR7vwkgeAHTOpzwb57m+eP5a1xUNqvF5eQhU6AFA97zN/44PqvGFzy6WnUf2ymjelSlbAAgjL+Q4NcoXw04je4NqfFpG84QeAMTxuozynfpMu2/r2CvTtv+dUnqx8E0AoOvyv+//Xf69p8O2msYdVOMrz+YBQG98nIyGZz7ubtp4ZE/oAUDvvCv//tNBG8We0AOA3hJ8HbV27A2q8aXQA4BeE3wdtNYze4NqnOfp/7XwDQCgj95PRkPR1xHPxl453/bfC98AAPrsb5PR8NbfgPZ7chp3UI1fppSuF74BAPTddekEWu7J2Cvn3B4tfBUA6LujcoIWLbdyGndQjU9SSn8sfAMA4Ie/T0bDG/ejvZ4a2VPrAMBz9ELLLY29QTU2fQsArOOodAMttTCNWx62vHfmLQCwpoeU0qvJaPjVDWufZSN750IPANjAi9IPtNCq2AMA2MS5rVja6afYKydlGNUDADaV++HUXWuf+ZG9s77fEABga2YHW+j7Ao1BNX6VUvrfvt8QAGAn/zEZDe/dwvaYHdkz9AoA7EpPtIzYAwDq5JGwlnmcxi2rZ/6v7zcDAKjF/7PnXntMR/aO+34jAIDanLiV7TGNPR8KAFAXg0gtYmQPAKibQaQWmcbeq77fCACgNrqiRaax97rvNwIAqM2RW9kef3WOHQBQt3JYAy3wV8/rAQANEHstMX82LgAAgYg9AIDAxB4AQGBiDwAgMLEHABCY2AMACEzsAQAEJvYAAAITewAAgYk9AIDAxB4AQGBiDwAgMLEHABCY2AMACEzsAQAEJvYAAAITewAAgYk9AIDAxB4AQGBiDwAgMLEHABCY2AMACEzsAQAEJvYAAAITewAAgYk9AIDAxB4AQGBiDwAgMLEHABCY2AMACEzsAQAEJvYAAAITewAAgYk9AIDAxB4AQGBiDwAgMLEHABDYLz7czvucUrqfez3lOKX0MqX0qrzePPGzAEDHib1u+ZJSuimv28loeLvFu7+Z/8KgGucAPCkheJpSerHwXwEAnST22i8H3nVK6WrLuHtW+X2//94l/s5K+B314zYDQExir70+lsBbGIlrWom/8/waVOPTEn5v+/6BAEAXib12eUgpXebXZDT82oZ3NhkN86ji9aAa5+f7LkzzAkC3iL12aF3kzZuMhnnhx9mgGr8s7/Xdwg8BAK0j9g4vT9delJhqvRKjOfryKN+V1bwA0G5i73DywouzQzyTV4cSpyflmb4rU7sA0E42VT6M3/M2J10NvVnlmb78PN+nhW8CAAdnZG+/Hspo3nWkiypTu6eDapxX8P5z4QcAgIMxsrc/d3naM1rozZqMhnnhxt9K1AIALSD29mMaeo1sitwm5RpflWsGAA5M7DXv42Q0PG7rlipNKNd6IvgA4PDEXrNy6J1FvsBVBB8AtIPYa05vQ29K8AHA4Ym9Ztz1PfSmBB8AHJbYq99diRuKmeCzShcA9kzs1Wu6j15vFmOsayb4AIA9Env1OuvD9irbKvfm126+ewDoJrFXn98jb5hcl7LxsqPVAGBPxF498nN6FxEuZE/OPL8HAPsh9upx7jm99ZV7ZbUyAOyB2Ntd3k/vpusXsW9lyvtzv64aAPZP7O0mT0Wed/kCDszoHgA0TOzt5tL07fYmo+F9XtjS1fcPAF0g9raXR/Uuu/rmW+TCYg0AaI7Y255RvRqUe3jV+QsBgJYSe9sxqlcv9xIAGiL2tnNlVK8+5dm9j1GuBwDaROxtx0hU/Zw+AgANEHubuysjUdSo7Lv3xT0FgHqJvc1ZTNAco3sAUDOxtzlB0hwhDQA1E3ubMYXboMloeGvPPQCol9jbjDNwm2fkFABqJPY2I/aa5x4DQI3E3maESPNuo18gAOyT2FvfFxspN688twcA1ETsrU+E7M/nvlwoADRN7K1P7O2PFc8AUBOxtz4Bsj/uNQDUROytT4Dsj3sNADURe7SR2AOAmoi99QkQAKBzxN6aHJMGAHSR2AMACEzsAQAEJvYAAAITe2saVOOXnXijAAAzxN76jrvyRgEApsQebfTKpwIA9RB76xMg++NeA0BNxN76BMj+uNcAUBOxtz7P7O2P2AOAmoi99QmQ/XnTlwsFgKaJvfW97sob7bJBNRbVAFAjsbeBQTU+6cyb7S73GABqJPY2I0Sa5x4DQI3E3mZOu/RmO0rsAUCNxN5mXjs2rTmDapxXPB9FvT4AOASxtzmje805i3phAHAoYm9zYq857i0A1Ezsbe6t7UHqZwoXAJoh9rZjurF+59EuCADaQOxtR5jUqCx6eRfmggCgRcTedl4MqrHRvfqIZwBoiNjb3kVX33iblFE9sQcADRF72zsyuleLHHovAlwHALSS2NvNhU2Wt2dUDwCaJ/Z2cyRWdnJpVA8AmiX2dvfBvnubG1TjEytwAaB5Yq8eVxEuYl/K9K17BgB7IPbq8WZQja3OXd+F0zIAYD/EXn0+lCO/eMKgGufzb/+x+icAgDqJvXpdW527Wolh07cAsEdir155avIm0gXVZeY5PatvAWCPxF79Xg+qsdGrRdf53ix8FQBolNhrxjvB90O5F28WvgEANE7sNUfw/Qg9++kBwIGIvWb1OviEHgAc3i8+g8bl4EuT0fAs+HV+VxZjXJu6BYDDM7K3Hzn4bvuwLUs5Ou5G6AFAO4i9/ckrUW8jb7xczru9teoWANpD7O1X3ofv3xGPVhtU48uU0h/20QOAdvHM3mF8KKNgZ5PR8L7LFzJzKobRPABoIbF3OPmZtv8dVOPfUkqXk9Hwa5fefHn+8MI5twDQbqZxD+9DeZavM6t1yzT0vdADgPYzstcO+Vm+f5WIupiMhq3bm6+M5OUgPS/vFwDoALHXLrPRl4Pv6tDP9JWtVM5L6Fl8AQAdI/ba6ahM7+aFHJ/KBsXX+3qurwTeaQk8Cy8AoMPEXvu9La884ve5bFh8MxkNb+p652WKNq+qPSmRJ/AAIAix1y1vyiuP+OU3flcWStyWXx+nfJeF4EzQZa/K67j8Ku4AICix122vy+vt7FWUEAQAsPUKAEBkYg8AIDCxBwAQmNgDAAhM7AEABCb2AAACE3sAAIGJPQCAwMQeAEBgYg8AIDCxBwAQmNgDAAhM7AEABCb2AAACE3sAAIGJPQCAwMQeAEBgYg8AIDCxBwAQmNgDAAhM7AEABCb2AAACE3sAAIGJPQCAwMQeAEBgYg8AIDCxBwAQ2C8+XICDekgp3W7xBo5TSi8WvgowR+wBNOtzSul+7vV1MhpuE3hPGlTjVymlV+VnXpYgTOXXl+V7R0/9HkA8Yg+gPjnsbspI3e1kNLzf570tf97sn3m98EM/R+HxzK9GCiEosQewvWnc3UxGw5uu3MeZKPzpPZcInIbfSUrpzcJ/DHSO2ANY30MZLcuRdD0ZDb9GunczEfh9RHBQjafhl19vF/4joPXEHsDzPqWUriaj4dJp0cjKs4X5dZm+xV+OvtPy8vwfdIDYA1juSwmcq2gjeLso09X5dV5G/c6EH7Sb2Nvdr1tum8C3fyTeBbgPH3MQLHyVVdr+uX8sgdeZZ/AOpYz6nc+E33kJPws9oEXE3u5u/aOwnTIdFMG9vwPra+nnPn0W72LfK2ijKOGXQz5/xmcl/F73/b5AG4g9oM8eylTtpana+kxGwzzSfVXCPsoIPnSW2AP66vcykifyGjJ9vm9QjS/yvRZ9cBhiD+ibvLL23HTt/pR7fSb64DDEHtAXeXXtmecrD2cm+i7L9LlNm2EPxB4Q3UN5Ju/CJ90OZTHHyaAan5bos20LNOivbi4QWD7O7FjotVPZpPq4PD8JNMTIHhDVr5PR8NKn225lgUzep++67FdplA9qZmQPiOYupfQ3odct5VnK47KpNVAjsQdEkkPhpDwTRsfkUb7JaJj35XtfnrUEaiD2gAhyGLzPoWDfvO4rmzKflFFaYEdiD+i6hzKa53ziQKYrdsu+iMAOxB7QZXnk55Vp25jKtO6p5/hgN2IP6Krp83mmbYMrz/H92vf7ANsSe0AXffR8Xr+U1dXv+34fYBtiD+iaj2Wkh54pz2UKPtiQ2AO65Feh12+CDzYn9oCueG+jZJLgg42JPaALfre1CrPK3werdGENYg9ou/yM3rlPiXllSl/wwTPEHtBmFmPwnHMnbcDTxB7QVndCj+eU7XdOnaULq4k9oI3uylFZ8KzJaHhfgg9YQuwBbZNHaGyYzEYmo+FNSuk3dw0WiT2gbc6cdcs2JqPhhef3YJHYA9rkt8loeO0TYQee34M5Yg9oi89lZAa2Vp7f8/cIZog9oA0en9PzSVCHctLKZzcTvhF7QBuclREZqIuNuKEQe8ChffKcHnUri3yszqX3ktgDDsz0LU26tFgDxB5wWPbTozHl75bpXHpP7AGH8tn0LU2bjIZXKaUvbjR9JvaAQzF9y74Y3aPXfun7DQD2q+ylZx809iaPIA+qcd6K5Y27Th8Z2QOgDy59yvSV2AMgvPJ8qGf36CWxB0BfeHyAXhJ7APSClbn0ldgDoE+ufNr0jdgDoE8s1KB3xB4AvVFO1fjoE6dPxB4AfWMql14RewD0ymQ0vLFQgz4RewD0kWf36A2xB0AfXfvU6QuxB0DvTEbD+5TSnU+ePhB7APSVhRr0gtgDoK9M5dILYg+AXjKVS1+IPQD6zFQu4Yk9APrsxqdPdGIPgN6ajIa3NlgmOrEHQN8Z3SM0sQdA31mVS2hiD4C+M7JHaGIPgF6bjIZfbcFCZGIPAIzuEZjYAwCxR2BiDwBSunUPiErsAdB75eg0++0RktgDgG+M7hHSLz5WgEWDavwypXRcvnGy8APfvpd/5r68Zk2f/7otKz3phvy5vfVZEY3YA3pvUI2PS9DlX1+llN5scE+W/eyH6f8YVOOHMmJ0W2LiRgC2lpE9QhJ7QO8MqnEOutMSeE2P5LwoQZhf/0jf/vy8p9tVPrmhPCtGC0xGw5tBNfZREI7YA3qhTMvmwDtPKb0+8DXnP/+f+TWoxp9z+E1Gw6uFn+IQ8iKNI3eeSMQeEFoZxbsoofeihdf6OOo3qMb5PV6IvoO7FXtEYzUuEFKOvEE1zuH0vymldy0NvVk5MP41qMb3g2q8bEEI++G5PcIxsgeEUqZrz2cXSXRMjr4/BtX4U0rpzGKOvRN7hGNkDwijjIjddjj0ZuWFI/dlpTD7Y8EM4Yg9IIRBNb7MI2LBnrfKU8//HlTjs4Xv0IjJaGhkj3DEHtBpedp2UI1vp9uaBPWvsoCD/bhzn4lE7AGdVaY4b1uwlco+fCgLTmie5yQJRewBnVRC76Zn22S8M6W7FzcteA9QG7EHdM5M6LV9O5Um5Cnd03iX1SpG9ghF7AGdUjZJ7mvoTV1ZpdsoizQIRewBnVH20Lvueeilcv2e32uOkT1CEXtAl1z2ZDHGOl5bodsM268QjdgDOmFQjc/LsWf88MF0bmMegl4XPST2gNYrz+kZxVruculX2ZXRPcIQe0AXXHlOb6U35Zg4gKXEHtBqZV+5Nz6lJ1msUT8je4Qh9oDWKqtvTd8+78joXu2syCUMsQe02XnPTsjYhSiul9gjDLEHtFIZ1Tv36aztTVnIQj1M4xKG2APa6tyijI2JY2CB2APayoH/m3PP6nMf5UJA7AGtU1bgelZvcy8G1fi0a2+6jSajodgjDLEHtJERqu2JPeAnYg9olbLIwL562xN7wE/EHtA2YmU3L5yXW5vPQa6DnhN7QNuYwt2dYAa+E3tAa5Qp3Nc+kZ05TQP4TuwBbWJEqh6eeQS+E3tAm4i9mjgrtxY3Aa4BxB7QKkak6mORBvBI7AGtYCSqdmIPeCT2gLYQe/USe8AjsQe0hdirl1XNwCOxB7SF5/VqZnPlnTkflxDEHnBwoqQxL4Ne176IPUIQe0AbvPIpNMLUOCD2gFYwstcMI3uA2ANawQhUM0Q0IPaAVjACBdAQsQe0gW1CmmGFMyD2gMMaVGOLMwAaJPaAQxN7DRpUY1Pk0HNiDzg0sdcsizSg58QecGhiD6BBYg84NNOMAA0Se8ChmWZslvu7vduuvnGYJfYAYjNyuqXJaPi1k28c5og94NDECECDxB5waDZUBmiQ2AMACEzsAcRmmhx6TuwBB+N0h72wGhd6TuwBhyREABom9gAAAhN7AACBiT0AgMDEHgBAYGIPACAwsQcAEJjYAwAITOwBAAQm9gAAAhN7AACBiT0AgMDEHgBAYGIPACAwsQcAEJjYAwAITOwBAAQm9gAAAhN7AACBiT0AgMDEHgBAYGIPACAwsQcAEJjYAwAITOwBAAQm9gAAAhN7AACBiT0AgMDEHgBAYGIPACAwsQcAEJjYAwAITOwBAAQm9gAAAhN7AACBiT0AgMDEHgBAYGIPACAwsQcAEJjYAwAITOwBAAQm9gAAAhN7AACBiT0AgMDEHgBAYGIPAJYYVOOXi1+F7hF7ALDc8dKvQseIPQCAwMQeAEBgYg8AIDCxBwAQmNgDAAhM7AEABCb2AAACE3sAAIGJPQCAwMQeAEBgYg8AIDCxBwAQmNgDAAhM7AEABCb2AAACE3sAAIGJPQCAwMQeAEBgYg8AIDCxBwAQmNgDAAhM7AEABCb2AAACE3sAAIGJPQCAwMQeAEBgYg8AIDCxBwAQmNgDAAhM7AEABCb2AAACE3sAAIGJPQCAwMQeAEBgYg8AIDCxBwAQmNgDAAhM7AEABCb2AAACE3sAAIGJPQCAwMQeAEBgYg8AIDCxBwAQmNgDAAhM7AEABCb2AAACE3sAAIGJPQCAwMQeAEBgYg8AIDCxBwAQmNgDAAhM7AEABCb2AAACE3sAAIGJPQCAwMQeAEBgYg8AIDCxBwAQmNgDAAhM7AEABCb2AAACE3sAAIGJPQCAwMQeAEBgYg8AIDCxBwAQmNgDAAhM7AEABCb2AAACE3sAAIGJPQCAwMQeAEBgYg8AIDCxBwAQmNgDAAhM7AEABCb2AAACE3sAAIGJPQCAwMQeAEBgYg8AIDCxBwAQmNgDAAhM7AEABCb2AAACE3sAAIGJPQCAwP7yn//1PycppT98yFu7Syl97eh7P7RXKaWjANfxJaV0v/BV1vEypfTanWrUQ0rpNvD1Ncnfz938fTIa3nT5AqL4pe83oAb+HwFHQaKVmF6klN74bKG/TOMCAAQm9gAAAhN7AACBiT0AgMDEHgBAYGIPACAwsQcAEJjYAwAIzKbKAABrGlTjfPLYcTlhZfrrKl/LCTb5lKX7Q50oIvYAAFYYVOMcdGcppZMtT816O/0fg2qcf/mcUsrRdz0ZDfdylKHYAwCYMajG+ez285TSaQPHYb4prw+DapzPVr/Kr8lo2NgZ62IPAODHFO3FHs+TziH5oYTfp5TSZRNTvWIPAOi1HSLvc/n1vrymXpVX2uD3zNO9bwfVOP+e53VO8Yo9AKCXBtX4ZZlGfbvG9ecp1+vyvN3tJtOuZVr4ZOb11NRwjsN/D6rx7zlAJ6Ph14Wf2NBf/vO//if/oX/4aw4A1Ojvh1p9uo5BNT4toffiiR9v5Jm6mUUfZ8/8+Q/5Zyaj4fXCdzYg9gCAJrQy9spo3mVK6d3CN3/4XJ6f2ymy1nw/Z2UK+anRvt8no+H5wlfXJPYAgCa0LvbKdOr1E1uo3JXn5fb+vteIvvzeTraZ1nWCBgAQXpk6vV0Renm69NfJaHh8qECdjIZ5qjjH6G8L3/wmv+/bch0bEXsAQGglkG5WPB+Xp2xz5F0ufOcAJqNhHt37WxnJm5dH/W42DT6xBwCE9Uzo5WfhTprc0HgbZduV/JjdxyX/+YtNg0/sAQAhPRN673dZ9NC0/GzeZDTMz/G9X/JHTYPvqXN5vxN7AEA4JYTyYoz50Hsoi0euunDN5X3uFHxiDwCI6HrFytaTNu//t8wTwfe6bCPzJLEHAIQyqMarjj57X+cxZPv0RPC9K9u2rCT2AIAwynN6H5Zcz69dmbpdpbz/35d8+7LsIbiUs3EBgEiWBd2nTbdWGVTj/PMb72m3RB5J/Dpzpu5OZ93mRSUlaGdHLl+U6z5Z+A/EHgAQRZnOnN80+Us5g3ZT80G1renv8TjaOKjGn/LzhDuOMp6ViJxdfPImn/e77Ig307gAQOfNnHk772zX0bSavU0p/WtQjbc6DSN9G93L+wIu2zZm2fWLPQAghPMl26zk6du2rrx9vc1pGFNlZPDz3JePli3WEHsAQATLRrpau2lysfFpGHOWXd/F/Bc8swcAdFoZzZof1fvYxDFok9HwLwtfXKGskD0pr3fLf+rxfV+uWlzxlLyNzKAaf5z7vY/mn90zsgcAdN1aI1z7lmMzT7eWY8/+I6V0t+ItvNlhdG/Zc3o/TeWKPQCgs8ro2fwK3EZG9XZR3s9JWR28zMKzdusom0TPP7v3dvYYNbEHAHTZskhq5ebJZVXwqhHHXfb0W3a9p9P/IfYAgC47nXvvX1p+9u3CPnjF1nv6lZW5D3NfFnsAQLeVqcr5KdxVMdUKDe75Nx+4b6f/Q+wBAF21bAVrm0f1mrQQuYNq/Hh/xB4A0FULz7ktOy6sJ5ZF7uP9EXsAQFfNj+yt2tqkNZ7YYmX+mbuNlNW+87+H2AMAOu3V3Ju/7cDFLNsTMK0YmdvU/PU/3h+xBwB01dHc+27V3nrzykkfq07SqGP6eT4YH1f4Oi4NAOicspnyvFaO7JVVw3lE78PCN795aHIV8S8dGfIEALql6VG2ZbHX1LYm301XuK7hVXmdrLGH3kVNW7Isbbpf8m8+qMYL3wAA2Fbbjiur0R81/375aLdl59tuYyEYc5xOn9lr/eoVAKAzVp3/ys9y6C077q1W09iLWt8AwP7piqflZ/Te7yP00swCjdvZYzUAAHbQ11MsnvKl9FZeiHHd4LFp875OY+/miRUiAACbWLpQIIjfVlxGXnH7j4WvpvRpMhqeLny1GQuLViaj4e3syB4AQB32MbK3rF0WYqduk9HwYtVvWbaDmZ8pfTuoxqd7OsZt6fU/PrNXhhI/L3wXAGAzd/uYolzxZyyNnT06W3JkWXZV9tpr2vyf8bhQZvYEjb4eHAwA1Odqj/dyfjeRVefO7kUJ0GXHob3Y032Zv/7HhTJiDwCo0z57Yn7V70FjL30LvqsVs6WP07kLX63X/ObNj1Pd32OvbH647M0BAKzjbs+bKc8/t3e04hi1fdv7dO6gGi8L3Z9jb/omFn4MAGA9dZ0Esa5lC0HWPc6sMSV4l92LJqdzl133YuyVocdlJQoA8JSH0hF7MxkNWxl76ceq3WUnlDU1nTu/QXP+PBZjr1hWogAATzlUP3ya+79P97TydR2rTsiodTq3TF2/nvvy92cnV8We0T0AYF0PB4y9+QUheap0X5sYP6mMrP2+5Gfqns5ddr2rY68sGza6BwCs63LFvnf7sGz176oRtUO4mO53N6fO6dz57V4eZjdxXoi99GOeedkbAwCY9eWpUyWaViJzfir3zaAat+XZva9PxOfO07mDapx/76O5L/8UwEtjr1j1xgAA2tQLy2YkDxag88pCkvkgTTVN5y67zp++tjL2yhv7uPANAIBvPq5YEbtX5T3Mr3xtzehesWrvvbfbvs8Vo3qf5/c6XBl7xbnpXABgiS9LnhU7pGWje61Zg/DEUWppm+nc8vPPjuql52KvvLFWrGgBAFrl9ICLMhasOKbs9aAaL8TPoax4j6mMzm36Pi9WjOotjLQ+GXvpx7Lh9wvfAAD66v10w96WWRZMH1YcJXYoq6Zz/7HudG75uX8sfGPF85N/+fPPPxe+uMygGl+u+I0BgP74fTIarpqOPLhBNc6jZ+/m3kd+nu9kk5HI8jzcwjm7daw8LluuLAvQ++dOISnTt/dlcces31a9t7VjL62+gQBAP+QFGUtHj9riiRj6NBkNO/9o2qAa3y45LeNuMhoui8dHz07jziofsBW6ANA/rQ+99PR6g7dl0KqzyvufD720avp2aqPYS4IPAPqoE6E3VRYp/LbwjZTedTX4nphdffb5yY2mcef+0Dxf/8+FbwAAkfw6GQ07eYzqoBrnkyTeLnyjY/H6ROitdR1bx1768YDh1ZJ5cQCg2/KK0bPZM1a7pjy/d7Ni6jPPUp63afuYeeX95/v/ZuGbGzyDuPE07qzyF+B4xZ4xAEA35X/Xj7sceunH83snS07XSGWk7GZQjRdW3LZB2S7mZkXo3W1yTN1OI3uzyqaF50b5AKCz8mjeRVenbVd5ZoTvoYzwteZZvvKo3MWKptp4G5naYq+8uVflaJJl8+MAQHt9LKF3H/EzemZKNJXRzLNDXn8Zzbt84j1u9axhrbE3VXZ2vnjizQIA7fC5RN7CMVsRrXFIxN6jtwyWXaxYhDG1ctPk5zQSe1Ml+s6eefMAwP7lqLnqS+TNWnOBab4/l00eC7dmJz2Uc4i3/pwajb2pMnR6Vl7L5ssBgObdlci5avMq1H0oo2lXa8xCTu/ZdR2jfWWq9qSsczha+IGffSpTyzt9VnuJvVnl5p6U3a2P17hQAGA7X8rChMdX1OfxdlHOwL1Ys0em9/N2+noqxErzvCq9M428df+cs7pGXfcee/PKqN/0Jryc+RUAWN99eX1dJ0T4obTI+Y67ityVe/9qh4GsL+V5wVpXBh889tp2UN8AAABdSURBVAAA2mDmsbN1pljrdFeeD2xk+xexBwAwZ2bxxGlDewh/KVvBXDW5CCSJPQCAp5VFFaflmbvjLePvYe75yUYDb5bYAwDYwMx6g+kCjFVy0D0+Q3mw5ydTSv8foyEK3BaDSLAAAAAASUVORK5CYII=");
+
+/***/ }),
+
+/***/ "./src/common/assets/icons/brands/so-icon.svg":
+/*!****************************************************!*\
+  !*** ./src/common/assets/icons/brands/so-icon.svg ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj48c3R5bGU+LnN0MHtmaWxsOiNiY2JiYmJ9LnN0MXtmaWxsOiNmNDgwMjN9PC9zdHlsZT48cGF0aCBjbGFzcz0ic3QwIiBkPSJNODQuNCA5My44VjcwLjZoNy43djMwLjlIMjIuNlY3MC42aDcuN3YyMy4yeiIvPjxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik0zOC44IDY4LjRsMzcuOCA3LjkgMS42LTcuNi0zNy44LTcuOS0xLjYgNy42em01LTE4bDM1IDE2LjMgMy4yLTctMzUtMTYuNC0zLjIgNy4xem05LjctMTcuMmwyOS43IDI0LjcgNC45LTUuOS0yOS43LTI0LjctNC45IDUuOXptMTkuMi0xOC4zbC02LjIgNC42IDIzIDMxIDYuMi00LjYtMjMtMzF6TTM4IDg2aDM4LjZ2LTcuN0gzOFY4NnoiLz48L3N2Zz4=");
+
+/***/ }),
+
+/***/ "./src/common/assets/images/logo-dark.png":
+/*!************************************************!*\
+  !*** ./src/common/assets/images/logo-dark.png ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + "static/logo-dark-45f8bab7b8d4a595c96abd52b7315024.png");
+
+/***/ }),
+
 /***/ "../../.yarn/cache/@babel-runtime-npm-7.15.4-52ce5bf6ea-c408254304.zip/node_modules/@babel/runtime/helpers/assertThisInitialized.js":
 /*!******************************************************************************************************************************************!*\
   !*** ../../.yarn/cache/@babel-runtime-npm-7.15.4-52ce5bf6ea-c408254304.zip/node_modules/@babel/runtime/helpers/assertThisInitialized.js ***!
@@ -37814,6 +41800,241 @@ var unitlessKeys = {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (unitlessKeys);
+
+
+/***/ }),
+
+/***/ "../../.yarn/cache/@react-spring-rafz-npm-9.2.4-98d53d569d-2b6aa95a7e.zip/node_modules/@react-spring/rafz/dist/react-spring-rafz.esm.js":
+/*!**********************************************************************************************************************************************!*\
+  !*** ../../.yarn/cache/@react-spring-rafz-npm-9.2.4-98d53d569d-2b6aa95a7e.zip/node_modules/@react-spring/rafz/dist/react-spring-rafz.esm.js ***!
+  \**********************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "__raf": () => (/* binding */ __raf),
+/* harmony export */   "raf": () => (/* binding */ raf)
+/* harmony export */ });
+let updateQueue = makeQueue();
+const raf = fn => schedule(fn, updateQueue);
+let writeQueue = makeQueue();
+
+raf.write = fn => schedule(fn, writeQueue);
+
+let onStartQueue = makeQueue();
+
+raf.onStart = fn => schedule(fn, onStartQueue);
+
+let onFrameQueue = makeQueue();
+
+raf.onFrame = fn => schedule(fn, onFrameQueue);
+
+let onFinishQueue = makeQueue();
+
+raf.onFinish = fn => schedule(fn, onFinishQueue);
+
+let timeouts = [];
+
+raf.setTimeout = (handler, ms) => {
+  let time = raf.now() + ms;
+
+  let cancel = () => {
+    let i = timeouts.findIndex(t => t.cancel == cancel);
+    if (~i) timeouts.splice(i, 1);
+    __raf.count -= ~i ? 1 : 0;
+  };
+
+  let timeout = {
+    time,
+    handler,
+    cancel
+  };
+  timeouts.splice(findTimeout(time), 0, timeout);
+  __raf.count += 1;
+  start();
+  return timeout;
+};
+
+let findTimeout = time => ~(~timeouts.findIndex(t => t.time > time) || ~timeouts.length);
+
+raf.cancel = fn => {
+  updateQueue.delete(fn);
+  writeQueue.delete(fn);
+};
+
+raf.sync = fn => {
+  sync = true;
+  raf.batchedUpdates(fn);
+  sync = false;
+};
+
+raf.throttle = fn => {
+  let lastArgs;
+
+  function queuedFn() {
+    try {
+      fn(...lastArgs);
+    } finally {
+      lastArgs = null;
+    }
+  }
+
+  function throttled(...args) {
+    lastArgs = args;
+    raf.onStart(queuedFn);
+  }
+
+  throttled.handler = fn;
+
+  throttled.cancel = () => {
+    onStartQueue.delete(queuedFn);
+    lastArgs = null;
+  };
+
+  return throttled;
+};
+
+let nativeRaf = typeof window != 'undefined' ? window.requestAnimationFrame : () => {};
+
+raf.use = impl => nativeRaf = impl;
+
+raf.now = typeof performance != 'undefined' ? () => performance.now() : Date.now;
+
+raf.batchedUpdates = fn => fn();
+
+raf.catch = console.error;
+raf.frameLoop = 'always';
+
+raf.advance = () => {
+  if (raf.frameLoop !== 'demand') {
+    console.warn('Cannot call the manual advancement of rafz whilst frameLoop is not set as demand');
+  } else {
+    update();
+  }
+};
+
+let ts = -1;
+let sync = false;
+
+function schedule(fn, queue) {
+  if (sync) {
+    queue.delete(fn);
+    fn(0);
+  } else {
+    queue.add(fn);
+    start();
+  }
+}
+
+function start() {
+  if (ts < 0) {
+    ts = 0;
+
+    if (raf.frameLoop !== 'demand') {
+      nativeRaf(loop);
+    }
+  }
+}
+
+function loop() {
+  if (~ts) {
+    nativeRaf(loop);
+    raf.batchedUpdates(update);
+  }
+}
+
+function update() {
+  let prevTs = ts;
+  ts = raf.now();
+  let count = findTimeout(ts);
+
+  if (count) {
+    eachSafely(timeouts.splice(0, count), t => t.handler());
+    __raf.count -= count;
+  }
+
+  onStartQueue.flush();
+  updateQueue.flush(prevTs ? Math.min(64, ts - prevTs) : 16.667);
+  onFrameQueue.flush();
+  writeQueue.flush();
+  onFinishQueue.flush();
+}
+
+function makeQueue() {
+  let next = new Set();
+  let current = next;
+  return {
+    add(fn) {
+      __raf.count += current == next && !next.has(fn) ? 1 : 0;
+      next.add(fn);
+    },
+
+    delete(fn) {
+      __raf.count -= current == next && next.has(fn) ? 1 : 0;
+      return next.delete(fn);
+    },
+
+    flush(arg) {
+      if (current.size) {
+        next = new Set();
+        __raf.count -= current.size;
+        eachSafely(current, fn => fn(arg) && next.add(fn));
+        __raf.count += next.size;
+        current = next;
+      }
+    }
+
+  };
+}
+
+function eachSafely(values, each) {
+  values.forEach(value => {
+    try {
+      each(value);
+    } catch (e) {
+      raf.catch(e);
+    }
+  });
+}
+
+const __raf = {
+  count: 0,
+
+  clear() {
+    ts = -1;
+    timeouts = [];
+    onStartQueue = makeQueue();
+    updateQueue = makeQueue();
+    onFrameQueue = makeQueue();
+    writeQueue = makeQueue();
+    onFinishQueue = makeQueue();
+    __raf.count = 0;
+  }
+
+};
+
+
+
+
+/***/ }),
+
+/***/ "../../.yarn/cache/@react-spring-types-npm-9.2.4-b3ac3a7479-b7195a7559.zip/node_modules/@react-spring/types/animated.js":
+/*!******************************************************************************************************************************!*\
+  !*** ../../.yarn/cache/@react-spring-types-npm-9.2.4-b3ac3a7479-b7195a7559.zip/node_modules/@react-spring/types/animated.js ***!
+  \******************************************************************************************************************************/
+/***/ (() => {
+
+
+
+/***/ }),
+
+/***/ "../../.yarn/cache/@react-spring-types-npm-9.2.4-b3ac3a7479-b7195a7559.zip/node_modules/@react-spring/types/interpolation.js":
+/*!***********************************************************************************************************************************!*\
+  !*** ../../.yarn/cache/@react-spring-types-npm-9.2.4-b3ac3a7479-b7195a7559.zip/node_modules/@react-spring/types/interpolation.js ***!
+  \***********************************************************************************************************************************/
+/***/ (() => {
+
 
 
 /***/ }),
@@ -55418,6 +59639,4321 @@ function mitt(all                 ) {
 
 /***/ }),
 
+/***/ "../../.yarn/cache/polished-npm-4.1.3-c4e3156e78-3865f569f1.zip/node_modules/polished/dist/polished.esm.js":
+/*!*****************************************************************************************************************!*\
+  !*** ../../.yarn/cache/polished-npm-4.1.3-c4e3156e78-3865f569f1.zip/node_modules/polished/dist/polished.esm.js ***!
+  \*****************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "adjustHue": () => (/* binding */ curriedAdjustHue),
+/* harmony export */   "animation": () => (/* binding */ animation),
+/* harmony export */   "backgroundImages": () => (/* binding */ backgroundImages),
+/* harmony export */   "backgrounds": () => (/* binding */ backgrounds),
+/* harmony export */   "between": () => (/* binding */ between),
+/* harmony export */   "border": () => (/* binding */ border),
+/* harmony export */   "borderColor": () => (/* binding */ borderColor),
+/* harmony export */   "borderRadius": () => (/* binding */ borderRadius),
+/* harmony export */   "borderStyle": () => (/* binding */ borderStyle),
+/* harmony export */   "borderWidth": () => (/* binding */ borderWidth),
+/* harmony export */   "buttons": () => (/* binding */ buttons),
+/* harmony export */   "clearFix": () => (/* binding */ clearFix),
+/* harmony export */   "complement": () => (/* binding */ complement),
+/* harmony export */   "cover": () => (/* binding */ cover),
+/* harmony export */   "cssVar": () => (/* binding */ cssVar),
+/* harmony export */   "darken": () => (/* binding */ curriedDarken),
+/* harmony export */   "desaturate": () => (/* binding */ curriedDesaturate),
+/* harmony export */   "directionalProperty": () => (/* binding */ directionalProperty),
+/* harmony export */   "easeIn": () => (/* binding */ easeIn),
+/* harmony export */   "easeInOut": () => (/* binding */ easeInOut),
+/* harmony export */   "easeOut": () => (/* binding */ easeOut),
+/* harmony export */   "ellipsis": () => (/* binding */ ellipsis),
+/* harmony export */   "em": () => (/* binding */ em),
+/* harmony export */   "fluidRange": () => (/* binding */ fluidRange),
+/* harmony export */   "fontFace": () => (/* binding */ fontFace),
+/* harmony export */   "getContrast": () => (/* binding */ getContrast),
+/* harmony export */   "getLuminance": () => (/* binding */ getLuminance),
+/* harmony export */   "getValueAndUnit": () => (/* binding */ getValueAndUnit),
+/* harmony export */   "grayscale": () => (/* binding */ grayscale),
+/* harmony export */   "hiDPI": () => (/* binding */ hiDPI),
+/* harmony export */   "hideText": () => (/* binding */ hideText),
+/* harmony export */   "hideVisually": () => (/* binding */ hideVisually),
+/* harmony export */   "hsl": () => (/* binding */ hsl),
+/* harmony export */   "hslToColorString": () => (/* binding */ hslToColorString),
+/* harmony export */   "hsla": () => (/* binding */ hsla),
+/* harmony export */   "important": () => (/* binding */ important),
+/* harmony export */   "invert": () => (/* binding */ invert),
+/* harmony export */   "lighten": () => (/* binding */ curriedLighten),
+/* harmony export */   "linearGradient": () => (/* binding */ linearGradient),
+/* harmony export */   "margin": () => (/* binding */ margin),
+/* harmony export */   "math": () => (/* binding */ math),
+/* harmony export */   "meetsContrastGuidelines": () => (/* binding */ meetsContrastGuidelines),
+/* harmony export */   "mix": () => (/* binding */ curriedMix),
+/* harmony export */   "modularScale": () => (/* binding */ modularScale),
+/* harmony export */   "normalize": () => (/* binding */ normalize),
+/* harmony export */   "opacify": () => (/* binding */ curriedOpacify),
+/* harmony export */   "padding": () => (/* binding */ padding),
+/* harmony export */   "parseToHsl": () => (/* binding */ parseToHsl),
+/* harmony export */   "parseToRgb": () => (/* binding */ parseToRgb),
+/* harmony export */   "position": () => (/* binding */ position),
+/* harmony export */   "radialGradient": () => (/* binding */ radialGradient),
+/* harmony export */   "readableColor": () => (/* binding */ readableColor),
+/* harmony export */   "rem": () => (/* binding */ rem),
+/* harmony export */   "remToPx": () => (/* binding */ remToPx),
+/* harmony export */   "retinaImage": () => (/* binding */ retinaImage),
+/* harmony export */   "rgb": () => (/* binding */ rgb),
+/* harmony export */   "rgbToColorString": () => (/* binding */ rgbToColorString),
+/* harmony export */   "rgba": () => (/* binding */ rgba),
+/* harmony export */   "saturate": () => (/* binding */ curriedSaturate),
+/* harmony export */   "setHue": () => (/* binding */ curriedSetHue),
+/* harmony export */   "setLightness": () => (/* binding */ curriedSetLightness),
+/* harmony export */   "setSaturation": () => (/* binding */ curriedSetSaturation),
+/* harmony export */   "shade": () => (/* binding */ curriedShade),
+/* harmony export */   "size": () => (/* binding */ size),
+/* harmony export */   "stripUnit": () => (/* binding */ stripUnit),
+/* harmony export */   "textInputs": () => (/* binding */ textInputs),
+/* harmony export */   "timingFunctions": () => (/* binding */ timingFunctions),
+/* harmony export */   "tint": () => (/* binding */ curriedTint),
+/* harmony export */   "toColorString": () => (/* binding */ toColorString),
+/* harmony export */   "transitions": () => (/* binding */ transitions),
+/* harmony export */   "transparentize": () => (/* binding */ curriedTransparentize),
+/* harmony export */   "triangle": () => (/* binding */ triangle),
+/* harmony export */   "wordWrap": () => (/* binding */ wordWrap)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "../../.yarn/cache/@babel-runtime-npm-7.15.4-52ce5bf6ea-c408254304.zip/node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/assertThisInitialized */ "../../.yarn/cache/@babel-runtime-npm-7.15.4-52ce5bf6ea-c408254304.zip/node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js");
+/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "../../.yarn/cache/@babel-runtime-npm-7.15.4-52ce5bf6ea-c408254304.zip/node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
+/* harmony import */ var _babel_runtime_helpers_esm_wrapNativeSuper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/esm/wrapNativeSuper */ "../../.yarn/cache/@babel-runtime-npm-7.15.4-52ce5bf6ea-c408254304.zip/node_modules/@babel/runtime/helpers/esm/wrapNativeSuper.js");
+/* harmony import */ var _babel_runtime_helpers_esm_taggedTemplateLiteralLoose__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/esm/taggedTemplateLiteralLoose */ "../../.yarn/cache/@babel-runtime-npm-7.15.4-52ce5bf6ea-c408254304.zip/node_modules/@babel/runtime/helpers/esm/taggedTemplateLiteralLoose.js");
+
+
+
+
+
+
+function last() {
+  var _ref;
+
+  return _ref = arguments.length - 1, _ref < 0 || arguments.length <= _ref ? undefined : arguments[_ref];
+}
+
+function negation(a) {
+  return -a;
+}
+
+function addition(a, b) {
+  return a + b;
+}
+
+function subtraction(a, b) {
+  return a - b;
+}
+
+function multiplication(a, b) {
+  return a * b;
+}
+
+function division(a, b) {
+  return a / b;
+}
+
+function max() {
+  return Math.max.apply(Math, arguments);
+}
+
+function min() {
+  return Math.min.apply(Math, arguments);
+}
+
+function comma() {
+  return Array.of.apply(Array, arguments);
+}
+
+var defaultSymbols = {
+  symbols: {
+    '*': {
+      infix: {
+        symbol: '*',
+        f: multiplication,
+        notation: 'infix',
+        precedence: 4,
+        rightToLeft: 0,
+        argCount: 2
+      },
+      symbol: '*',
+      regSymbol: '\\*'
+    },
+    '/': {
+      infix: {
+        symbol: '/',
+        f: division,
+        notation: 'infix',
+        precedence: 4,
+        rightToLeft: 0,
+        argCount: 2
+      },
+      symbol: '/',
+      regSymbol: '/'
+    },
+    '+': {
+      infix: {
+        symbol: '+',
+        f: addition,
+        notation: 'infix',
+        precedence: 2,
+        rightToLeft: 0,
+        argCount: 2
+      },
+      prefix: {
+        symbol: '+',
+        f: last,
+        notation: 'prefix',
+        precedence: 3,
+        rightToLeft: 0,
+        argCount: 1
+      },
+      symbol: '+',
+      regSymbol: '\\+'
+    },
+    '-': {
+      infix: {
+        symbol: '-',
+        f: subtraction,
+        notation: 'infix',
+        precedence: 2,
+        rightToLeft: 0,
+        argCount: 2
+      },
+      prefix: {
+        symbol: '-',
+        f: negation,
+        notation: 'prefix',
+        precedence: 3,
+        rightToLeft: 0,
+        argCount: 1
+      },
+      symbol: '-',
+      regSymbol: '-'
+    },
+    ',': {
+      infix: {
+        symbol: ',',
+        f: comma,
+        notation: 'infix',
+        precedence: 1,
+        rightToLeft: 0,
+        argCount: 2
+      },
+      symbol: ',',
+      regSymbol: ','
+    },
+    '(': {
+      prefix: {
+        symbol: '(',
+        f: last,
+        notation: 'prefix',
+        precedence: 0,
+        rightToLeft: 0,
+        argCount: 1
+      },
+      symbol: '(',
+      regSymbol: '\\('
+    },
+    ')': {
+      postfix: {
+        symbol: ')',
+        f: undefined,
+        notation: 'postfix',
+        precedence: 0,
+        rightToLeft: 0,
+        argCount: 1
+      },
+      symbol: ')',
+      regSymbol: '\\)'
+    },
+    min: {
+      func: {
+        symbol: 'min',
+        f: min,
+        notation: 'func',
+        precedence: 0,
+        rightToLeft: 0,
+        argCount: 1
+      },
+      symbol: 'min',
+      regSymbol: 'min\\b'
+    },
+    max: {
+      func: {
+        symbol: 'max',
+        f: max,
+        notation: 'func',
+        precedence: 0,
+        rightToLeft: 0,
+        argCount: 1
+      },
+      symbol: 'max',
+      regSymbol: 'max\\b'
+    }
+  }
+};
+
+// based on https://github.com/styled-components/styled-components/blob/fcf6f3804c57a14dd7984dfab7bc06ee2edca044/src/utils/error.js
+
+/**
+ * Parse errors.md and turn it into a simple hash of code: message
+ * @private
+ */
+var ERRORS = {
+  "1": "Passed invalid arguments to hsl, please pass multiple numbers e.g. hsl(360, 0.75, 0.4) or an object e.g. rgb({ hue: 255, saturation: 0.4, lightness: 0.75 }).\n\n",
+  "2": "Passed invalid arguments to hsla, please pass multiple numbers e.g. hsla(360, 0.75, 0.4, 0.7) or an object e.g. rgb({ hue: 255, saturation: 0.4, lightness: 0.75, alpha: 0.7 }).\n\n",
+  "3": "Passed an incorrect argument to a color function, please pass a string representation of a color.\n\n",
+  "4": "Couldn't generate valid rgb string from %s, it returned %s.\n\n",
+  "5": "Couldn't parse the color string. Please provide the color as a string in hex, rgb, rgba, hsl or hsla notation.\n\n",
+  "6": "Passed invalid arguments to rgb, please pass multiple numbers e.g. rgb(255, 205, 100) or an object e.g. rgb({ red: 255, green: 205, blue: 100 }).\n\n",
+  "7": "Passed invalid arguments to rgba, please pass multiple numbers e.g. rgb(255, 205, 100, 0.75) or an object e.g. rgb({ red: 255, green: 205, blue: 100, alpha: 0.75 }).\n\n",
+  "8": "Passed invalid argument to toColorString, please pass a RgbColor, RgbaColor, HslColor or HslaColor object.\n\n",
+  "9": "Please provide a number of steps to the modularScale helper.\n\n",
+  "10": "Please pass a number or one of the predefined scales to the modularScale helper as the ratio.\n\n",
+  "11": "Invalid value passed as base to modularScale, expected number or em string but got \"%s\"\n\n",
+  "12": "Expected a string ending in \"px\" or a number passed as the first argument to %s(), got \"%s\" instead.\n\n",
+  "13": "Expected a string ending in \"px\" or a number passed as the second argument to %s(), got \"%s\" instead.\n\n",
+  "14": "Passed invalid pixel value (\"%s\") to %s(), please pass a value like \"12px\" or 12.\n\n",
+  "15": "Passed invalid base value (\"%s\") to %s(), please pass a value like \"12px\" or 12.\n\n",
+  "16": "You must provide a template to this method.\n\n",
+  "17": "You passed an unsupported selector state to this method.\n\n",
+  "18": "minScreen and maxScreen must be provided as stringified numbers with the same units.\n\n",
+  "19": "fromSize and toSize must be provided as stringified numbers with the same units.\n\n",
+  "20": "expects either an array of objects or a single object with the properties prop, fromSize, and toSize.\n\n",
+  "21": "expects the objects in the first argument array to have the properties `prop`, `fromSize`, and `toSize`.\n\n",
+  "22": "expects the first argument object to have the properties `prop`, `fromSize`, and `toSize`.\n\n",
+  "23": "fontFace expects a name of a font-family.\n\n",
+  "24": "fontFace expects either the path to the font file(s) or a name of a local copy.\n\n",
+  "25": "fontFace expects localFonts to be an array.\n\n",
+  "26": "fontFace expects fileFormats to be an array.\n\n",
+  "27": "radialGradient requries at least 2 color-stops to properly render.\n\n",
+  "28": "Please supply a filename to retinaImage() as the first argument.\n\n",
+  "29": "Passed invalid argument to triangle, please pass correct pointingDirection e.g. 'right'.\n\n",
+  "30": "Passed an invalid value to `height` or `width`. Please provide a pixel based unit.\n\n",
+  "31": "The animation shorthand only takes 8 arguments. See the specification for more information: http://mdn.io/animation\n\n",
+  "32": "To pass multiple animations please supply them in arrays, e.g. animation(['rotate', '2s'], ['move', '1s'])\nTo pass a single animation please supply them in simple values, e.g. animation('rotate', '2s')\n\n",
+  "33": "The animation shorthand arrays can only have 8 elements. See the specification for more information: http://mdn.io/animation\n\n",
+  "34": "borderRadius expects a radius value as a string or number as the second argument.\n\n",
+  "35": "borderRadius expects one of \"top\", \"bottom\", \"left\" or \"right\" as the first argument.\n\n",
+  "36": "Property must be a string value.\n\n",
+  "37": "Syntax Error at %s.\n\n",
+  "38": "Formula contains a function that needs parentheses at %s.\n\n",
+  "39": "Formula is missing closing parenthesis at %s.\n\n",
+  "40": "Formula has too many closing parentheses at %s.\n\n",
+  "41": "All values in a formula must have the same unit or be unitless.\n\n",
+  "42": "Please provide a number of steps to the modularScale helper.\n\n",
+  "43": "Please pass a number or one of the predefined scales to the modularScale helper as the ratio.\n\n",
+  "44": "Invalid value passed as base to modularScale, expected number or em/rem string but got %s.\n\n",
+  "45": "Passed invalid argument to hslToColorString, please pass a HslColor or HslaColor object.\n\n",
+  "46": "Passed invalid argument to rgbToColorString, please pass a RgbColor or RgbaColor object.\n\n",
+  "47": "minScreen and maxScreen must be provided as stringified numbers with the same units.\n\n",
+  "48": "fromSize and toSize must be provided as stringified numbers with the same units.\n\n",
+  "49": "Expects either an array of objects or a single object with the properties prop, fromSize, and toSize.\n\n",
+  "50": "Expects the objects in the first argument array to have the properties prop, fromSize, and toSize.\n\n",
+  "51": "Expects the first argument object to have the properties prop, fromSize, and toSize.\n\n",
+  "52": "fontFace expects either the path to the font file(s) or a name of a local copy.\n\n",
+  "53": "fontFace expects localFonts to be an array.\n\n",
+  "54": "fontFace expects fileFormats to be an array.\n\n",
+  "55": "fontFace expects a name of a font-family.\n\n",
+  "56": "linearGradient requries at least 2 color-stops to properly render.\n\n",
+  "57": "radialGradient requries at least 2 color-stops to properly render.\n\n",
+  "58": "Please supply a filename to retinaImage() as the first argument.\n\n",
+  "59": "Passed invalid argument to triangle, please pass correct pointingDirection e.g. 'right'.\n\n",
+  "60": "Passed an invalid value to `height` or `width`. Please provide a pixel based unit.\n\n",
+  "61": "Property must be a string value.\n\n",
+  "62": "borderRadius expects a radius value as a string or number as the second argument.\n\n",
+  "63": "borderRadius expects one of \"top\", \"bottom\", \"left\" or \"right\" as the first argument.\n\n",
+  "64": "The animation shorthand only takes 8 arguments. See the specification for more information: http://mdn.io/animation.\n\n",
+  "65": "To pass multiple animations please supply them in arrays, e.g. animation(['rotate', '2s'], ['move', '1s'])\\nTo pass a single animation please supply them in simple values, e.g. animation('rotate', '2s').\n\n",
+  "66": "The animation shorthand arrays can only have 8 elements. See the specification for more information: http://mdn.io/animation.\n\n",
+  "67": "You must provide a template to this method.\n\n",
+  "68": "You passed an unsupported selector state to this method.\n\n",
+  "69": "Expected a string ending in \"px\" or a number passed as the first argument to %s(), got %s instead.\n\n",
+  "70": "Expected a string ending in \"px\" or a number passed as the second argument to %s(), got %s instead.\n\n",
+  "71": "Passed invalid pixel value %s to %s(), please pass a value like \"12px\" or 12.\n\n",
+  "72": "Passed invalid base value %s to %s(), please pass a value like \"12px\" or 12.\n\n",
+  "73": "Please provide a valid CSS variable.\n\n",
+  "74": "CSS variable not found and no default was provided.\n\n",
+  "75": "important requires a valid style object, got a %s instead.\n\n",
+  "76": "fromSize and toSize must be provided as stringified numbers with the same units as minScreen and maxScreen.\n\n",
+  "77": "remToPx expects a value in \"rem\" but you provided it in \"%s\".\n\n",
+  "78": "base must be set in \"px\" or \"%\" but you set it in \"%s\".\n"
+};
+/**
+ * super basic version of sprintf
+ * @private
+ */
+
+function format() {
+  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+    args[_key] = arguments[_key];
+  }
+
+  var a = args[0];
+  var b = [];
+  var c;
+
+  for (c = 1; c < args.length; c += 1) {
+    b.push(args[c]);
+  }
+
+  b.forEach(function (d) {
+    a = a.replace(/%[a-z]/, d);
+  });
+  return a;
+}
+/**
+ * Create an error file out of errors.md for development and a simple web link to the full errors
+ * in production mode.
+ * @private
+ */
+
+
+var PolishedError = /*#__PURE__*/function (_Error) {
+  (0,_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_2__["default"])(PolishedError, _Error);
+
+  function PolishedError(code) {
+    var _this;
+
+    if (false) {} else {
+      for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+        args[_key2 - 1] = arguments[_key2];
+      }
+
+      _this = _Error.call(this, format.apply(void 0, [ERRORS[code]].concat(args))) || this;
+    }
+
+    return (0,_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_1__["default"])(_this);
+  }
+
+  return PolishedError;
+}( /*#__PURE__*/(0,_babel_runtime_helpers_esm_wrapNativeSuper__WEBPACK_IMPORTED_MODULE_3__["default"])(Error));
+
+var unitRegExp = /((?!\w)a|na|hc|mc|dg|me[r]?|xe|ni(?![a-zA-Z])|mm|cp|tp|xp|q(?!s)|hv|xamv|nimv|wv|sm|s(?!\D|$)|ged|darg?|nrut)/g; // Merges additional math functionality into the defaults.
+
+function mergeSymbolMaps(additionalSymbols) {
+  var symbolMap = {};
+  symbolMap.symbols = additionalSymbols ? (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, defaultSymbols.symbols, additionalSymbols.symbols) : (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, defaultSymbols.symbols);
+  return symbolMap;
+}
+
+function exec(operators, values) {
+  var _ref;
+
+  var op = operators.pop();
+  values.push(op.f.apply(op, (_ref = []).concat.apply(_ref, values.splice(-op.argCount))));
+  return op.precedence;
+}
+
+function calculate(expression, additionalSymbols) {
+  var symbolMap = mergeSymbolMaps(additionalSymbols);
+  var match;
+  var operators = [symbolMap.symbols['('].prefix];
+  var values = [];
+  var pattern = new RegExp( // Pattern for numbers
+  "\\d+(?:\\.\\d+)?|" + // ...and patterns for individual operators/function names
+  Object.keys(symbolMap.symbols).map(function (key) {
+    return symbolMap.symbols[key];
+  }) // longer symbols should be listed first
+  // $FlowFixMe
+  .sort(function (a, b) {
+    return b.symbol.length - a.symbol.length;
+  }) // $FlowFixMe
+  .map(function (val) {
+    return val.regSymbol;
+  }).join('|') + "|(\\S)", 'g');
+  pattern.lastIndex = 0; // Reset regular expression object
+
+  var afterValue = false;
+
+  do {
+    match = pattern.exec(expression);
+
+    var _ref2 = match || [')', undefined],
+        token = _ref2[0],
+        bad = _ref2[1];
+
+    var notNumber = symbolMap.symbols[token];
+    var notNewValue = notNumber && !notNumber.prefix && !notNumber.func;
+    var notAfterValue = !notNumber || !notNumber.postfix && !notNumber.infix; // Check for syntax errors:
+
+    if (bad || (afterValue ? notAfterValue : notNewValue)) {
+      throw new PolishedError(37, match ? match.index : expression.length, expression);
+    }
+
+    if (afterValue) {
+      // We either have an infix or postfix operator (they should be mutually exclusive)
+      var curr = notNumber.postfix || notNumber.infix;
+
+      do {
+        var prev = operators[operators.length - 1];
+        if ((curr.precedence - prev.precedence || prev.rightToLeft) > 0) break; // Apply previous operator, since it has precedence over current one
+      } while (exec(operators, values)); // Exit loop after executing an opening parenthesis or function
+
+
+      afterValue = curr.notation === 'postfix';
+
+      if (curr.symbol !== ')') {
+        operators.push(curr); // Postfix always has precedence over any operator that follows after it
+
+        if (afterValue) exec(operators, values);
+      }
+    } else if (notNumber) {
+      // prefix operator or function
+      operators.push(notNumber.prefix || notNumber.func);
+
+      if (notNumber.func) {
+        // Require an opening parenthesis
+        match = pattern.exec(expression);
+
+        if (!match || match[0] !== '(') {
+          throw new PolishedError(38, match ? match.index : expression.length, expression);
+        }
+      }
+    } else {
+      // number
+      values.push(+token);
+      afterValue = true;
+    }
+  } while (match && operators.length);
+
+  if (operators.length) {
+    throw new PolishedError(39, match ? match.index : expression.length, expression);
+  } else if (match) {
+    throw new PolishedError(40, match ? match.index : expression.length, expression);
+  } else {
+    return values.pop();
+  }
+}
+
+function reverseString(str) {
+  return str.split('').reverse().join('');
+}
+/**
+ * Helper for doing math with CSS Units. Accepts a formula as a string. All values in the formula must have the same unit (or be unitless). Supports complex formulas utliziing addition, subtraction, multiplication, division, square root, powers, factorial, min, max, as well as parentheses for order of operation.
+ *
+ *In cases where you need to do calculations with mixed units where one unit is a [relative length unit](https://developer.mozilla.org/en-US/docs/Web/CSS/length#Relative_length_units), you will want to use [CSS Calc](https://developer.mozilla.org/en-US/docs/Web/CSS/calc).
+ *
+ * *warning* While we've done everything possible to ensure math safely evalutes formulas expressed as strings, you should always use extreme caution when passing `math` user provided values.
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   fontSize: math('12rem + 8rem'),
+ *   fontSize: math('(12px + 2px) * 3'),
+ *   fontSize: math('3px^2 + sqrt(4)'),
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   fontSize: ${math('12rem + 8rem')};
+ *   fontSize: ${math('(12px + 2px) * 3')};
+ *   fontSize: ${math('3px^2 + sqrt(4)')};
+ * `
+ *
+ * // CSS as JS Output
+ *
+ * div: {
+ *   fontSize: '20rem',
+ *   fontSize: '42px',
+ *   fontSize: '11px',
+ * }
+ */
+
+
+function math(formula, additionalSymbols) {
+  var reversedFormula = reverseString(formula);
+  var formulaMatch = reversedFormula.match(unitRegExp); // Check that all units are the same
+
+  if (formulaMatch && !formulaMatch.every(function (unit) {
+    return unit === formulaMatch[0];
+  })) {
+    throw new PolishedError(41);
+  }
+
+  var cleanFormula = reverseString(reversedFormula.replace(unitRegExp, ''));
+  return "" + calculate(cleanFormula, additionalSymbols) + (formulaMatch ? reverseString(formulaMatch[0]) : '');
+}
+
+var cssVariableRegex = /--[\S]*/g;
+/**
+ * Fetches the value of a passed CSS Variable in the :root scope, or otherwise returns a defaultValue if provided.
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   'background': cssVar('--background-color'),
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   background: ${cssVar('--background-color')};
+ * `
+ *
+ * // CSS in JS Output
+ *
+ * element {
+ *   'background': 'red'
+ * }
+ */
+
+function cssVar(cssVariable, defaultValue) {
+  if (!cssVariable || !cssVariable.match(cssVariableRegex)) {
+    throw new PolishedError(73);
+  }
+
+  var variableValue;
+  /* eslint-disable */
+
+  /* istanbul ignore next */
+
+  if (typeof document !== 'undefined' && document.documentElement !== null) {
+    variableValue = getComputedStyle(document.documentElement).getPropertyValue(cssVariable);
+  }
+  /* eslint-enable */
+
+
+  if (variableValue) {
+    return variableValue.trim();
+  } else if (defaultValue) {
+    return defaultValue;
+  }
+
+  throw new PolishedError(74);
+}
+
+// @private
+function capitalizeString(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+var positionMap$1 = ['Top', 'Right', 'Bottom', 'Left'];
+
+function generateProperty(property, position) {
+  if (!property) return position.toLowerCase();
+  var splitProperty = property.split('-');
+
+  if (splitProperty.length > 1) {
+    splitProperty.splice(1, 0, position);
+    return splitProperty.reduce(function (acc, val) {
+      return "" + acc + capitalizeString(val);
+    });
+  }
+
+  var joinedProperty = property.replace(/([a-z])([A-Z])/g, "$1" + position + "$2");
+  return property === joinedProperty ? "" + property + position : joinedProperty;
+}
+
+function generateStyles(property, valuesWithDefaults) {
+  var styles = {};
+
+  for (var i = 0; i < valuesWithDefaults.length; i += 1) {
+    if (valuesWithDefaults[i] || valuesWithDefaults[i] === 0) {
+      styles[generateProperty(property, positionMap$1[i])] = valuesWithDefaults[i];
+    }
+  }
+
+  return styles;
+}
+/**
+ * Enables shorthand for direction-based properties. It accepts a property (hyphenated or camelCased) and up to four values that map to top, right, bottom, and left, respectively. You can optionally pass an empty string to get only the directional values as properties. You can also optionally pass a null argument for a directional value to ignore it.
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   ...directionalProperty('padding', '12px', '24px', '36px', '48px')
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   ${directionalProperty('padding', '12px', '24px', '36px', '48px')}
+ * `
+ *
+ * // CSS as JS Output
+ *
+ * div {
+ *   'paddingTop': '12px',
+ *   'paddingRight': '24px',
+ *   'paddingBottom': '36px',
+ *   'paddingLeft': '48px'
+ * }
+ */
+
+
+function directionalProperty(property) {
+  for (var _len = arguments.length, values = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    values[_key - 1] = arguments[_key];
+  }
+
+  //  prettier-ignore
+  var firstValue = values[0],
+      _values$ = values[1],
+      secondValue = _values$ === void 0 ? firstValue : _values$,
+      _values$2 = values[2],
+      thirdValue = _values$2 === void 0 ? firstValue : _values$2,
+      _values$3 = values[3],
+      fourthValue = _values$3 === void 0 ? secondValue : _values$3;
+  var valuesWithDefaults = [firstValue, secondValue, thirdValue, fourthValue];
+  return generateStyles(property, valuesWithDefaults);
+}
+
+/**
+ * Check if a string ends with something
+ * @private
+ */
+function endsWith(string, suffix) {
+  return string.substr(-suffix.length) === suffix;
+}
+
+var cssRegex$1 = /^([+-]?(?:\d+|\d*\.\d+))([a-z]*|%)$/;
+/**
+ * Returns a given CSS value minus its unit of measure.
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   '--dimension': stripUnit('100px')
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   --dimension: ${stripUnit('100px')};
+ * `
+ *
+ * // CSS in JS Output
+ *
+ * element {
+ *   '--dimension': 100
+ * }
+ */
+
+function stripUnit(value) {
+  if (typeof value !== 'string') return value;
+  var matchedValue = value.match(cssRegex$1);
+  return matchedValue ? parseFloat(value) : value;
+}
+
+/**
+ * Factory function that creates pixel-to-x converters
+ * @private
+ */
+
+var pxtoFactory = function pxtoFactory(to) {
+  return function (pxval, base) {
+    if (base === void 0) {
+      base = '16px';
+    }
+
+    var newPxval = pxval;
+    var newBase = base;
+
+    if (typeof pxval === 'string') {
+      if (!endsWith(pxval, 'px')) {
+        throw new PolishedError(69, to, pxval);
+      }
+
+      newPxval = stripUnit(pxval);
+    }
+
+    if (typeof base === 'string') {
+      if (!endsWith(base, 'px')) {
+        throw new PolishedError(70, to, base);
+      }
+
+      newBase = stripUnit(base);
+    }
+
+    if (typeof newPxval === 'string') {
+      throw new PolishedError(71, pxval, to);
+    }
+
+    if (typeof newBase === 'string') {
+      throw new PolishedError(72, base, to);
+    }
+
+    return "" + newPxval / newBase + to;
+  };
+};
+
+/**
+ * Convert pixel value to ems. The default base value is 16px, but can be changed by passing a
+ * second argument to the function.
+ * @function
+ * @param {string|number} pxval
+ * @param {string|number} [base='16px']
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   'height': em('16px')
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   height: ${em('16px')}
+ * `
+ *
+ * // CSS in JS Output
+ *
+ * element {
+ *   'height': '1em'
+ * }
+ */
+
+var em = /*#__PURE__*/pxtoFactory('em');
+
+var cssRegex = /^([+-]?(?:\d+|\d*\.\d+))([a-z]*|%)$/;
+/**
+ * Returns a given CSS value and its unit as elements of an array.
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   '--dimension': getValueAndUnit('100px')[0],
+ *   '--unit': getValueAndUnit('100px')[1],
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   --dimension: ${getValueAndUnit('100px')[0]};
+ *   --unit: ${getValueAndUnit('100px')[1]};
+ * `
+ *
+ * // CSS in JS Output
+ *
+ * element {
+ *   '--dimension': 100,
+ *   '--unit': 'px',
+ * }
+ */
+
+function getValueAndUnit(value) {
+  if (typeof value !== 'string') return [value, ''];
+  var matchedValue = value.match(cssRegex);
+  if (matchedValue) return [parseFloat(value), matchedValue[2]];
+  return [value, undefined];
+}
+
+/**
+ * Helper for targeting rules in a style block generated by polished modules that need !important-level specificity. Can optionally specify a rule (or rules) to target specific rules.
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   ...important(cover())
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   ${important(cover())}
+ * `
+ *
+ * // CSS as JS Output
+ *
+ * div: {
+ *   'position': 'absolute !important',
+ *   'top': '0 !important',
+ *   'right: '0 !important',
+ *   'bottom': '0 !important',
+ *   'left: '0 !important'
+ * }
+ */
+
+function important(styleBlock, rules) {
+  if (typeof styleBlock !== 'object' || styleBlock === null) {
+    throw new PolishedError(75, typeof styleBlock);
+  }
+
+  var newStyleBlock = {};
+  Object.keys(styleBlock).forEach(function (key) {
+    if (typeof styleBlock[key] === 'object' && styleBlock[key] !== null) {
+      newStyleBlock[key] = important(styleBlock[key], rules);
+    } else if (!rules || rules && (rules === key || rules.indexOf(key) >= 0)) {
+      newStyleBlock[key] = styleBlock[key] + " !important";
+    } else {
+      newStyleBlock[key] = styleBlock[key];
+    }
+  });
+  return newStyleBlock;
+}
+
+var ratioNames = {
+  minorSecond: 1.067,
+  majorSecond: 1.125,
+  minorThird: 1.2,
+  majorThird: 1.25,
+  perfectFourth: 1.333,
+  augFourth: 1.414,
+  perfectFifth: 1.5,
+  minorSixth: 1.6,
+  goldenSection: 1.618,
+  majorSixth: 1.667,
+  minorSeventh: 1.778,
+  majorSeventh: 1.875,
+  octave: 2,
+  majorTenth: 2.5,
+  majorEleventh: 2.667,
+  majorTwelfth: 3,
+  doubleOctave: 4
+};
+
+function getRatio(ratioName) {
+  return ratioNames[ratioName];
+}
+/**
+ * Establish consistent measurements and spacial relationships throughout your projects by incrementing an em or rem value up or down a defined scale. We provide a list of commonly used scales as pre-defined variables.
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *    // Increment two steps up the default scale
+ *   'fontSize': modularScale(2)
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *    // Increment two steps up the default scale
+ *   fontSize: ${modularScale(2)}
+ * `
+ *
+ * // CSS in JS Output
+ *
+ * element {
+ *   'fontSize': '1.77689em'
+ * }
+ */
+
+
+function modularScale(steps, base, ratio) {
+  if (base === void 0) {
+    base = '1em';
+  }
+
+  if (ratio === void 0) {
+    ratio = 1.333;
+  }
+
+  if (typeof steps !== 'number') {
+    throw new PolishedError(42);
+  }
+
+  if (typeof ratio === 'string' && !ratioNames[ratio]) {
+    throw new PolishedError(43);
+  }
+
+  var _ref = typeof base === 'string' ? getValueAndUnit(base) : [base, ''],
+      realBase = _ref[0],
+      unit = _ref[1];
+
+  var realRatio = typeof ratio === 'string' ? getRatio(ratio) : ratio;
+
+  if (typeof realBase === 'string') {
+    throw new PolishedError(44, base);
+  }
+
+  return "" + realBase * Math.pow(realRatio, steps) + (unit || '');
+}
+
+/**
+ * Convert pixel value to rems. The default base value is 16px, but can be changed by passing a
+ * second argument to the function.
+ * @function
+ * @param {string|number} pxval
+ * @param {string|number} [base='16px']
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   'height': rem('16px')
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   height: ${rem('16px')}
+ * `
+ *
+ * // CSS in JS Output
+ *
+ * element {
+ *   'height': '1rem'
+ * }
+ */
+
+var rem = /*#__PURE__*/pxtoFactory('rem');
+
+var defaultFontSize = 16;
+
+function convertBase(base) {
+  var deconstructedValue = getValueAndUnit(base);
+
+  if (deconstructedValue[1] === 'px') {
+    return parseFloat(base);
+  }
+
+  if (deconstructedValue[1] === '%') {
+    return parseFloat(base) / 100 * defaultFontSize;
+  }
+
+  throw new PolishedError(78, deconstructedValue[1]);
+}
+
+function getBaseFromDoc() {
+  /* eslint-disable */
+
+  /* istanbul ignore next */
+  if (typeof document !== 'undefined' && document.documentElement !== null) {
+    var rootFontSize = getComputedStyle(document.documentElement).fontSize;
+    return rootFontSize ? convertBase(rootFontSize) : defaultFontSize;
+  }
+  /* eslint-enable */
+
+  /* istanbul ignore next */
+
+
+  return defaultFontSize;
+}
+/**
+ * Convert rem values to px. By default, the base value is pulled from the font-size property on the root element (if it is set in % or px). It defaults to 16px if not found on the root. You can also override the base value by providing your own base in % or px.
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   'height': remToPx('1.6rem')
+ *   'height': remToPx('1.6rem', '10px')
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   height: ${remToPx('1.6rem')}
+ *   height: ${remToPx('1.6rem', '10px')}
+ * `
+ *
+ * // CSS in JS Output
+ *
+ * element {
+ *   'height': '25.6px',
+ *   'height': '16px',
+ * }
+ */
+
+
+function remToPx(value, base) {
+  var deconstructedValue = getValueAndUnit(value);
+
+  if (deconstructedValue[1] !== 'rem' && deconstructedValue[1] !== '') {
+    throw new PolishedError(77, deconstructedValue[1]);
+  }
+
+  var newBase = base ? convertBase(base) : getBaseFromDoc();
+  return deconstructedValue[0] * newBase + "px";
+}
+
+var functionsMap$3 = {
+  back: 'cubic-bezier(0.600, -0.280, 0.735, 0.045)',
+  circ: 'cubic-bezier(0.600,  0.040, 0.980, 0.335)',
+  cubic: 'cubic-bezier(0.550,  0.055, 0.675, 0.190)',
+  expo: 'cubic-bezier(0.950,  0.050, 0.795, 0.035)',
+  quad: 'cubic-bezier(0.550,  0.085, 0.680, 0.530)',
+  quart: 'cubic-bezier(0.895,  0.030, 0.685, 0.220)',
+  quint: 'cubic-bezier(0.755,  0.050, 0.855, 0.060)',
+  sine: 'cubic-bezier(0.470,  0.000, 0.745, 0.715)'
+};
+/**
+ * String to represent common easing functions as demonstrated here: (github.com/jaukia/easie).
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   'transitionTimingFunction': easeIn('quad')
+ * }
+ *
+ * // styled-components usage
+ *  const div = styled.div`
+ *   transitionTimingFunction: ${easeIn('quad')};
+ * `
+ *
+ * // CSS as JS Output
+ *
+ * 'div': {
+ *   'transitionTimingFunction': 'cubic-bezier(0.550,  0.085, 0.680, 0.530)',
+ * }
+ */
+
+function easeIn(functionName) {
+  return functionsMap$3[functionName.toLowerCase().trim()];
+}
+
+var functionsMap$2 = {
+  back: 'cubic-bezier(0.680, -0.550, 0.265, 1.550)',
+  circ: 'cubic-bezier(0.785,  0.135, 0.150, 0.860)',
+  cubic: 'cubic-bezier(0.645,  0.045, 0.355, 1.000)',
+  expo: 'cubic-bezier(1.000,  0.000, 0.000, 1.000)',
+  quad: 'cubic-bezier(0.455,  0.030, 0.515, 0.955)',
+  quart: 'cubic-bezier(0.770,  0.000, 0.175, 1.000)',
+  quint: 'cubic-bezier(0.860,  0.000, 0.070, 1.000)',
+  sine: 'cubic-bezier(0.445,  0.050, 0.550, 0.950)'
+};
+/**
+ * String to represent common easing functions as demonstrated here: (github.com/jaukia/easie).
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   'transitionTimingFunction': easeInOut('quad')
+ * }
+ *
+ * // styled-components usage
+ *  const div = styled.div`
+ *   transitionTimingFunction: ${easeInOut('quad')};
+ * `
+ *
+ * // CSS as JS Output
+ *
+ * 'div': {
+ *   'transitionTimingFunction': 'cubic-bezier(0.455,  0.030, 0.515, 0.955)',
+ * }
+ */
+
+function easeInOut(functionName) {
+  return functionsMap$2[functionName.toLowerCase().trim()];
+}
+
+var functionsMap$1 = {
+  back: 'cubic-bezier(0.175,  0.885, 0.320, 1.275)',
+  cubic: 'cubic-bezier(0.215,  0.610, 0.355, 1.000)',
+  circ: 'cubic-bezier(0.075,  0.820, 0.165, 1.000)',
+  expo: 'cubic-bezier(0.190,  1.000, 0.220, 1.000)',
+  quad: 'cubic-bezier(0.250,  0.460, 0.450, 0.940)',
+  quart: 'cubic-bezier(0.165,  0.840, 0.440, 1.000)',
+  quint: 'cubic-bezier(0.230,  1.000, 0.320, 1.000)',
+  sine: 'cubic-bezier(0.390,  0.575, 0.565, 1.000)'
+};
+/**
+ * String to represent common easing functions as demonstrated here: (github.com/jaukia/easie).
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   'transitionTimingFunction': easeOut('quad')
+ * }
+ *
+ * // styled-components usage
+ *  const div = styled.div`
+ *   transitionTimingFunction: ${easeOut('quad')};
+ * `
+ *
+ * // CSS as JS Output
+ *
+ * 'div': {
+ *   'transitionTimingFunction': 'cubic-bezier(0.250,  0.460, 0.450, 0.940)',
+ * }
+ */
+
+function easeOut(functionName) {
+  return functionsMap$1[functionName.toLowerCase().trim()];
+}
+
+/**
+ * Returns a CSS calc formula for linear interpolation of a property between two values. Accepts optional minScreen (defaults to '320px') and maxScreen (defaults to '1200px').
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   fontSize: between('20px', '100px', '400px', '1000px'),
+ *   fontSize: between('20px', '100px')
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   fontSize: ${between('20px', '100px', '400px', '1000px')};
+ *   fontSize: ${between('20px', '100px')}
+ * `
+ *
+ * // CSS as JS Output
+ *
+ * h1: {
+ *   'fontSize': 'calc(-33.33333333333334px + 13.333333333333334vw)',
+ *   'fontSize': 'calc(-9.090909090909093px + 9.090909090909092vw)'
+ * }
+ */
+
+function between(fromSize, toSize, minScreen, maxScreen) {
+  if (minScreen === void 0) {
+    minScreen = '320px';
+  }
+
+  if (maxScreen === void 0) {
+    maxScreen = '1200px';
+  }
+
+  var _getValueAndUnit = getValueAndUnit(fromSize),
+      unitlessFromSize = _getValueAndUnit[0],
+      fromSizeUnit = _getValueAndUnit[1];
+
+  var _getValueAndUnit2 = getValueAndUnit(toSize),
+      unitlessToSize = _getValueAndUnit2[0],
+      toSizeUnit = _getValueAndUnit2[1];
+
+  var _getValueAndUnit3 = getValueAndUnit(minScreen),
+      unitlessMinScreen = _getValueAndUnit3[0],
+      minScreenUnit = _getValueAndUnit3[1];
+
+  var _getValueAndUnit4 = getValueAndUnit(maxScreen),
+      unitlessMaxScreen = _getValueAndUnit4[0],
+      maxScreenUnit = _getValueAndUnit4[1];
+
+  if (typeof unitlessMinScreen !== 'number' || typeof unitlessMaxScreen !== 'number' || !minScreenUnit || !maxScreenUnit || minScreenUnit !== maxScreenUnit) {
+    throw new PolishedError(47);
+  }
+
+  if (typeof unitlessFromSize !== 'number' || typeof unitlessToSize !== 'number' || fromSizeUnit !== toSizeUnit) {
+    throw new PolishedError(48);
+  }
+
+  if (fromSizeUnit !== minScreenUnit || toSizeUnit !== maxScreenUnit) {
+    throw new PolishedError(76);
+  }
+
+  var slope = (unitlessFromSize - unitlessToSize) / (unitlessMinScreen - unitlessMaxScreen);
+  var base = unitlessToSize - slope * unitlessMaxScreen;
+  return "calc(" + base.toFixed(2) + (fromSizeUnit || '') + " + " + (100 * slope).toFixed(2) + "vw)";
+}
+
+/**
+ * CSS to contain a float (credit to CSSMojo).
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *    ...clearFix(),
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   ${clearFix()}
+ * `
+ *
+ * // CSS as JS Output
+ *
+ * '&::after': {
+ *   'clear': 'both',
+ *   'content': '""',
+ *   'display': 'table'
+ * }
+ */
+function clearFix(parent) {
+  var _ref;
+
+  if (parent === void 0) {
+    parent = '&';
+  }
+
+  var pseudoSelector = parent + "::after";
+  return _ref = {}, _ref[pseudoSelector] = {
+    clear: 'both',
+    content: '""',
+    display: 'table'
+  }, _ref;
+}
+
+/**
+ * CSS to fully cover an area. Can optionally be passed an offset to act as a "padding".
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   ...cover()
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   ${cover()}
+ * `
+ *
+ * // CSS as JS Output
+ *
+ * div: {
+ *   'position': 'absolute',
+ *   'top': '0',
+ *   'right: '0',
+ *   'bottom': '0',
+ *   'left: '0'
+ * }
+ */
+function cover(offset) {
+  if (offset === void 0) {
+    offset = 0;
+  }
+
+  return {
+    position: 'absolute',
+    top: offset,
+    right: offset,
+    bottom: offset,
+    left: offset
+  };
+}
+
+/**
+ * CSS to represent truncated text with an ellipsis. You can optionally pass a max-width and number of lines before truncating.
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   ...ellipsis('250px')
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   ${ellipsis('250px')}
+ * `
+ *
+ * // CSS as JS Output
+ *
+ * div: {
+ *   'display': 'inline-block',
+ *   'maxWidth': '250px',
+ *   'overflow': 'hidden',
+ *   'textOverflow': 'ellipsis',
+ *   'whiteSpace': 'nowrap',
+ *   'wordWrap': 'normal'
+ * }
+ */
+function ellipsis(width, lines) {
+  if (lines === void 0) {
+    lines = 1;
+  }
+
+  var styles = {
+    display: 'inline-block',
+    maxWidth: width || '100%',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+    wordWrap: 'normal'
+  };
+  return lines > 1 ? (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, styles, {
+    WebkitBoxOrient: 'vertical',
+    WebkitLineClamp: lines,
+    display: '-webkit-box',
+    whiteSpace: 'normal'
+  }) : styles;
+}
+
+function _createForOfIteratorHelperLoose(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (it) return (it = it.call(o)).next.bind(it); if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; return function () { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+/**
+ * Returns a set of media queries that resizes a property (or set of properties) between a provided fromSize and toSize. Accepts optional minScreen (defaults to '320px') and maxScreen (defaults to '1200px') to constrain the interpolation.
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   ...fluidRange(
+ *    {
+ *        prop: 'padding',
+ *        fromSize: '20px',
+ *        toSize: '100px',
+ *      },
+ *      '400px',
+ *      '1000px',
+ *    )
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   ${fluidRange(
+ *      {
+ *        prop: 'padding',
+ *        fromSize: '20px',
+ *        toSize: '100px',
+ *      },
+ *      '400px',
+ *      '1000px',
+ *    )}
+ * `
+ *
+ * // CSS as JS Output
+ *
+ * div: {
+ *   "@media (min-width: 1000px)": Object {
+ *     "padding": "100px",
+ *   },
+ *   "@media (min-width: 400px)": Object {
+ *     "padding": "calc(-33.33333333333334px + 13.333333333333334vw)",
+ *   },
+ *   "padding": "20px",
+ * }
+ */
+function fluidRange(cssProp, minScreen, maxScreen) {
+  if (minScreen === void 0) {
+    minScreen = '320px';
+  }
+
+  if (maxScreen === void 0) {
+    maxScreen = '1200px';
+  }
+
+  if (!Array.isArray(cssProp) && typeof cssProp !== 'object' || cssProp === null) {
+    throw new PolishedError(49);
+  }
+
+  if (Array.isArray(cssProp)) {
+    var mediaQueries = {};
+    var fallbacks = {};
+
+    for (var _iterator = _createForOfIteratorHelperLoose(cssProp), _step; !(_step = _iterator()).done;) {
+      var _extends2, _extends3;
+
+      var obj = _step.value;
+
+      if (!obj.prop || !obj.fromSize || !obj.toSize) {
+        throw new PolishedError(50);
+      }
+
+      fallbacks[obj.prop] = obj.fromSize;
+      mediaQueries["@media (min-width: " + minScreen + ")"] = (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, mediaQueries["@media (min-width: " + minScreen + ")"], (_extends2 = {}, _extends2[obj.prop] = between(obj.fromSize, obj.toSize, minScreen, maxScreen), _extends2));
+      mediaQueries["@media (min-width: " + maxScreen + ")"] = (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, mediaQueries["@media (min-width: " + maxScreen + ")"], (_extends3 = {}, _extends3[obj.prop] = obj.toSize, _extends3));
+    }
+
+    return (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, fallbacks, mediaQueries);
+  } else {
+    var _ref, _ref2, _ref3;
+
+    if (!cssProp.prop || !cssProp.fromSize || !cssProp.toSize) {
+      throw new PolishedError(51);
+    }
+
+    return _ref3 = {}, _ref3[cssProp.prop] = cssProp.fromSize, _ref3["@media (min-width: " + minScreen + ")"] = (_ref = {}, _ref[cssProp.prop] = between(cssProp.fromSize, cssProp.toSize, minScreen, maxScreen), _ref), _ref3["@media (min-width: " + maxScreen + ")"] = (_ref2 = {}, _ref2[cssProp.prop] = cssProp.toSize, _ref2), _ref3;
+  }
+}
+
+var dataURIRegex = /^\s*data:([a-z]+\/[a-z-]+(;[a-z-]+=[a-z-]+)?)?(;charset=[a-z0-9-]+)?(;base64)?,[a-z0-9!$&',()*+,;=\-._~:@/?%\s]*\s*$/i;
+var formatHintMap = {
+  woff: 'woff',
+  woff2: 'woff2',
+  ttf: 'truetype',
+  otf: 'opentype',
+  eot: 'embedded-opentype',
+  svg: 'svg',
+  svgz: 'svg'
+};
+
+function generateFormatHint(format, formatHint) {
+  if (!formatHint) return '';
+  return " format(\"" + formatHintMap[format] + "\")";
+}
+
+function isDataURI(fontFilePath) {
+  return !!fontFilePath.replace(/\s+/g, ' ').match(dataURIRegex);
+}
+
+function generateFileReferences(fontFilePath, fileFormats, formatHint) {
+  if (isDataURI(fontFilePath)) {
+    return "url(\"" + fontFilePath + "\")" + generateFormatHint(fileFormats[0], formatHint);
+  }
+
+  var fileFontReferences = fileFormats.map(function (format) {
+    return "url(\"" + fontFilePath + "." + format + "\")" + generateFormatHint(format, formatHint);
+  });
+  return fileFontReferences.join(', ');
+}
+
+function generateLocalReferences(localFonts) {
+  var localFontReferences = localFonts.map(function (font) {
+    return "local(\"" + font + "\")";
+  });
+  return localFontReferences.join(', ');
+}
+
+function generateSources(fontFilePath, localFonts, fileFormats, formatHint) {
+  var fontReferences = [];
+  if (localFonts) fontReferences.push(generateLocalReferences(localFonts));
+
+  if (fontFilePath) {
+    fontReferences.push(generateFileReferences(fontFilePath, fileFormats, formatHint));
+  }
+
+  return fontReferences.join(', ');
+}
+/**
+ * CSS for a @font-face declaration. Defaults to check for local copies of the font on the user's machine. You can disable this by passing `null` to localFonts.
+ *
+ * @example
+ * // Styles as object basic usage
+ * const styles = {
+ *    ...fontFace({
+ *      'fontFamily': 'Sans-Pro',
+ *      'fontFilePath': 'path/to/file'
+ *    })
+ * }
+ *
+ * // styled-components basic usage
+ * const GlobalStyle = createGlobalStyle`${
+ *   fontFace({
+ *     'fontFamily': 'Sans-Pro',
+ *     'fontFilePath': 'path/to/file'
+ *   }
+ * )}`
+ *
+ * // CSS as JS Output
+ *
+ * '@font-face': {
+ *   'fontFamily': 'Sans-Pro',
+ *   'src': 'url("path/to/file.eot"), url("path/to/file.woff2"), url("path/to/file.woff"), url("path/to/file.ttf"), url("path/to/file.svg")',
+ * }
+ */
+
+
+function fontFace(_ref) {
+  var fontFamily = _ref.fontFamily,
+      fontFilePath = _ref.fontFilePath,
+      fontStretch = _ref.fontStretch,
+      fontStyle = _ref.fontStyle,
+      fontVariant = _ref.fontVariant,
+      fontWeight = _ref.fontWeight,
+      _ref$fileFormats = _ref.fileFormats,
+      fileFormats = _ref$fileFormats === void 0 ? ['eot', 'woff2', 'woff', 'ttf', 'svg'] : _ref$fileFormats,
+      _ref$formatHint = _ref.formatHint,
+      formatHint = _ref$formatHint === void 0 ? false : _ref$formatHint,
+      _ref$localFonts = _ref.localFonts,
+      localFonts = _ref$localFonts === void 0 ? [fontFamily] : _ref$localFonts,
+      unicodeRange = _ref.unicodeRange,
+      fontDisplay = _ref.fontDisplay,
+      fontVariationSettings = _ref.fontVariationSettings,
+      fontFeatureSettings = _ref.fontFeatureSettings;
+  // Error Handling
+  if (!fontFamily) throw new PolishedError(55);
+
+  if (!fontFilePath && !localFonts) {
+    throw new PolishedError(52);
+  }
+
+  if (localFonts && !Array.isArray(localFonts)) {
+    throw new PolishedError(53);
+  }
+
+  if (!Array.isArray(fileFormats)) {
+    throw new PolishedError(54);
+  }
+
+  var fontFaceDeclaration = {
+    '@font-face': {
+      fontFamily: fontFamily,
+      src: generateSources(fontFilePath, localFonts, fileFormats, formatHint),
+      unicodeRange: unicodeRange,
+      fontStretch: fontStretch,
+      fontStyle: fontStyle,
+      fontVariant: fontVariant,
+      fontWeight: fontWeight,
+      fontDisplay: fontDisplay,
+      fontVariationSettings: fontVariationSettings,
+      fontFeatureSettings: fontFeatureSettings
+    }
+  }; // Removes undefined fields for cleaner css object.
+
+  return JSON.parse(JSON.stringify(fontFaceDeclaration));
+}
+
+/**
+ * CSS to hide text to show a background image in a SEO-friendly way.
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   'backgroundImage': 'url(logo.png)',
+ *   ...hideText(),
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   backgroundImage: url(logo.png);
+ *   ${hideText()};
+ * `
+ *
+ * // CSS as JS Output
+ *
+ * 'div': {
+ *   'backgroundImage': 'url(logo.png)',
+ *   'textIndent': '101%',
+ *   'overflow': 'hidden',
+ *   'whiteSpace': 'nowrap',
+ * }
+ */
+function hideText() {
+  return {
+    textIndent: '101%',
+    overflow: 'hidden',
+    whiteSpace: 'nowrap'
+  };
+}
+
+/**
+ * CSS to hide content visually but remain accessible to screen readers.
+ * from [HTML5 Boilerplate](https://github.com/h5bp/html5-boilerplate/blob/9a176f57af1cfe8ec70300da4621fb9b07e5fa31/src/css/main.css#L121)
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   ...hideVisually(),
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   ${hideVisually()};
+ * `
+ *
+ * // CSS as JS Output
+ *
+ * 'div': {
+ *   'border': '0',
+ *   'clip': 'rect(0 0 0 0)',
+ *   'height': '1px',
+ *   'margin': '-1px',
+ *   'overflow': 'hidden',
+ *   'padding': '0',
+ *   'position': 'absolute',
+ *   'whiteSpace': 'nowrap',
+ *   'width': '1px',
+ * }
+ */
+function hideVisually() {
+  return {
+    border: '0',
+    clip: 'rect(0 0 0 0)',
+    height: '1px',
+    margin: '-1px',
+    overflow: 'hidden',
+    padding: '0',
+    position: 'absolute',
+    whiteSpace: 'nowrap',
+    width: '1px'
+  };
+}
+
+/**
+ * Generates a media query to target HiDPI devices.
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *  [hiDPI(1.5)]: {
+ *    width: 200px;
+ *  }
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   ${hiDPI(1.5)} {
+ *     width: 200px;
+ *   }
+ * `
+ *
+ * // CSS as JS Output
+ *
+ * '@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+ *  only screen and (min--moz-device-pixel-ratio: 1.5),
+ *  only screen and (-o-min-device-pixel-ratio: 1.5/1),
+ *  only screen and (min-resolution: 144dpi),
+ *  only screen and (min-resolution: 1.5dppx)': {
+ *   'width': '200px',
+ * }
+ */
+function hiDPI(ratio) {
+  if (ratio === void 0) {
+    ratio = 1.3;
+  }
+
+  return "\n    @media only screen and (-webkit-min-device-pixel-ratio: " + ratio + "),\n    only screen and (min--moz-device-pixel-ratio: " + ratio + "),\n    only screen and (-o-min-device-pixel-ratio: " + ratio + "/1),\n    only screen and (min-resolution: " + Math.round(ratio * 96) + "dpi),\n    only screen and (min-resolution: " + ratio + "dppx)\n  ";
+}
+
+function constructGradientValue(literals) {
+  var template = '';
+
+  for (var _len = arguments.length, substitutions = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    substitutions[_key - 1] = arguments[_key];
+  }
+
+  for (var i = 0; i < literals.length; i += 1) {
+    template += literals[i];
+
+    if (i === substitutions.length - 1 && substitutions[i]) {
+      var definedValues = substitutions.filter(function (substitute) {
+        return !!substitute;
+      }); // Adds leading coma if properties preceed color-stops
+
+      if (definedValues.length > 1) {
+        template = template.slice(0, -1);
+        template += ", " + substitutions[i]; // No trailing space if color-stops is the only param provided
+      } else if (definedValues.length === 1) {
+        template += "" + substitutions[i];
+      }
+    } else if (substitutions[i]) {
+      template += substitutions[i] + " ";
+    }
+  }
+
+  return template.trim();
+}
+
+var _templateObject$1;
+
+/**
+ * CSS for declaring a linear gradient, including a fallback background-color. The fallback is either the first color-stop or an explicitly passed fallback color.
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   ...linearGradient({
+        colorStops: ['#00FFFF 0%', 'rgba(0, 0, 255, 0) 50%', '#0000FF 95%'],
+        toDirection: 'to top right',
+        fallback: '#FFF',
+      })
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   ${linearGradient({
+        colorStops: ['#00FFFF 0%', 'rgba(0, 0, 255, 0) 50%', '#0000FF 95%'],
+        toDirection: 'to top right',
+        fallback: '#FFF',
+      })}
+ *`
+ *
+ * // CSS as JS Output
+ *
+ * div: {
+ *   'backgroundColor': '#FFF',
+ *   'backgroundImage': 'linear-gradient(to top right, #00FFFF 0%, rgba(0, 0, 255, 0) 50%, #0000FF 95%)',
+ * }
+ */
+function linearGradient(_ref) {
+  var colorStops = _ref.colorStops,
+      fallback = _ref.fallback,
+      _ref$toDirection = _ref.toDirection,
+      toDirection = _ref$toDirection === void 0 ? '' : _ref$toDirection;
+
+  if (!colorStops || colorStops.length < 2) {
+    throw new PolishedError(56);
+  }
+
+  return {
+    backgroundColor: fallback || colorStops[0].replace(/,\s+/g, ',').split(' ')[0].replace(/,(?=\S)/g, ', '),
+    backgroundImage: constructGradientValue(_templateObject$1 || (_templateObject$1 = (0,_babel_runtime_helpers_esm_taggedTemplateLiteralLoose__WEBPACK_IMPORTED_MODULE_4__["default"])(["linear-gradient(", "", ")"])), toDirection, colorStops.join(', ').replace(/,(?=\S)/g, ', '))
+  };
+}
+
+/**
+ * CSS to normalize abnormalities across browsers (normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css)
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *    ...normalize(),
+ * }
+ *
+ * // styled-components usage
+ * const GlobalStyle = createGlobalStyle`${normalize()}`
+ *
+ * // CSS as JS Output
+ *
+ * html {
+ *   lineHeight: 1.15,
+ *   textSizeAdjust: 100%,
+ * } ...
+ */
+function normalize() {
+  var _ref;
+
+  return [(_ref = {
+    html: {
+      lineHeight: '1.15',
+      textSizeAdjust: '100%'
+    },
+    body: {
+      margin: '0'
+    },
+    main: {
+      display: 'block'
+    },
+    h1: {
+      fontSize: '2em',
+      margin: '0.67em 0'
+    },
+    hr: {
+      boxSizing: 'content-box',
+      height: '0',
+      overflow: 'visible'
+    },
+    pre: {
+      fontFamily: 'monospace, monospace',
+      fontSize: '1em'
+    },
+    a: {
+      backgroundColor: 'transparent'
+    },
+    'abbr[title]': {
+      borderBottom: 'none',
+      textDecoration: 'underline'
+    }
+  }, _ref["b,\n    strong"] = {
+    fontWeight: 'bolder'
+  }, _ref["code,\n    kbd,\n    samp"] = {
+    fontFamily: 'monospace, monospace',
+    fontSize: '1em'
+  }, _ref.small = {
+    fontSize: '80%'
+  }, _ref["sub,\n    sup"] = {
+    fontSize: '75%',
+    lineHeight: '0',
+    position: 'relative',
+    verticalAlign: 'baseline'
+  }, _ref.sub = {
+    bottom: '-0.25em'
+  }, _ref.sup = {
+    top: '-0.5em'
+  }, _ref.img = {
+    borderStyle: 'none'
+  }, _ref["button,\n    input,\n    optgroup,\n    select,\n    textarea"] = {
+    fontFamily: 'inherit',
+    fontSize: '100%',
+    lineHeight: '1.15',
+    margin: '0'
+  }, _ref["button,\n    input"] = {
+    overflow: 'visible'
+  }, _ref["button,\n    select"] = {
+    textTransform: 'none'
+  }, _ref["button,\n    html [type=\"button\"],\n    [type=\"reset\"],\n    [type=\"submit\"]"] = {
+    WebkitAppearance: 'button'
+  }, _ref["button::-moz-focus-inner,\n    [type=\"button\"]::-moz-focus-inner,\n    [type=\"reset\"]::-moz-focus-inner,\n    [type=\"submit\"]::-moz-focus-inner"] = {
+    borderStyle: 'none',
+    padding: '0'
+  }, _ref["button:-moz-focusring,\n    [type=\"button\"]:-moz-focusring,\n    [type=\"reset\"]:-moz-focusring,\n    [type=\"submit\"]:-moz-focusring"] = {
+    outline: '1px dotted ButtonText'
+  }, _ref.fieldset = {
+    padding: '0.35em 0.625em 0.75em'
+  }, _ref.legend = {
+    boxSizing: 'border-box',
+    color: 'inherit',
+    display: 'table',
+    maxWidth: '100%',
+    padding: '0',
+    whiteSpace: 'normal'
+  }, _ref.progress = {
+    verticalAlign: 'baseline'
+  }, _ref.textarea = {
+    overflow: 'auto'
+  }, _ref["[type=\"checkbox\"],\n    [type=\"radio\"]"] = {
+    boxSizing: 'border-box',
+    padding: '0'
+  }, _ref["[type=\"number\"]::-webkit-inner-spin-button,\n    [type=\"number\"]::-webkit-outer-spin-button"] = {
+    height: 'auto'
+  }, _ref['[type="search"]'] = {
+    WebkitAppearance: 'textfield',
+    outlineOffset: '-2px'
+  }, _ref['[type="search"]::-webkit-search-decoration'] = {
+    WebkitAppearance: 'none'
+  }, _ref['::-webkit-file-upload-button'] = {
+    WebkitAppearance: 'button',
+    font: 'inherit'
+  }, _ref.details = {
+    display: 'block'
+  }, _ref.summary = {
+    display: 'list-item'
+  }, _ref.template = {
+    display: 'none'
+  }, _ref['[hidden]'] = {
+    display: 'none'
+  }, _ref), {
+    'abbr[title]': {
+      textDecoration: 'underline dotted'
+    }
+  }];
+}
+
+var _templateObject;
+
+/**
+ * CSS for declaring a radial gradient, including a fallback background-color. The fallback is either the first color-stop or an explicitly passed fallback color.
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   ...radialGradient({
+ *     colorStops: ['#00FFFF 0%', 'rgba(0, 0, 255, 0) 50%', '#0000FF 95%'],
+ *     extent: 'farthest-corner at 45px 45px',
+ *     position: 'center',
+ *     shape: 'ellipse',
+ *   })
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   ${radialGradient({
+ *     colorStops: ['#00FFFF 0%', 'rgba(0, 0, 255, 0) 50%', '#0000FF 95%'],
+ *     extent: 'farthest-corner at 45px 45px',
+ *     position: 'center',
+ *     shape: 'ellipse',
+ *   })}
+ *`
+ *
+ * // CSS as JS Output
+ *
+ * div: {
+ *   'backgroundColor': '#00FFFF',
+ *   'backgroundImage': 'radial-gradient(center ellipse farthest-corner at 45px 45px, #00FFFF 0%, rgba(0, 0, 255, 0) 50%, #0000FF 95%)',
+ * }
+ */
+function radialGradient(_ref) {
+  var colorStops = _ref.colorStops,
+      _ref$extent = _ref.extent,
+      extent = _ref$extent === void 0 ? '' : _ref$extent,
+      fallback = _ref.fallback,
+      _ref$position = _ref.position,
+      position = _ref$position === void 0 ? '' : _ref$position,
+      _ref$shape = _ref.shape,
+      shape = _ref$shape === void 0 ? '' : _ref$shape;
+
+  if (!colorStops || colorStops.length < 2) {
+    throw new PolishedError(57);
+  }
+
+  return {
+    backgroundColor: fallback || colorStops[0].split(' ')[0],
+    backgroundImage: constructGradientValue(_templateObject || (_templateObject = (0,_babel_runtime_helpers_esm_taggedTemplateLiteralLoose__WEBPACK_IMPORTED_MODULE_4__["default"])(["radial-gradient(", "", "", "", ")"])), position, shape, extent, colorStops.join(', '))
+  };
+}
+
+/**
+ * A helper to generate a retina background image and non-retina
+ * background image. The retina background image will output to a HiDPI media query. The mixin uses
+ * a _2x.png filename suffix by default.
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *  ...retinaImage('my-img')
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   ${retinaImage('my-img')}
+ * `
+ *
+ * // CSS as JS Output
+ * div {
+ *   backgroundImage: 'url(my-img.png)',
+ *   '@media only screen and (-webkit-min-device-pixel-ratio: 1.3),
+ *    only screen and (min--moz-device-pixel-ratio: 1.3),
+ *    only screen and (-o-min-device-pixel-ratio: 1.3/1),
+ *    only screen and (min-resolution: 144dpi),
+ *    only screen and (min-resolution: 1.5dppx)': {
+ *     backgroundImage: 'url(my-img_2x.png)',
+ *   }
+ * }
+ */
+function retinaImage(filename, backgroundSize, extension, retinaFilename, retinaSuffix) {
+  var _ref;
+
+  if (extension === void 0) {
+    extension = 'png';
+  }
+
+  if (retinaSuffix === void 0) {
+    retinaSuffix = '_2x';
+  }
+
+  if (!filename) {
+    throw new PolishedError(58);
+  } // Replace the dot at the beginning of the passed extension if one exists
+
+
+  var ext = extension.replace(/^\./, '');
+  var rFilename = retinaFilename ? retinaFilename + "." + ext : "" + filename + retinaSuffix + "." + ext;
+  return _ref = {
+    backgroundImage: "url(" + filename + "." + ext + ")"
+  }, _ref[hiDPI()] = (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    backgroundImage: "url(" + rFilename + ")"
+  }, backgroundSize ? {
+    backgroundSize: backgroundSize
+  } : {}), _ref;
+}
+
+/* eslint-disable key-spacing */
+var functionsMap = {
+  easeInBack: 'cubic-bezier(0.600, -0.280, 0.735, 0.045)',
+  easeInCirc: 'cubic-bezier(0.600,  0.040, 0.980, 0.335)',
+  easeInCubic: 'cubic-bezier(0.550,  0.055, 0.675, 0.190)',
+  easeInExpo: 'cubic-bezier(0.950,  0.050, 0.795, 0.035)',
+  easeInQuad: 'cubic-bezier(0.550,  0.085, 0.680, 0.530)',
+  easeInQuart: 'cubic-bezier(0.895,  0.030, 0.685, 0.220)',
+  easeInQuint: 'cubic-bezier(0.755,  0.050, 0.855, 0.060)',
+  easeInSine: 'cubic-bezier(0.470,  0.000, 0.745, 0.715)',
+  easeOutBack: 'cubic-bezier(0.175,  0.885, 0.320, 1.275)',
+  easeOutCubic: 'cubic-bezier(0.215,  0.610, 0.355, 1.000)',
+  easeOutCirc: 'cubic-bezier(0.075,  0.820, 0.165, 1.000)',
+  easeOutExpo: 'cubic-bezier(0.190,  1.000, 0.220, 1.000)',
+  easeOutQuad: 'cubic-bezier(0.250,  0.460, 0.450, 0.940)',
+  easeOutQuart: 'cubic-bezier(0.165,  0.840, 0.440, 1.000)',
+  easeOutQuint: 'cubic-bezier(0.230,  1.000, 0.320, 1.000)',
+  easeOutSine: 'cubic-bezier(0.390,  0.575, 0.565, 1.000)',
+  easeInOutBack: 'cubic-bezier(0.680, -0.550, 0.265, 1.550)',
+  easeInOutCirc: 'cubic-bezier(0.785,  0.135, 0.150, 0.860)',
+  easeInOutCubic: 'cubic-bezier(0.645,  0.045, 0.355, 1.000)',
+  easeInOutExpo: 'cubic-bezier(1.000,  0.000, 0.000, 1.000)',
+  easeInOutQuad: 'cubic-bezier(0.455,  0.030, 0.515, 0.955)',
+  easeInOutQuart: 'cubic-bezier(0.770,  0.000, 0.175, 1.000)',
+  easeInOutQuint: 'cubic-bezier(0.860,  0.000, 0.070, 1.000)',
+  easeInOutSine: 'cubic-bezier(0.445,  0.050, 0.550, 0.950)'
+};
+/* eslint-enable key-spacing */
+
+function getTimingFunction(functionName) {
+  return functionsMap[functionName];
+}
+/**
+ * String to represent common easing functions as demonstrated here: (github.com/jaukia/easie).
+ *
+ * @deprecated - This will be deprecated in v5 in favor of `easeIn`, `easeOut`, `easeInOut`.
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   'transitionTimingFunction': timingFunctions('easeInQuad')
+ * }
+ *
+ * // styled-components usage
+ *  const div = styled.div`
+ *   transitionTimingFunction: ${timingFunctions('easeInQuad')};
+ * `
+ *
+ * // CSS as JS Output
+ *
+ * 'div': {
+ *   'transitionTimingFunction': 'cubic-bezier(0.550,  0.085, 0.680, 0.530)',
+ * }
+ */
+
+
+function timingFunctions(timingFunction) {
+  return getTimingFunction(timingFunction);
+}
+
+var getBorderWidth = function getBorderWidth(pointingDirection, height, width) {
+  var fullWidth = "" + width[0] + (width[1] || '');
+  var halfWidth = "" + width[0] / 2 + (width[1] || '');
+  var fullHeight = "" + height[0] + (height[1] || '');
+  var halfHeight = "" + height[0] / 2 + (height[1] || '');
+
+  switch (pointingDirection) {
+    case 'top':
+      return "0 " + halfWidth + " " + fullHeight + " " + halfWidth;
+
+    case 'topLeft':
+      return fullWidth + " " + fullHeight + " 0 0";
+
+    case 'left':
+      return halfHeight + " " + fullWidth + " " + halfHeight + " 0";
+
+    case 'bottomLeft':
+      return fullWidth + " 0 0 " + fullHeight;
+
+    case 'bottom':
+      return fullHeight + " " + halfWidth + " 0 " + halfWidth;
+
+    case 'bottomRight':
+      return "0 0 " + fullWidth + " " + fullHeight;
+
+    case 'right':
+      return halfHeight + " 0 " + halfHeight + " " + fullWidth;
+
+    case 'topRight':
+    default:
+      return "0 " + fullWidth + " " + fullHeight + " 0";
+  }
+};
+
+var getBorderColor = function getBorderColor(pointingDirection, foregroundColor) {
+  switch (pointingDirection) {
+    case 'top':
+    case 'bottomRight':
+      return {
+        borderBottomColor: foregroundColor
+      };
+
+    case 'right':
+    case 'bottomLeft':
+      return {
+        borderLeftColor: foregroundColor
+      };
+
+    case 'bottom':
+    case 'topLeft':
+      return {
+        borderTopColor: foregroundColor
+      };
+
+    case 'left':
+    case 'topRight':
+      return {
+        borderRightColor: foregroundColor
+      };
+
+    default:
+      throw new PolishedError(59);
+  }
+};
+/**
+ * CSS to represent triangle with any pointing direction with an optional background color.
+ *
+ * @example
+ * // Styles as object usage
+ *
+ * const styles = {
+ *   ...triangle({ pointingDirection: 'right', width: '100px', height: '100px', foregroundColor: 'red' })
+ * }
+ *
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   ${triangle({ pointingDirection: 'right', width: '100px', height: '100px', foregroundColor: 'red' })}
+ *
+ *
+ * // CSS as JS Output
+ *
+ * div: {
+ *  'borderColor': 'transparent transparent transparent red',
+ *  'borderStyle': 'solid',
+ *  'borderWidth': '50px 0 50px 100px',
+ *  'height': '0',
+ *  'width': '0',
+ * }
+ */
+
+
+function triangle(_ref) {
+  var pointingDirection = _ref.pointingDirection,
+      height = _ref.height,
+      width = _ref.width,
+      foregroundColor = _ref.foregroundColor,
+      _ref$backgroundColor = _ref.backgroundColor,
+      backgroundColor = _ref$backgroundColor === void 0 ? 'transparent' : _ref$backgroundColor;
+  var widthAndUnit = getValueAndUnit(width);
+  var heightAndUnit = getValueAndUnit(height);
+
+  if (isNaN(heightAndUnit[0]) || isNaN(widthAndUnit[0])) {
+    throw new PolishedError(60);
+  }
+
+  return (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    width: '0',
+    height: '0',
+    borderColor: backgroundColor
+  }, getBorderColor(pointingDirection, foregroundColor), {
+    borderStyle: 'solid',
+    borderWidth: getBorderWidth(pointingDirection, heightAndUnit, widthAndUnit)
+  });
+}
+
+/**
+ * Provides an easy way to change the `wordWrap` property.
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   ...wordWrap('break-word')
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   ${wordWrap('break-word')}
+ * `
+ *
+ * // CSS as JS Output
+ *
+ * const styles = {
+ *   overflowWrap: 'break-word',
+ *   wordWrap: 'break-word',
+ *   wordBreak: 'break-all',
+ * }
+ */
+function wordWrap(wrap) {
+  if (wrap === void 0) {
+    wrap = 'break-word';
+  }
+
+  var wordBreak = wrap === 'break-word' ? 'break-all' : wrap;
+  return {
+    overflowWrap: wrap,
+    wordWrap: wrap,
+    wordBreak: wordBreak
+  };
+}
+
+function colorToInt(color) {
+  return Math.round(color * 255);
+}
+
+function convertToInt(red, green, blue) {
+  return colorToInt(red) + "," + colorToInt(green) + "," + colorToInt(blue);
+}
+
+function hslToRgb(hue, saturation, lightness, convert) {
+  if (convert === void 0) {
+    convert = convertToInt;
+  }
+
+  if (saturation === 0) {
+    // achromatic
+    return convert(lightness, lightness, lightness);
+  } // formulae from https://en.wikipedia.org/wiki/HSL_and_HSV
+
+
+  var huePrime = (hue % 360 + 360) % 360 / 60;
+  var chroma = (1 - Math.abs(2 * lightness - 1)) * saturation;
+  var secondComponent = chroma * (1 - Math.abs(huePrime % 2 - 1));
+  var red = 0;
+  var green = 0;
+  var blue = 0;
+
+  if (huePrime >= 0 && huePrime < 1) {
+    red = chroma;
+    green = secondComponent;
+  } else if (huePrime >= 1 && huePrime < 2) {
+    red = secondComponent;
+    green = chroma;
+  } else if (huePrime >= 2 && huePrime < 3) {
+    green = chroma;
+    blue = secondComponent;
+  } else if (huePrime >= 3 && huePrime < 4) {
+    green = secondComponent;
+    blue = chroma;
+  } else if (huePrime >= 4 && huePrime < 5) {
+    red = secondComponent;
+    blue = chroma;
+  } else if (huePrime >= 5 && huePrime < 6) {
+    red = chroma;
+    blue = secondComponent;
+  }
+
+  var lightnessModification = lightness - chroma / 2;
+  var finalRed = red + lightnessModification;
+  var finalGreen = green + lightnessModification;
+  var finalBlue = blue + lightnessModification;
+  return convert(finalRed, finalGreen, finalBlue);
+}
+
+var namedColorMap = {
+  aliceblue: 'f0f8ff',
+  antiquewhite: 'faebd7',
+  aqua: '00ffff',
+  aquamarine: '7fffd4',
+  azure: 'f0ffff',
+  beige: 'f5f5dc',
+  bisque: 'ffe4c4',
+  black: '000',
+  blanchedalmond: 'ffebcd',
+  blue: '0000ff',
+  blueviolet: '8a2be2',
+  brown: 'a52a2a',
+  burlywood: 'deb887',
+  cadetblue: '5f9ea0',
+  chartreuse: '7fff00',
+  chocolate: 'd2691e',
+  coral: 'ff7f50',
+  cornflowerblue: '6495ed',
+  cornsilk: 'fff8dc',
+  crimson: 'dc143c',
+  cyan: '00ffff',
+  darkblue: '00008b',
+  darkcyan: '008b8b',
+  darkgoldenrod: 'b8860b',
+  darkgray: 'a9a9a9',
+  darkgreen: '006400',
+  darkgrey: 'a9a9a9',
+  darkkhaki: 'bdb76b',
+  darkmagenta: '8b008b',
+  darkolivegreen: '556b2f',
+  darkorange: 'ff8c00',
+  darkorchid: '9932cc',
+  darkred: '8b0000',
+  darksalmon: 'e9967a',
+  darkseagreen: '8fbc8f',
+  darkslateblue: '483d8b',
+  darkslategray: '2f4f4f',
+  darkslategrey: '2f4f4f',
+  darkturquoise: '00ced1',
+  darkviolet: '9400d3',
+  deeppink: 'ff1493',
+  deepskyblue: '00bfff',
+  dimgray: '696969',
+  dimgrey: '696969',
+  dodgerblue: '1e90ff',
+  firebrick: 'b22222',
+  floralwhite: 'fffaf0',
+  forestgreen: '228b22',
+  fuchsia: 'ff00ff',
+  gainsboro: 'dcdcdc',
+  ghostwhite: 'f8f8ff',
+  gold: 'ffd700',
+  goldenrod: 'daa520',
+  gray: '808080',
+  green: '008000',
+  greenyellow: 'adff2f',
+  grey: '808080',
+  honeydew: 'f0fff0',
+  hotpink: 'ff69b4',
+  indianred: 'cd5c5c',
+  indigo: '4b0082',
+  ivory: 'fffff0',
+  khaki: 'f0e68c',
+  lavender: 'e6e6fa',
+  lavenderblush: 'fff0f5',
+  lawngreen: '7cfc00',
+  lemonchiffon: 'fffacd',
+  lightblue: 'add8e6',
+  lightcoral: 'f08080',
+  lightcyan: 'e0ffff',
+  lightgoldenrodyellow: 'fafad2',
+  lightgray: 'd3d3d3',
+  lightgreen: '90ee90',
+  lightgrey: 'd3d3d3',
+  lightpink: 'ffb6c1',
+  lightsalmon: 'ffa07a',
+  lightseagreen: '20b2aa',
+  lightskyblue: '87cefa',
+  lightslategray: '789',
+  lightslategrey: '789',
+  lightsteelblue: 'b0c4de',
+  lightyellow: 'ffffe0',
+  lime: '0f0',
+  limegreen: '32cd32',
+  linen: 'faf0e6',
+  magenta: 'f0f',
+  maroon: '800000',
+  mediumaquamarine: '66cdaa',
+  mediumblue: '0000cd',
+  mediumorchid: 'ba55d3',
+  mediumpurple: '9370db',
+  mediumseagreen: '3cb371',
+  mediumslateblue: '7b68ee',
+  mediumspringgreen: '00fa9a',
+  mediumturquoise: '48d1cc',
+  mediumvioletred: 'c71585',
+  midnightblue: '191970',
+  mintcream: 'f5fffa',
+  mistyrose: 'ffe4e1',
+  moccasin: 'ffe4b5',
+  navajowhite: 'ffdead',
+  navy: '000080',
+  oldlace: 'fdf5e6',
+  olive: '808000',
+  olivedrab: '6b8e23',
+  orange: 'ffa500',
+  orangered: 'ff4500',
+  orchid: 'da70d6',
+  palegoldenrod: 'eee8aa',
+  palegreen: '98fb98',
+  paleturquoise: 'afeeee',
+  palevioletred: 'db7093',
+  papayawhip: 'ffefd5',
+  peachpuff: 'ffdab9',
+  peru: 'cd853f',
+  pink: 'ffc0cb',
+  plum: 'dda0dd',
+  powderblue: 'b0e0e6',
+  purple: '800080',
+  rebeccapurple: '639',
+  red: 'f00',
+  rosybrown: 'bc8f8f',
+  royalblue: '4169e1',
+  saddlebrown: '8b4513',
+  salmon: 'fa8072',
+  sandybrown: 'f4a460',
+  seagreen: '2e8b57',
+  seashell: 'fff5ee',
+  sienna: 'a0522d',
+  silver: 'c0c0c0',
+  skyblue: '87ceeb',
+  slateblue: '6a5acd',
+  slategray: '708090',
+  slategrey: '708090',
+  snow: 'fffafa',
+  springgreen: '00ff7f',
+  steelblue: '4682b4',
+  tan: 'd2b48c',
+  teal: '008080',
+  thistle: 'd8bfd8',
+  tomato: 'ff6347',
+  turquoise: '40e0d0',
+  violet: 'ee82ee',
+  wheat: 'f5deb3',
+  white: 'fff',
+  whitesmoke: 'f5f5f5',
+  yellow: 'ff0',
+  yellowgreen: '9acd32'
+};
+/**
+ * Checks if a string is a CSS named color and returns its equivalent hex value, otherwise returns the original color.
+ * @private
+ */
+
+function nameToHex(color) {
+  if (typeof color !== 'string') return color;
+  var normalizedColorName = color.toLowerCase();
+  return namedColorMap[normalizedColorName] ? "#" + namedColorMap[normalizedColorName] : color;
+}
+
+var hexRegex = /^#[a-fA-F0-9]{6}$/;
+var hexRgbaRegex = /^#[a-fA-F0-9]{8}$/;
+var reducedHexRegex = /^#[a-fA-F0-9]{3}$/;
+var reducedRgbaHexRegex = /^#[a-fA-F0-9]{4}$/;
+var rgbRegex = /^rgb\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)$/i;
+var rgbaRegex = /^rgba\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*([-+]?[0-9]*[.]?[0-9]+)\s*\)$/i;
+var hslRegex = /^hsl\(\s*(\d{0,3}[.]?[0-9]+)\s*,\s*(\d{1,3}[.]?[0-9]?)%\s*,\s*(\d{1,3}[.]?[0-9]?)%\s*\)$/i;
+var hslaRegex = /^hsla\(\s*(\d{0,3}[.]?[0-9]+)\s*,\s*(\d{1,3}[.]?[0-9]?)%\s*,\s*(\d{1,3}[.]?[0-9]?)%\s*,\s*([-+]?[0-9]*[.]?[0-9]+)\s*\)$/i;
+/**
+ * Returns an RgbColor or RgbaColor object. This utility function is only useful
+ * if want to extract a color component. With the color util `toColorString` you
+ * can convert a RgbColor or RgbaColor object back to a string.
+ *
+ * @example
+ * // Assigns `{ red: 255, green: 0, blue: 0 }` to color1
+ * const color1 = parseToRgb('rgb(255, 0, 0)');
+ * // Assigns `{ red: 92, green: 102, blue: 112, alpha: 0.75 }` to color2
+ * const color2 = parseToRgb('hsla(210, 10%, 40%, 0.75)');
+ */
+
+function parseToRgb(color) {
+  if (typeof color !== 'string') {
+    throw new PolishedError(3);
+  }
+
+  var normalizedColor = nameToHex(color);
+
+  if (normalizedColor.match(hexRegex)) {
+    return {
+      red: parseInt("" + normalizedColor[1] + normalizedColor[2], 16),
+      green: parseInt("" + normalizedColor[3] + normalizedColor[4], 16),
+      blue: parseInt("" + normalizedColor[5] + normalizedColor[6], 16)
+    };
+  }
+
+  if (normalizedColor.match(hexRgbaRegex)) {
+    var alpha = parseFloat((parseInt("" + normalizedColor[7] + normalizedColor[8], 16) / 255).toFixed(2));
+    return {
+      red: parseInt("" + normalizedColor[1] + normalizedColor[2], 16),
+      green: parseInt("" + normalizedColor[3] + normalizedColor[4], 16),
+      blue: parseInt("" + normalizedColor[5] + normalizedColor[6], 16),
+      alpha: alpha
+    };
+  }
+
+  if (normalizedColor.match(reducedHexRegex)) {
+    return {
+      red: parseInt("" + normalizedColor[1] + normalizedColor[1], 16),
+      green: parseInt("" + normalizedColor[2] + normalizedColor[2], 16),
+      blue: parseInt("" + normalizedColor[3] + normalizedColor[3], 16)
+    };
+  }
+
+  if (normalizedColor.match(reducedRgbaHexRegex)) {
+    var _alpha = parseFloat((parseInt("" + normalizedColor[4] + normalizedColor[4], 16) / 255).toFixed(2));
+
+    return {
+      red: parseInt("" + normalizedColor[1] + normalizedColor[1], 16),
+      green: parseInt("" + normalizedColor[2] + normalizedColor[2], 16),
+      blue: parseInt("" + normalizedColor[3] + normalizedColor[3], 16),
+      alpha: _alpha
+    };
+  }
+
+  var rgbMatched = rgbRegex.exec(normalizedColor);
+
+  if (rgbMatched) {
+    return {
+      red: parseInt("" + rgbMatched[1], 10),
+      green: parseInt("" + rgbMatched[2], 10),
+      blue: parseInt("" + rgbMatched[3], 10)
+    };
+  }
+
+  var rgbaMatched = rgbaRegex.exec(normalizedColor.substring(0, 50));
+
+  if (rgbaMatched) {
+    return {
+      red: parseInt("" + rgbaMatched[1], 10),
+      green: parseInt("" + rgbaMatched[2], 10),
+      blue: parseInt("" + rgbaMatched[3], 10),
+      alpha: parseFloat("" + rgbaMatched[4])
+    };
+  }
+
+  var hslMatched = hslRegex.exec(normalizedColor);
+
+  if (hslMatched) {
+    var hue = parseInt("" + hslMatched[1], 10);
+    var saturation = parseInt("" + hslMatched[2], 10) / 100;
+    var lightness = parseInt("" + hslMatched[3], 10) / 100;
+    var rgbColorString = "rgb(" + hslToRgb(hue, saturation, lightness) + ")";
+    var hslRgbMatched = rgbRegex.exec(rgbColorString);
+
+    if (!hslRgbMatched) {
+      throw new PolishedError(4, normalizedColor, rgbColorString);
+    }
+
+    return {
+      red: parseInt("" + hslRgbMatched[1], 10),
+      green: parseInt("" + hslRgbMatched[2], 10),
+      blue: parseInt("" + hslRgbMatched[3], 10)
+    };
+  }
+
+  var hslaMatched = hslaRegex.exec(normalizedColor.substring(0, 50));
+
+  if (hslaMatched) {
+    var _hue = parseInt("" + hslaMatched[1], 10);
+
+    var _saturation = parseInt("" + hslaMatched[2], 10) / 100;
+
+    var _lightness = parseInt("" + hslaMatched[3], 10) / 100;
+
+    var _rgbColorString = "rgb(" + hslToRgb(_hue, _saturation, _lightness) + ")";
+
+    var _hslRgbMatched = rgbRegex.exec(_rgbColorString);
+
+    if (!_hslRgbMatched) {
+      throw new PolishedError(4, normalizedColor, _rgbColorString);
+    }
+
+    return {
+      red: parseInt("" + _hslRgbMatched[1], 10),
+      green: parseInt("" + _hslRgbMatched[2], 10),
+      blue: parseInt("" + _hslRgbMatched[3], 10),
+      alpha: parseFloat("" + hslaMatched[4])
+    };
+  }
+
+  throw new PolishedError(5);
+}
+
+function rgbToHsl(color) {
+  // make sure rgb are contained in a set of [0, 255]
+  var red = color.red / 255;
+  var green = color.green / 255;
+  var blue = color.blue / 255;
+  var max = Math.max(red, green, blue);
+  var min = Math.min(red, green, blue);
+  var lightness = (max + min) / 2;
+
+  if (max === min) {
+    // achromatic
+    if (color.alpha !== undefined) {
+      return {
+        hue: 0,
+        saturation: 0,
+        lightness: lightness,
+        alpha: color.alpha
+      };
+    } else {
+      return {
+        hue: 0,
+        saturation: 0,
+        lightness: lightness
+      };
+    }
+  }
+
+  var hue;
+  var delta = max - min;
+  var saturation = lightness > 0.5 ? delta / (2 - max - min) : delta / (max + min);
+
+  switch (max) {
+    case red:
+      hue = (green - blue) / delta + (green < blue ? 6 : 0);
+      break;
+
+    case green:
+      hue = (blue - red) / delta + 2;
+      break;
+
+    default:
+      // blue case
+      hue = (red - green) / delta + 4;
+      break;
+  }
+
+  hue *= 60;
+
+  if (color.alpha !== undefined) {
+    return {
+      hue: hue,
+      saturation: saturation,
+      lightness: lightness,
+      alpha: color.alpha
+    };
+  }
+
+  return {
+    hue: hue,
+    saturation: saturation,
+    lightness: lightness
+  };
+}
+
+/**
+ * Returns an HslColor or HslaColor object. This utility function is only useful
+ * if want to extract a color component. With the color util `toColorString` you
+ * can convert a HslColor or HslaColor object back to a string.
+ *
+ * @example
+ * // Assigns `{ hue: 0, saturation: 1, lightness: 0.5 }` to color1
+ * const color1 = parseToHsl('rgb(255, 0, 0)');
+ * // Assigns `{ hue: 128, saturation: 1, lightness: 0.5, alpha: 0.75 }` to color2
+ * const color2 = parseToHsl('hsla(128, 100%, 50%, 0.75)');
+ */
+function parseToHsl(color) {
+  // Note: At a later stage we can optimize this function as right now a hsl
+  // color would be parsed converted to rgb values and converted back to hsl.
+  return rgbToHsl(parseToRgb(color));
+}
+
+/**
+ * Reduces hex values if possible e.g. #ff8866 to #f86
+ * @private
+ */
+var reduceHexValue = function reduceHexValue(value) {
+  if (value.length === 7 && value[1] === value[2] && value[3] === value[4] && value[5] === value[6]) {
+    return "#" + value[1] + value[3] + value[5];
+  }
+
+  return value;
+};
+
+function numberToHex(value) {
+  var hex = value.toString(16);
+  return hex.length === 1 ? "0" + hex : hex;
+}
+
+function colorToHex(color) {
+  return numberToHex(Math.round(color * 255));
+}
+
+function convertToHex(red, green, blue) {
+  return reduceHexValue("#" + colorToHex(red) + colorToHex(green) + colorToHex(blue));
+}
+
+function hslToHex(hue, saturation, lightness) {
+  return hslToRgb(hue, saturation, lightness, convertToHex);
+}
+
+/**
+ * Returns a string value for the color. The returned result is the smallest possible hex notation.
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   background: hsl(359, 0.75, 0.4),
+ *   background: hsl({ hue: 360, saturation: 0.75, lightness: 0.4 }),
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   background: ${hsl(359, 0.75, 0.4)};
+ *   background: ${hsl({ hue: 360, saturation: 0.75, lightness: 0.4 })};
+ * `
+ *
+ * // CSS in JS Output
+ *
+ * element {
+ *   background: "#b3191c";
+ *   background: "#b3191c";
+ * }
+ */
+function hsl(value, saturation, lightness) {
+  if (typeof value === 'number' && typeof saturation === 'number' && typeof lightness === 'number') {
+    return hslToHex(value, saturation, lightness);
+  } else if (typeof value === 'object' && saturation === undefined && lightness === undefined) {
+    return hslToHex(value.hue, value.saturation, value.lightness);
+  }
+
+  throw new PolishedError(1);
+}
+
+/**
+ * Returns a string value for the color. The returned result is the smallest possible rgba or hex notation.
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   background: hsla(359, 0.75, 0.4, 0.7),
+ *   background: hsla({ hue: 360, saturation: 0.75, lightness: 0.4, alpha: 0,7 }),
+ *   background: hsla(359, 0.75, 0.4, 1),
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   background: ${hsla(359, 0.75, 0.4, 0.7)};
+ *   background: ${hsla({ hue: 360, saturation: 0.75, lightness: 0.4, alpha: 0,7 })};
+ *   background: ${hsla(359, 0.75, 0.4, 1)};
+ * `
+ *
+ * // CSS in JS Output
+ *
+ * element {
+ *   background: "rgba(179,25,28,0.7)";
+ *   background: "rgba(179,25,28,0.7)";
+ *   background: "#b3191c";
+ * }
+ */
+function hsla(value, saturation, lightness, alpha) {
+  if (typeof value === 'number' && typeof saturation === 'number' && typeof lightness === 'number' && typeof alpha === 'number') {
+    return alpha >= 1 ? hslToHex(value, saturation, lightness) : "rgba(" + hslToRgb(value, saturation, lightness) + "," + alpha + ")";
+  } else if (typeof value === 'object' && saturation === undefined && lightness === undefined && alpha === undefined) {
+    return value.alpha >= 1 ? hslToHex(value.hue, value.saturation, value.lightness) : "rgba(" + hslToRgb(value.hue, value.saturation, value.lightness) + "," + value.alpha + ")";
+  }
+
+  throw new PolishedError(2);
+}
+
+/**
+ * Returns a string value for the color. The returned result is the smallest possible hex notation.
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   background: rgb(255, 205, 100),
+ *   background: rgb({ red: 255, green: 205, blue: 100 }),
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   background: ${rgb(255, 205, 100)};
+ *   background: ${rgb({ red: 255, green: 205, blue: 100 })};
+ * `
+ *
+ * // CSS in JS Output
+ *
+ * element {
+ *   background: "#ffcd64";
+ *   background: "#ffcd64";
+ * }
+ */
+function rgb(value, green, blue) {
+  if (typeof value === 'number' && typeof green === 'number' && typeof blue === 'number') {
+    return reduceHexValue("#" + numberToHex(value) + numberToHex(green) + numberToHex(blue));
+  } else if (typeof value === 'object' && green === undefined && blue === undefined) {
+    return reduceHexValue("#" + numberToHex(value.red) + numberToHex(value.green) + numberToHex(value.blue));
+  }
+
+  throw new PolishedError(6);
+}
+
+/**
+ * Returns a string value for the color. The returned result is the smallest possible rgba or hex notation.
+ *
+ * Can also be used to fade a color by passing a hex value or named CSS color along with an alpha value.
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   background: rgba(255, 205, 100, 0.7),
+ *   background: rgba({ red: 255, green: 205, blue: 100, alpha: 0.7 }),
+ *   background: rgba(255, 205, 100, 1),
+ *   background: rgba('#ffffff', 0.4),
+ *   background: rgba('black', 0.7),
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   background: ${rgba(255, 205, 100, 0.7)};
+ *   background: ${rgba({ red: 255, green: 205, blue: 100, alpha: 0.7 })};
+ *   background: ${rgba(255, 205, 100, 1)};
+ *   background: ${rgba('#ffffff', 0.4)};
+ *   background: ${rgba('black', 0.7)};
+ * `
+ *
+ * // CSS in JS Output
+ *
+ * element {
+ *   background: "rgba(255,205,100,0.7)";
+ *   background: "rgba(255,205,100,0.7)";
+ *   background: "#ffcd64";
+ *   background: "rgba(255,255,255,0.4)";
+ *   background: "rgba(0,0,0,0.7)";
+ * }
+ */
+function rgba(firstValue, secondValue, thirdValue, fourthValue) {
+  if (typeof firstValue === 'string' && typeof secondValue === 'number') {
+    var rgbValue = parseToRgb(firstValue);
+    return "rgba(" + rgbValue.red + "," + rgbValue.green + "," + rgbValue.blue + "," + secondValue + ")";
+  } else if (typeof firstValue === 'number' && typeof secondValue === 'number' && typeof thirdValue === 'number' && typeof fourthValue === 'number') {
+    return fourthValue >= 1 ? rgb(firstValue, secondValue, thirdValue) : "rgba(" + firstValue + "," + secondValue + "," + thirdValue + "," + fourthValue + ")";
+  } else if (typeof firstValue === 'object' && secondValue === undefined && thirdValue === undefined && fourthValue === undefined) {
+    return firstValue.alpha >= 1 ? rgb(firstValue.red, firstValue.green, firstValue.blue) : "rgba(" + firstValue.red + "," + firstValue.green + "," + firstValue.blue + "," + firstValue.alpha + ")";
+  }
+
+  throw new PolishedError(7);
+}
+
+var isRgb = function isRgb(color) {
+  return typeof color.red === 'number' && typeof color.green === 'number' && typeof color.blue === 'number' && (typeof color.alpha !== 'number' || typeof color.alpha === 'undefined');
+};
+
+var isRgba = function isRgba(color) {
+  return typeof color.red === 'number' && typeof color.green === 'number' && typeof color.blue === 'number' && typeof color.alpha === 'number';
+};
+
+var isHsl = function isHsl(color) {
+  return typeof color.hue === 'number' && typeof color.saturation === 'number' && typeof color.lightness === 'number' && (typeof color.alpha !== 'number' || typeof color.alpha === 'undefined');
+};
+
+var isHsla = function isHsla(color) {
+  return typeof color.hue === 'number' && typeof color.saturation === 'number' && typeof color.lightness === 'number' && typeof color.alpha === 'number';
+};
+/**
+ * Converts a RgbColor, RgbaColor, HslColor or HslaColor object to a color string.
+ * This util is useful in case you only know on runtime which color object is
+ * used. Otherwise we recommend to rely on `rgb`, `rgba`, `hsl` or `hsla`.
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   background: toColorString({ red: 255, green: 205, blue: 100 }),
+ *   background: toColorString({ red: 255, green: 205, blue: 100, alpha: 0.72 }),
+ *   background: toColorString({ hue: 240, saturation: 1, lightness: 0.5 }),
+ *   background: toColorString({ hue: 360, saturation: 0.75, lightness: 0.4, alpha: 0.72 }),
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   background: ${toColorString({ red: 255, green: 205, blue: 100 })};
+ *   background: ${toColorString({ red: 255, green: 205, blue: 100, alpha: 0.72 })};
+ *   background: ${toColorString({ hue: 240, saturation: 1, lightness: 0.5 })};
+ *   background: ${toColorString({ hue: 360, saturation: 0.75, lightness: 0.4, alpha: 0.72 })};
+ * `
+ *
+ * // CSS in JS Output
+ * element {
+ *   background: "#ffcd64";
+ *   background: "rgba(255,205,100,0.72)";
+ *   background: "#00f";
+ *   background: "rgba(179,25,25,0.72)";
+ * }
+ */
+
+
+function toColorString(color) {
+  if (typeof color !== 'object') throw new PolishedError(8);
+  if (isRgba(color)) return rgba(color);
+  if (isRgb(color)) return rgb(color);
+  if (isHsla(color)) return hsla(color);
+  if (isHsl(color)) return hsl(color);
+  throw new PolishedError(8);
+}
+
+// Type definitions taken from https://github.com/gcanti/flow-static-land/blob/master/src/Fun.js
+// eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line no-redeclare
+function curried(f, length, acc) {
+  return function fn() {
+    // eslint-disable-next-line prefer-rest-params
+    var combined = acc.concat(Array.prototype.slice.call(arguments));
+    return combined.length >= length ? f.apply(this, combined) : curried(f, length, combined);
+  };
+} // eslint-disable-next-line no-redeclare
+
+
+function curry(f) {
+  // eslint-disable-line no-redeclare
+  return curried(f, f.length, []);
+}
+
+/**
+ * Changes the hue of the color. Hue is a number between 0 to 360. The first
+ * argument for adjustHue is the amount of degrees the color is rotated around
+ * the color wheel, always producing a positive hue value.
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   background: adjustHue(180, '#448'),
+ *   background: adjustHue('180', 'rgba(101,100,205,0.7)'),
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   background: ${adjustHue(180, '#448')};
+ *   background: ${adjustHue('180', 'rgba(101,100,205,0.7)')};
+ * `
+ *
+ * // CSS in JS Output
+ * element {
+ *   background: "#888844";
+ *   background: "rgba(136,136,68,0.7)";
+ * }
+ */
+
+function adjustHue(degree, color) {
+  if (color === 'transparent') return color;
+  var hslColor = parseToHsl(color);
+  return toColorString((0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, hslColor, {
+    hue: hslColor.hue + parseFloat(degree)
+  }));
+} // prettier-ignore
+
+
+var curriedAdjustHue = /*#__PURE__*/curry
+/* ::<number | string, string, string> */
+(adjustHue);
+
+/**
+ * Returns the complement of the provided color. This is identical to adjustHue(180, <color>).
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   background: complement('#448'),
+ *   background: complement('rgba(204,205,100,0.7)'),
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   background: ${complement('#448')};
+ *   background: ${complement('rgba(204,205,100,0.7)')};
+ * `
+ *
+ * // CSS in JS Output
+ * element {
+ *   background: "#884";
+ *   background: "rgba(153,153,153,0.7)";
+ * }
+ */
+
+function complement(color) {
+  if (color === 'transparent') return color;
+  var hslColor = parseToHsl(color);
+  return toColorString((0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, hslColor, {
+    hue: (hslColor.hue + 180) % 360
+  }));
+}
+
+function guard(lowerBoundary, upperBoundary, value) {
+  return Math.max(lowerBoundary, Math.min(upperBoundary, value));
+}
+
+/**
+ * Returns a string value for the darkened color.
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   background: darken(0.2, '#FFCD64'),
+ *   background: darken('0.2', 'rgba(255,205,100,0.7)'),
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   background: ${darken(0.2, '#FFCD64')};
+ *   background: ${darken('0.2', 'rgba(255,205,100,0.7)')};
+ * `
+ *
+ * // CSS in JS Output
+ *
+ * element {
+ *   background: "#ffbd31";
+ *   background: "rgba(255,189,49,0.7)";
+ * }
+ */
+
+function darken(amount, color) {
+  if (color === 'transparent') return color;
+  var hslColor = parseToHsl(color);
+  return toColorString((0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, hslColor, {
+    lightness: guard(0, 1, hslColor.lightness - parseFloat(amount))
+  }));
+} // prettier-ignore
+
+
+var curriedDarken = /*#__PURE__*/curry
+/* ::<number | string, string, string> */
+(darken);
+
+/**
+ * Decreases the intensity of a color. Its range is between 0 to 1. The first
+ * argument of the desaturate function is the amount by how much the color
+ * intensity should be decreased.
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   background: desaturate(0.2, '#CCCD64'),
+ *   background: desaturate('0.2', 'rgba(204,205,100,0.7)'),
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   background: ${desaturate(0.2, '#CCCD64')};
+ *   background: ${desaturate('0.2', 'rgba(204,205,100,0.7)')};
+ * `
+ *
+ * // CSS in JS Output
+ * element {
+ *   background: "#b8b979";
+ *   background: "rgba(184,185,121,0.7)";
+ * }
+ */
+
+function desaturate(amount, color) {
+  if (color === 'transparent') return color;
+  var hslColor = parseToHsl(color);
+  return toColorString((0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, hslColor, {
+    saturation: guard(0, 1, hslColor.saturation - parseFloat(amount))
+  }));
+} // prettier-ignore
+
+
+var curriedDesaturate = /*#__PURE__*/curry
+/* ::<number | string, string, string> */
+(desaturate);
+
+/**
+ * Returns a number (float) representing the luminance of a color.
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   background: getLuminance('#CCCD64') >= getLuminance('#0000ff') ? '#CCCD64' : '#0000ff',
+ *   background: getLuminance('rgba(58, 133, 255, 1)') >= getLuminance('rgba(255, 57, 149, 1)') ?
+ *                             'rgba(58, 133, 255, 1)' :
+ *                             'rgba(255, 57, 149, 1)',
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   background: ${getLuminance('#CCCD64') >= getLuminance('#0000ff') ? '#CCCD64' : '#0000ff'};
+ *   background: ${getLuminance('rgba(58, 133, 255, 1)') >= getLuminance('rgba(255, 57, 149, 1)') ?
+ *                             'rgba(58, 133, 255, 1)' :
+ *                             'rgba(255, 57, 149, 1)'};
+ *
+ * // CSS in JS Output
+ *
+ * div {
+ *   background: "#CCCD64";
+ *   background: "rgba(58, 133, 255, 1)";
+ * }
+ */
+
+function getLuminance(color) {
+  if (color === 'transparent') return 0;
+  var rgbColor = parseToRgb(color);
+
+  var _Object$keys$map = Object.keys(rgbColor).map(function (key) {
+    var channel = rgbColor[key] / 255;
+    return channel <= 0.03928 ? channel / 12.92 : Math.pow((channel + 0.055) / 1.055, 2.4);
+  }),
+      r = _Object$keys$map[0],
+      g = _Object$keys$map[1],
+      b = _Object$keys$map[2];
+
+  return parseFloat((0.2126 * r + 0.7152 * g + 0.0722 * b).toFixed(3));
+}
+
+/**
+ * Returns the contrast ratio between two colors based on
+ * [W3's recommended equation for calculating contrast](http://www.w3.org/TR/WCAG20/#contrast-ratiodef).
+ *
+ * @example
+ * const contrastRatio = getContrast('#444', '#fff');
+ */
+
+function getContrast(color1, color2) {
+  var luminance1 = getLuminance(color1);
+  var luminance2 = getLuminance(color2);
+  return parseFloat((luminance1 > luminance2 ? (luminance1 + 0.05) / (luminance2 + 0.05) : (luminance2 + 0.05) / (luminance1 + 0.05)).toFixed(2));
+}
+
+/**
+ * Converts the color to a grayscale, by reducing its saturation to 0.
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   background: grayscale('#CCCD64'),
+ *   background: grayscale('rgba(204,205,100,0.7)'),
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   background: ${grayscale('#CCCD64')};
+ *   background: ${grayscale('rgba(204,205,100,0.7)')};
+ * `
+ *
+ * // CSS in JS Output
+ * element {
+ *   background: "#999";
+ *   background: "rgba(153,153,153,0.7)";
+ * }
+ */
+
+function grayscale(color) {
+  if (color === 'transparent') return color;
+  return toColorString((0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, parseToHsl(color), {
+    saturation: 0
+  }));
+}
+
+/**
+ * Converts a HslColor or HslaColor object to a color string.
+ * This util is useful in case you only know on runtime which color object is
+ * used. Otherwise we recommend to rely on `hsl` or `hsla`.
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   background: hslToColorString({ hue: 240, saturation: 1, lightness: 0.5 }),
+ *   background: hslToColorString({ hue: 360, saturation: 0.75, lightness: 0.4, alpha: 0.72 }),
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   background: ${hslToColorString({ hue: 240, saturation: 1, lightness: 0.5 })};
+ *   background: ${hslToColorString({ hue: 360, saturation: 0.75, lightness: 0.4, alpha: 0.72 })};
+ * `
+ *
+ * // CSS in JS Output
+ * element {
+ *   background: "#00f";
+ *   background: "rgba(179,25,25,0.72)";
+ * }
+ */
+function hslToColorString(color) {
+  if (typeof color === 'object' && typeof color.hue === 'number' && typeof color.saturation === 'number' && typeof color.lightness === 'number') {
+    if (color.alpha && typeof color.alpha === 'number') {
+      return hsla({
+        hue: color.hue,
+        saturation: color.saturation,
+        lightness: color.lightness,
+        alpha: color.alpha
+      });
+    }
+
+    return hsl({
+      hue: color.hue,
+      saturation: color.saturation,
+      lightness: color.lightness
+    });
+  }
+
+  throw new PolishedError(45);
+}
+
+/**
+ * Inverts the red, green and blue values of a color.
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   background: invert('#CCCD64'),
+ *   background: invert('rgba(101,100,205,0.7)'),
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   background: ${invert('#CCCD64')};
+ *   background: ${invert('rgba(101,100,205,0.7)')};
+ * `
+ *
+ * // CSS in JS Output
+ *
+ * element {
+ *   background: "#33329b";
+ *   background: "rgba(154,155,50,0.7)";
+ * }
+ */
+
+function invert(color) {
+  if (color === 'transparent') return color; // parse color string to rgb
+
+  var value = parseToRgb(color);
+  return toColorString((0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, value, {
+    red: 255 - value.red,
+    green: 255 - value.green,
+    blue: 255 - value.blue
+  }));
+}
+
+/**
+ * Returns a string value for the lightened color.
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   background: lighten(0.2, '#CCCD64'),
+ *   background: lighten('0.2', 'rgba(204,205,100,0.7)'),
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   background: ${lighten(0.2, '#FFCD64')};
+ *   background: ${lighten('0.2', 'rgba(204,205,100,0.7)')};
+ * `
+ *
+ * // CSS in JS Output
+ *
+ * element {
+ *   background: "#e5e6b1";
+ *   background: "rgba(229,230,177,0.7)";
+ * }
+ */
+
+function lighten(amount, color) {
+  if (color === 'transparent') return color;
+  var hslColor = parseToHsl(color);
+  return toColorString((0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, hslColor, {
+    lightness: guard(0, 1, hslColor.lightness + parseFloat(amount))
+  }));
+} // prettier-ignore
+
+
+var curriedLighten = /*#__PURE__*/curry
+/* ::<number | string, string, string> */
+(lighten);
+
+/**
+ * Determines which contrast guidelines have been met for two colors.
+ * Based on the [contrast calculations recommended by W3](https://www.w3.org/WAI/WCAG21/Understanding/contrast-enhanced.html).
+ *
+ * @example
+ * const scores = meetsContrastGuidelines('#444', '#fff');
+ */
+function meetsContrastGuidelines(color1, color2) {
+  var contrastRatio = getContrast(color1, color2);
+  return {
+    AA: contrastRatio >= 4.5,
+    AALarge: contrastRatio >= 3,
+    AAA: contrastRatio >= 7,
+    AAALarge: contrastRatio >= 4.5
+  };
+}
+
+/**
+ * Mixes the two provided colors together by calculating the average of each of the RGB components weighted to the first color by the provided weight.
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   background: mix(0.5, '#f00', '#00f')
+ *   background: mix(0.25, '#f00', '#00f')
+ *   background: mix('0.5', 'rgba(255, 0, 0, 0.5)', '#00f')
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   background: ${mix(0.5, '#f00', '#00f')};
+ *   background: ${mix(0.25, '#f00', '#00f')};
+ *   background: ${mix('0.5', 'rgba(255, 0, 0, 0.5)', '#00f')};
+ * `
+ *
+ * // CSS in JS Output
+ *
+ * element {
+ *   background: "#7f007f";
+ *   background: "#3f00bf";
+ *   background: "rgba(63, 0, 191, 0.75)";
+ * }
+ */
+
+function mix(weight, color, otherColor) {
+  if (color === 'transparent') return otherColor;
+  if (otherColor === 'transparent') return color;
+  if (weight === 0) return otherColor;
+  var parsedColor1 = parseToRgb(color);
+
+  var color1 = (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, parsedColor1, {
+    alpha: typeof parsedColor1.alpha === 'number' ? parsedColor1.alpha : 1
+  });
+
+  var parsedColor2 = parseToRgb(otherColor);
+
+  var color2 = (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, parsedColor2, {
+    alpha: typeof parsedColor2.alpha === 'number' ? parsedColor2.alpha : 1
+  }); // The formula is copied from the original Sass implementation:
+  // http://sass-lang.com/documentation/Sass/Script/Functions.html#mix-instance_method
+
+
+  var alphaDelta = color1.alpha - color2.alpha;
+  var x = parseFloat(weight) * 2 - 1;
+  var y = x * alphaDelta === -1 ? x : x + alphaDelta;
+  var z = 1 + x * alphaDelta;
+  var weight1 = (y / z + 1) / 2.0;
+  var weight2 = 1 - weight1;
+  var mixedColor = {
+    red: Math.floor(color1.red * weight1 + color2.red * weight2),
+    green: Math.floor(color1.green * weight1 + color2.green * weight2),
+    blue: Math.floor(color1.blue * weight1 + color2.blue * weight2),
+    alpha: color1.alpha * (parseFloat(weight) / 1.0) + color2.alpha * (1 - parseFloat(weight) / 1.0)
+  };
+  return rgba(mixedColor);
+} // prettier-ignore
+
+
+var curriedMix = /*#__PURE__*/curry
+/* ::<number | string, string, string, string> */
+(mix);
+
+/**
+ * Increases the opacity of a color. Its range for the amount is between 0 to 1.
+ *
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   background: opacify(0.1, 'rgba(255, 255, 255, 0.9)');
+ *   background: opacify(0.2, 'hsla(0, 0%, 100%, 0.5)'),
+ *   background: opacify('0.5', 'rgba(255, 0, 0, 0.2)'),
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   background: ${opacify(0.1, 'rgba(255, 255, 255, 0.9)')};
+ *   background: ${opacify(0.2, 'hsla(0, 0%, 100%, 0.5)')},
+ *   background: ${opacify('0.5', 'rgba(255, 0, 0, 0.2)')},
+ * `
+ *
+ * // CSS in JS Output
+ *
+ * element {
+ *   background: "#fff";
+ *   background: "rgba(255,255,255,0.7)";
+ *   background: "rgba(255,0,0,0.7)";
+ * }
+ */
+
+function opacify(amount, color) {
+  if (color === 'transparent') return color;
+  var parsedColor = parseToRgb(color);
+  var alpha = typeof parsedColor.alpha === 'number' ? parsedColor.alpha : 1;
+
+  var colorWithAlpha = (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, parsedColor, {
+    alpha: guard(0, 1, (alpha * 100 + parseFloat(amount) * 100) / 100)
+  });
+
+  return rgba(colorWithAlpha);
+} // prettier-ignore
+
+
+var curriedOpacify = /*#__PURE__*/curry
+/* ::<number | string, string, string> */
+(opacify);
+
+var defaultReturnIfLightColor = '#000';
+var defaultReturnIfDarkColor = '#fff';
+/**
+ * Returns black or white (or optional passed colors) for best
+ * contrast depending on the luminosity of the given color.
+ * When passing custom return colors, strict mode ensures that the
+ * return color always meets or exceeds WCAG level AA or greater. If this test
+ * fails, the default return color (black or white) is returned in place of the
+ * custom return color. You can optionally turn off strict mode.
+ *
+ * Follows [W3C specs for readability](https://www.w3.org/TR/WCAG20-TECHS/G18.html).
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   color: readableColor('#000'),
+ *   color: readableColor('black', '#001', '#ff8'),
+ *   color: readableColor('white', '#001', '#ff8'),
+ *   color: readableColor('red', '#333', '#ddd', true)
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   color: ${readableColor('#000')};
+ *   color: ${readableColor('black', '#001', '#ff8')};
+ *   color: ${readableColor('white', '#001', '#ff8')};
+ *   color: ${readableColor('red', '#333', '#ddd', true)};
+ * `
+ *
+ * // CSS in JS Output
+ * element {
+ *   color: "#fff";
+ *   color: "#ff8";
+ *   color: "#001";
+ *   color: "#000";
+ * }
+ */
+
+function readableColor(color, returnIfLightColor, returnIfDarkColor, strict) {
+  if (returnIfLightColor === void 0) {
+    returnIfLightColor = defaultReturnIfLightColor;
+  }
+
+  if (returnIfDarkColor === void 0) {
+    returnIfDarkColor = defaultReturnIfDarkColor;
+  }
+
+  if (strict === void 0) {
+    strict = true;
+  }
+
+  var isColorLight = getLuminance(color) > 0.179;
+  var preferredReturnColor = isColorLight ? returnIfLightColor : returnIfDarkColor;
+
+  if (!strict || getContrast(color, preferredReturnColor) >= 4.5) {
+    return preferredReturnColor;
+  }
+
+  return isColorLight ? defaultReturnIfLightColor : defaultReturnIfDarkColor;
+}
+
+/**
+ * Converts a RgbColor or RgbaColor object to a color string.
+ * This util is useful in case you only know on runtime which color object is
+ * used. Otherwise we recommend to rely on `rgb` or `rgba`.
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   background: rgbToColorString({ red: 255, green: 205, blue: 100 }),
+ *   background: rgbToColorString({ red: 255, green: 205, blue: 100, alpha: 0.72 }),
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   background: ${rgbToColorString({ red: 255, green: 205, blue: 100 })};
+ *   background: ${rgbToColorString({ red: 255, green: 205, blue: 100, alpha: 0.72 })};
+ * `
+ *
+ * // CSS in JS Output
+ * element {
+ *   background: "#ffcd64";
+ *   background: "rgba(255,205,100,0.72)";
+ * }
+ */
+function rgbToColorString(color) {
+  if (typeof color === 'object' && typeof color.red === 'number' && typeof color.green === 'number' && typeof color.blue === 'number') {
+    if (typeof color.alpha === 'number') {
+      return rgba({
+        red: color.red,
+        green: color.green,
+        blue: color.blue,
+        alpha: color.alpha
+      });
+    }
+
+    return rgb({
+      red: color.red,
+      green: color.green,
+      blue: color.blue
+    });
+  }
+
+  throw new PolishedError(46);
+}
+
+/**
+ * Increases the intensity of a color. Its range is between 0 to 1. The first
+ * argument of the saturate function is the amount by how much the color
+ * intensity should be increased.
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   background: saturate(0.2, '#CCCD64'),
+ *   background: saturate('0.2', 'rgba(204,205,100,0.7)'),
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   background: ${saturate(0.2, '#FFCD64')};
+ *   background: ${saturate('0.2', 'rgba(204,205,100,0.7)')};
+ * `
+ *
+ * // CSS in JS Output
+ *
+ * element {
+ *   background: "#e0e250";
+ *   background: "rgba(224,226,80,0.7)";
+ * }
+ */
+
+function saturate(amount, color) {
+  if (color === 'transparent') return color;
+  var hslColor = parseToHsl(color);
+  return toColorString((0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, hslColor, {
+    saturation: guard(0, 1, hslColor.saturation + parseFloat(amount))
+  }));
+} // prettier-ignore
+
+
+var curriedSaturate = /*#__PURE__*/curry
+/* ::<number | string, string, string> */
+(saturate);
+
+/**
+ * Sets the hue of a color to the provided value. The hue range can be
+ * from 0 and 359.
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   background: setHue(42, '#CCCD64'),
+ *   background: setHue('244', 'rgba(204,205,100,0.7)'),
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   background: ${setHue(42, '#CCCD64')};
+ *   background: ${setHue('244', 'rgba(204,205,100,0.7)')};
+ * `
+ *
+ * // CSS in JS Output
+ * element {
+ *   background: "#cdae64";
+ *   background: "rgba(107,100,205,0.7)";
+ * }
+ */
+
+function setHue(hue, color) {
+  if (color === 'transparent') return color;
+  return toColorString((0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, parseToHsl(color), {
+    hue: parseFloat(hue)
+  }));
+} // prettier-ignore
+
+
+var curriedSetHue = /*#__PURE__*/curry
+/* ::<number | string, string, string> */
+(setHue);
+
+/**
+ * Sets the lightness of a color to the provided value. The lightness range can be
+ * from 0 and 1.
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   background: setLightness(0.2, '#CCCD64'),
+ *   background: setLightness('0.75', 'rgba(204,205,100,0.7)'),
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   background: ${setLightness(0.2, '#CCCD64')};
+ *   background: ${setLightness('0.75', 'rgba(204,205,100,0.7)')};
+ * `
+ *
+ * // CSS in JS Output
+ * element {
+ *   background: "#4d4d19";
+ *   background: "rgba(223,224,159,0.7)";
+ * }
+ */
+
+function setLightness(lightness, color) {
+  if (color === 'transparent') return color;
+  return toColorString((0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, parseToHsl(color), {
+    lightness: parseFloat(lightness)
+  }));
+} // prettier-ignore
+
+
+var curriedSetLightness = /*#__PURE__*/curry
+/* ::<number | string, string, string> */
+(setLightness);
+
+/**
+ * Sets the saturation of a color to the provided value. The saturation range can be
+ * from 0 and 1.
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   background: setSaturation(0.2, '#CCCD64'),
+ *   background: setSaturation('0.75', 'rgba(204,205,100,0.7)'),
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   background: ${setSaturation(0.2, '#CCCD64')};
+ *   background: ${setSaturation('0.75', 'rgba(204,205,100,0.7)')};
+ * `
+ *
+ * // CSS in JS Output
+ * element {
+ *   background: "#adad84";
+ *   background: "rgba(228,229,76,0.7)";
+ * }
+ */
+
+function setSaturation(saturation, color) {
+  if (color === 'transparent') return color;
+  return toColorString((0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, parseToHsl(color), {
+    saturation: parseFloat(saturation)
+  }));
+} // prettier-ignore
+
+
+var curriedSetSaturation = /*#__PURE__*/curry
+/* ::<number | string, string, string> */
+(setSaturation);
+
+/**
+ * Shades a color by mixing it with black. `shade` can produce
+ * hue shifts, where as `darken` manipulates the luminance channel and therefore
+ * doesn't produce hue shifts.
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   background: shade(0.25, '#00f')
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   background: ${shade(0.25, '#00f')};
+ * `
+ *
+ * // CSS in JS Output
+ *
+ * element {
+ *   background: "#00003f";
+ * }
+ */
+
+function shade(percentage, color) {
+  if (color === 'transparent') return color;
+  return curriedMix(parseFloat(percentage), 'rgb(0, 0, 0)', color);
+} // prettier-ignore
+
+
+var curriedShade = /*#__PURE__*/curry
+/* ::<number | string, string, string> */
+(shade);
+
+/**
+ * Tints a color by mixing it with white. `tint` can produce
+ * hue shifts, where as `lighten` manipulates the luminance channel and therefore
+ * doesn't produce hue shifts.
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   background: tint(0.25, '#00f')
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   background: ${tint(0.25, '#00f')};
+ * `
+ *
+ * // CSS in JS Output
+ *
+ * element {
+ *   background: "#bfbfff";
+ * }
+ */
+
+function tint(percentage, color) {
+  if (color === 'transparent') return color;
+  return curriedMix(parseFloat(percentage), 'rgb(255, 255, 255)', color);
+} // prettier-ignore
+
+
+var curriedTint = /*#__PURE__*/curry
+/* ::<number | string, string, string> */
+(tint);
+
+/**
+ * Decreases the opacity of a color. Its range for the amount is between 0 to 1.
+ *
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   background: transparentize(0.1, '#fff');
+ *   background: transparentize(0.2, 'hsl(0, 0%, 100%)'),
+ *   background: transparentize('0.5', 'rgba(255, 0, 0, 0.8)'),
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   background: ${transparentize(0.1, '#fff')};
+ *   background: ${transparentize(0.2, 'hsl(0, 0%, 100%)')},
+ *   background: ${transparentize('0.5', 'rgba(255, 0, 0, 0.8)')},
+ * `
+ *
+ * // CSS in JS Output
+ *
+ * element {
+ *   background: "rgba(255,255,255,0.9)";
+ *   background: "rgba(255,255,255,0.8)";
+ *   background: "rgba(255,0,0,0.3)";
+ * }
+ */
+
+function transparentize(amount, color) {
+  if (color === 'transparent') return color;
+  var parsedColor = parseToRgb(color);
+  var alpha = typeof parsedColor.alpha === 'number' ? parsedColor.alpha : 1;
+
+  var colorWithAlpha = (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, parsedColor, {
+    alpha: guard(0, 1, +(alpha * 100 - parseFloat(amount) * 100).toFixed(2) / 100)
+  });
+
+  return rgba(colorWithAlpha);
+} // prettier-ignore
+
+
+var curriedTransparentize = /*#__PURE__*/curry
+/* ::<number | string, string, string> */
+(transparentize);
+
+/**
+ * Shorthand for easily setting the animation property. Allows either multiple arrays with animations
+ * or a single animation spread over the arguments.
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   ...animation(['rotate', '1s', 'ease-in-out'], ['colorchange', '2s'])
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   ${animation(['rotate', '1s', 'ease-in-out'], ['colorchange', '2s'])}
+ * `
+ *
+ * // CSS as JS Output
+ *
+ * div {
+ *   'animation': 'rotate 1s ease-in-out, colorchange 2s'
+ * }
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   ...animation('rotate', '1s', 'ease-in-out')
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   ${animation('rotate', '1s', 'ease-in-out')}
+ * `
+ *
+ * // CSS as JS Output
+ *
+ * div {
+ *   'animation': 'rotate 1s ease-in-out'
+ * }
+ */
+function animation() {
+  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+    args[_key] = arguments[_key];
+  }
+
+  // Allow single or multiple animations passed
+  var multiMode = Array.isArray(args[0]);
+
+  if (!multiMode && args.length > 8) {
+    throw new PolishedError(64);
+  }
+
+  var code = args.map(function (arg) {
+    if (multiMode && !Array.isArray(arg) || !multiMode && Array.isArray(arg)) {
+      throw new PolishedError(65);
+    }
+
+    if (Array.isArray(arg) && arg.length > 8) {
+      throw new PolishedError(66);
+    }
+
+    return Array.isArray(arg) ? arg.join(' ') : arg;
+  }).join(', ');
+  return {
+    animation: code
+  };
+}
+
+/**
+ * Shorthand that accepts any number of backgroundImage values as parameters for creating a single background statement.
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   ...backgroundImages('url("/image/background.jpg")', 'linear-gradient(red, green)')
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   ${backgroundImages('url("/image/background.jpg")', 'linear-gradient(red, green)')}
+ * `
+ *
+ * // CSS as JS Output
+ *
+ * div {
+ *   'backgroundImage': 'url("/image/background.jpg"), linear-gradient(red, green)'
+ * }
+ */
+function backgroundImages() {
+  for (var _len = arguments.length, properties = new Array(_len), _key = 0; _key < _len; _key++) {
+    properties[_key] = arguments[_key];
+  }
+
+  return {
+    backgroundImage: properties.join(', ')
+  };
+}
+
+/**
+ * Shorthand that accepts any number of background values as parameters for creating a single background statement.
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   ...backgrounds('url("/image/background.jpg")', 'linear-gradient(red, green)', 'center no-repeat')
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   ${backgrounds('url("/image/background.jpg")', 'linear-gradient(red, green)', 'center no-repeat')}
+ * `
+ *
+ * // CSS as JS Output
+ *
+ * div {
+ *   'background': 'url("/image/background.jpg"), linear-gradient(red, green), center no-repeat'
+ * }
+ */
+function backgrounds() {
+  for (var _len = arguments.length, properties = new Array(_len), _key = 0; _key < _len; _key++) {
+    properties[_key] = arguments[_key];
+  }
+
+  return {
+    background: properties.join(', ')
+  };
+}
+
+var sideMap = ['top', 'right', 'bottom', 'left'];
+/**
+ * Shorthand for the border property that splits out individual properties for use with tools like Fela and Styletron. A side keyword can optionally be passed to target only one side's border properties.
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   ...border('1px', 'solid', 'red')
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   ${border('1px', 'solid', 'red')}
+ * `
+ *
+ * // CSS as JS Output
+ *
+ * div {
+ *   'borderColor': 'red',
+ *   'borderStyle': 'solid',
+ *   'borderWidth': `1px`,
+ * }
+ *
+ * // Styles as object usage
+ * const styles = {
+ *   ...border('top', '1px', 'solid', 'red')
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   ${border('top', '1px', 'solid', 'red')}
+ * `
+ *
+ * // CSS as JS Output
+ *
+ * div {
+ *   'borderTopColor': 'red',
+ *   'borderTopStyle': 'solid',
+ *   'borderTopWidth': `1px`,
+ * }
+ */
+
+function border(sideKeyword) {
+  for (var _len = arguments.length, values = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    values[_key - 1] = arguments[_key];
+  }
+
+  if (typeof sideKeyword === 'string' && sideMap.indexOf(sideKeyword) >= 0) {
+    var _ref;
+
+    return _ref = {}, _ref["border" + capitalizeString(sideKeyword) + "Width"] = values[0], _ref["border" + capitalizeString(sideKeyword) + "Style"] = values[1], _ref["border" + capitalizeString(sideKeyword) + "Color"] = values[2], _ref;
+  } else {
+    values.unshift(sideKeyword);
+    return {
+      borderWidth: values[0],
+      borderStyle: values[1],
+      borderColor: values[2]
+    };
+  }
+}
+
+/**
+ * Shorthand that accepts up to four values, including null to skip a value, and maps them to their respective directions.
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   ...borderColor('red', 'green', 'blue', 'yellow')
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   ${borderColor('red', 'green', 'blue', 'yellow')}
+ * `
+ *
+ * // CSS as JS Output
+ *
+ * div {
+ *   'borderTopColor': 'red',
+ *   'borderRightColor': 'green',
+ *   'borderBottomColor': 'blue',
+ *   'borderLeftColor': 'yellow'
+ * }
+ */
+function borderColor() {
+  for (var _len = arguments.length, values = new Array(_len), _key = 0; _key < _len; _key++) {
+    values[_key] = arguments[_key];
+  }
+
+  return directionalProperty.apply(void 0, ['borderColor'].concat(values));
+}
+
+/**
+ * Shorthand that accepts a value for side and a value for radius and applies the radius value to both corners of the side.
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   ...borderRadius('top', '5px')
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   ${borderRadius('top', '5px')}
+ * `
+ *
+ * // CSS as JS Output
+ *
+ * div {
+ *   'borderTopRightRadius': '5px',
+ *   'borderTopLeftRadius': '5px',
+ * }
+ */
+function borderRadius(side, radius) {
+  var uppercaseSide = capitalizeString(side);
+
+  if (!radius && radius !== 0) {
+    throw new PolishedError(62);
+  }
+
+  if (uppercaseSide === 'Top' || uppercaseSide === 'Bottom') {
+    var _ref;
+
+    return _ref = {}, _ref["border" + uppercaseSide + "RightRadius"] = radius, _ref["border" + uppercaseSide + "LeftRadius"] = radius, _ref;
+  }
+
+  if (uppercaseSide === 'Left' || uppercaseSide === 'Right') {
+    var _ref2;
+
+    return _ref2 = {}, _ref2["borderTop" + uppercaseSide + "Radius"] = radius, _ref2["borderBottom" + uppercaseSide + "Radius"] = radius, _ref2;
+  }
+
+  throw new PolishedError(63);
+}
+
+/**
+ * Shorthand that accepts up to four values, including null to skip a value, and maps them to their respective directions.
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   ...borderStyle('solid', 'dashed', 'dotted', 'double')
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   ${borderStyle('solid', 'dashed', 'dotted', 'double')}
+ * `
+ *
+ * // CSS as JS Output
+ *
+ * div {
+ *   'borderTopStyle': 'solid',
+ *   'borderRightStyle': 'dashed',
+ *   'borderBottomStyle': 'dotted',
+ *   'borderLeftStyle': 'double'
+ * }
+ */
+function borderStyle() {
+  for (var _len = arguments.length, values = new Array(_len), _key = 0; _key < _len; _key++) {
+    values[_key] = arguments[_key];
+  }
+
+  return directionalProperty.apply(void 0, ['borderStyle'].concat(values));
+}
+
+/**
+ * Shorthand that accepts up to four values, including null to skip a value, and maps them to their respective directions.
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   ...borderWidth('12px', '24px', '36px', '48px')
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   ${borderWidth('12px', '24px', '36px', '48px')}
+ * `
+ *
+ * // CSS as JS Output
+ *
+ * div {
+ *   'borderTopWidth': '12px',
+ *   'borderRightWidth': '24px',
+ *   'borderBottomWidth': '36px',
+ *   'borderLeftWidth': '48px'
+ * }
+ */
+function borderWidth() {
+  for (var _len = arguments.length, values = new Array(_len), _key = 0; _key < _len; _key++) {
+    values[_key] = arguments[_key];
+  }
+
+  return directionalProperty.apply(void 0, ['borderWidth'].concat(values));
+}
+
+function generateSelectors(template, state) {
+  var stateSuffix = state ? ":" + state : '';
+  return template(stateSuffix);
+}
+/**
+ * Function helper that adds an array of states to a template of selectors. Used in textInputs and buttons.
+ * @private
+ */
+
+
+function statefulSelectors(states, template, stateMap) {
+  if (!template) throw new PolishedError(67);
+  if (states.length === 0) return generateSelectors(template, null);
+  var selectors = [];
+
+  for (var i = 0; i < states.length; i += 1) {
+    if (stateMap && stateMap.indexOf(states[i]) < 0) {
+      throw new PolishedError(68);
+    }
+
+    selectors.push(generateSelectors(template, states[i]));
+  }
+
+  selectors = selectors.join(',');
+  return selectors;
+}
+
+var stateMap$1 = [undefined, null, 'active', 'focus', 'hover'];
+
+function template$1(state) {
+  return "button" + state + ",\n  input[type=\"button\"]" + state + ",\n  input[type=\"reset\"]" + state + ",\n  input[type=\"submit\"]" + state;
+}
+/**
+ * Populates selectors that target all buttons. You can pass optional states to append to the selectors.
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   [buttons('active')]: {
+ *     'border': 'none'
+ *   }
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   > ${buttons('active')} {
+ *     border: none;
+ *   }
+ * `
+ *
+ * // CSS in JS Output
+ *
+ *  'button:active,
+ *  'input[type="button"]:active,
+ *  'input[type=\"reset\"]:active,
+ *  'input[type=\"submit\"]:active: {
+ *   'border': 'none'
+ * }
+ */
+
+
+function buttons() {
+  for (var _len = arguments.length, states = new Array(_len), _key = 0; _key < _len; _key++) {
+    states[_key] = arguments[_key];
+  }
+
+  return statefulSelectors(states, template$1, stateMap$1);
+}
+
+/**
+ * Shorthand that accepts up to four values, including null to skip a value, and maps them to their respective directions.
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   ...margin('12px', '24px', '36px', '48px')
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   ${margin('12px', '24px', '36px', '48px')}
+ * `
+ *
+ * // CSS as JS Output
+ *
+ * div {
+ *   'marginTop': '12px',
+ *   'marginRight': '24px',
+ *   'marginBottom': '36px',
+ *   'marginLeft': '48px'
+ * }
+ */
+function margin() {
+  for (var _len = arguments.length, values = new Array(_len), _key = 0; _key < _len; _key++) {
+    values[_key] = arguments[_key];
+  }
+
+  return directionalProperty.apply(void 0, ['margin'].concat(values));
+}
+
+/**
+ * Shorthand that accepts up to four values, including null to skip a value, and maps them to their respective directions.
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   ...padding('12px', '24px', '36px', '48px')
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   ${padding('12px', '24px', '36px', '48px')}
+ * `
+ *
+ * // CSS as JS Output
+ *
+ * div {
+ *   'paddingTop': '12px',
+ *   'paddingRight': '24px',
+ *   'paddingBottom': '36px',
+ *   'paddingLeft': '48px'
+ * }
+ */
+function padding() {
+  for (var _len = arguments.length, values = new Array(_len), _key = 0; _key < _len; _key++) {
+    values[_key] = arguments[_key];
+  }
+
+  return directionalProperty.apply(void 0, ['padding'].concat(values));
+}
+
+var positionMap = ['absolute', 'fixed', 'relative', 'static', 'sticky'];
+/**
+ * Shorthand accepts up to five values, including null to skip a value, and maps them to their respective directions. The first value can optionally be a position keyword.
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   ...position('12px', '24px', '36px', '48px')
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   ${position('12px', '24px', '36px', '48px')}
+ * `
+ *
+ * // CSS as JS Output
+ *
+ * div {
+ *   'top': '12px',
+ *   'right': '24px',
+ *   'bottom': '36px',
+ *   'left': '48px'
+ * }
+ *
+ * // Styles as object usage
+ * const styles = {
+ *   ...position('absolute', '12px', '24px', '36px', '48px')
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   ${position('absolute', '12px', '24px', '36px', '48px')}
+ * `
+ *
+ * // CSS as JS Output
+ *
+ * div {
+ *   'position': 'absolute',
+ *   'top': '12px',
+ *   'right': '24px',
+ *   'bottom': '36px',
+ *   'left': '48px'
+ * }
+ */
+
+function position(firstValue) {
+  for (var _len = arguments.length, values = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    values[_key - 1] = arguments[_key];
+  }
+
+  if (positionMap.indexOf(firstValue) >= 0 && firstValue) {
+    return (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, directionalProperty.apply(void 0, [''].concat(values)), {
+      position: firstValue
+    });
+  } else {
+    return directionalProperty.apply(void 0, ['', firstValue].concat(values));
+  }
+}
+
+/**
+ * Shorthand to set the height and width properties in a single statement.
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   ...size('300px', '250px')
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   ${size('300px', '250px')}
+ * `
+ *
+ * // CSS as JS Output
+ *
+ * div {
+ *   'height': '300px',
+ *   'width': '250px',
+ * }
+ */
+function size(height, width) {
+  if (width === void 0) {
+    width = height;
+  }
+
+  return {
+    height: height,
+    width: width
+  };
+}
+
+var stateMap = [undefined, null, 'active', 'focus', 'hover'];
+
+function template(state) {
+  return "input[type=\"color\"]" + state + ",\n    input[type=\"date\"]" + state + ",\n    input[type=\"datetime\"]" + state + ",\n    input[type=\"datetime-local\"]" + state + ",\n    input[type=\"email\"]" + state + ",\n    input[type=\"month\"]" + state + ",\n    input[type=\"number\"]" + state + ",\n    input[type=\"password\"]" + state + ",\n    input[type=\"search\"]" + state + ",\n    input[type=\"tel\"]" + state + ",\n    input[type=\"text\"]" + state + ",\n    input[type=\"time\"]" + state + ",\n    input[type=\"url\"]" + state + ",\n    input[type=\"week\"]" + state + ",\n    input:not([type])" + state + ",\n    textarea" + state;
+}
+/**
+ * Populates selectors that target all text inputs. You can pass optional states to append to the selectors.
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   [textInputs('active')]: {
+ *     'border': 'none'
+ *   }
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   > ${textInputs('active')} {
+ *     border: none;
+ *   }
+ * `
+ *
+ * // CSS in JS Output
+ *
+ *  'input[type="color"]:active,
+ *  input[type="date"]:active,
+ *  input[type="datetime"]:active,
+ *  input[type="datetime-local"]:active,
+ *  input[type="email"]:active,
+ *  input[type="month"]:active,
+ *  input[type="number"]:active,
+ *  input[type="password"]:active,
+ *  input[type="search"]:active,
+ *  input[type="tel"]:active,
+ *  input[type="text"]:active,
+ *  input[type="time"]:active,
+ *  input[type="url"]:active,
+ *  input[type="week"]:active,
+ *  input:not([type]):active,
+ *  textarea:active': {
+ *   'border': 'none'
+ * }
+ */
+
+
+function textInputs() {
+  for (var _len = arguments.length, states = new Array(_len), _key = 0; _key < _len; _key++) {
+    states[_key] = arguments[_key];
+  }
+
+  return statefulSelectors(states, template, stateMap);
+}
+
+/**
+ * Accepts any number of transition values as parameters for creating a single transition statement. You may also pass an array of properties as the first parameter that you would like to apply the same transition values to (second parameter).
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   ...transitions('opacity 1.0s ease-in 0s', 'width 2.0s ease-in 2s'),
+ *   ...transitions(['color', 'background-color'], '2.0s ease-in 2s')
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   ${transitions('opacity 1.0s ease-in 0s', 'width 2.0s ease-in 2s')};
+ *   ${transitions(['color', 'background-color'], '2.0s ease-in 2s'),};
+ * `
+ *
+ * // CSS as JS Output
+ *
+ * div {
+ *   'transition': 'opacity 1.0s ease-in 0s, width 2.0s ease-in 2s'
+ *   'transition': 'color 2.0s ease-in 2s, background-color 2.0s ease-in 2s',
+ * }
+ */
+
+function transitions() {
+  for (var _len = arguments.length, properties = new Array(_len), _key = 0; _key < _len; _key++) {
+    properties[_key] = arguments[_key];
+  }
+
+  if (Array.isArray(properties[0]) && properties.length === 2) {
+    var value = properties[1];
+
+    if (typeof value !== 'string') {
+      throw new PolishedError(61);
+    }
+
+    var transitionsString = properties[0].map(function (property) {
+      return property + " " + value;
+    }).join(', ');
+    return {
+      transition: transitionsString
+    };
+  } else {
+    return {
+      transition: properties.join(', ')
+    };
+  }
+}
+
+
+
+
+/***/ }),
+
 /***/ "../../.yarn/cache/prop-types-npm-15.7.2-d7a04f2274-5eef82fdda.zip/node_modules/prop-types/checkPropTypes.js":
 /*!*******************************************************************************************************************!*\
   !*** ../../.yarn/cache/prop-types-npm-15.7.2-d7a04f2274-5eef82fdda.zip/node_modules/prop-types/checkPropTypes.js ***!
@@ -57201,6 +65737,23 @@ if (false) {} else {
 
 /***/ }),
 
+/***/ "../../.yarn/cache/react-spring-npm-9.2.4-32b57a8d93-ca5153f178.zip/node_modules/react-spring/dist/react-spring.esm.js":
+/*!*****************************************************************************************************************************!*\
+  !*** ../../.yarn/cache/react-spring-npm-9.2.4-32b57a8d93-ca5153f178.zip/node_modules/react-spring/dist/react-spring.esm.js ***!
+  \*****************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _react_spring_web__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @react-spring/web */ "../../.yarn/__virtual__/@react-spring-web-virtual-d07fd5a50c/0/cache/@react-spring-web-npm-9.2.4-1614758e56-2c8c648539.zip/node_modules/@react-spring/web/dist/react-spring-web.esm.js");
+/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
+/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _react_spring_web__WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _react_spring_web__WEBPACK_IMPORTED_MODULE_0__[__WEBPACK_IMPORT_KEY__]
+/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
+
+
+
+/***/ }),
+
 /***/ "../../.yarn/cache/scheduler-npm-0.20.2-90beaecfba-c4b35cf967.zip/node_modules/scheduler/cjs/scheduler-tracing.development.js":
 /*!************************************************************************************************************************************!*\
   !*** ../../.yarn/cache/scheduler-npm-0.20.2-90beaecfba-c4b35cf967.zip/node_modules/scheduler/cjs/scheduler-tracing.development.js ***!
@@ -58350,6 +66903,2510 @@ module.exports = str => encodeURIComponent(str).replace(/[!'()*]/g, x => `%${x.c
 
 /***/ }),
 
+/***/ "../../.yarn/unplugged/@react-spring-core-virtual-58aea373b8/node_modules/@react-spring/core/dist/react-spring-core.esm.js":
+/*!*********************************************************************************************************************************!*\
+  !*** ../../.yarn/unplugged/@react-spring-core-virtual-58aea373b8/node_modules/@react-spring/core/dist/react-spring-core.esm.js ***!
+  \*********************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Globals": () => (/* reexport safe */ _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.Globals),
+/* harmony export */   "createInterpolator": () => (/* reexport safe */ _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.createInterpolator),
+/* harmony export */   "BailSignal": () => (/* binding */ BailSignal),
+/* harmony export */   "Controller": () => (/* binding */ Controller),
+/* harmony export */   "FrameValue": () => (/* binding */ FrameValue),
+/* harmony export */   "Interpolation": () => (/* binding */ Interpolation),
+/* harmony export */   "Spring": () => (/* binding */ Spring),
+/* harmony export */   "SpringContext": () => (/* binding */ SpringContext),
+/* harmony export */   "SpringRef": () => (/* binding */ SpringRef),
+/* harmony export */   "SpringValue": () => (/* binding */ SpringValue),
+/* harmony export */   "Trail": () => (/* binding */ Trail),
+/* harmony export */   "Transition": () => (/* binding */ Transition),
+/* harmony export */   "config": () => (/* binding */ config),
+/* harmony export */   "inferTo": () => (/* binding */ inferTo),
+/* harmony export */   "interpolate": () => (/* binding */ interpolate),
+/* harmony export */   "to": () => (/* binding */ to),
+/* harmony export */   "update": () => (/* binding */ update),
+/* harmony export */   "useChain": () => (/* binding */ useChain),
+/* harmony export */   "useSpring": () => (/* binding */ useSpring),
+/* harmony export */   "useSpringRef": () => (/* binding */ useSpringRef),
+/* harmony export */   "useSprings": () => (/* binding */ useSprings),
+/* harmony export */   "useTrail": () => (/* binding */ useTrail),
+/* harmony export */   "useTransition": () => (/* binding */ useTransition)
+/* harmony export */ });
+/* harmony import */ var _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @react-spring/shared */ "../../.yarn/__virtual__/@react-spring-shared-virtual-c5425cdfcb/0/cache/@react-spring-shared-npm-9.2.4-b67476cbae-98cc71cb5c.zip/node_modules/@react-spring/shared/dist/react-spring-shared.esm.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _react_spring_animated__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @react-spring/animated */ "../../.yarn/__virtual__/@react-spring-animated-virtual-67a11736df/0/cache/@react-spring-animated-npm-9.2.4-503ae5ad1d-5fba22b5df.zip/node_modules/@react-spring/animated/dist/react-spring-animated.esm.js");
+/* harmony import */ var _react_spring_types_animated__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @react-spring/types/animated */ "../../.yarn/cache/@react-spring-types-npm-9.2.4-b3ac3a7479-b7195a7559.zip/node_modules/@react-spring/types/animated.js");
+/* harmony import */ var _react_spring_types_animated__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_react_spring_types_animated__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
+/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _react_spring_types_animated__WEBPACK_IMPORTED_MODULE_3__) if(["default","Globals","createInterpolator","BailSignal","Controller","FrameValue","Interpolation","Spring","SpringContext","SpringRef","SpringValue","Trail","Transition","config","inferTo","interpolate","to","update","useChain","useSpring","useSpringRef","useSprings","useTrail","useTransition"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _react_spring_types_animated__WEBPACK_IMPORTED_MODULE_3__[__WEBPACK_IMPORT_KEY__]
+/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
+/* harmony import */ var _react_spring_types_interpolation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @react-spring/types/interpolation */ "../../.yarn/cache/@react-spring-types-npm-9.2.4-b3ac3a7479-b7195a7559.zip/node_modules/@react-spring/types/interpolation.js");
+/* harmony import */ var _react_spring_types_interpolation__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_react_spring_types_interpolation__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
+/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _react_spring_types_interpolation__WEBPACK_IMPORTED_MODULE_4__) if(["default","Globals","createInterpolator","BailSignal","Controller","FrameValue","Interpolation","Spring","SpringContext","SpringRef","SpringValue","Trail","Transition","config","inferTo","interpolate","to","update","useChain","useSpring","useSpringRef","useSprings","useTrail","useTransition"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _react_spring_types_interpolation__WEBPACK_IMPORTED_MODULE_4__[__WEBPACK_IMPORT_KEY__]
+/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
+
+
+
+
+
+
+
+
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+function callProp(value, ...args) {
+  return _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.fun(value) ? value(...args) : value;
+}
+const matchProp = (value, key) => value === true || !!(key && value && (_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.fun(value) ? value(key) : (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.toArray)(value).includes(key)));
+const resolveProp = (prop, key) => _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.obj(prop) ? key && prop[key] : prop;
+const getDefaultProp = (props, key) => props.default === true ? props[key] : props.default ? props.default[key] : undefined;
+
+const noopTransform = value => value;
+
+const getDefaultProps = (props, transform = noopTransform) => {
+  let keys = DEFAULT_PROPS;
+
+  if (props.default && props.default !== true) {
+    props = props.default;
+    keys = Object.keys(props);
+  }
+
+  const defaults = {};
+
+  for (const key of keys) {
+    const value = transform(props[key], key);
+
+    if (!_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.und(value)) {
+      defaults[key] = value;
+    }
+  }
+
+  return defaults;
+};
+const DEFAULT_PROPS = ['config', 'onProps', 'onStart', 'onChange', 'onPause', 'onResume', 'onRest'];
+const RESERVED_PROPS = {
+  config: 1,
+  from: 1,
+  to: 1,
+  ref: 1,
+  loop: 1,
+  reset: 1,
+  pause: 1,
+  cancel: 1,
+  reverse: 1,
+  immediate: 1,
+  default: 1,
+  delay: 1,
+  onProps: 1,
+  onStart: 1,
+  onChange: 1,
+  onPause: 1,
+  onResume: 1,
+  onRest: 1,
+  onResolve: 1,
+  items: 1,
+  trail: 1,
+  sort: 1,
+  expires: 1,
+  initial: 1,
+  enter: 1,
+  update: 1,
+  leave: 1,
+  children: 1,
+  onDestroyed: 1,
+  keys: 1,
+  callId: 1,
+  parentId: 1
+};
+
+function getForwardProps(props) {
+  const forward = {};
+  let count = 0;
+  (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.eachProp)(props, (value, prop) => {
+    if (!RESERVED_PROPS[prop]) {
+      forward[prop] = value;
+      count++;
+    }
+  });
+
+  if (count) {
+    return forward;
+  }
+}
+
+function inferTo(props) {
+  const to = getForwardProps(props);
+
+  if (to) {
+    const out = {
+      to
+    };
+    (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.eachProp)(props, (val, key) => key in to || (out[key] = val));
+    return out;
+  }
+
+  return _extends({}, props);
+}
+function computeGoal(value) {
+  value = (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.getFluidValue)(value);
+  return _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.arr(value) ? value.map(computeGoal) : (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.isAnimatedString)(value) ? _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.Globals.createStringInterpolator({
+    range: [0, 1],
+    output: [value, value]
+  })(1) : value;
+}
+function hasProps(props) {
+  for (const _ in props) return true;
+
+  return false;
+}
+function isAsyncTo(to) {
+  return _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.fun(to) || _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.arr(to) && _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.obj(to[0]);
+}
+function detachRefs(ctrl, ref) {
+  var _ctrl$ref;
+
+  (_ctrl$ref = ctrl.ref) == null ? void 0 : _ctrl$ref.delete(ctrl);
+  ref == null ? void 0 : ref.delete(ctrl);
+}
+function replaceRef(ctrl, ref) {
+  if (ref && ctrl.ref !== ref) {
+    var _ctrl$ref2;
+
+    (_ctrl$ref2 = ctrl.ref) == null ? void 0 : _ctrl$ref2.delete(ctrl);
+    ref.add(ctrl);
+    ctrl.ref = ref;
+  }
+}
+
+function useChain(refs, timeSteps, timeFrame = 1000) {
+  (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.useLayoutEffect)(() => {
+    if (timeSteps) {
+      let prevDelay = 0;
+      (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)(refs, (ref, i) => {
+        const controllers = ref.current;
+
+        if (controllers.length) {
+          let delay = timeFrame * timeSteps[i];
+          if (isNaN(delay)) delay = prevDelay;else prevDelay = delay;
+          (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)(controllers, ctrl => {
+            (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)(ctrl.queue, props => {
+              const memoizedDelayProp = props.delay;
+
+              props.delay = key => delay + callProp(memoizedDelayProp || 0, key);
+            });
+            ctrl.start();
+          });
+        }
+      });
+    } else {
+      let p = Promise.resolve();
+      (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)(refs, ref => {
+        const controllers = ref.current;
+
+        if (controllers.length) {
+          const queues = controllers.map(ctrl => {
+            const q = ctrl.queue;
+            ctrl.queue = [];
+            return q;
+          });
+          p = p.then(() => {
+            (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)(controllers, (ctrl, i) => (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)(queues[i] || [], update => ctrl.queue.push(update)));
+            return ref.start();
+          });
+        }
+      });
+    }
+  });
+}
+
+const config = {
+  default: {
+    tension: 170,
+    friction: 26
+  },
+  gentle: {
+    tension: 120,
+    friction: 14
+  },
+  wobbly: {
+    tension: 180,
+    friction: 12
+  },
+  stiff: {
+    tension: 210,
+    friction: 20
+  },
+  slow: {
+    tension: 280,
+    friction: 60
+  },
+  molasses: {
+    tension: 280,
+    friction: 120
+  }
+};
+
+const linear = t => t;
+
+const defaults = _extends({}, config.default, {
+  mass: 1,
+  damping: 1,
+  easing: linear,
+  clamp: false
+});
+
+class AnimationConfig {
+  constructor() {
+    this.tension = void 0;
+    this.friction = void 0;
+    this.frequency = void 0;
+    this.damping = void 0;
+    this.mass = void 0;
+    this.velocity = 0;
+    this.restVelocity = void 0;
+    this.precision = void 0;
+    this.progress = void 0;
+    this.duration = void 0;
+    this.easing = void 0;
+    this.clamp = void 0;
+    this.bounce = void 0;
+    this.decay = void 0;
+    this.round = void 0;
+    Object.assign(this, defaults);
+  }
+
+}
+function mergeConfig(config, newConfig, defaultConfig) {
+  if (defaultConfig) {
+    defaultConfig = _extends({}, defaultConfig);
+    sanitizeConfig(defaultConfig, newConfig);
+    newConfig = _extends({}, defaultConfig, newConfig);
+  }
+
+  sanitizeConfig(config, newConfig);
+  Object.assign(config, newConfig);
+
+  for (const key in defaults) {
+    if (config[key] == null) {
+      config[key] = defaults[key];
+    }
+  }
+
+  let {
+    mass,
+    frequency,
+    damping
+  } = config;
+
+  if (!_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.und(frequency)) {
+    if (frequency < 0.01) frequency = 0.01;
+    if (damping < 0) damping = 0;
+    config.tension = Math.pow(2 * Math.PI / frequency, 2) * mass;
+    config.friction = 4 * Math.PI * damping * mass / frequency;
+  }
+
+  return config;
+}
+
+function sanitizeConfig(config, props) {
+  if (!_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.und(props.decay)) {
+    config.duration = undefined;
+  } else {
+    const isTensionConfig = !_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.und(props.tension) || !_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.und(props.friction);
+
+    if (isTensionConfig || !_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.und(props.frequency) || !_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.und(props.damping) || !_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.und(props.mass)) {
+      config.duration = undefined;
+      config.decay = undefined;
+    }
+
+    if (isTensionConfig) {
+      config.frequency = undefined;
+    }
+  }
+}
+
+const emptyArray = [];
+class Animation {
+  constructor() {
+    this.changed = false;
+    this.values = emptyArray;
+    this.toValues = null;
+    this.fromValues = emptyArray;
+    this.to = void 0;
+    this.from = void 0;
+    this.config = new AnimationConfig();
+    this.immediate = false;
+  }
+
+}
+
+function scheduleProps(callId, {
+  key,
+  props,
+  defaultProps,
+  state,
+  actions
+}) {
+  return new Promise((resolve, reject) => {
+    var _props$cancel;
+
+    let delay;
+    let timeout;
+    let cancel = matchProp((_props$cancel = props.cancel) != null ? _props$cancel : defaultProps == null ? void 0 : defaultProps.cancel, key);
+
+    if (cancel) {
+      onStart();
+    } else {
+      if (!_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.und(props.pause)) {
+        state.paused = matchProp(props.pause, key);
+      }
+
+      let pause = defaultProps == null ? void 0 : defaultProps.pause;
+
+      if (pause !== true) {
+        pause = state.paused || matchProp(pause, key);
+      }
+
+      delay = callProp(props.delay || 0, key);
+
+      if (pause) {
+        state.resumeQueue.add(onResume);
+        actions.pause();
+      } else {
+        actions.resume();
+        onResume();
+      }
+    }
+
+    function onPause() {
+      state.resumeQueue.add(onResume);
+      state.timeouts.delete(timeout);
+      timeout.cancel();
+      delay = timeout.time - _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.raf.now();
+    }
+
+    function onResume() {
+      if (delay > 0) {
+        timeout = _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.raf.setTimeout(onStart, delay);
+        state.pauseQueue.add(onPause);
+        state.timeouts.add(timeout);
+      } else {
+        onStart();
+      }
+    }
+
+    function onStart() {
+      state.pauseQueue.delete(onPause);
+      state.timeouts.delete(timeout);
+
+      if (callId <= (state.cancelId || 0)) {
+        cancel = true;
+      }
+
+      try {
+        actions.start(_extends({}, props, {
+          callId,
+          cancel
+        }), resolve);
+      } catch (err) {
+        reject(err);
+      }
+    }
+  });
+}
+
+const getCombinedResult = (target, results) => results.length == 1 ? results[0] : results.some(result => result.cancelled) ? getCancelledResult(target.get()) : results.every(result => result.noop) ? getNoopResult(target.get()) : getFinishedResult(target.get(), results.every(result => result.finished));
+const getNoopResult = value => ({
+  value,
+  noop: true,
+  finished: true,
+  cancelled: false
+});
+const getFinishedResult = (value, finished, cancelled = false) => ({
+  value,
+  finished,
+  cancelled
+});
+const getCancelledResult = value => ({
+  value,
+  cancelled: true,
+  finished: false
+});
+
+function runAsync(to, props, state, target) {
+  const {
+    callId,
+    parentId,
+    onRest
+  } = props;
+  const {
+    asyncTo: prevTo,
+    promise: prevPromise
+  } = state;
+
+  if (!parentId && to === prevTo && !props.reset) {
+    return prevPromise;
+  }
+
+  return state.promise = (async () => {
+    state.asyncId = callId;
+    state.asyncTo = to;
+    const defaultProps = getDefaultProps(props, (value, key) => key === 'onRest' ? undefined : value);
+    let preventBail;
+    let bail;
+    const bailPromise = new Promise((resolve, reject) => (preventBail = resolve, bail = reject));
+
+    const bailIfEnded = bailSignal => {
+      const bailResult = callId <= (state.cancelId || 0) && getCancelledResult(target) || callId !== state.asyncId && getFinishedResult(target, false);
+
+      if (bailResult) {
+        bailSignal.result = bailResult;
+        bail(bailSignal);
+        throw bailSignal;
+      }
+    };
+
+    const animate = (arg1, arg2) => {
+      const bailSignal = new BailSignal();
+      const skipAnimationSignal = new SkipAniamtionSignal();
+      return (async () => {
+        if (_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.Globals.skipAnimation) {
+          stopAsync(state);
+          skipAnimationSignal.result = getFinishedResult(target, false);
+          bail(skipAnimationSignal);
+          throw skipAnimationSignal;
+        }
+
+        bailIfEnded(bailSignal);
+        const props = _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.obj(arg1) ? _extends({}, arg1) : _extends({}, arg2, {
+          to: arg1
+        });
+        props.parentId = callId;
+        (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.eachProp)(defaultProps, (value, key) => {
+          if (_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.und(props[key])) {
+            props[key] = value;
+          }
+        });
+        const result = await target.start(props);
+        bailIfEnded(bailSignal);
+
+        if (state.paused) {
+          await new Promise(resume => {
+            state.resumeQueue.add(resume);
+          });
+        }
+
+        return result;
+      })();
+    };
+
+    let result;
+
+    if (_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.Globals.skipAnimation) {
+      stopAsync(state);
+      return getFinishedResult(target, false);
+    }
+
+    try {
+      let animating;
+
+      if (_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.arr(to)) {
+        animating = (async queue => {
+          for (const props of queue) {
+            await animate(props);
+          }
+        })(to);
+      } else {
+          animating = Promise.resolve(to(animate, target.stop.bind(target)));
+        }
+
+      await Promise.all([animating.then(preventBail), bailPromise]);
+      result = getFinishedResult(target.get(), true, false);
+    } catch (err) {
+      if (err instanceof BailSignal) {
+        result = err.result;
+      } else if (err instanceof SkipAniamtionSignal) {
+        result = err.result;
+      } else {
+        throw err;
+      }
+    } finally {
+      if (callId == state.asyncId) {
+        state.asyncId = parentId;
+        state.asyncTo = parentId ? prevTo : undefined;
+        state.promise = parentId ? prevPromise : undefined;
+      }
+    }
+
+    if (_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.fun(onRest)) {
+      _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.raf.batchedUpdates(() => {
+        onRest(result, target, target.item);
+      });
+    }
+
+    return result;
+  })();
+}
+function stopAsync(state, cancelId) {
+  (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.flush)(state.timeouts, t => t.cancel());
+  state.pauseQueue.clear();
+  state.resumeQueue.clear();
+  state.asyncId = state.asyncTo = state.promise = undefined;
+  if (cancelId) state.cancelId = cancelId;
+}
+class BailSignal extends Error {
+  constructor() {
+    super('An async animation has been interrupted. You see this error because you ' + 'forgot to use `await` or `.catch(...)` on its returned promise.');
+    this.result = void 0;
+  }
+
+}
+class SkipAniamtionSignal extends Error {
+  constructor() {
+    super('SkipAnimationSignal');
+    this.result = void 0;
+  }
+
+}
+
+const isFrameValue = value => value instanceof FrameValue;
+let nextId$1 = 1;
+class FrameValue extends _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.FluidValue {
+  constructor(...args) {
+    super(...args);
+    this.id = nextId$1++;
+    this.key = void 0;
+    this._priority = 0;
+  }
+
+  get priority() {
+    return this._priority;
+  }
+
+  set priority(priority) {
+    if (this._priority != priority) {
+      this._priority = priority;
+
+      this._onPriorityChange(priority);
+    }
+  }
+
+  get() {
+    const node = (0,_react_spring_animated__WEBPACK_IMPORTED_MODULE_2__.getAnimated)(this);
+    return node && node.getValue();
+  }
+
+  to(...args) {
+    return _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.Globals.to(this, args);
+  }
+
+  interpolate(...args) {
+    (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.deprecateInterpolate)();
+    return _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.Globals.to(this, args);
+  }
+
+  toJSON() {
+    return this.get();
+  }
+
+  observerAdded(count) {
+    if (count == 1) this._attach();
+  }
+
+  observerRemoved(count) {
+    if (count == 0) this._detach();
+  }
+
+  _attach() {}
+
+  _detach() {}
+
+  _onChange(value, idle = false) {
+    (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.callFluidObservers)(this, {
+      type: 'change',
+      parent: this,
+      value,
+      idle
+    });
+  }
+
+  _onPriorityChange(priority) {
+    if (!this.idle) {
+      _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.frameLoop.sort(this);
+    }
+
+    (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.callFluidObservers)(this, {
+      type: 'priority',
+      parent: this,
+      priority
+    });
+  }
+
+}
+
+const $P = Symbol.for('SpringPhase');
+const HAS_ANIMATED = 1;
+const IS_ANIMATING = 2;
+const IS_PAUSED = 4;
+const hasAnimated = target => (target[$P] & HAS_ANIMATED) > 0;
+const isAnimating = target => (target[$P] & IS_ANIMATING) > 0;
+const isPaused = target => (target[$P] & IS_PAUSED) > 0;
+const setActiveBit = (target, active) => active ? target[$P] |= IS_ANIMATING | HAS_ANIMATED : target[$P] &= ~IS_ANIMATING;
+const setPausedBit = (target, paused) => paused ? target[$P] |= IS_PAUSED : target[$P] &= ~IS_PAUSED;
+
+class SpringValue extends FrameValue {
+  constructor(arg1, arg2) {
+    super();
+    this.key = void 0;
+    this.animation = new Animation();
+    this.queue = void 0;
+    this.defaultProps = {};
+    this._state = {
+      paused: false,
+      pauseQueue: new Set(),
+      resumeQueue: new Set(),
+      timeouts: new Set()
+    };
+    this._pendingCalls = new Set();
+    this._lastCallId = 0;
+    this._lastToId = 0;
+    this._memoizedDuration = 0;
+
+    if (!_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.und(arg1) || !_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.und(arg2)) {
+      const props = _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.obj(arg1) ? _extends({}, arg1) : _extends({}, arg2, {
+        from: arg1
+      });
+
+      if (_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.und(props.default)) {
+        props.default = true;
+      }
+
+      this.start(props);
+    }
+  }
+
+  get idle() {
+    return !(isAnimating(this) || this._state.asyncTo) || isPaused(this);
+  }
+
+  get goal() {
+    return (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.getFluidValue)(this.animation.to);
+  }
+
+  get velocity() {
+    const node = (0,_react_spring_animated__WEBPACK_IMPORTED_MODULE_2__.getAnimated)(this);
+    return node instanceof _react_spring_animated__WEBPACK_IMPORTED_MODULE_2__.AnimatedValue ? node.lastVelocity || 0 : node.getPayload().map(node => node.lastVelocity || 0);
+  }
+
+  get hasAnimated() {
+    return hasAnimated(this);
+  }
+
+  get isAnimating() {
+    return isAnimating(this);
+  }
+
+  get isPaused() {
+    return isPaused(this);
+  }
+
+  advance(dt) {
+    let idle = true;
+    let changed = false;
+    const anim = this.animation;
+    let {
+      config,
+      toValues
+    } = anim;
+    const payload = (0,_react_spring_animated__WEBPACK_IMPORTED_MODULE_2__.getPayload)(anim.to);
+
+    if (!payload && (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.hasFluidValue)(anim.to)) {
+      toValues = (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.toArray)((0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.getFluidValue)(anim.to));
+    }
+
+    anim.values.forEach((node, i) => {
+      if (node.done) return;
+      const to = node.constructor == _react_spring_animated__WEBPACK_IMPORTED_MODULE_2__.AnimatedString ? 1 : payload ? payload[i].lastPosition : toValues[i];
+      let finished = anim.immediate;
+      let position = to;
+
+      if (!finished) {
+        position = node.lastPosition;
+
+        if (config.tension <= 0) {
+          node.done = true;
+          return;
+        }
+
+        let elapsed = node.elapsedTime += dt;
+        const from = anim.fromValues[i];
+        const v0 = node.v0 != null ? node.v0 : node.v0 = _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.arr(config.velocity) ? config.velocity[i] : config.velocity;
+        let velocity;
+
+        if (!_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.und(config.duration)) {
+          let p = 1;
+
+          if (config.duration > 0) {
+            if (this._memoizedDuration !== config.duration) {
+              this._memoizedDuration = config.duration;
+
+              if (node.durationProgress > 0) {
+                node.elapsedTime = config.duration * node.durationProgress;
+                elapsed = node.elapsedTime += dt;
+              }
+            }
+
+            p = (config.progress || 0) + elapsed / this._memoizedDuration;
+            p = p > 1 ? 1 : p < 0 ? 0 : p;
+            node.durationProgress = p;
+          }
+
+          position = from + config.easing(p) * (to - from);
+          velocity = (position - node.lastPosition) / dt;
+          finished = p == 1;
+        } else if (config.decay) {
+            const decay = config.decay === true ? 0.998 : config.decay;
+            const e = Math.exp(-(1 - decay) * elapsed);
+            position = from + v0 / (1 - decay) * (1 - e);
+            finished = Math.abs(node.lastPosition - position) < 0.1;
+            velocity = v0 * e;
+          } else {
+              velocity = node.lastVelocity == null ? v0 : node.lastVelocity;
+              const precision = config.precision || (from == to ? 0.005 : Math.min(1, Math.abs(to - from) * 0.001));
+              const restVelocity = config.restVelocity || precision / 10;
+              const bounceFactor = config.clamp ? 0 : config.bounce;
+              const canBounce = !_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.und(bounceFactor);
+              const isGrowing = from == to ? node.v0 > 0 : from < to;
+              let isMoving;
+              let isBouncing = false;
+              const step = 1;
+              const numSteps = Math.ceil(dt / step);
+
+              for (let n = 0; n < numSteps; ++n) {
+                isMoving = Math.abs(velocity) > restVelocity;
+
+                if (!isMoving) {
+                  finished = Math.abs(to - position) <= precision;
+
+                  if (finished) {
+                    break;
+                  }
+                }
+
+                if (canBounce) {
+                  isBouncing = position == to || position > to == isGrowing;
+
+                  if (isBouncing) {
+                    velocity = -velocity * bounceFactor;
+                    position = to;
+                  }
+                }
+
+                const springForce = -config.tension * 0.000001 * (position - to);
+                const dampingForce = -config.friction * 0.001 * velocity;
+                const acceleration = (springForce + dampingForce) / config.mass;
+                velocity = velocity + acceleration * step;
+                position = position + velocity * step;
+              }
+            }
+
+        node.lastVelocity = velocity;
+
+        if (Number.isNaN(position)) {
+          console.warn(`Got NaN while animating:`, this);
+          finished = true;
+        }
+      }
+
+      if (payload && !payload[i].done) {
+        finished = false;
+      }
+
+      if (finished) {
+        node.done = true;
+      } else {
+        idle = false;
+      }
+
+      if (node.setValue(position, config.round)) {
+        changed = true;
+      }
+    });
+    const node = (0,_react_spring_animated__WEBPACK_IMPORTED_MODULE_2__.getAnimated)(this);
+    const currVal = node.getValue();
+
+    if (idle) {
+      const finalVal = (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.getFluidValue)(anim.to);
+
+      if ((currVal !== finalVal || changed) && !config.decay) {
+        node.setValue(finalVal);
+
+        this._onChange(finalVal);
+      } else if (changed && config.decay) {
+        this._onChange(currVal);
+      }
+
+      this._stop();
+    } else if (changed) {
+      this._onChange(currVal);
+    }
+  }
+
+  set(value) {
+    _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.raf.batchedUpdates(() => {
+      this._stop();
+
+      this._focus(value);
+
+      this._set(value);
+    });
+    return this;
+  }
+
+  pause() {
+    this._update({
+      pause: true
+    });
+  }
+
+  resume() {
+    this._update({
+      pause: false
+    });
+  }
+
+  finish() {
+    if (isAnimating(this)) {
+      const {
+        to,
+        config
+      } = this.animation;
+      _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.raf.batchedUpdates(() => {
+        this._onStart();
+
+        if (!config.decay) {
+          this._set(to, false);
+        }
+
+        this._stop();
+      });
+    }
+
+    return this;
+  }
+
+  update(props) {
+    const queue = this.queue || (this.queue = []);
+    queue.push(props);
+    return this;
+  }
+
+  start(to, arg2) {
+    let queue;
+
+    if (!_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.und(to)) {
+      queue = [_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.obj(to) ? to : _extends({}, arg2, {
+        to
+      })];
+    } else {
+      queue = this.queue || [];
+      this.queue = [];
+    }
+
+    return Promise.all(queue.map(props => this._update(props))).then(results => getCombinedResult(this, results));
+  }
+
+  stop(cancel) {
+    const {
+      to
+    } = this.animation;
+
+    this._focus(this.get());
+
+    stopAsync(this._state, cancel && this._lastCallId);
+    _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.raf.batchedUpdates(() => this._stop(to, cancel));
+    return this;
+  }
+
+  reset() {
+    this._update({
+      reset: true
+    });
+  }
+
+  eventObserved(event) {
+    if (event.type == 'change') {
+      this._start();
+    } else if (event.type == 'priority') {
+      this.priority = event.priority + 1;
+    }
+  }
+
+  _prepareNode(props) {
+    const key = this.key || '';
+    let {
+      to,
+      from
+    } = props;
+    to = _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.obj(to) ? to[key] : to;
+
+    if (to == null || isAsyncTo(to)) {
+      to = undefined;
+    }
+
+    from = _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.obj(from) ? from[key] : from;
+
+    if (from == null) {
+      from = undefined;
+    }
+
+    const range = {
+      to,
+      from
+    };
+
+    if (!hasAnimated(this)) {
+      if (props.reverse) [to, from] = [from, to];
+      from = (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.getFluidValue)(from);
+
+      if (!_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.und(from)) {
+        this._set(from);
+      } else if (!(0,_react_spring_animated__WEBPACK_IMPORTED_MODULE_2__.getAnimated)(this)) {
+          this._set(to);
+        }
+    }
+
+    return range;
+  }
+
+  _update(_ref, isLoop) {
+    let props = _extends({}, _ref);
+
+    const {
+      key,
+      defaultProps
+    } = this;
+    if (props.default) Object.assign(defaultProps, getDefaultProps(props, (value, prop) => /^on/.test(prop) ? resolveProp(value, key) : value));
+    mergeActiveFn(this, props, 'onProps');
+    sendEvent(this, 'onProps', props, this);
+
+    const range = this._prepareNode(props);
+
+    if (Object.isFrozen(this)) {
+      throw Error('Cannot animate a `SpringValue` object that is frozen. ' + 'Did you forget to pass your component to `animated(...)` before animating its props?');
+    }
+
+    const state = this._state;
+    return scheduleProps(++this._lastCallId, {
+      key,
+      props,
+      defaultProps,
+      state,
+      actions: {
+        pause: () => {
+          if (!isPaused(this)) {
+            setPausedBit(this, true);
+            (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.flushCalls)(state.pauseQueue);
+            sendEvent(this, 'onPause', getFinishedResult(this, checkFinished(this, this.animation.to)), this);
+          }
+        },
+        resume: () => {
+          if (isPaused(this)) {
+            setPausedBit(this, false);
+
+            if (isAnimating(this)) {
+              this._resume();
+            }
+
+            (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.flushCalls)(state.resumeQueue);
+            sendEvent(this, 'onResume', getFinishedResult(this, checkFinished(this, this.animation.to)), this);
+          }
+        },
+        start: this._merge.bind(this, range)
+      }
+    }).then(result => {
+      if (props.loop && result.finished && !(isLoop && result.noop)) {
+        const nextProps = createLoopUpdate(props);
+
+        if (nextProps) {
+          return this._update(nextProps, true);
+        }
+      }
+
+      return result;
+    });
+  }
+
+  _merge(range, props, resolve) {
+    if (props.cancel) {
+      this.stop(true);
+      return resolve(getCancelledResult(this));
+    }
+
+    const hasToProp = !_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.und(range.to);
+    const hasFromProp = !_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.und(range.from);
+
+    if (hasToProp || hasFromProp) {
+      if (props.callId > this._lastToId) {
+        this._lastToId = props.callId;
+      } else {
+        return resolve(getCancelledResult(this));
+      }
+    }
+
+    const {
+      key,
+      defaultProps,
+      animation: anim
+    } = this;
+    const {
+      to: prevTo,
+      from: prevFrom
+    } = anim;
+    let {
+      to = prevTo,
+      from = prevFrom
+    } = range;
+
+    if (hasFromProp && !hasToProp && (!props.default || _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.und(to))) {
+      to = from;
+    }
+
+    if (props.reverse) [to, from] = [from, to];
+    const hasFromChanged = !(0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.isEqual)(from, prevFrom);
+
+    if (hasFromChanged) {
+      anim.from = from;
+    }
+
+    from = (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.getFluidValue)(from);
+    const hasToChanged = !(0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.isEqual)(to, prevTo);
+
+    if (hasToChanged) {
+      this._focus(to);
+    }
+
+    const hasAsyncTo = isAsyncTo(props.to);
+    const {
+      config
+    } = anim;
+    const {
+      decay,
+      velocity
+    } = config;
+
+    if (hasToProp || hasFromProp) {
+      config.velocity = 0;
+    }
+
+    if (props.config && !hasAsyncTo) {
+      mergeConfig(config, callProp(props.config, key), props.config !== defaultProps.config ? callProp(defaultProps.config, key) : void 0);
+    }
+
+    let node = (0,_react_spring_animated__WEBPACK_IMPORTED_MODULE_2__.getAnimated)(this);
+
+    if (!node || _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.und(to)) {
+      return resolve(getFinishedResult(this, true));
+    }
+
+    const reset = _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.und(props.reset) ? hasFromProp && !props.default : !_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.und(from) && matchProp(props.reset, key);
+    const value = reset ? from : this.get();
+    const goal = computeGoal(to);
+    const isAnimatable = _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.num(goal) || _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.arr(goal) || (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.isAnimatedString)(goal);
+    const immediate = !hasAsyncTo && (!isAnimatable || matchProp(defaultProps.immediate || props.immediate, key));
+
+    if (hasToChanged) {
+      const nodeType = (0,_react_spring_animated__WEBPACK_IMPORTED_MODULE_2__.getAnimatedType)(to);
+
+      if (nodeType !== node.constructor) {
+        if (immediate) {
+          node = this._set(goal);
+        } else throw Error(`Cannot animate between ${node.constructor.name} and ${nodeType.name}, as the "to" prop suggests`);
+      }
+    }
+
+    const goalType = node.constructor;
+    let started = (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.hasFluidValue)(to);
+    let finished = false;
+
+    if (!started) {
+      const hasValueChanged = reset || !hasAnimated(this) && hasFromChanged;
+
+      if (hasToChanged || hasValueChanged) {
+        finished = (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.isEqual)(computeGoal(value), goal);
+        started = !finished;
+      }
+
+      if (!(0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.isEqual)(anim.immediate, immediate) && !immediate || !(0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.isEqual)(config.decay, decay) || !(0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.isEqual)(config.velocity, velocity)) {
+        started = true;
+      }
+    }
+
+    if (finished && isAnimating(this)) {
+      if (anim.changed && !reset) {
+        started = true;
+      } else if (!started) {
+          this._stop(prevTo);
+        }
+    }
+
+    if (!hasAsyncTo) {
+      if (started || (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.hasFluidValue)(prevTo)) {
+        anim.values = node.getPayload();
+        anim.toValues = (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.hasFluidValue)(to) ? null : goalType == _react_spring_animated__WEBPACK_IMPORTED_MODULE_2__.AnimatedString ? [1] : (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.toArray)(goal);
+      }
+
+      if (anim.immediate != immediate) {
+        anim.immediate = immediate;
+
+        if (!immediate && !reset) {
+          this._set(prevTo);
+        }
+      }
+
+      if (started) {
+        const {
+          onRest
+        } = anim;
+        (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)(ACTIVE_EVENTS, type => mergeActiveFn(this, props, type));
+        const result = getFinishedResult(this, checkFinished(this, prevTo));
+        (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.flushCalls)(this._pendingCalls, result);
+
+        this._pendingCalls.add(resolve);
+
+        if (anim.changed) _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.raf.batchedUpdates(() => {
+          anim.changed = !reset;
+          onRest == null ? void 0 : onRest(result, this);
+
+          if (reset) {
+            callProp(defaultProps.onRest, result);
+          } else {
+              anim.onStart == null ? void 0 : anim.onStart(result, this);
+            }
+        });
+      }
+    }
+
+    if (reset) {
+      this._set(value);
+    }
+
+    if (hasAsyncTo) {
+      resolve(runAsync(props.to, props, this._state, this));
+    } else if (started) {
+        this._start();
+      } else if (isAnimating(this) && !hasToChanged) {
+          this._pendingCalls.add(resolve);
+        } else {
+            resolve(getNoopResult(value));
+          }
+  }
+
+  _focus(value) {
+    const anim = this.animation;
+
+    if (value !== anim.to) {
+      if ((0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.getFluidObservers)(this)) {
+        this._detach();
+      }
+
+      anim.to = value;
+
+      if ((0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.getFluidObservers)(this)) {
+        this._attach();
+      }
+    }
+  }
+
+  _attach() {
+    let priority = 0;
+    const {
+      to
+    } = this.animation;
+
+    if ((0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.hasFluidValue)(to)) {
+      (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.addFluidObserver)(to, this);
+
+      if (isFrameValue(to)) {
+        priority = to.priority + 1;
+      }
+    }
+
+    this.priority = priority;
+  }
+
+  _detach() {
+    const {
+      to
+    } = this.animation;
+
+    if ((0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.hasFluidValue)(to)) {
+      (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.removeFluidObserver)(to, this);
+    }
+  }
+
+  _set(arg, idle = true) {
+    const value = (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.getFluidValue)(arg);
+
+    if (!_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.und(value)) {
+      const oldNode = (0,_react_spring_animated__WEBPACK_IMPORTED_MODULE_2__.getAnimated)(this);
+
+      if (!oldNode || !(0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.isEqual)(value, oldNode.getValue())) {
+        const nodeType = (0,_react_spring_animated__WEBPACK_IMPORTED_MODULE_2__.getAnimatedType)(value);
+
+        if (!oldNode || oldNode.constructor != nodeType) {
+          (0,_react_spring_animated__WEBPACK_IMPORTED_MODULE_2__.setAnimated)(this, nodeType.create(value));
+        } else {
+          oldNode.setValue(value);
+        }
+
+        if (oldNode) {
+          _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.raf.batchedUpdates(() => {
+            this._onChange(value, idle);
+          });
+        }
+      }
+    }
+
+    return (0,_react_spring_animated__WEBPACK_IMPORTED_MODULE_2__.getAnimated)(this);
+  }
+
+  _onStart() {
+    const anim = this.animation;
+
+    if (!anim.changed) {
+      anim.changed = true;
+      sendEvent(this, 'onStart', getFinishedResult(this, checkFinished(this, anim.to)), this);
+    }
+  }
+
+  _onChange(value, idle) {
+    if (!idle) {
+      this._onStart();
+
+      callProp(this.animation.onChange, value, this);
+    }
+
+    callProp(this.defaultProps.onChange, value, this);
+
+    super._onChange(value, idle);
+  }
+
+  _start() {
+    const anim = this.animation;
+    (0,_react_spring_animated__WEBPACK_IMPORTED_MODULE_2__.getAnimated)(this).reset((0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.getFluidValue)(anim.to));
+
+    if (!anim.immediate) {
+      anim.fromValues = anim.values.map(node => node.lastPosition);
+    }
+
+    if (!isAnimating(this)) {
+      setActiveBit(this, true);
+
+      if (!isPaused(this)) {
+        this._resume();
+      }
+    }
+  }
+
+  _resume() {
+    if (_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.Globals.skipAnimation) {
+      this.finish();
+    } else {
+      _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.frameLoop.start(this);
+    }
+  }
+
+  _stop(goal, cancel) {
+    if (isAnimating(this)) {
+      setActiveBit(this, false);
+      const anim = this.animation;
+      (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)(anim.values, node => {
+        node.done = true;
+      });
+
+      if (anim.toValues) {
+        anim.onChange = anim.onPause = anim.onResume = undefined;
+      }
+
+      (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.callFluidObservers)(this, {
+        type: 'idle',
+        parent: this
+      });
+      const result = cancel ? getCancelledResult(this.get()) : getFinishedResult(this.get(), checkFinished(this, goal != null ? goal : anim.to));
+      (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.flushCalls)(this._pendingCalls, result);
+
+      if (anim.changed) {
+        anim.changed = false;
+        sendEvent(this, 'onRest', result, this);
+      }
+    }
+  }
+
+}
+
+function checkFinished(target, to) {
+  const goal = computeGoal(to);
+  const value = computeGoal(target.get());
+  return (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.isEqual)(value, goal);
+}
+
+function createLoopUpdate(props, loop = props.loop, to = props.to) {
+  let loopRet = callProp(loop);
+
+  if (loopRet) {
+    const overrides = loopRet !== true && inferTo(loopRet);
+    const reverse = (overrides || props).reverse;
+    const reset = !overrides || overrides.reset;
+    return createUpdate(_extends({}, props, {
+      loop,
+      default: false,
+      pause: undefined,
+      to: !reverse || isAsyncTo(to) ? to : undefined,
+      from: reset ? props.from : undefined,
+      reset
+    }, overrides));
+  }
+}
+function createUpdate(props) {
+  const {
+    to,
+    from
+  } = props = inferTo(props);
+  const keys = new Set();
+  if (_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.obj(to)) findDefined(to, keys);
+  if (_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.obj(from)) findDefined(from, keys);
+  props.keys = keys.size ? Array.from(keys) : null;
+  return props;
+}
+function declareUpdate(props) {
+  const update = createUpdate(props);
+
+  if (_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.und(update.default)) {
+    update.default = getDefaultProps(update);
+  }
+
+  return update;
+}
+
+function findDefined(values, keys) {
+  (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.eachProp)(values, (value, key) => value != null && keys.add(key));
+}
+
+const ACTIVE_EVENTS = ['onStart', 'onRest', 'onChange', 'onPause', 'onResume'];
+
+function mergeActiveFn(target, props, type) {
+  target.animation[type] = props[type] !== getDefaultProp(props, type) ? resolveProp(props[type], target.key) : undefined;
+}
+
+function sendEvent(target, type, ...args) {
+  var _target$animation$typ, _target$animation, _target$defaultProps$, _target$defaultProps;
+
+  (_target$animation$typ = (_target$animation = target.animation)[type]) == null ? void 0 : _target$animation$typ.call(_target$animation, ...args);
+  (_target$defaultProps$ = (_target$defaultProps = target.defaultProps)[type]) == null ? void 0 : _target$defaultProps$.call(_target$defaultProps, ...args);
+}
+
+const BATCHED_EVENTS = ['onStart', 'onChange', 'onRest'];
+let nextId = 1;
+class Controller {
+  constructor(props, flush) {
+    this.id = nextId++;
+    this.springs = {};
+    this.queue = [];
+    this.ref = void 0;
+    this._flush = void 0;
+    this._initialProps = void 0;
+    this._lastAsyncId = 0;
+    this._active = new Set();
+    this._changed = new Set();
+    this._started = false;
+    this._item = void 0;
+    this._state = {
+      paused: false,
+      pauseQueue: new Set(),
+      resumeQueue: new Set(),
+      timeouts: new Set()
+    };
+    this._events = {
+      onStart: new Map(),
+      onChange: new Map(),
+      onRest: new Map()
+    };
+    this._onFrame = this._onFrame.bind(this);
+
+    if (flush) {
+      this._flush = flush;
+    }
+
+    if (props) {
+      this.start(_extends({
+        default: true
+      }, props));
+    }
+  }
+
+  get idle() {
+    return !this._state.asyncTo && Object.values(this.springs).every(spring => spring.idle);
+  }
+
+  get item() {
+    return this._item;
+  }
+
+  set item(item) {
+    this._item = item;
+  }
+
+  get() {
+    const values = {};
+    this.each((spring, key) => values[key] = spring.get());
+    return values;
+  }
+
+  set(values) {
+    for (const key in values) {
+      const value = values[key];
+
+      if (!_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.und(value)) {
+        this.springs[key].set(value);
+      }
+    }
+  }
+
+  update(props) {
+    if (props) {
+      this.queue.push(createUpdate(props));
+    }
+
+    return this;
+  }
+
+  start(props) {
+    let {
+      queue
+    } = this;
+
+    if (props) {
+      queue = (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.toArray)(props).map(createUpdate);
+    } else {
+      this.queue = [];
+    }
+
+    if (this._flush) {
+      return this._flush(this, queue);
+    }
+
+    prepareKeys(this, queue);
+    return flushUpdateQueue(this, queue);
+  }
+
+  stop(arg, keys) {
+    if (arg !== !!arg) {
+      keys = arg;
+    }
+
+    if (keys) {
+      const springs = this.springs;
+      (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)((0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.toArray)(keys), key => springs[key].stop(!!arg));
+    } else {
+      stopAsync(this._state, this._lastAsyncId);
+      this.each(spring => spring.stop(!!arg));
+    }
+
+    return this;
+  }
+
+  pause(keys) {
+    if (_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.und(keys)) {
+      this.start({
+        pause: true
+      });
+    } else {
+      const springs = this.springs;
+      (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)((0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.toArray)(keys), key => springs[key].pause());
+    }
+
+    return this;
+  }
+
+  resume(keys) {
+    if (_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.und(keys)) {
+      this.start({
+        pause: false
+      });
+    } else {
+      const springs = this.springs;
+      (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)((0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.toArray)(keys), key => springs[key].resume());
+    }
+
+    return this;
+  }
+
+  each(iterator) {
+    (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.eachProp)(this.springs, iterator);
+  }
+
+  _onFrame() {
+    const {
+      onStart,
+      onChange,
+      onRest
+    } = this._events;
+    const active = this._active.size > 0;
+    const changed = this._changed.size > 0;
+
+    if (active && !this._started || changed && !this._started) {
+      this._started = true;
+      (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.flush)(onStart, ([onStart, result]) => {
+        result.value = this.get();
+        onStart(result, this, this._item);
+      });
+    }
+
+    const idle = !active && this._started;
+    const values = changed || idle && onRest.size ? this.get() : null;
+
+    if (changed && onChange.size) {
+      (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.flush)(onChange, ([onChange, result]) => {
+        result.value = values;
+        onChange(result, this, this._item);
+      });
+    }
+
+    if (idle) {
+      this._started = false;
+      (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.flush)(onRest, ([onRest, result]) => {
+        result.value = values;
+        onRest(result, this, this._item);
+      });
+    }
+  }
+
+  eventObserved(event) {
+    if (event.type == 'change') {
+      this._changed.add(event.parent);
+
+      if (!event.idle) {
+        this._active.add(event.parent);
+      }
+    } else if (event.type == 'idle') {
+      this._active.delete(event.parent);
+    } else return;
+
+    _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.raf.onFrame(this._onFrame);
+  }
+
+}
+function flushUpdateQueue(ctrl, queue) {
+  return Promise.all(queue.map(props => flushUpdate(ctrl, props))).then(results => getCombinedResult(ctrl, results));
+}
+async function flushUpdate(ctrl, props, isLoop) {
+  const {
+    keys,
+    to,
+    from,
+    loop,
+    onRest,
+    onResolve
+  } = props;
+  const defaults = _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.obj(props.default) && props.default;
+
+  if (loop) {
+    props.loop = false;
+  }
+
+  if (to === false) props.to = null;
+  if (from === false) props.from = null;
+  const asyncTo = _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.arr(to) || _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.fun(to) ? to : undefined;
+
+  if (asyncTo) {
+    props.to = undefined;
+    props.onRest = undefined;
+
+    if (defaults) {
+      defaults.onRest = undefined;
+    }
+  } else {
+      (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)(BATCHED_EVENTS, key => {
+        const handler = props[key];
+
+        if (_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.fun(handler)) {
+          const queue = ctrl['_events'][key];
+
+          props[key] = ({
+            finished,
+            cancelled
+          }) => {
+            const result = queue.get(handler);
+
+            if (result) {
+              if (!finished) result.finished = false;
+              if (cancelled) result.cancelled = true;
+            } else {
+              queue.set(handler, {
+                value: null,
+                finished: finished || false,
+                cancelled: cancelled || false
+              });
+            }
+          };
+
+          if (defaults) {
+            defaults[key] = props[key];
+          }
+        }
+      });
+    }
+
+  const state = ctrl['_state'];
+
+  if (props.pause === !state.paused) {
+    state.paused = props.pause;
+    (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.flushCalls)(props.pause ? state.pauseQueue : state.resumeQueue);
+  } else if (state.paused) {
+      props.pause = true;
+    }
+
+  const promises = (keys || Object.keys(ctrl.springs)).map(key => ctrl.springs[key].start(props));
+  const cancel = props.cancel === true || getDefaultProp(props, 'cancel') === true;
+
+  if (asyncTo || cancel && state.asyncId) {
+    promises.push(scheduleProps(++ctrl['_lastAsyncId'], {
+      props,
+      state,
+      actions: {
+        pause: _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.noop,
+        resume: _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.noop,
+
+        start(props, resolve) {
+          if (cancel) {
+            stopAsync(state, ctrl['_lastAsyncId']);
+            resolve(getCancelledResult(ctrl));
+          } else {
+            props.onRest = onRest;
+            resolve(runAsync(asyncTo, props, state, ctrl));
+          }
+        }
+
+      }
+    }));
+  }
+
+  if (state.paused) {
+    await new Promise(resume => {
+      state.resumeQueue.add(resume);
+    });
+  }
+
+  const result = getCombinedResult(ctrl, await Promise.all(promises));
+
+  if (loop && result.finished && !(isLoop && result.noop)) {
+    const nextProps = createLoopUpdate(props, loop, to);
+
+    if (nextProps) {
+      prepareKeys(ctrl, [nextProps]);
+      return flushUpdate(ctrl, nextProps, true);
+    }
+  }
+
+  if (onResolve) {
+    _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.raf.batchedUpdates(() => onResolve(result, ctrl, ctrl.item));
+  }
+
+  return result;
+}
+function getSprings(ctrl, props) {
+  const springs = _extends({}, ctrl.springs);
+
+  if (props) {
+    (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)((0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.toArray)(props), props => {
+      if (_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.und(props.keys)) {
+        props = createUpdate(props);
+      }
+
+      if (!_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.obj(props.to)) {
+        props = _extends({}, props, {
+          to: undefined
+        });
+      }
+
+      prepareSprings(springs, props, key => {
+        return createSpring(key);
+      });
+    });
+  }
+
+  setSprings(ctrl, springs);
+  return springs;
+}
+function setSprings(ctrl, springs) {
+  (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.eachProp)(springs, (spring, key) => {
+    if (!ctrl.springs[key]) {
+      ctrl.springs[key] = spring;
+      (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.addFluidObserver)(spring, ctrl);
+    }
+  });
+}
+
+function createSpring(key, observer) {
+  const spring = new SpringValue();
+  spring.key = key;
+
+  if (observer) {
+    (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.addFluidObserver)(spring, observer);
+  }
+
+  return spring;
+}
+
+function prepareSprings(springs, props, create) {
+  if (props.keys) {
+    (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)(props.keys, key => {
+      const spring = springs[key] || (springs[key] = create(key));
+      spring['_prepareNode'](props);
+    });
+  }
+}
+
+function prepareKeys(ctrl, queue) {
+  (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)(queue, props => {
+    prepareSprings(ctrl.springs, props, key => {
+      return createSpring(key, ctrl);
+    });
+  });
+}
+
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  return target;
+}
+
+const _excluded$3 = ["children"];
+const SpringContext = _ref => {
+  let {
+    children
+  } = _ref,
+      props = _objectWithoutPropertiesLoose(_ref, _excluded$3);
+
+  const inherited = (0,react__WEBPACK_IMPORTED_MODULE_1__.useContext)(ctx);
+  const pause = props.pause || !!inherited.pause,
+        immediate = props.immediate || !!inherited.immediate;
+  props = (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.useMemoOne)(() => ({
+    pause,
+    immediate
+  }), [pause, immediate]);
+  const {
+    Provider
+  } = ctx;
+  return react__WEBPACK_IMPORTED_MODULE_1__.createElement(Provider, {
+    value: props
+  }, children);
+};
+const ctx = makeContext(SpringContext, {});
+SpringContext.Provider = ctx.Provider;
+SpringContext.Consumer = ctx.Consumer;
+
+function makeContext(target, init) {
+  Object.assign(target, react__WEBPACK_IMPORTED_MODULE_1__.createContext(init));
+  target.Provider._context = target;
+  target.Consumer._context = target;
+  return target;
+}
+
+const SpringRef = () => {
+  const current = [];
+
+  const SpringRef = function SpringRef(props) {
+    (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.deprecateDirectCall)();
+    const results = [];
+    (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)(current, (ctrl, i) => {
+      if (_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.und(props)) {
+        results.push(ctrl.start());
+      } else {
+        const update = _getProps(props, ctrl, i);
+
+        if (update) {
+          results.push(ctrl.start(update));
+        }
+      }
+    });
+    return results;
+  };
+
+  SpringRef.current = current;
+
+  SpringRef.add = function (ctrl) {
+    if (!current.includes(ctrl)) {
+      current.push(ctrl);
+    }
+  };
+
+  SpringRef.delete = function (ctrl) {
+    const i = current.indexOf(ctrl);
+    if (~i) current.splice(i, 1);
+  };
+
+  SpringRef.pause = function () {
+    (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)(current, ctrl => ctrl.pause(...arguments));
+    return this;
+  };
+
+  SpringRef.resume = function () {
+    (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)(current, ctrl => ctrl.resume(...arguments));
+    return this;
+  };
+
+  SpringRef.set = function (values) {
+    (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)(current, ctrl => ctrl.set(values));
+  };
+
+  SpringRef.start = function (props) {
+    const results = [];
+    (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)(current, (ctrl, i) => {
+      if (_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.und(props)) {
+        results.push(ctrl.start());
+      } else {
+        const update = this._getProps(props, ctrl, i);
+
+        if (update) {
+          results.push(ctrl.start(update));
+        }
+      }
+    });
+    return results;
+  };
+
+  SpringRef.stop = function () {
+    (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)(current, ctrl => ctrl.stop(...arguments));
+    return this;
+  };
+
+  SpringRef.update = function (props) {
+    (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)(current, (ctrl, i) => ctrl.update(this._getProps(props, ctrl, i)));
+    return this;
+  };
+
+  const _getProps = function _getProps(arg, ctrl, index) {
+    return _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.fun(arg) ? arg(index, ctrl) : arg;
+  };
+
+  SpringRef._getProps = _getProps;
+  return SpringRef;
+};
+
+function useSprings(length, props, deps) {
+  const propsFn = _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.fun(props) && props;
+  if (propsFn && !deps) deps = [];
+  const ref = (0,react__WEBPACK_IMPORTED_MODULE_1__.useMemo)(() => propsFn || arguments.length == 3 ? SpringRef() : void 0, []);
+  const layoutId = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(0);
+  const forceUpdate = (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.useForceUpdate)();
+  const state = (0,react__WEBPACK_IMPORTED_MODULE_1__.useMemo)(() => ({
+    ctrls: [],
+    queue: [],
+
+    flush(ctrl, updates) {
+      const springs = getSprings(ctrl, updates);
+      const canFlushSync = layoutId.current > 0 && !state.queue.length && !Object.keys(springs).some(key => !ctrl.springs[key]);
+      return canFlushSync ? flushUpdateQueue(ctrl, updates) : new Promise(resolve => {
+        setSprings(ctrl, springs);
+        state.queue.push(() => {
+          resolve(flushUpdateQueue(ctrl, updates));
+        });
+        forceUpdate();
+      });
+    }
+
+  }), []);
+  const ctrls = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)([...state.ctrls]);
+  const updates = [];
+  const prevLength = (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.usePrev)(length) || 0;
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useMemo)(() => {
+    (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)(ctrls.current.slice(length, prevLength), ctrl => {
+      detachRefs(ctrl, ref);
+      ctrl.stop(true);
+    });
+    ctrls.current.length = length;
+    declareUpdates(prevLength, length);
+  }, [length]);
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useMemo)(() => {
+    declareUpdates(0, Math.min(prevLength, length));
+  }, deps);
+
+  function declareUpdates(startIndex, endIndex) {
+    for (let i = startIndex; i < endIndex; i++) {
+      const ctrl = ctrls.current[i] || (ctrls.current[i] = new Controller(null, state.flush));
+      const update = propsFn ? propsFn(i, ctrl) : props[i];
+
+      if (update) {
+        updates[i] = declareUpdate(update);
+      }
+    }
+  }
+
+  const springs = ctrls.current.map((ctrl, i) => getSprings(ctrl, updates[i]));
+  const context = (0,react__WEBPACK_IMPORTED_MODULE_1__.useContext)(SpringContext);
+  const prevContext = (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.usePrev)(context);
+  const hasContext = context !== prevContext && hasProps(context);
+  (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.useLayoutEffect)(() => {
+    layoutId.current++;
+    state.ctrls = ctrls.current;
+    const {
+      queue
+    } = state;
+
+    if (queue.length) {
+      state.queue = [];
+      (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)(queue, cb => cb());
+    }
+
+    (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)(ctrls.current, (ctrl, i) => {
+      ref == null ? void 0 : ref.add(ctrl);
+
+      if (hasContext) {
+        ctrl.start({
+          default: context
+        });
+      }
+
+      const update = updates[i];
+
+      if (update) {
+        replaceRef(ctrl, update.ref);
+
+        if (ctrl.ref) {
+          ctrl.queue.push(update);
+        } else {
+          ctrl.start(update);
+        }
+      }
+    });
+  });
+  (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.useOnce)(() => () => {
+    (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)(state.ctrls, ctrl => ctrl.stop(true));
+  });
+  const values = springs.map(x => _extends({}, x));
+  return ref ? [values, ref] : values;
+}
+
+function useSpring(props, deps) {
+  const isFn = _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.fun(props);
+  const [[values], ref] = useSprings(1, isFn ? props : [props], isFn ? deps || [] : deps);
+  return isFn || arguments.length == 2 ? [values, ref] : values;
+}
+
+const initSpringRef = () => SpringRef();
+
+const useSpringRef = () => (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(initSpringRef)[0];
+
+function useTrail(length, propsArg, deps) {
+  const propsFn = _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.fun(propsArg) && propsArg;
+  if (propsFn && !deps) deps = [];
+  let reverse = true;
+  const result = useSprings(length, (i, ctrl) => {
+    const props = propsFn ? propsFn(i, ctrl) : propsArg;
+    reverse = reverse && props.reverse;
+    return props;
+  }, deps || [{}]);
+  const ref = result[1];
+  (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.useLayoutEffect)(() => {
+    (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)(ref.current, (ctrl, i) => {
+      const parent = ref.current[i + (reverse ? 1 : -1)];
+      if (parent) ctrl.start({
+        to: parent.springs
+      });
+    });
+  }, deps);
+
+  if (propsFn || arguments.length == 3) {
+    ref['_getProps'] = (propsArg, ctrl, i) => {
+      const props = _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.fun(propsArg) ? propsArg(i, ctrl) : propsArg;
+
+      if (props) {
+        const parent = ref.current[i + (props.reverse ? 1 : -1)];
+        if (parent) props.to = parent.springs;
+        return props;
+      }
+    };
+
+    return result;
+  }
+
+  return result[0];
+}
+
+let TransitionPhase;
+
+(function (TransitionPhase) {
+  TransitionPhase["MOUNT"] = "mount";
+  TransitionPhase["ENTER"] = "enter";
+  TransitionPhase["UPDATE"] = "update";
+  TransitionPhase["LEAVE"] = "leave";
+})(TransitionPhase || (TransitionPhase = {}));
+
+function useTransition(data, props, deps) {
+  const propsFn = _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.fun(props) && props;
+  const {
+    reset,
+    sort,
+    trail = 0,
+    expires = true,
+    onDestroyed,
+    ref: propsRef,
+    config: propsConfig
+  } = propsFn ? propsFn() : props;
+  const ref = (0,react__WEBPACK_IMPORTED_MODULE_1__.useMemo)(() => propsFn || arguments.length == 3 ? SpringRef() : void 0, []);
+  const items = (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.toArray)(data);
+  const transitions = [];
+  const usedTransitions = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
+  const prevTransitions = reset ? null : usedTransitions.current;
+  (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.useLayoutEffect)(() => {
+    usedTransitions.current = transitions;
+  });
+  (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.useOnce)(() => () => (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)(usedTransitions.current, t => {
+    if (t.expired) {
+      clearTimeout(t.expirationId);
+    }
+
+    detachRefs(t.ctrl, ref);
+    t.ctrl.stop(true);
+  }));
+  const keys = getKeys(items, propsFn ? propsFn() : props, prevTransitions);
+  const expired = reset && usedTransitions.current || [];
+  (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.useLayoutEffect)(() => (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)(expired, ({
+    ctrl,
+    item,
+    key
+  }) => {
+    detachRefs(ctrl, ref);
+    callProp(onDestroyed, item, key);
+  }));
+  const reused = [];
+  if (prevTransitions) (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)(prevTransitions, (t, i) => {
+    if (t.expired) {
+      clearTimeout(t.expirationId);
+      expired.push(t);
+    } else {
+      i = reused[i] = keys.indexOf(t.key);
+      if (~i) transitions[i] = t;
+    }
+  });
+  (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)(items, (item, i) => {
+    if (!transitions[i]) {
+      transitions[i] = {
+        key: keys[i],
+        item,
+        phase: TransitionPhase.MOUNT,
+        ctrl: new Controller()
+      };
+      transitions[i].ctrl.item = item;
+    }
+  });
+
+  if (reused.length) {
+    let i = -1;
+    const {
+      leave
+    } = propsFn ? propsFn() : props;
+    (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)(reused, (keyIndex, prevIndex) => {
+      const t = prevTransitions[prevIndex];
+
+      if (~keyIndex) {
+        i = transitions.indexOf(t);
+        transitions[i] = _extends({}, t, {
+          item: items[keyIndex]
+        });
+      } else if (leave) {
+        transitions.splice(++i, 0, t);
+      }
+    });
+  }
+
+  if (_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.fun(sort)) {
+    transitions.sort((a, b) => sort(a.item, b.item));
+  }
+
+  let delay = -trail;
+  const forceUpdate = (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.useForceUpdate)();
+  const defaultProps = getDefaultProps(props);
+  const changes = new Map();
+  (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)(transitions, (t, i) => {
+    const key = t.key;
+    const prevPhase = t.phase;
+    const p = propsFn ? propsFn() : props;
+    let to;
+    let phase;
+    let propsDelay = callProp(p.delay || 0, key);
+
+    if (prevPhase == TransitionPhase.MOUNT) {
+      to = p.enter;
+      phase = TransitionPhase.ENTER;
+    } else {
+      const isLeave = keys.indexOf(key) < 0;
+
+      if (prevPhase != TransitionPhase.LEAVE) {
+        if (isLeave) {
+          to = p.leave;
+          phase = TransitionPhase.LEAVE;
+        } else if (to = p.update) {
+          phase = TransitionPhase.UPDATE;
+        } else return;
+      } else if (!isLeave) {
+        to = p.enter;
+        phase = TransitionPhase.ENTER;
+      } else return;
+    }
+
+    to = callProp(to, t.item, i);
+    to = _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.obj(to) ? inferTo(to) : {
+      to
+    };
+
+    if (!to.config) {
+      const config = propsConfig || defaultProps.config;
+      to.config = callProp(config, t.item, i, phase);
+    }
+
+    delay += trail;
+
+    const payload = _extends({}, defaultProps, {
+      delay: propsDelay + delay,
+      ref: propsRef,
+      immediate: p.immediate,
+      reset: false
+    }, to);
+
+    if (phase == TransitionPhase.ENTER && _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.und(payload.from)) {
+      const _p = propsFn ? propsFn() : props;
+
+      const from = _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.und(_p.initial) || prevTransitions ? _p.from : _p.initial;
+      payload.from = callProp(from, t.item, i);
+    }
+
+    const {
+      onResolve
+    } = payload;
+
+    payload.onResolve = result => {
+      callProp(onResolve, result);
+      const transitions = usedTransitions.current;
+      const t = transitions.find(t => t.key === key);
+      if (!t) return;
+
+      if (result.cancelled && t.phase != TransitionPhase.UPDATE) {
+        return;
+      }
+
+      if (t.ctrl.idle) {
+        const idle = transitions.every(t => t.ctrl.idle);
+
+        if (t.phase == TransitionPhase.LEAVE) {
+          const expiry = callProp(expires, t.item);
+
+          if (expiry !== false) {
+            const expiryMs = expiry === true ? 0 : expiry;
+            t.expired = true;
+
+            if (!idle && expiryMs > 0) {
+              if (expiryMs <= 0x7fffffff) t.expirationId = setTimeout(forceUpdate, expiryMs);
+              return;
+            }
+          }
+        }
+
+        if (idle && transitions.some(t => t.expired)) {
+          forceUpdate();
+        }
+      }
+    };
+
+    const springs = getSprings(t.ctrl, payload);
+    changes.set(t, {
+      phase,
+      springs,
+      payload
+    });
+  });
+  const context = (0,react__WEBPACK_IMPORTED_MODULE_1__.useContext)(SpringContext);
+  const prevContext = (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.usePrev)(context);
+  const hasContext = context !== prevContext && hasProps(context);
+  (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.useLayoutEffect)(() => {
+    if (hasContext) (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)(transitions, t => {
+      t.ctrl.start({
+        default: context
+      });
+    });
+  }, [context]);
+  (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.useLayoutEffect)(() => {
+    (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)(changes, ({
+      phase,
+      payload
+    }, t) => {
+      const {
+        ctrl
+      } = t;
+      t.phase = phase;
+      ref == null ? void 0 : ref.add(ctrl);
+
+      if (hasContext && phase == TransitionPhase.ENTER) {
+        ctrl.start({
+          default: context
+        });
+      }
+
+      if (payload) {
+        replaceRef(ctrl, payload.ref);
+
+        if (ctrl.ref) {
+          ctrl.update(payload);
+        } else {
+          ctrl.start(payload);
+        }
+      }
+    });
+  }, reset ? void 0 : deps);
+
+  const renderTransitions = render => react__WEBPACK_IMPORTED_MODULE_1__.createElement(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, transitions.map((t, i) => {
+    const {
+      springs
+    } = changes.get(t) || t.ctrl;
+    const elem = render(_extends({}, springs), t.item, t, i);
+    return elem && elem.type ? react__WEBPACK_IMPORTED_MODULE_1__.createElement(elem.type, _extends({}, elem.props, {
+      key: _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.str(t.key) || _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.num(t.key) ? t.key : t.ctrl.id,
+      ref: elem.ref
+    })) : elem;
+  }));
+
+  return ref ? [renderTransitions, ref] : renderTransitions;
+}
+let nextKey = 1;
+
+function getKeys(items, {
+  key,
+  keys = key
+}, prevTransitions) {
+  if (keys === null) {
+    const reused = new Set();
+    return items.map(item => {
+      const t = prevTransitions && prevTransitions.find(t => t.item === item && t.phase !== TransitionPhase.LEAVE && !reused.has(t));
+
+      if (t) {
+        reused.add(t);
+        return t.key;
+      }
+
+      return nextKey++;
+    });
+  }
+
+  return _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.und(keys) ? items : _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.fun(keys) ? items.map(keys) : (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.toArray)(keys);
+}
+
+const _excluded$2 = ["children"];
+function Spring(_ref) {
+  let {
+    children
+  } = _ref,
+      props = _objectWithoutPropertiesLoose(_ref, _excluded$2);
+
+  return children(useSpring(props));
+}
+
+const _excluded$1 = ["items", "children"];
+function Trail(_ref) {
+  let {
+    items,
+    children
+  } = _ref,
+      props = _objectWithoutPropertiesLoose(_ref, _excluded$1);
+
+  const trails = useTrail(items.length, props);
+  return items.map((item, index) => {
+    const result = children(item, index);
+    return _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.fun(result) ? result(trails[index]) : result;
+  });
+}
+
+const _excluded = ["items", "children"];
+function Transition(_ref) {
+  let {
+    items,
+    children
+  } = _ref,
+      props = _objectWithoutPropertiesLoose(_ref, _excluded);
+
+  return useTransition(items, props)(children);
+}
+
+class Interpolation extends FrameValue {
+  constructor(source, args) {
+    super();
+    this.key = void 0;
+    this.idle = true;
+    this.calc = void 0;
+    this._active = new Set();
+    this.source = source;
+    this.calc = (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.createInterpolator)(...args);
+
+    const value = this._get();
+
+    const nodeType = (0,_react_spring_animated__WEBPACK_IMPORTED_MODULE_2__.getAnimatedType)(value);
+    (0,_react_spring_animated__WEBPACK_IMPORTED_MODULE_2__.setAnimated)(this, nodeType.create(value));
+  }
+
+  advance(_dt) {
+    const value = this._get();
+
+    const oldValue = this.get();
+
+    if (!(0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.isEqual)(value, oldValue)) {
+      (0,_react_spring_animated__WEBPACK_IMPORTED_MODULE_2__.getAnimated)(this).setValue(value);
+
+      this._onChange(value, this.idle);
+    }
+
+    if (!this.idle && checkIdle(this._active)) {
+      becomeIdle(this);
+    }
+  }
+
+  _get() {
+    const inputs = _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.is.arr(this.source) ? this.source.map(_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.getFluidValue) : (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.toArray)((0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.getFluidValue)(this.source));
+    return this.calc(...inputs);
+  }
+
+  _start() {
+    if (this.idle && !checkIdle(this._active)) {
+      this.idle = false;
+      (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)((0,_react_spring_animated__WEBPACK_IMPORTED_MODULE_2__.getPayload)(this), node => {
+        node.done = false;
+      });
+
+      if (_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.Globals.skipAnimation) {
+        _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.raf.batchedUpdates(() => this.advance());
+        becomeIdle(this);
+      } else {
+        _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.frameLoop.start(this);
+      }
+    }
+  }
+
+  _attach() {
+    let priority = 1;
+    (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)((0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.toArray)(this.source), source => {
+      if ((0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.hasFluidValue)(source)) {
+        (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.addFluidObserver)(source, this);
+      }
+
+      if (isFrameValue(source)) {
+        if (!source.idle) {
+          this._active.add(source);
+        }
+
+        priority = Math.max(priority, source.priority + 1);
+      }
+    });
+    this.priority = priority;
+
+    this._start();
+  }
+
+  _detach() {
+    (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)((0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.toArray)(this.source), source => {
+      if ((0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.hasFluidValue)(source)) {
+        (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.removeFluidObserver)(source, this);
+      }
+    });
+
+    this._active.clear();
+
+    becomeIdle(this);
+  }
+
+  eventObserved(event) {
+    if (event.type == 'change') {
+      if (event.idle) {
+        this.advance();
+      } else {
+        this._active.add(event.parent);
+
+        this._start();
+      }
+    } else if (event.type == 'idle') {
+        this._active.delete(event.parent);
+      } else if (event.type == 'priority') {
+          this.priority = (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.toArray)(this.source).reduce((highest, parent) => Math.max(highest, (isFrameValue(parent) ? parent.priority : 0) + 1), 0);
+        }
+  }
+
+}
+
+function isIdle(source) {
+  return source.idle !== false;
+}
+
+function checkIdle(active) {
+  return !active.size || Array.from(active).every(isIdle);
+}
+
+function becomeIdle(self) {
+  if (!self.idle) {
+    self.idle = true;
+    (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.each)((0,_react_spring_animated__WEBPACK_IMPORTED_MODULE_2__.getPayload)(self), node => {
+      node.done = true;
+    });
+    (0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.callFluidObservers)(self, {
+      type: 'idle',
+      parent: self
+    });
+  }
+}
+
+const to = (source, ...args) => new Interpolation(source, args);
+const interpolate = (source, ...args) => ((0,_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.deprecateInterpolate)(), new Interpolation(source, args));
+
+_react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.Globals.assign({
+  createStringInterpolator: _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.createStringInterpolator,
+  to: (source, args) => new Interpolation(source, args)
+});
+const update = _react_spring_shared__WEBPACK_IMPORTED_MODULE_0__.frameLoop.advance;
+
+
+
+
+/***/ }),
+
 /***/ "../../.yarn/unplugged/gatsby-virtual-208799a260/node_modules/gatsby/dist/internal-plugins/bundle-optimisations/polyfills/object-assign.js":
 /*!*************************************************************************************************************************************************!*\
   !*** ../../.yarn/unplugged/gatsby-virtual-208799a260/node_modules/gatsby/dist/internal-plugins/bundle-optimisations/polyfills/object-assign.js ***!
@@ -58361,6 +69418,1528 @@ module.exports = str => encodeURIComponent(str).replace(/[!'()*]/g, x => `%${x.c
 
 module.exports = Object.assign;
 //# sourceMappingURL=object-assign.js.map
+
+/***/ }),
+
+/***/ "./src/common/hooks/click-outside.tsx":
+/*!********************************************!*\
+  !*** ./src/common/hooks/click-outside.tsx ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "useClickOutside": () => (/* binding */ useClickOutside)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+const useClickOutside = (ref, funcHandler) => {
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    const clickHandler = ev => {
+      if (!ref.current || ref.current.contains(ev.target)) {
+        return;
+      }
+
+      funcHandler(ev);
+    };
+
+    document.addEventListener('mousedown', clickHandler);
+    return () => document.removeEventListener('mousedown', clickHandler);
+  }, [ref, funcHandler]);
+};
+
+/***/ }),
+
+/***/ "./src/common/hooks/index.ts":
+/*!***********************************!*\
+  !*** ./src/common/hooks/index.ts ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "useClickOutside": () => (/* reexport safe */ _click_outside__WEBPACK_IMPORTED_MODULE_0__.useClickOutside)
+/* harmony export */ });
+/* harmony import */ var _click_outside__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./click-outside */ "./src/common/hooks/click-outside.tsx");
+
+
+/***/ }),
+
+/***/ "./src/common/layout/index.ts":
+/*!************************************!*\
+  !*** ./src/common/layout/index.ts ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "MenuLayout": () => (/* reexport safe */ _layout__WEBPACK_IMPORTED_MODULE_0__.MenuLayout),
+/* harmony export */   "MenuContext": () => (/* reexport safe */ _menu_context__WEBPACK_IMPORTED_MODULE_1__.MenuContext),
+/* harmony export */   "Section": () => (/* reexport safe */ _sections__WEBPACK_IMPORTED_MODULE_2__.Section)
+/* harmony export */ });
+/* harmony import */ var _layout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./layout */ "./src/common/layout/layout.tsx");
+/* harmony import */ var _menu_context__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./menu-context */ "./src/common/layout/menu-context.ts");
+/* harmony import */ var _sections__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./sections */ "./src/common/layout/sections/index.ts");
+
+
+
+
+/***/ }),
+
+/***/ "./src/common/layout/layout.tsx":
+/*!**************************************!*\
+  !*** ./src/common/layout/layout.tsx ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "MenuLayout": () => (/* binding */ MenuLayout)
+/* harmony export */ });
+/* harmony import */ var common_site_head__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! common/site-head */ "./src/common/site-head/index.ts");
+/* harmony import */ var common_styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! common/styles */ "./src/common/styles/index.ts");
+/* harmony import */ var common_styles_global__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! common/styles/global */ "./src/common/styles/global.ts");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var recoil__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! recoil */ "../../.yarn/__virtual__/recoil-virtual-2a4449a8c6/0/cache/recoil-npm-0.4.1-013a399a25-a11a93e516.zip/node_modules/recoil/es/recoil.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! styled-components */ "../../.yarn/__virtual__/styled-components-virtual-ea335ab7b1/0/cache/styled-components-npm-5.3.1-6cb43fe52b-2d833d573c.zip/node_modules/styled-components/dist/styled-components.esm.js");
+/* harmony import */ var _menu_context__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./menu-context */ "./src/common/layout/menu-context.ts");
+/* harmony import */ var _menu_footer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./menu/footer */ "./src/common/layout/menu/footer/index.ts");
+/* harmony import */ var _menu_header__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./menu/header */ "./src/common/layout/menu/header/index.ts");
+
+
+
+
+
+
+
+
+
+const MenuLayout = ({
+  children
+}) => {
+  const menuCtx = (0,react__WEBPACK_IMPORTED_MODULE_3__.useContext)(_menu_context__WEBPACK_IMPORTED_MODULE_5__.MenuContext);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default().createElement(recoil__WEBPACK_IMPORTED_MODULE_4__.RecoilRoot, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default().createElement(styled_components__WEBPACK_IMPORTED_MODULE_8__.ThemeProvider, {
+    theme: common_styles__WEBPACK_IMPORTED_MODULE_1__.theme
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default().createElement(common_styles_global__WEBPACK_IMPORTED_MODULE_2__.GlobalStyle, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default().createElement(common_site_head__WEBPACK_IMPORTED_MODULE_0__.Head, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default().createElement(GridLayout, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default().createElement(GridHeader, {
+    backgroundVisibility: menuCtx.transparentizeHeaderBG
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default().createElement(GridContent, null, children), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default().createElement(GridFooter, {
+    hideFooterItems: menuCtx.hideFooterItems
+  }))));
+};
+const GridLayout = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div.withConfig({
+  displayName: "layout__GridLayout"
+})(["display:grid;grid-template-rows:6rem 1fr 6rem;grid-template-columns:1fr;grid-template-areas:'header' 'content' 'footer';"]);
+const GridHeader = (0,styled_components__WEBPACK_IMPORTED_MODULE_8__["default"])(_menu_header__WEBPACK_IMPORTED_MODULE_7__.Header).withConfig({
+  displayName: "layout__GridHeader"
+})(["grid-area:header;position:fixed;top:0;right:0;left:0;display:flex;align-items:center;"]);
+const GridContent = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].main.withConfig({
+  displayName: "layout__GridContent"
+})(["grid-area:content;min-height:calc(100vh - 12rem);background-color:", ";&::after{content:'';position:fixed;background-color:rgba(0,0,0,0.2);width:100vw;height:100%;bottom:-62rem;transform:skewY(-12deg);pointer-events:none;z-index:", ";", "{bottom:-85vh;}}"], ({
+  theme
+}) => theme.colors.black, ({
+  theme
+}) => theme.zIndices.underlay, ({
+  theme
+}) => theme.mediaQuery.tablet);
+const GridFooter = (0,styled_components__WEBPACK_IMPORTED_MODULE_8__["default"])(_menu_footer__WEBPACK_IMPORTED_MODULE_6__.Footer).withConfig({
+  displayName: "layout__GridFooter"
+})(["grid-area:footer;align-self:end;"]);
+
+/***/ }),
+
+/***/ "./src/common/layout/menu-context.ts":
+/*!*******************************************!*\
+  !*** ./src/common/layout/menu-context.ts ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "MenuContext": () => (/* binding */ MenuContext)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+const MenuContext = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.createContext)({
+  hideFooterItems: 'show',
+  setFooterItemVisibility: () => null,
+  transparentizeHeaderBG: 'show',
+  setHeaderBGVisibility: () => null
+});
+
+/***/ }),
+
+/***/ "./src/common/layout/menu/footer/footer.tsx":
+/*!**************************************************!*\
+  !*** ./src/common/layout/menu/footer/footer.tsx ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Footer": () => (/* binding */ Footer)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! styled-components */ "../../.yarn/__virtual__/styled-components-virtual-ea335ab7b1/0/cache/styled-components-npm-5.3.1-6cb43fe52b-2d833d573c.zip/node_modules/styled-components/dist/styled-components.esm.js");
+/* harmony import */ var common_assets_icons_brands_so_icon_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! common/assets/icons/brands/so-icon.svg */ "./src/common/assets/icons/brands/so-icon.svg");
+/* harmony import */ var common_assets_icons_brands_github_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! common/assets/icons/brands/github.png */ "./src/common/assets/icons/brands/github.png");
+/* harmony import */ var common_assets_icons_brands_linkedin_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! common/assets/icons/brands/linkedin.png */ "./src/common/assets/icons/brands/linkedin.png");
+/* harmony import */ var common_links__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! common/links */ "./src/common/links.ts");
+
+
+
+
+
+
+const Footer = ({
+  className,
+  hideFooterItems
+}) => {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FooterWrapper, {
+    className: className
+  }, hideFooterItems === 'show' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(SocialRow, {
+    style: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100%'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(IconWrapper, {
+    href: common_links__WEBPACK_IMPORTED_MODULE_4__.links.linkedIn(),
+    target: "_blank"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Icon, {
+    src: common_assets_icons_brands_linkedin_png__WEBPACK_IMPORTED_MODULE_3__["default"]
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(IconWrapper, {
+    href: common_links__WEBPACK_IMPORTED_MODULE_4__.links.stackoverflow(),
+    target: "_blank"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Icon, {
+    src: common_assets_icons_brands_so_icon_svg__WEBPACK_IMPORTED_MODULE_1__["default"]
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(IconWrapper, {
+    href: common_links__WEBPACK_IMPORTED_MODULE_4__.links.github(),
+    target: "_blank"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Icon, {
+    src: common_assets_icons_brands_github_png__WEBPACK_IMPORTED_MODULE_2__["default"]
+  }))) : null);
+};
+const FooterWrapper = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].footer.withConfig({
+  displayName: "footer__FooterWrapper"
+})(["background-color:", ";height:100%;"], ({
+  theme
+}) => theme.colors.black);
+const SocialRow = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].div.withConfig({
+  displayName: "footer__SocialRow"
+})(["z-index:", ";& > a{margin-right:2rem;z-index:5;}& > a:last-child{margin-right:0;}"], ({
+  theme
+}) => theme.zIndices.standard);
+const IconWrapper = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].a.withConfig({
+  displayName: "footer__IconWrapper"
+})(["max-width:3.5rem;cursor:pointer;"]);
+const Icon = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].img.withConfig({
+  displayName: "footer__Icon"
+})(["max-height:3.2rem;max-width:3.2rem;height:100%;width:100%;&:hover{opacity:0.7;}"]);
+
+/***/ }),
+
+/***/ "./src/common/layout/menu/footer/index.ts":
+/*!************************************************!*\
+  !*** ./src/common/layout/menu/footer/index.ts ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Footer": () => (/* reexport safe */ _footer__WEBPACK_IMPORTED_MODULE_0__.Footer)
+/* harmony export */ });
+/* harmony import */ var _footer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./footer */ "./src/common/layout/menu/footer/footer.tsx");
+
+
+/***/ }),
+
+/***/ "./src/common/layout/menu/header/hamburger-icon.tsx":
+/*!**********************************************************!*\
+  !*** ./src/common/layout/menu/header/hamburger-icon.tsx ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "HamburgerIcon": () => (/* binding */ HamburgerIcon)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "../../.yarn/__virtual__/styled-components-virtual-ea335ab7b1/0/cache/styled-components-npm-5.3.1-6cb43fe52b-2d833d573c.zip/node_modules/styled-components/dist/styled-components.esm.js");
+
+
+const HamburgerIcon = ({
+  isOpen,
+  setIsOpen
+}) => {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Hamburger, {
+    onClick: () => setIsOpen(!isOpen),
+    isOpen: isOpen
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null));
+};
+const Hamburger = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].button.withConfig({
+  displayName: "hamburger-icon__Hamburger"
+})(["display:flex;flex-direction:column;justify-content:space-around;width:2rem;height:2rem;background:transparent;border:none;cursor:pointer;padding:0;margin-right:1rem;z-index:", ";position:relative;&:focus{outline:none;}&:hover{opacity:0.8;}div{width:2.5rem;height:0.25rem;background:", ";border-radius:1rem;transition:all 0.25s ease-in-out;position:relative;transform-origin:0.1rem;:first-child{transform:", ";}:nth-child(2){opacity:", ";transform:", ";}:nth-child(3){transform:", ";}}", "{display:none;}"], ({
+  theme
+}) => theme.zIndices.overlay + 1, ({
+  theme
+}) => theme.colors.white, ({
+  isOpen
+}) => isOpen ? 'rotate(45deg)' : 'rotate(0)', ({
+  isOpen
+}) => isOpen ? '0' : '1', ({
+  isOpen
+}) => isOpen ? 'translateX(20px)' : 'translateX(0)', ({
+  isOpen
+}) => isOpen ? 'rotate(-45deg)' : 'rotate(0)', ({
+  theme
+}) => theme.mediaQuery.laptop);
+
+/***/ }),
+
+/***/ "./src/common/layout/menu/header/hamburger-menu.tsx":
+/*!**********************************************************!*\
+  !*** ./src/common/layout/menu/header/hamburger-menu.tsx ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "HamburgerMenu": () => (/* binding */ HamburgerMenu)
+/* harmony export */ });
+/* harmony import */ var common_ui_elements__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! common/ui-elements */ "./src/common/ui-elements/index.ts");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_spring__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-spring */ "../../.yarn/cache/react-spring-npm-9.2.4-32b57a8d93-ca5153f178.zip/node_modules/react-spring/dist/react-spring.esm.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! styled-components */ "../../.yarn/__virtual__/styled-components-virtual-ea335ab7b1/0/cache/styled-components-npm-5.3.1-6cb43fe52b-2d833d573c.zip/node_modules/styled-components/dist/styled-components.esm.js");
+/* harmony import */ var _nav_items__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./nav-items */ "./src/common/layout/menu/header/nav-items.tsx");
+// addsnowpack
+
+
+
+
+
+const HamburgerMenu = ({
+  isOpen,
+  setIsOpen
+}) => {
+  // animate the menu opening
+  const spring = (0,react_spring__WEBPACK_IMPORTED_MODULE_2__.useSpring)({
+    from: {
+      opacity: 0,
+      transform: `translateX(100vw)`
+    },
+    to: isOpen ? {
+      opacity: 1,
+      transform: `translateX(0vw)`
+    } : {
+      opacity: 0,
+      transform: `translateX(100vw)`
+    }
+  });
+  /**
+   * If the screen resizes to a size that no longer needs the mobile menu, close it
+   */
+
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+    const handleResize = () => {
+      // breakpoint
+      if (window.innerWidth > 1200) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      window.addEventListener('resize', handleResize);
+    }
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, [isOpen, setIsOpen]);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(Menu, {
+    style: spring
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("nav", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(MenuList, null, _nav_items__WEBPACK_IMPORTED_MODULE_3__.menuItems.map((i, idx) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(MenuListItem, {
+    key: `${i.name}_${idx}`
+  }, i.icon, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(common_ui_elements__WEBPACK_IMPORTED_MODULE_0__.LinkButton, {
+    href: i.path,
+    animateScale: false
+  }, i.name))))));
+};
+const Menu = (0,styled_components__WEBPACK_IMPORTED_MODULE_4__["default"])(react_spring__WEBPACK_IMPORTED_MODULE_2__.animated.menu).withConfig({
+  displayName: "hamburger-menu__Menu"
+})(["position:absolute;top:0;right:0;width:100vw;height:100vh;padding:4rem 2rem 2rem 4rem;margin:0;display:flex;flex-direction:column;text-align:left;background-color:", ";z-index:", ";transition:width 0.15s ease-in-out;", "{width:50vw;}"], ({
+  theme
+}) => theme.colors.dark_teal, ({
+  theme
+}) => theme.zIndices.overlay, ({
+  theme
+}) => theme.mediaQuery.tablet);
+const MenuList = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].ul.withConfig({
+  displayName: "hamburger-menu__MenuList"
+})(["list-style:none;& > li{margin-bottom:2rem;}& > li:last-child{margin-bottom:0;}"]);
+const MenuListItem = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].li.withConfig({
+  displayName: "hamburger-menu__MenuListItem"
+})(["display:grid;grid-template-columns:5rem 1fr;align-items:center;& > a{font-size:2.5rem;}&:hover > svg{outline:none;& > path,circle{stroke:", ";}}&:hover > img{opacity:0.8;}"], ({
+  theme
+}) => theme.colors.orange);
+
+/***/ }),
+
+/***/ "./src/common/layout/menu/header/header.tsx":
+/*!**************************************************!*\
+  !*** ./src/common/layout/menu/header/header.tsx ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Header": () => (/* binding */ Header)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! styled-components */ "../../.yarn/__virtual__/styled-components-virtual-ea335ab7b1/0/cache/styled-components-npm-5.3.1-6cb43fe52b-2d833d573c.zip/node_modules/styled-components/dist/styled-components.esm.js");
+/* harmony import */ var _nav_items__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./nav-items */ "./src/common/layout/menu/header/nav-items.tsx");
+/* harmony import */ var common_assets_images_logo_dark_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! common/assets/images/logo-dark.png */ "./src/common/assets/images/logo-dark.png");
+/* harmony import */ var polished__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! polished */ "../../.yarn/cache/polished-npm-4.1.3-c4e3156e78-3865f569f1.zip/node_modules/polished/dist/polished.esm.js");
+/* harmony import */ var common_links__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! common/links */ "./src/common/links.ts");
+/* harmony import */ var _hamburger_icon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./hamburger-icon */ "./src/common/layout/menu/header/hamburger-icon.tsx");
+/* harmony import */ var _hamburger_menu__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./hamburger-menu */ "./src/common/layout/menu/header/hamburger-menu.tsx");
+/* harmony import */ var common_hooks__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! common/hooks */ "./src/common/hooks/index.ts");
+/* harmony import */ var common_ui_elements_button__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! common/ui-elements/button */ "./src/common/ui-elements/button/index.ts");
+/* harmony import */ var gatsby__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! gatsby */ "./.cache/gatsby-browser-entry.js");
+
+
+
+
+
+
+
+
+
+
+ // import { Link } from "react-router-dom";
+
+const Header = ({
+  className,
+  backgroundVisibility
+}) => {
+  const {
+    0: mobileNav,
+    1: toggleMobileNav
+  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const menuRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  (0,common_hooks__WEBPACK_IMPORTED_MODULE_6__.useClickOutside)(menuRef, () => toggleMobileNav(false));
+  const setIsOpen = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(() => {
+    toggleMobileNav(!mobileNav);
+  }, [mobileNav]);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(HeaderWrapper, {
+    className: className,
+    backgroundVisibility: backgroundVisibility
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(ContentWrapper, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(LogoWrapper, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(gatsby__WEBPACK_IMPORTED_MODULE_8__.Link, {
+    to: common_links__WEBPACK_IMPORTED_MODULE_3__.links.home()
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Circle, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Logo, {
+    src: common_assets_images_logo_dark_png__WEBPACK_IMPORTED_MODULE_2__["default"]
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Nav, null, _nav_items__WEBPACK_IMPORTED_MODULE_1__.menuItems.map(i => {
+    if (i.mobileOnly) {
+      return;
+    }
+
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(common_ui_elements_button__WEBPACK_IMPORTED_MODULE_7__.LinkButton, {
+      href: i.path,
+      key: i.name
+    }, i.name);
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(HamburgerMenuWrapper, {
+    ref: menuRef
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_hamburger_icon__WEBPACK_IMPORTED_MODULE_4__.HamburgerIcon, {
+    isOpen: mobileNav,
+    setIsOpen: setIsOpen
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_hamburger_menu__WEBPACK_IMPORTED_MODULE_5__.HamburgerMenu, {
+    isOpen: mobileNav,
+    setIsOpen: setIsOpen
+  }))));
+};
+const HeaderWrapper = styled_components__WEBPACK_IMPORTED_MODULE_9__["default"].header.withConfig({
+  displayName: "header__HeaderWrapper"
+})(["background-color:", ";height:6rem;padding:0 1rem;z-index:", ";"], ({
+  backgroundVisibility,
+  theme
+}) => backgroundVisibility === 'show' ? theme.colors.black : `transparent`, ({
+  theme
+}) => theme.zIndices.overlay);
+const ContentWrapper = styled_components__WEBPACK_IMPORTED_MODULE_9__["default"].div.withConfig({
+  displayName: "header__ContentWrapper"
+})(["width:100%;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:0 2rem;", "{padding:0 6rem 0 2rem;}"], ({
+  theme
+}) => theme.mediaQuery.laptop);
+const Circle = styled_components__WEBPACK_IMPORTED_MODULE_9__["default"].div.withConfig({
+  displayName: "header__Circle"
+})(["background-color:", ";border-radius:100%;width:4rem;height:4rem;position:absolute;border-width:0;transition:all 0.2s ease-in-out;"], ({
+  theme
+}) => theme.colors.white);
+const Logo = styled_components__WEBPACK_IMPORTED_MODULE_9__["default"].img.withConfig({
+  displayName: "header__Logo"
+})(["position:absolute;width:4rem;"]);
+const LogoWrapper = styled_components__WEBPACK_IMPORTED_MODULE_9__["default"].div.withConfig({
+  displayName: "header__LogoWrapper"
+})(["position:relative;height:4rem;width:4rem;&:hover{", "{background-color:", ";}}"], Circle, ({
+  theme
+}) => (0,polished__WEBPACK_IMPORTED_MODULE_10__.transparentize)(0.2, theme.colors.white));
+const Nav = styled_components__WEBPACK_IMPORTED_MODULE_9__["default"].nav.withConfig({
+  displayName: "header__Nav"
+})(["display:none;font-size:1.5rem;", "{display:inherit;& > a:not(:first-child){margin-left:2rem;}}"], ({
+  theme
+}) => theme.mediaQuery.laptop);
+const HamburgerMenuWrapper = styled_components__WEBPACK_IMPORTED_MODULE_9__["default"].div.withConfig({
+  displayName: "header__HamburgerMenuWrapper"
+})(["z-index:", ";", "{display:none;}"], ({
+  theme
+}) => theme.zIndices.overlay - 1, ({
+  theme
+}) => theme.mediaQuery.laptop);
+
+/***/ }),
+
+/***/ "./src/common/layout/menu/header/index.ts":
+/*!************************************************!*\
+  !*** ./src/common/layout/menu/header/index.ts ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Header": () => (/* reexport safe */ _header__WEBPACK_IMPORTED_MODULE_0__.Header)
+/* harmony export */ });
+/* harmony import */ var _header__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./header */ "./src/common/layout/menu/header/header.tsx");
+
+
+/***/ }),
+
+/***/ "./src/common/layout/menu/header/nav-items.tsx":
+/*!*****************************************************!*\
+  !*** ./src/common/layout/menu/header/nav-items.tsx ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "menuItems": () => (/* binding */ menuItems)
+/* harmony export */ });
+/* harmony import */ var common_assets_icons_brands_github_png__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! common/assets/icons/brands/github.png */ "./src/common/assets/icons/brands/github.png");
+/* harmony import */ var common_assets_icons_brands_linkedin_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! common/assets/icons/brands/linkedin.png */ "./src/common/assets/icons/brands/linkedin.png");
+/* harmony import */ var common_assets_icons_brands_so_icon_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! common/assets/icons/brands/so-icon.svg */ "./src/common/assets/icons/brands/so-icon.svg");
+/* harmony import */ var common_assets_images_logo_dark_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! common/assets/images/logo-dark.png */ "./src/common/assets/images/logo-dark.png");
+/* harmony import */ var common_links__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! common/links */ "./src/common/links.ts");
+/* harmony import */ var phosphor_react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! phosphor-react */ "../../.yarn/__virtual__/phosphor-react-virtual-8fc42b3693/0/cache/phosphor-react-npm-1.3.1-070f50cad2-7b163c57c0.zip/node_modules/phosphor-react/dist/icons/Wrench.esm.js");
+/* harmony import */ var phosphor_react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! phosphor-react */ "../../.yarn/__virtual__/phosphor-react-virtual-8fc42b3693/0/cache/phosphor-react-npm-1.3.1-070f50cad2-7b163c57c0.zip/node_modules/phosphor-react/dist/icons/UserCircle.esm.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! styled-components */ "../../.yarn/__virtual__/styled-components-virtual-ea335ab7b1/0/cache/styled-components-npm-5.3.1-6cb43fe52b-2d833d573c.zip/node_modules/styled-components/dist/styled-components.esm.js");
+
+
+
+
+
+
+
+
+/**
+ * @param name name of the nav item
+ * @param path the route to the item
+ * @param icon either an svg or image of some sort
+ * @param mobileOnly optional -- if true, is mobile only
+ */
+
+const ImageIcons = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].img.withConfig({
+  displayName: "nav-items__ImageIcons"
+})(["max-width:3rem;margin-right:2rem;transition:opacity 0.25s ease-in-out;"]);
+const menuItems = [{
+  name: 'Home',
+  path: common_links__WEBPACK_IMPORTED_MODULE_4__.links.home(),
+  icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default().createElement(ImageIcons, {
+    src: common_assets_images_logo_dark_png__WEBPACK_IMPORTED_MODULE_3__["default"],
+    alt: "Site logo for mobile navigation",
+    style: {
+      backgroundColor: 'white',
+      borderRadius: '50%'
+    }
+  }),
+  mobileOnly: true
+}, {
+  name: 'Projects',
+  path: common_links__WEBPACK_IMPORTED_MODULE_4__.links.projects().root(),
+  icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default().createElement(phosphor_react__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    size: 24,
+    color: "#ffffff",
+    weight: "duotone"
+  })
+}, {
+  name: 'About Me',
+  path: common_links__WEBPACK_IMPORTED_MODULE_4__.links.aboutMe(),
+  icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default().createElement(phosphor_react__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    size: 24,
+    color: "#ffffff",
+    weight: "duotone"
+  })
+}, {
+  name: 'LinkedIn',
+  path: common_links__WEBPACK_IMPORTED_MODULE_4__.links.linkedIn(),
+  icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default().createElement(ImageIcons, {
+    src: common_assets_icons_brands_linkedin_png__WEBPACK_IMPORTED_MODULE_1__["default"],
+    alt: "LinkedIn hamburger menu icon"
+  })
+}, {
+  name: 'StackOverflow',
+  path: common_links__WEBPACK_IMPORTED_MODULE_4__.links.stackoverflow(),
+  icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default().createElement(ImageIcons, {
+    src: common_assets_icons_brands_so_icon_svg__WEBPACK_IMPORTED_MODULE_2__["default"],
+    alt: "SO hamburger menu icon"
+  })
+}, {
+  name: 'GitHub',
+  path: common_links__WEBPACK_IMPORTED_MODULE_4__.links.github(),
+  icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default().createElement(ImageIcons, {
+    src: common_assets_icons_brands_github_png__WEBPACK_IMPORTED_MODULE_0__["default"],
+    alt: "GitHub hamburger menu icon"
+  })
+}];
+
+/***/ }),
+
+/***/ "./src/common/layout/sections/index.ts":
+/*!*********************************************!*\
+  !*** ./src/common/layout/sections/index.ts ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Section": () => (/* reexport safe */ _section__WEBPACK_IMPORTED_MODULE_0__.Section)
+/* harmony export */ });
+/* harmony import */ var _section__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./section */ "./src/common/layout/sections/section.tsx");
+
+
+/***/ }),
+
+/***/ "./src/common/layout/sections/section.tsx":
+/*!************************************************!*\
+  !*** ./src/common/layout/sections/section.tsx ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Section": () => (/* binding */ Section)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "../../.yarn/__virtual__/styled-components-virtual-ea335ab7b1/0/cache/styled-components-npm-5.3.1-6cb43fe52b-2d833d573c.zip/node_modules/styled-components/dist/styled-components.esm.js");
+
+
+const Section = ({
+  className,
+  children,
+  isFirst,
+  centered
+}) => {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(StyledSection, {
+    className: className,
+    style: isFirst ? {
+      paddingTop: '4rem'
+    } : undefined
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(ContentWrapper, {
+    centered: centered
+  }, children));
+};
+const StyledSection = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].section.withConfig({
+  displayName: "section__StyledSection"
+})(["position:relative;z-index:", ";"], ({
+  theme
+}) => theme.zIndices.standard);
+const ContentWrapper = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div.withConfig({
+  displayName: "section__ContentWrapper"
+})(["width:100%;height:100%;padding:0 2rem;margin:0 auto 4rem;", ";", "{width:120rem;margin:0 auto 8rem;padding:0;}", "{width:140rem;}"], ({
+  centered
+}) => centered && `
+    min-height: calc(100vh - 24rem);
+  `, ({
+  theme
+}) => theme.mediaQuery.desktop, ({
+  theme
+}) => theme.mediaQuery.xl_desktop);
+
+/***/ }),
+
+/***/ "./src/common/links.ts":
+/*!*****************************!*\
+  !*** ./src/common/links.ts ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "links": () => (/* binding */ links)
+/* harmony export */ });
+/* eslint-disable */
+const links = {
+  home: () => `/`,
+  linkedIn: () => `https://www.linkedin.com/in/kevin-carlos/`,
+  stackoverflow: () => `https://stackoverflow.com/users/12329333/kevin-carlos`,
+  github: () => `https://github.com/Kevin-Carlos`,
+  aboutMe: () => `/about`,
+  projects: () => ({
+    root: () => `/projects`,
+    project: () => ({
+      flashcards: () => `/projects/flashcards`
+    })
+  })
+};
+
+/***/ }),
+
+/***/ "./src/common/site-head/head.tsx":
+/*!***************************************!*\
+  !*** ./src/common/site-head/head.tsx ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Head": () => (/* binding */ Head)
+/* harmony export */ });
+/* harmony import */ var _public_page_data_sq_d_1597975978_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../public/page-data/sq/d/1597975978.json */ "./public/page-data/sq/d/1597975978.json");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_helmet__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-helmet */ "../../.yarn/__virtual__/react-helmet-virtual-9425a4d258/0/cache/react-helmet-npm-6.1.0-20fd5447ff-a4998479da.zip/node_modules/react-helmet/es/Helmet.js");
+
+
+
+const Head = () => {
+  const {
+    site
+  } = _public_page_data_sq_d_1597975978_json__WEBPACK_IMPORTED_MODULE_0__.data;
+  const siteMeta = site.siteMetadata;
+  console.log('site', site);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(react_helmet__WEBPACK_IMPORTED_MODULE_2__.Helmet, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("title", null, siteMeta.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("meta", {
+    name: "description",
+    content: siteMeta.description
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("link", {
+    href: "https://fonts.googleapis.com/css2?family=Quicksand&display=swap",
+    rel: "preload",
+    as: "font",
+    type: "font/woff2"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("link", {
+    href: "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap",
+    rel: "preload",
+    as: "font",
+    type: "font/woff2"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("link", {
+    rel: "apple-touch-icon",
+    sizes: "180x180",
+    href: "/apple-touch-icon.png"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("link", {
+    rel: "icon",
+    type: "image/png",
+    sizes: "32x32",
+    href: "/favicon-32x32.png"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("link", {
+    rel: "icon",
+    type: "image/png",
+    sizes: "16x16",
+    href: "/favicon-16x16.png"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("link", {
+    rel: "manifest",
+    href: "/site.webmanifest"
+  }));
+};
+const query = "1597975978";
+
+/***/ }),
+
+/***/ "./src/common/site-head/index.ts":
+/*!***************************************!*\
+  !*** ./src/common/site-head/index.ts ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Head": () => (/* reexport safe */ _head__WEBPACK_IMPORTED_MODULE_0__.Head)
+/* harmony export */ });
+/* harmony import */ var _head__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./head */ "./src/common/site-head/head.tsx");
+
+
+/***/ }),
+
+/***/ "./src/common/styles/global.ts":
+/*!*************************************!*\
+  !*** ./src/common/styles/global.ts ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "GlobalStyle": () => (/* binding */ GlobalStyle)
+/* harmony export */ });
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "../../.yarn/__virtual__/styled-components-virtual-ea335ab7b1/0/cache/styled-components-npm-5.3.1-6cb43fe52b-2d833d573c.zip/node_modules/styled-components/dist/styled-components.esm.js");
+/* harmony import */ var _theme__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./theme */ "./src/common/styles/theme.ts");
+
+
+const GlobalStyle = (0,styled_components__WEBPACK_IMPORTED_MODULE_1__.createGlobalStyle)(["html{font-size:62.5%;height:100%;}body{font-family:'Quicksand',sans-serif;font-size:1.7rem;min-height:100%;}html,body{margin:0;}#root{min-height:100vh;height:100%;}a{text-decoration:none;color:", ";}ul{line-height:1.7;margin:0;padding:0;margin:0;}h1,h2,h3,h4,h5,h6{font-family:'Poppins',sans-serif;margin:0 0 2rem 0;color:", ";}h1{font-size:4rem;}h2{font-size:3rem;}h3{}p{margin:0 0 2rem 0;line-height:1.5;}blockquote{margin:0 0 0 3rem;}button{font-family:'Poppins',sans-serif;}input,button{font-family:inherit;font-size:inherit;}*,*::after,*::before{box-sizing:border-box;}"], _theme__WEBPACK_IMPORTED_MODULE_0__.theme.colors.white, _theme__WEBPACK_IMPORTED_MODULE_0__.theme.colors.white);
+
+/***/ }),
+
+/***/ "./src/common/styles/index.ts":
+/*!************************************!*\
+  !*** ./src/common/styles/index.ts ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "theme": () => (/* reexport safe */ _theme__WEBPACK_IMPORTED_MODULE_0__.theme)
+/* harmony export */ });
+/* harmony import */ var _theme__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./theme */ "./src/common/styles/theme.ts");
+
+
+/***/ }),
+
+/***/ "./src/common/styles/media-queries.ts":
+/*!********************************************!*\
+  !*** ./src/common/styles/media-queries.ts ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "mediaQuery": () => (/* binding */ mediaQuery)
+/* harmony export */ });
+// These use px instead of rem because of a weird quirk using rem
+// with media queries being based on default font-size of the browser
+// instead of what the html of the project is set to
+const mediaQuery = {
+  phone: `@media screen and (min-width: 480px)`,
+  tablet: `@media screen and (min-width: 768px)`,
+  laptop: `@media screen and (min-width: 1200px)`,
+  desktop: `@media screen and (min-width: 1400px)`,
+  xl_desktop: `@media screen and (min-width: 2000px)`
+};
+
+/***/ }),
+
+/***/ "./src/common/styles/theme.ts":
+/*!************************************!*\
+  !*** ./src/common/styles/theme.ts ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "theme": () => (/* binding */ theme)
+/* harmony export */ });
+/* harmony import */ var sublimity_ui__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sublimity-ui */ "../../.yarn/__virtual__/sublimity-ui-virtual-8e4b8df111/1/packages/sublimity-ui/dist/sublimity-ui.esm.js");
+/* harmony import */ var _media_queries__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./media-queries */ "./src/common/styles/media-queries.ts");
+/* harmony import */ var _z_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./z-index */ "./src/common/styles/z-index.ts");
+
+
+
+const theme = {
+  colors: sublimity_ui__WEBPACK_IMPORTED_MODULE_0__.colors,
+  fontLink: 'https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap',
+  fonts: ['Roboto Condensed', 'sans-serif', 'Roboto'],
+  fontSizes: {
+    small: '1.2rem',
+    large: '2rem',
+    xl: '3rem'
+  },
+  mediaQuery: _media_queries__WEBPACK_IMPORTED_MODULE_1__.mediaQuery,
+  zIndices: _z_index__WEBPACK_IMPORTED_MODULE_2__.zIndices
+};
+
+/***/ }),
+
+/***/ "./src/common/styles/z-index.ts":
+/*!**************************************!*\
+  !*** ./src/common/styles/z-index.ts ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "zIndices": () => (/* binding */ zIndices)
+/* harmony export */ });
+/**
+ * @params underlay 5
+ * @params standard 10
+ * @params header 15
+ * @params overlay 10000
+ */
+const zIndices = {
+  /** 5 */
+  underlay: 5,
+
+  /** 10 */
+  standard: 10,
+
+  /** 15 */
+  header: 15,
+
+  /** 10000 */
+  overlay: 10000
+};
+
+/***/ }),
+
+/***/ "./src/common/ui-elements/button/index.ts":
+/*!************************************************!*\
+  !*** ./src/common/ui-elements/button/index.ts ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "LinkButton": () => (/* reexport safe */ _link_button__WEBPACK_IMPORTED_MODULE_0__.LinkButton)
+/* harmony export */ });
+/* harmony import */ var _link_button__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./link-button */ "./src/common/ui-elements/button/link-button.tsx");
+
+
+/***/ }),
+
+/***/ "./src/common/ui-elements/button/link-button.tsx":
+/*!*******************************************************!*\
+  !*** ./src/common/ui-elements/button/link-button.tsx ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "LinkButton": () => (/* binding */ LinkButton)
+/* harmony export */ });
+/* harmony import */ var gatsby__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gatsby */ "./.cache/gatsby-browser-entry.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! styled-components */ "../../.yarn/__virtual__/styled-components-virtual-ea335ab7b1/0/cache/styled-components-npm-5.3.1-6cb43fe52b-2d833d573c.zip/node_modules/styled-components/dist/styled-components.esm.js");
+
+
+
+const LinkButton = ({
+  children,
+  animateScale = true,
+  ...props
+}) => {
+  var _props$href;
+
+  if ((_props$href = props.href) !== null && _props$href !== void 0 && _props$href.includes('http')) {
+    var _props$href2;
+
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(StyledLink, Object.assign({}, props, {
+      animateScale: animateScale,
+      href: props.href || '',
+      target: (_props$href2 = props.href) !== null && _props$href2 !== void 0 && _props$href2.includes('http') ? '_blank' : undefined,
+      as: "a"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(Underline, null), children);
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(StyledLink, Object.assign({}, props, {
+    animateScale: animateScale,
+    to: props.href || ''
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(Underline, null), children);
+};
+const Underline = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].hr.withConfig({
+  displayName: "link-button__Underline"
+})(["color:", " !important;border-width:0px;position:absolute;bottom:-1rem;left:0;width:0;transition:all 0.2s ease-in-out;"], ({
+  theme
+}) => theme.colors.orange);
+const StyledLink = (0,styled_components__WEBPACK_IMPORTED_MODULE_2__["default"])(gatsby__WEBPACK_IMPORTED_MODULE_0__.Link).withConfig({
+  displayName: "link-button__StyledLink"
+})(["text-decoration:none;display:inline-block;color:", ";transition:transform 0.2s ease-in-out;position:relative;&:hover{", ";", "{border-width:1px;width:2rem;&&{color:", ";}}}"], ({
+  theme
+}) => theme.colors.white, ({
+  animateScale
+}) => animateScale && `
+      transform: scale(1.2);
+    `, Underline, ({
+  theme
+}) => theme.colors.orange);
+
+/***/ }),
+
+/***/ "./src/common/ui-elements/forms/index.ts":
+/*!***********************************************!*\
+  !*** ./src/common/ui-elements/forms/index.ts ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Input": () => (/* reexport safe */ _input__WEBPACK_IMPORTED_MODULE_0__.Input),
+/* harmony export */   "SubmitButton": () => (/* reexport safe */ _submit__WEBPACK_IMPORTED_MODULE_1__.SubmitButton),
+/* harmony export */   "Label": () => (/* reexport safe */ _label__WEBPACK_IMPORTED_MODULE_2__.Label)
+/* harmony export */ });
+/* harmony import */ var _input__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./input */ "./src/common/ui-elements/forms/input.tsx");
+/* harmony import */ var _submit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./submit */ "./src/common/ui-elements/forms/submit.tsx");
+/* harmony import */ var _label__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./label */ "./src/common/ui-elements/forms/label.tsx");
+
+
+
+
+/***/ }),
+
+/***/ "./src/common/ui-elements/forms/input.tsx":
+/*!************************************************!*\
+  !*** ./src/common/ui-elements/forms/input.tsx ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Input": () => (/* binding */ Input)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "../../.yarn/__virtual__/styled-components-virtual-ea335ab7b1/0/cache/styled-components-npm-5.3.1-6cb43fe52b-2d833d573c.zip/node_modules/styled-components/dist/styled-components.esm.js");
+/* harmony import */ var polished__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! polished */ "../../.yarn/cache/polished-npm-4.1.3-c4e3156e78-3865f569f1.zip/node_modules/polished/dist/polished.esm.js");
+
+
+
+const Input = ({ ...props
+}) => {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(StyledInput, Object.assign({
+    type: "text"
+  }, props));
+};
+const StyledInput = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].input.withConfig({
+  displayName: "input__StyledInput"
+})(["width:100%;padding:1rem;appearance:none;border:1.7px solid ", ";box-shadow:1px 1px 10px rgba(0,0,0,0.1);border-radius:0.2rem;transition:all 0.25s ease-in-out;&:hover{border-color:", ";box-shadow:1px 1px 10px rgba(0,0,0,0.2);}&:focus{outline:none;border-color:", ";}"], ({
+  theme
+}) => theme.colors.light_gray, ({
+  theme
+}) => (0,polished__WEBPACK_IMPORTED_MODULE_2__.darken)(0.1, theme.colors.light_gray), ({
+  theme
+}) => theme.colors.blue);
+
+/***/ }),
+
+/***/ "./src/common/ui-elements/forms/label.tsx":
+/*!************************************************!*\
+  !*** ./src/common/ui-elements/forms/label.tsx ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Label": () => (/* binding */ Label)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "../../.yarn/__virtual__/styled-components-virtual-ea335ab7b1/0/cache/styled-components-npm-5.3.1-6cb43fe52b-2d833d573c.zip/node_modules/styled-components/dist/styled-components.esm.js");
+
+
+const Label = ({
+  className,
+  label,
+  children
+}) => {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(LabelWrapper, {
+    className: className
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(HTMLLabel, {
+    style: {
+      width: '100%'
+    },
+    htmlFor: label
+  }, label), children);
+};
+const LabelWrapper = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div.withConfig({
+  displayName: "label__LabelWrapper"
+})(["display:flex;flex-direction:column;flex-grow:1;"]);
+const HTMLLabel = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].label.withConfig({
+  displayName: "label__HTMLLabel"
+})(["padding-bottom:1rem;font-weight:700;font-size:1.2rem;text-transform:uppercase;letter-spacing:0.2rem;color:", ";"], ({
+  theme
+}) => theme.colors.light_gray);
+
+/***/ }),
+
+/***/ "./src/common/ui-elements/forms/submit.tsx":
+/*!*************************************************!*\
+  !*** ./src/common/ui-elements/forms/submit.tsx ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "SubmitButton": () => (/* binding */ SubmitButton)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! styled-components */ "../../.yarn/__virtual__/styled-components-virtual-ea335ab7b1/0/cache/styled-components-npm-5.3.1-6cb43fe52b-2d833d573c.zip/node_modules/styled-components/dist/styled-components.esm.js");
+/* harmony import */ var polished__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! polished */ "../../.yarn/cache/polished-npm-4.1.3-c4e3156e78-3865f569f1.zip/node_modules/polished/dist/polished.esm.js");
+/* harmony import */ var common_styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! common/styles */ "./src/common/styles/index.ts");
+
+
+
+
+const SubmitButton = ({
+  color = 'blue',
+  name,
+  ...props
+}) => {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(StyledButton, Object.assign({}, props, {
+    name: name,
+    type: "submit",
+    color: color,
+    isDisabled: props.disabled
+  }));
+};
+const StyledButton = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].button.withConfig({
+  displayName: "submit__StyledButton"
+})(["width:100%;padding:1.25rem 1.5rem;background-color:", ";color:", ";border:0;border-radius:0.2rem;box-shadow:-2px 2px 5px rgba(0,0,0,0.2);cursor:pointer;transition:all 0.2s ease-in-out;", ";&:hover{background-color:", ";color:", ";box-shadow:-2px 2px 5px rgba(0,0,0,0.3);transform:translateY(-0.3rem);}&:focus{outline:none;}"], ({
+  color
+}) => common_styles__WEBPACK_IMPORTED_MODULE_1__.colors[color], ({
+  theme
+}) => theme.colors.white, ({
+  isDisabled,
+  theme
+}) => isDisabled && `
+    cursor: not-allowed;
+    background-color: ${theme.colors.light_gray};
+  `, ({
+  color,
+  isDisabled,
+  theme
+}) => !isDisabled ? (0,polished__WEBPACK_IMPORTED_MODULE_3__.lighten)(0.03, common_styles__WEBPACK_IMPORTED_MODULE_1__.colors[color]) : theme.colors.light_gray, ({
+  theme
+}) => (0,polished__WEBPACK_IMPORTED_MODULE_3__.darken)(0.04, theme.colors.white));
+
+/***/ }),
+
+/***/ "./src/common/ui-elements/index.ts":
+/*!*****************************************!*\
+  !*** ./src/common/ui-elements/index.ts ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "LinkButton": () => (/* reexport safe */ _button__WEBPACK_IMPORTED_MODULE_0__.LinkButton)
+/* harmony export */ });
+/* harmony import */ var _button__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./button */ "./src/common/ui-elements/button/index.ts");
+
+
+/***/ }),
+
+/***/ "./src/pages/projects/flashcards/_flashcards.tsx":
+/*!*******************************************************!*\
+  !*** ./src/pages/projects/flashcards/_flashcards.tsx ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Flashcards": () => (/* binding */ Flashcards)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var recoil__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! recoil */ "../../.yarn/__virtual__/recoil-virtual-2a4449a8c6/0/cache/recoil-npm-0.4.1-013a399a25-a11a93e516.zip/node_modules/recoil/es/recoil.js");
+/* harmony import */ var state_flashcards__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! state/flashcards */ "./src/state/flashcards/index.ts");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! styled-components */ "../../.yarn/__virtual__/styled-components-virtual-ea335ab7b1/0/cache/styled-components-npm-5.3.1-6cb43fe52b-2d833d573c.zip/node_modules/styled-components/dist/styled-components.esm.js");
+/* harmony import */ var sublimity_ui__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! sublimity-ui */ "../../.yarn/__virtual__/sublimity-ui-virtual-8e4b8df111/1/packages/sublimity-ui/dist/sublimity-ui.esm.js");
+/* harmony import */ var _form_flashcard_inputs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./_form/_flashcard-inputs */ "./src/pages/projects/flashcards/_form/_flashcard-inputs.tsx");
+
+
+
+
+
+
+const Flashcards = () => {
+  const {
+    0: index,
+    1: setIndex
+  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
+  const {
+    0: sideOfCard,
+    1: setSideOfCard
+  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    idx: index,
+    side: 'front'
+  });
+  const cards = (0,recoil__WEBPACK_IMPORTED_MODULE_1__.useRecoilValue)(state_flashcards__WEBPACK_IMPORTED_MODULE_2__.flashcardState);
+
+  const updateIndex = v => setIndex(v);
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Flashcards"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(CardWrapper, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(StyledChevronLeft // Extra check just to ensure no crash happens
+  , {
+    onClick: () => {
+      if (index === 0) {
+        return;
+      }
+
+      updateIndex(index - 1);
+      setSideOfCard({
+        idx: index - 1,
+        side: 'front'
+      });
+    },
+    shouldHide: index === 0
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Flashcard, {
+    onClick: () =>
+    /* Flip card */
+    setSideOfCard({
+      idx: index,
+      side: sideOfCard.side === 'front' ? 'back' : 'front'
+    }),
+    side: sideOfCard.side
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    style: {
+      userSelect: 'none'
+    }
+  }, cards.length ? sideOfCard.side === 'front' ? cards[index].subject : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, cards[index].description.includes('http') ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+    href: cards[index].description,
+    target: "_blank",
+    rel: "noreferrer"
+  }, cards[index].description) : cards[index].description) : [])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(StyledChevronRight, {
+    onClick: () => {
+      // Extra check just to ensure no crash happens
+      if (index === cards.length - 1) {
+        return;
+      }
+
+      setSideOfCard({
+        idx: index + 1,
+        side: 'front'
+      });
+      updateIndex(index + 1);
+    },
+    shouldHide: index === cards.length - 1 || !cards.length
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(InputWrapper, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_form_flashcard_inputs__WEBPACK_IMPORTED_MODULE_4__.FlashcardInputs, {
+    cardIndex: index,
+    setIndex: updateIndex,
+    disable: !cards.length
+  })));
+};
+const InputWrapper = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].div.withConfig({
+  displayName: "_flashcards__InputWrapper"
+})(["display:flex;justify-content:center;"]);
+const CardWrapper = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].div.withConfig({
+  displayName: "_flashcards__CardWrapper"
+})(["display:flex;justify-content:center;align-items:center;margin-bottom:2rem;"]);
+const Flashcard = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].div.withConfig({
+  displayName: "_flashcards__Flashcard"
+})(["width:30rem;height:20rem;display:flex;justify-content:center;align-items:center;background:", ";border:1px solid ", ";box-shadow:-2px 2px 5px rgba(0,0,0,0.1);text-align:center;word-wrap:break-word;white-space:initial;cursor:pointer;& a{color:", ";}", "{width:50rem;height:30rem;}", ";"], ({
+  theme
+}) => theme.colors.white, ({
+  theme
+}) => theme.colors.light_gray, ({
+  theme
+}) => theme.colors.blue, ({
+  theme
+}) => theme.mediaQuery.tablet, ({
+  side
+}) => side === 'back' && `
+      background-image: linear-gradient(to bottom,
+          #ffffff 15%,
+          #F94545 16%,
+          #ffffff 16%,
+          #ffffff 25%,
+          #85b2d3 26%,
+          #ffffff 26%,
+          #ffffff 35%,
+          #85b2d3 36%,
+          #ffffff 36%,
+          #ffffff 45%,
+          #85b2d3 46%,
+          #ffffff 46%,
+          #ffffff 55%,
+          #85b2d3 56%,
+          #ffffff 56%,
+          #ffffff 65%,
+          #85b2d3 66%,
+          #ffffff 66%,
+          #ffffff 75%,
+          #85b2d3 76%,
+          #ffffff 76%,
+          #ffffff 85%,
+          #85b2d3 86%,
+          #ffffff 86%,
+          #ffffff 95%,
+          #85b2d3 96%,
+          #ffffff 96%
+      );
+    `);
+const StyledChevronRight = (0,styled_components__WEBPACK_IMPORTED_MODULE_5__["default"])(sublimity_ui__WEBPACK_IMPORTED_MODULE_3__.ChevronRight).withConfig({
+  displayName: "_flashcards__StyledChevronRight"
+})(["", ";"], ({
+  shouldHide
+}) => shouldHide && `
+    opacity: 0;
+    pointer-events: none;
+    cursor: normal;
+  `);
+const StyledChevronLeft = (0,styled_components__WEBPACK_IMPORTED_MODULE_5__["default"])(sublimity_ui__WEBPACK_IMPORTED_MODULE_3__.ChevronLeft).withConfig({
+  displayName: "_flashcards__StyledChevronLeft"
+})(["", ";"], ({
+  shouldHide
+}) => shouldHide && `
+    opacity: 0;
+    pointer-events: none;
+    cursor: normal;
+  `);
+
+/***/ }),
+
+/***/ "./src/pages/projects/flashcards/_form/_flashcard-inputs.tsx":
+/*!*******************************************************************!*\
+  !*** ./src/pages/projects/flashcards/_form/_flashcard-inputs.tsx ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "FlashcardInputs": () => (/* binding */ FlashcardInputs)
+/* harmony export */ });
+/* harmony import */ var common_ui_elements_forms__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! common/ui-elements/forms */ "./src/common/ui-elements/forms/index.ts");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-hook-form */ "../../.yarn/__virtual__/react-hook-form-virtual-bbe20ce007/0/cache/react-hook-form-npm-7.17.0-e506359dc7-554064ec10.zip/node_modules/react-hook-form/dist/index.esm.js");
+/* harmony import */ var recoil__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! recoil */ "../../.yarn/__virtual__/recoil-virtual-2a4449a8c6/0/cache/recoil-npm-0.4.1-013a399a25-a11a93e516.zip/node_modules/recoil/es/recoil.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! styled-components */ "../../.yarn/__virtual__/styled-components-virtual-ea335ab7b1/0/cache/styled-components-npm-5.3.1-6cb43fe52b-2d833d573c.zip/node_modules/styled-components/dist/styled-components.esm.js");
+/* harmony import */ var sublimity_ui__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! sublimity-ui */ "../../.yarn/__virtual__/sublimity-ui-virtual-8e4b8df111/1/packages/sublimity-ui/dist/sublimity-ui.esm.js");
+/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../state */ "./src/state/index.ts");
+
+
+
+
+
+
+
+const FlashcardInputs = ({
+  cardIndex,
+  disable,
+  setIndex
+}) => {
+  const [, updateCards] = (0,recoil__WEBPACK_IMPORTED_MODULE_3__.useRecoilState)(_state__WEBPACK_IMPORTED_MODULE_5__.flashcardState);
+  const {
+    register,
+    getValues
+  } = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_2__.useForm)({
+    defaultValues: {
+      subject: '',
+      description: '',
+      index: cardIndex,
+      type: null
+    }
+  });
+
+  const submitForm = type => {
+    const formData = getValues();
+    console.log('FORM DATA', formData);
+
+    switch (type) {
+      case 'adding':
+        {
+          addCard(formData.subject, formData.description);
+          break;
+        }
+
+      case 'deleting':
+        {
+          removeCard(cardIndex);
+          break;
+        }
+
+      default:
+        break;
+    }
+  };
+
+  const addCard = (s, d) => updateCards(prev => [{
+    subject: s,
+    description: d
+  }, ...prev]);
+
+  const removeCard = idx => updateCards(curCards => curCards.filter((_, index) => index === idx));
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("form", {
+    style: {
+      width: '70%'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(FormInputGrid, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(common_ui_elements_forms__WEBPACK_IMPORTED_MODULE_0__.Label, {
+    label: "Subject"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(common_ui_elements_forms__WEBPACK_IMPORTED_MODULE_0__.Input, register(`subject`))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(common_ui_elements_forms__WEBPACK_IMPORTED_MODULE_0__.Label, {
+    label: "Description"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(common_ui_elements_forms__WEBPACK_IMPORTED_MODULE_0__.Input, register(`description`))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(sublimity_ui__WEBPACK_IMPORTED_MODULE_4__.Button, {
+    onClick: () => submitForm('adding'),
+    color: "light_teal"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("span", {
+    style: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center'
+    }
+  }, "Add", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("svg", {
+    fill: "none",
+    stroke: "currentColor",
+    xmlns: "http://www.w3.org/2000/svg",
+    width: "2.5rem",
+    height: "2rem",
+    style: {
+      marginBottom: '0.5rem'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("path", {
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "2",
+    d: "M12 6v6m0 0v6m0-6h6m-6 0H6"
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(sublimity_ui__WEBPACK_IMPORTED_MODULE_4__.Button, {
+    disabled: disable,
+    color: "dark_teal"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("span", {
+    style: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center'
+    }
+  }, "Delete", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("svg", {
+    fill: "none",
+    stroke: "currentColor",
+    xmlns: "http://www.w3.org/2000/svg",
+    width: "2.5rem",
+    height: "2.5rem",
+    style: {
+      margin: '0 0 0 0.5rem'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("path", {
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: 2,
+    d: "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+  }))))));
+};
+const FormInputGrid = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].div.withConfig({
+  displayName: "_flashcard-inputs__FormInputGrid"
+})(["display:grid;grid-gap:2rem;grid-template-columns:minmax(0,1fr);", "{grid-template-columns:minmax(0,1fr) minmax(0,1fr);}"], ({
+  theme
+}) => theme.mediaQuery.laptop);
+
+/***/ }),
+
+/***/ "./src/pages/projects/flashcards/index.tsx":
+/*!*************************************************!*\
+  !*** ./src/pages/projects/flashcards/index.tsx ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _common_layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../common/layout */ "./src/common/layout/index.ts");
+/* harmony import */ var _flashcards__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./_flashcards */ "./src/pages/projects/flashcards/_flashcards.tsx");
+
+
+ // eslint-disable-next-line react/display-name
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (() => {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_common_layout__WEBPACK_IMPORTED_MODULE_1__.MenuLayout, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_common_layout__WEBPACK_IMPORTED_MODULE_1__.Section, {
+    isFirst: true,
+    centered: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_flashcards__WEBPACK_IMPORTED_MODULE_2__.Flashcards, null)));
+});
+
+/***/ }),
+
+/***/ "./src/state/flashcards/flashcards.ts":
+/*!********************************************!*\
+  !*** ./src/state/flashcards/flashcards.ts ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "flashcardState": () => (/* binding */ flashcardState)
+/* harmony export */ });
+/* harmony import */ var recoil__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! recoil */ "../../.yarn/__virtual__/recoil-virtual-2a4449a8c6/0/cache/recoil-npm-0.4.1-013a399a25-a11a93e516.zip/node_modules/recoil/es/recoil.js");
+
+const flashcardState = (0,recoil__WEBPACK_IMPORTED_MODULE_0__.atom)({
+  key: 'website-cards',
+  default: [{
+    subject: 'What is the most astounding fact about the universe?',
+    description: 'https://www.youtube.com/watch?v=9D05ej8u-gU'
+  }, {
+    subject: 'What kind of car do you want?',
+    description: 'A Tesla'
+  }]
+});
+
+/***/ }),
+
+/***/ "./src/state/flashcards/index.ts":
+/*!***************************************!*\
+  !*** ./src/state/flashcards/index.ts ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "flashcardState": () => (/* reexport safe */ _flashcards__WEBPACK_IMPORTED_MODULE_0__.flashcardState)
+/* harmony export */ });
+/* harmony import */ var _flashcards__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./flashcards */ "./src/state/flashcards/flashcards.ts");
+
+
+/***/ }),
+
+/***/ "./src/state/index.ts":
+/*!****************************!*\
+  !*** ./src/state/index.ts ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "flashcardState": () => (/* reexport safe */ _flashcards__WEBPACK_IMPORTED_MODULE_0__.flashcardState)
+/* harmony export */ });
+/* harmony import */ var _flashcards__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./flashcards */ "./src/state/flashcards/index.ts");
+
 
 /***/ }),
 
@@ -58704,6 +71283,222 @@ exports.onRenderBody = function (_ref2) {
 
 /***/ }),
 
+/***/ "../../.yarn/__virtual__/sublimity-ui-virtual-8e4b8df111/1/packages/sublimity-ui/dist/sublimity-ui.esm.js":
+/*!****************************************************************************************************************!*\
+  !*** ../../.yarn/__virtual__/sublimity-ui-virtual-8e4b8df111/1/packages/sublimity-ui/dist/sublimity-ui.esm.js ***!
+  \****************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Blockquote": () => (/* binding */ Blockquote),
+/* harmony export */   "Button": () => (/* binding */ Button),
+/* harmony export */   "ChevronLeft": () => (/* binding */ ChevronLeft),
+/* harmony export */   "ChevronRight": () => (/* binding */ ChevronRight),
+/* harmony export */   "Divider": () => (/* binding */ Divider),
+/* harmony export */   "LinkButton": () => (/* binding */ LinkButton),
+/* harmony export */   "Tab": () => (/* binding */ Tab),
+/* harmony export */   "TabsList": () => (/* binding */ TabsList),
+/* harmony export */   "colors": () => (/* binding */ colors)
+/* harmony export */ });
+/* harmony import */ var polished__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! polished */ "../../.yarn/cache/polished-npm-4.1.3-c4e3156e78-3865f569f1.zip/node_modules/polished/dist/polished.esm.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "../../.yarn/__virtual__/styled-components-virtual-ea335ab7b1/0/cache/styled-components-npm-5.3.1-6cb43fe52b-2d833d573c.zip/node_modules/styled-components/dist/styled-components.esm.js");
+/* harmony import */ var phosphor_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! phosphor-react */ "../../.yarn/__virtual__/phosphor-react-virtual-8fc42b3693/0/cache/phosphor-react-npm-1.3.1-070f50cad2-7b163c57c0.zip/node_modules/phosphor-react/dist/icons/Pen.esm.js");
+
+
+
+
+
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  return target;
+}
+
+function _taggedTemplateLiteralLoose(strings, raw) {
+  if (!raw) {
+    raw = strings.slice(0);
+  }
+
+  strings.raw = raw;
+  return strings;
+}
+
+var colors = {
+  // rgb(16, 158, 201)
+  blue: "rgb(16, 158, 201)",
+  // rgb(1, 38, 48)
+  black: "rgb(1, 38, 48)",
+  // rgb(255, 255, 255)
+  white: "rgb(255, 255, 255)",
+  // rgb(189, 189, 189)
+  light_gray: "rgb(189, 189, 189)",
+  // rgb(54, 54, 54)
+  gray: "rgb(54, 54, 54)",
+  // rgb(230, 155, 28)
+  orange: "rgb(230, 155, 28)",
+  // rgb(57, 153, 142)
+  light_teal: "rgb(57, 153, 142)",
+  // rgb(43, 77, 89)
+  dark_teal: "rgb(43, 77, 89)"
+};
+
+var _templateObject, _templateObject2;
+
+var _excluded = ["color", "icon"];
+
+var Button = function Button(_ref) {
+  var _ref$color = _ref.color,
+      color = _ref$color === void 0 ? 'dark_teal' : _ref$color,
+      icon = _ref.icon,
+      props = _objectWithoutPropertiesLoose(_ref, _excluded);
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(StyledButton, Object.assign({
+    name: props.name,
+    color: color,
+    isDisabled: props.disabled
+  }, props), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(ContentWrapper, null, props.children, icon && icon));
+};
+
+var StyledButton = /*#__PURE__*/styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].button.withConfig({
+  displayName: "sublimity-uiesm__StyledButton"
+})(_templateObject || (_templateObject = /*#__PURE__*/_taggedTemplateLiteralLoose(["\n  max-height: 10rem;\n  padding: 1.25rem 1.5rem;\n  background-color: ", ";\n  color: ", ";\n  border: 0;\n  border-radius: 0.2rem;\n  box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.2);\n  cursor: pointer;\n  transition: all 0.2s ease-in-out;\n\n  ", ";\n\n  &:hover {\n    background-color: ", ";\n    color: ", ";\n    box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.3);\n    transform: translateY(-0.3rem);\n  }\n\n  &:focus {\n    outline: none;\n  }\n"])), function (props) {
+  return colors[props.color];
+}, colors.white, function (_ref2) {
+  var isDisabled = _ref2.isDisabled;
+  return isDisabled && "\n    cursor: not-allowed;\n    background-color: " + colors.light_gray + ";\n  ";
+}, function (_ref3) {
+  var color = _ref3.color,
+      isDisabled = _ref3.isDisabled;
+  return !isDisabled ? "\n      " + (0,polished__WEBPACK_IMPORTED_MODULE_2__.lighten)(0.03, colors[color]) + ";\n    " : "\n      " + colors.light_gray + ";\n    ";
+}, /*#__PURE__*/(0,polished__WEBPACK_IMPORTED_MODULE_2__.darken)(0.04, colors.white));
+var ContentWrapper = /*#__PURE__*/styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].span.withConfig({
+  displayName: "sublimity-uiesm__ContentWrapper"
+})(_templateObject2 || (_templateObject2 = /*#__PURE__*/_taggedTemplateLiteralLoose(["\n  display: flex;\n  justify-content: center;\n  align-items: center;\n\n  & > :last-child {\n    margin-left: 0.5rem;\n  }\n"])));
+
+var _templateObject$1, _templateObject2$1, _templateObject3;
+
+var Chevron = /*#__PURE__*/styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div.withConfig({
+  displayName: "sublimity-uiesm__Chevron"
+})(_templateObject$1 || (_templateObject$1 = /*#__PURE__*/_taggedTemplateLiteralLoose(["\n  display: inline-block;\n  border-right: 0.4rem solid ", ";\n  border-bottom: 0.4rem solid ", ";\n  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);\n  width: 2rem;\n  height: 2rem;\n  cursor: pointer;\n  transition: border 0.25s ease-in-out;\n  &:hover {\n    border-right: 0.4rem solid ", ";\n    border-bottom: 0.4rem solid ", ";\n  }\n"])), /*#__PURE__*/(0,polished__WEBPACK_IMPORTED_MODULE_2__.transparentize)(0.3, colors.light_teal), colors.light_teal, /*#__PURE__*/(0,polished__WEBPACK_IMPORTED_MODULE_2__.lighten)(0.01, colors.light_teal), /*#__PURE__*/(0,polished__WEBPACK_IMPORTED_MODULE_2__.transparentize)(0.3, colors.light_teal));
+var ChevronLeft = /*#__PURE__*/(0,styled_components__WEBPACK_IMPORTED_MODULE_1__["default"])(Chevron).withConfig({
+  displayName: "sublimity-uiesm__ChevronLeft"
+})(_templateObject2$1 || (_templateObject2$1 = /*#__PURE__*/_taggedTemplateLiteralLoose(["\n  transform: rotate(-225deg);\n"])));
+var ChevronRight = /*#__PURE__*/(0,styled_components__WEBPACK_IMPORTED_MODULE_1__["default"])(Chevron).withConfig({
+  displayName: "sublimity-uiesm__ChevronRight"
+})(_templateObject3 || (_templateObject3 = /*#__PURE__*/_taggedTemplateLiteralLoose(["\n  transform: rotate(-45deg);\n"])));
+
+var _templateObject$2, _templateObject2$2;
+
+var LinkButton = function LinkButton(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(StyledALink, Object.assign({}, props, {
+    target: "_blank",
+    rel: "noreferrer noopener"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Underline, null), props.children);
+};
+
+var Underline = /*#__PURE__*/styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].hr.withConfig({
+  displayName: "sublimity-uiesm__Underline"
+})(_templateObject$2 || (_templateObject$2 = /*#__PURE__*/_taggedTemplateLiteralLoose(["\n  border-color: ", ";\n  border-width: 0px;\n  position: absolute;\n  bottom: -1rem;\n  left: 0;\n  width: 0;\n  transition: all 0.2s ease-in-out;\n"])), colors.orange);
+var StyledALink = /*#__PURE__*/styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].a.withConfig({
+  displayName: "sublimity-uiesm__StyledALink"
+})(_templateObject2$2 || (_templateObject2$2 = /*#__PURE__*/_taggedTemplateLiteralLoose(["\n  text-decoration: none;\n  cursor: pointer;\n  display: inline-block;\n  color: ", ";\n  transition: all 0.2s ease-in-out;\n  position: relative;\n\n  &:hover {\n    transform: scale(1.2);\n    ", " {\n      border-width: 1px;\n      width: 2rem;\n      border-color: ", " !important;\n    }\n  }\n"])), colors.white, Underline, colors.orange);
+
+var _templateObject$3;
+
+var _excluded$1 = ["children"];
+
+var Tab = function Tab(_ref) {
+  var children = _ref.children,
+      rest = _objectWithoutPropertiesLoose(_ref, _excluded$1);
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(TabLI, Object.assign({}, rest), children);
+};
+
+var TabLI = /*#__PURE__*/styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].li.withConfig({
+  displayName: "sublimity-uiesm__TabLI"
+})(_templateObject$3 || (_templateObject$3 = /*#__PURE__*/_taggedTemplateLiteralLoose(["\n  cursor: pointer;\n  padding: 1rem 2rem;\n  max-width: max-content;\n  background: transparent;\n  color: inherit;\n  transition: color 0.25s ease-in-out;\n\n  &:hover {\n    color: ", ";\n  }\n"])), /*#__PURE__*/(0,polished__WEBPACK_IMPORTED_MODULE_2__.darken)(0.1, colors.orange));
+
+var _templateObject$4;
+
+var TabsList = function TabsList(_ref) {
+  var _border$color;
+
+  var children = _ref.children,
+      border = _ref.border,
+      className = _ref.className;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(TabsOL, {
+    listColor: colors[(_border$color = border == null ? void 0 : border.color) != null ? _border$color : 'light_teal'],
+    className: className
+  }, children);
+};
+
+var TabsOL = /*#__PURE__*/styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].ol.withConfig({
+  displayName: "sublimity-uiesm__TabsOL"
+})(_templateObject$4 || (_templateObject$4 = /*#__PURE__*/_taggedTemplateLiteralLoose(["\n  list-style: none;\n  padding: 0;\n  border-bottom: 1px solid ", ";\n  max-width: max-content;\n\n  display: flex;\n  align-items: center;\n"])), colors.orange);
+
+var _templateObject$5;
+
+var Divider = /*#__PURE__*/styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div.withConfig({
+  displayName: "sublimity-uiesm__Divider"
+})(_templateObject$5 || (_templateObject$5 = /*#__PURE__*/_taggedTemplateLiteralLoose(["\n  width: 100%;\n  height: 2px;\n  background: radial-gradient(\n    circle,\n    ", " 0%,\n    ", "\n      100%\n  );\n"])), function (props) {
+  return props.color;
+}, function (props) {
+  return props.highlightColor ? (0,polished__WEBPACK_IMPORTED_MODULE_2__.transparentize)(1, props.highlightColor) : (0,polished__WEBPACK_IMPORTED_MODULE_2__.transparentize)(1, 'rgba(189, 189, 189, 1)');
+});
+
+var _templateObject$6, _templateObject2$3, _templateObject3$1;
+
+var Blockquote = function Blockquote(_ref) {
+  var children = _ref.children,
+      className = _ref.className,
+      color = _ref.color,
+      author = _ref.author,
+      highlightColor = _ref.highlightColor;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(BlockQuoteWithDivider, {
+    className: className
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(RotatedDivider, {
+    color: color,
+    highlightColor: highlightColor
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("blockquote", null, children, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Author, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    style: {
+      display: 'flex',
+      alignItems: 'center'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(phosphor_react__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    weight: "duotone",
+    style: {
+      marginRight: '0.5rem'
+    },
+    color: colors.orange
+  }), author))));
+};
+
+var BlockQuoteWithDivider = /*#__PURE__*/styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div.withConfig({
+  displayName: "sublimity-uiesm__BlockQuoteWithDivider"
+})(_templateObject$6 || (_templateObject$6 = /*#__PURE__*/_taggedTemplateLiteralLoose(["\n  display: grid;\n  grid-template-columns: 2px 1fr;\n  margin-bottom: 2rem;\n"])));
+var RotatedDivider = /*#__PURE__*/(0,styled_components__WEBPACK_IMPORTED_MODULE_1__["default"])(Divider).withConfig({
+  displayName: "sublimity-uiesm__RotatedDivider"
+})(_templateObject2$3 || (_templateObject2$3 = /*#__PURE__*/_taggedTemplateLiteralLoose(["\n  width: 2px;\n  height: 100%;\n"])));
+var Author = /*#__PURE__*/styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].p.withConfig({
+  displayName: "sublimity-uiesm__Author"
+})(_templateObject3$1 || (_templateObject3$1 = /*#__PURE__*/_taggedTemplateLiteralLoose(["\n  font-style: italic;\n  font-weight: 600;\n"])));
+
+
+/***/ }),
+
 /***/ "./.cache/api-runner-ssr.js":
 /*!**********************************!*\
   !*** ./.cache/api-runner-ssr.js ***!
@@ -58754,12 +71549,6 @@ var plugins = [{
     "crossOrigin": "anonymous",
     "include_favicon": true,
     "cacheDigest": "6e75cb78dc6b7838e295b9f6ac0585b5"
-  }
-}, {
-  name: 'default-site-plugin',
-  plugin: __webpack_require__(/*! ./gatsby-ssr */ "./gatsby-ssr.js"),
-  options: {
-    "plugins": []
   }
 }];
 /* global plugins */
@@ -60436,49 +73225,6 @@ function stripPrefix(str, prefix = ``) {
 
 /***/ }),
 
-/***/ "./gatsby-ssr.js":
-/*!***********************!*\
-  !*** ./gatsby-ssr.js ***!
-  \***********************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "wrapRootElement": () => (/* reexport safe */ _wrap_with_recoil__WEBPACK_IMPORTED_MODULE_0__["default"])
-/* harmony export */ });
-/* harmony import */ var _wrap_with_recoil__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./wrap-with-recoil */ "./wrap-with-recoil.js");
-
-
-/***/ }),
-
-/***/ "./wrap-with-recoil.js":
-/*!*****************************!*\
-  !*** ./wrap-with-recoil.js ***!
-  \*****************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var recoil__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! recoil */ "../../.yarn/__virtual__/recoil-virtual-2a4449a8c6/0/cache/recoil-npm-0.4.1-013a399a25-a11a93e516.zip/node_modules/recoil/es/recoil.js");
-/* eslint-disable react/display-name */
-
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (({
-  element
-}) => {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(recoil__WEBPACK_IMPORTED_MODULE_1__.RecoilRoot, null, element);
-});
-
-/***/ }),
-
 /***/ "../../.yarn/__virtual__/@gatsbyjs-reach-router-virtual-03b7abac33/0/cache/@gatsbyjs-reach-router-npm-1.3.6-85044649ca-badc3787e0.zip/node_modules/@gatsbyjs/reach-router/es/index.js":
 /*!********************************************************************************************************************************************************************************************!*\
   !*** ../../.yarn/__virtual__/@gatsbyjs-reach-router-virtual-03b7abac33/0/cache/@gatsbyjs-reach-router-npm-1.3.6-85044649ca-badc3787e0.zip/node_modules/@gatsbyjs/reach-router/es/index.js ***!
@@ -61252,7 +73998,8 @@ var shouldNavigate = function shouldNavigate(event) {
   
 
 exports.ssrComponents = {
-  "component---cache-dev-404-page-js": preferDefault(__webpack_require__(/*! ./.cache/dev-404-page.js */ "./.cache/dev-404-page.js"))
+  "component---cache-dev-404-page-js": preferDefault(__webpack_require__(/*! ./.cache/dev-404-page.js */ "./.cache/dev-404-page.js")),
+  "component---src-pages-projects-flashcards-index-tsx": preferDefault(__webpack_require__(/*! ./src/pages/projects/flashcards/index.tsx */ "./src/pages/projects/flashcards/index.tsx"))
   }
 
 
@@ -61314,6 +74061,275 @@ module.exports = require("stream");
 
 /***/ }),
 
+/***/ "../../.yarn/cache/@babel-runtime-npm-7.15.4-52ce5bf6ea-c408254304.zip/node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js":
+/*!**********************************************************************************************************************************************!*\
+  !*** ../../.yarn/cache/@babel-runtime-npm-7.15.4-52ce5bf6ea-c408254304.zip/node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js ***!
+  \**********************************************************************************************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _assertThisInitialized)
+/* harmony export */ });
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return self;
+}
+
+/***/ }),
+
+/***/ "../../.yarn/cache/@babel-runtime-npm-7.15.4-52ce5bf6ea-c408254304.zip/node_modules/@babel/runtime/helpers/esm/construct.js":
+/*!**********************************************************************************************************************************!*\
+  !*** ../../.yarn/cache/@babel-runtime-npm-7.15.4-52ce5bf6ea-c408254304.zip/node_modules/@babel/runtime/helpers/esm/construct.js ***!
+  \**********************************************************************************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _construct)
+/* harmony export */ });
+/* harmony import */ var _setPrototypeOf_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./setPrototypeOf.js */ "../../.yarn/cache/@babel-runtime-npm-7.15.4-52ce5bf6ea-c408254304.zip/node_modules/@babel/runtime/helpers/esm/setPrototypeOf.js");
+/* harmony import */ var _isNativeReflectConstruct_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./isNativeReflectConstruct.js */ "../../.yarn/cache/@babel-runtime-npm-7.15.4-52ce5bf6ea-c408254304.zip/node_modules/@babel/runtime/helpers/esm/isNativeReflectConstruct.js");
+
+
+function _construct(Parent, args, Class) {
+  if ((0,_isNativeReflectConstruct_js__WEBPACK_IMPORTED_MODULE_1__["default"])()) {
+    _construct = Reflect.construct;
+  } else {
+    _construct = function _construct(Parent, args, Class) {
+      var a = [null];
+      a.push.apply(a, args);
+      var Constructor = Function.bind.apply(Parent, a);
+      var instance = new Constructor();
+      if (Class) (0,_setPrototypeOf_js__WEBPACK_IMPORTED_MODULE_0__["default"])(instance, Class.prototype);
+      return instance;
+    };
+  }
+
+  return _construct.apply(null, arguments);
+}
+
+/***/ }),
+
+/***/ "../../.yarn/cache/@babel-runtime-npm-7.15.4-52ce5bf6ea-c408254304.zip/node_modules/@babel/runtime/helpers/esm/extends.js":
+/*!********************************************************************************************************************************!*\
+  !*** ../../.yarn/cache/@babel-runtime-npm-7.15.4-52ce5bf6ea-c408254304.zip/node_modules/@babel/runtime/helpers/esm/extends.js ***!
+  \********************************************************************************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _extends)
+/* harmony export */ });
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+/***/ }),
+
+/***/ "../../.yarn/cache/@babel-runtime-npm-7.15.4-52ce5bf6ea-c408254304.zip/node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js":
+/*!***************************************************************************************************************************************!*\
+  !*** ../../.yarn/cache/@babel-runtime-npm-7.15.4-52ce5bf6ea-c408254304.zip/node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js ***!
+  \***************************************************************************************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _getPrototypeOf)
+/* harmony export */ });
+function _getPrototypeOf(o) {
+  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  };
+  return _getPrototypeOf(o);
+}
+
+/***/ }),
+
+/***/ "../../.yarn/cache/@babel-runtime-npm-7.15.4-52ce5bf6ea-c408254304.zip/node_modules/@babel/runtime/helpers/esm/inheritsLoose.js":
+/*!**************************************************************************************************************************************!*\
+  !*** ../../.yarn/cache/@babel-runtime-npm-7.15.4-52ce5bf6ea-c408254304.zip/node_modules/@babel/runtime/helpers/esm/inheritsLoose.js ***!
+  \**************************************************************************************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _inheritsLoose)
+/* harmony export */ });
+/* harmony import */ var _setPrototypeOf_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./setPrototypeOf.js */ "../../.yarn/cache/@babel-runtime-npm-7.15.4-52ce5bf6ea-c408254304.zip/node_modules/@babel/runtime/helpers/esm/setPrototypeOf.js");
+
+function _inheritsLoose(subClass, superClass) {
+  subClass.prototype = Object.create(superClass.prototype);
+  subClass.prototype.constructor = subClass;
+  (0,_setPrototypeOf_js__WEBPACK_IMPORTED_MODULE_0__["default"])(subClass, superClass);
+}
+
+/***/ }),
+
+/***/ "../../.yarn/cache/@babel-runtime-npm-7.15.4-52ce5bf6ea-c408254304.zip/node_modules/@babel/runtime/helpers/esm/isNativeFunction.js":
+/*!*****************************************************************************************************************************************!*\
+  !*** ../../.yarn/cache/@babel-runtime-npm-7.15.4-52ce5bf6ea-c408254304.zip/node_modules/@babel/runtime/helpers/esm/isNativeFunction.js ***!
+  \*****************************************************************************************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _isNativeFunction)
+/* harmony export */ });
+function _isNativeFunction(fn) {
+  return Function.toString.call(fn).indexOf("[native code]") !== -1;
+}
+
+/***/ }),
+
+/***/ "../../.yarn/cache/@babel-runtime-npm-7.15.4-52ce5bf6ea-c408254304.zip/node_modules/@babel/runtime/helpers/esm/isNativeReflectConstruct.js":
+/*!*************************************************************************************************************************************************!*\
+  !*** ../../.yarn/cache/@babel-runtime-npm-7.15.4-52ce5bf6ea-c408254304.zip/node_modules/@babel/runtime/helpers/esm/isNativeReflectConstruct.js ***!
+  \*************************************************************************************************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _isNativeReflectConstruct)
+/* harmony export */ });
+function _isNativeReflectConstruct() {
+  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+  if (Reflect.construct.sham) return false;
+  if (typeof Proxy === "function") return true;
+
+  try {
+    Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+/***/ }),
+
+/***/ "../../.yarn/cache/@babel-runtime-npm-7.15.4-52ce5bf6ea-c408254304.zip/node_modules/@babel/runtime/helpers/esm/setPrototypeOf.js":
+/*!***************************************************************************************************************************************!*\
+  !*** ../../.yarn/cache/@babel-runtime-npm-7.15.4-52ce5bf6ea-c408254304.zip/node_modules/@babel/runtime/helpers/esm/setPrototypeOf.js ***!
+  \***************************************************************************************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _setPrototypeOf)
+/* harmony export */ });
+function _setPrototypeOf(o, p) {
+  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
+}
+
+/***/ }),
+
+/***/ "../../.yarn/cache/@babel-runtime-npm-7.15.4-52ce5bf6ea-c408254304.zip/node_modules/@babel/runtime/helpers/esm/taggedTemplateLiteralLoose.js":
+/*!***************************************************************************************************************************************************!*\
+  !*** ../../.yarn/cache/@babel-runtime-npm-7.15.4-52ce5bf6ea-c408254304.zip/node_modules/@babel/runtime/helpers/esm/taggedTemplateLiteralLoose.js ***!
+  \***************************************************************************************************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _taggedTemplateLiteralLoose)
+/* harmony export */ });
+function _taggedTemplateLiteralLoose(strings, raw) {
+  if (!raw) {
+    raw = strings.slice(0);
+  }
+
+  strings.raw = raw;
+  return strings;
+}
+
+/***/ }),
+
+/***/ "../../.yarn/cache/@babel-runtime-npm-7.15.4-52ce5bf6ea-c408254304.zip/node_modules/@babel/runtime/helpers/esm/wrapNativeSuper.js":
+/*!****************************************************************************************************************************************!*\
+  !*** ../../.yarn/cache/@babel-runtime-npm-7.15.4-52ce5bf6ea-c408254304.zip/node_modules/@babel/runtime/helpers/esm/wrapNativeSuper.js ***!
+  \****************************************************************************************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _wrapNativeSuper)
+/* harmony export */ });
+/* harmony import */ var _getPrototypeOf_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getPrototypeOf.js */ "../../.yarn/cache/@babel-runtime-npm-7.15.4-52ce5bf6ea-c408254304.zip/node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js");
+/* harmony import */ var _setPrototypeOf_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./setPrototypeOf.js */ "../../.yarn/cache/@babel-runtime-npm-7.15.4-52ce5bf6ea-c408254304.zip/node_modules/@babel/runtime/helpers/esm/setPrototypeOf.js");
+/* harmony import */ var _isNativeFunction_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./isNativeFunction.js */ "../../.yarn/cache/@babel-runtime-npm-7.15.4-52ce5bf6ea-c408254304.zip/node_modules/@babel/runtime/helpers/esm/isNativeFunction.js");
+/* harmony import */ var _construct_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./construct.js */ "../../.yarn/cache/@babel-runtime-npm-7.15.4-52ce5bf6ea-c408254304.zip/node_modules/@babel/runtime/helpers/esm/construct.js");
+
+
+
+
+function _wrapNativeSuper(Class) {
+  var _cache = typeof Map === "function" ? new Map() : undefined;
+
+  _wrapNativeSuper = function _wrapNativeSuper(Class) {
+    if (Class === null || !(0,_isNativeFunction_js__WEBPACK_IMPORTED_MODULE_2__["default"])(Class)) return Class;
+
+    if (typeof Class !== "function") {
+      throw new TypeError("Super expression must either be null or a function");
+    }
+
+    if (typeof _cache !== "undefined") {
+      if (_cache.has(Class)) return _cache.get(Class);
+
+      _cache.set(Class, Wrapper);
+    }
+
+    function Wrapper() {
+      return (0,_construct_js__WEBPACK_IMPORTED_MODULE_3__["default"])(Class, arguments, (0,_getPrototypeOf_js__WEBPACK_IMPORTED_MODULE_0__["default"])(this).constructor);
+    }
+
+    Wrapper.prototype = Object.create(Class.prototype, {
+      constructor: {
+        value: Wrapper,
+        enumerable: false,
+        writable: true,
+        configurable: true
+      }
+    });
+    return (0,_setPrototypeOf_js__WEBPACK_IMPORTED_MODULE_1__["default"])(Wrapper, Class);
+  };
+
+  return _wrapNativeSuper(Class);
+}
+
+/***/ }),
+
 /***/ "./.cache/redirects.json":
 /*!*******************************!*\
   !*** ./.cache/redirects.json ***!
@@ -61322,6 +74338,17 @@ module.exports = require("stream");
 
 "use strict";
 module.exports = [];
+
+/***/ }),
+
+/***/ "./public/page-data/sq/d/1597975978.json":
+/*!***********************************************!*\
+  !*** ./public/page-data/sq/d/1597975978.json ***!
+  \***********************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = JSON.parse('{"data":{"site":{"siteMetadata":{"title":"Kevin Carlos","description":"Portfolio Website","siteUrl":"https://kevin-carlos.github.io"}}}}');
 
 /***/ })
 
@@ -61402,6 +74429,11 @@ module.exports = [];
 /******/ 			if (!module.children) module.children = [];
 /******/ 			return module;
 /******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/publicPath */
+/******/ 	(() => {
+/******/ 		__webpack_require__.p = "/";
 /******/ 	})();
 /******/ 	
 /************************************************************************/
