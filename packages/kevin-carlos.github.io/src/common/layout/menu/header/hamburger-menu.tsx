@@ -1,9 +1,9 @@
 // addsnowpack
-import React, { FC, useEffect } from 'react';
-import styled from 'styled-components';
-import { animated, useSpring } from 'react-spring';
-import { menuItems } from './nav-items';
 import { LinkButton } from 'common/ui-elements';
+import React, { FC, useEffect } from 'react';
+import { animated, useSpring } from 'react-spring';
+import styled from 'styled-components';
+import { menuItems } from './nav-items';
 
 type HamburgerMenuProps = {
   isOpen: boolean;
@@ -47,7 +47,9 @@ export const HamburgerMenu: FC<HamburgerMenuProps> = ({
           {menuItems.map((i, idx) => (
             <MenuListItem key={`${i.name}_${idx}`}>
               {i.icon}
-              <LinkButton href={i.path}>{i.name}</LinkButton>
+              <LinkButton href={i.path} animateScale={false}>
+                {i.name}
+              </LinkButton>
             </MenuListItem>
           ))}
         </MenuList>
@@ -89,7 +91,9 @@ const MenuList = styled.ul`
 `;
 
 const MenuListItem = styled.li`
-  display: flex;
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+
   align-items: center;
 
   & > a {
@@ -97,7 +101,12 @@ const MenuListItem = styled.li`
   }
 
   &:hover > svg {
-    stroke: ${({ theme }) => theme.colors.orange};
+    outline: none;
+
+    & > path,
+    circle {
+      stroke: ${({ theme }) => theme.colors.orange};
+    }
   }
 
   &:hover > img {

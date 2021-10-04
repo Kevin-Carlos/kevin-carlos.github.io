@@ -1,8 +1,8 @@
+import { Section } from 'common/layout/sections';
+import { Link } from 'gatsby';
 import React, { FC } from 'react';
 import styled from 'styled-components';
-import { Section } from 'common/layout/sections';
 import { projectItems } from './_project-items';
-import { Link } from 'gatsby';
 
 export const ProjectDashboard: FC = () => {
   return (
@@ -23,7 +23,7 @@ export const ProjectDashboard: FC = () => {
                     </Card>
                   </a>
                 ) : (
-                  <CardLink to={i.path!}>
+                  <CardLink to={i.path}>
                     <Card>
                       <h3>{i.name}</h3>
                       <p>{i.description}</p>

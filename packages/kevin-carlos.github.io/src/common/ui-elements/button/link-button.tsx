@@ -2,13 +2,20 @@ import { Link } from 'gatsby';
 import React, { FC } from 'react';
 import styled from 'styled-components';
 
-type LinkButtonProps = React.AnchorHTMLAttributes<HTMLAnchorElement>;
+type LinkButtonProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
+  animateScale?: boolean;
+};
 
-export const LinkButton: FC<LinkButtonProps> = ({ children, ...props }) => {
+export const LinkButton: FC<LinkButtonProps> = ({
+  children,
+  animateScale = true,
+  ...props
+}) => {
   if (props.href?.includes('http')) {
     return (
       <StyledLink
         {...props}
+        animateScale={animateScale}
         href={props.href || ''}
         target={props.href?.includes('http') ? '_blank' : undefined}
         as="a"
@@ -20,7 +27,7 @@ export const LinkButton: FC<LinkButtonProps> = ({ children, ...props }) => {
   }
 
   return (
-    <StyledLink {...props} to={props.href || ''}>
+    <StyledLink {...props} animateScale={animateScale} to={props.href || ''}>
       <Underline />
       {children}
     </StyledLink>
@@ -37,19 +44,27 @@ const Underline = styled.hr`
   transition: all 0.2s ease-in-out;
 `;
 
-const StyledLink = styled(Link)`
+const StyledLink = styled(Link)<{ animateScale: boolean }>`
   text-decoration: none;
   display: inline-block;
   color: ${({ theme }) => theme.colors.white};
-  transition: all 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out;
   position: relative;
 
   &:hover {
-    transform: scale(1.2);
+    ${({ animateScale }) =>
+      animateScale &&
+      `
+      transform: scale(1.2);
+    `};
+
     ${Underline} {
       border-width: 1px;
       width: 2rem;
-      color: ${({ theme }) => theme.colors.orange} !important;
+
+      && {
+        color: ${({ theme }) => theme.colors.orange};
+      }
     }
   }
 `;

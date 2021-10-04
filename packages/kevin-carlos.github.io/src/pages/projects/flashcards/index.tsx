@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import { ChevronLeft, ChevronRight } from 'common/ui-elements/icons';
-import { Section } from 'common/layout/sections';
-import { useRecoilValue } from 'recoil';
-import { flashcardState } from 'state/flashcards';
 import { MenuLayout } from 'common/layout';
-// import { LinkButton } from "common/ui-elements";
+import { Section } from 'common/layout/sections';
+import React, { useEffect, useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { flashcardState } from 'state/flashcards';
+import styled from 'styled-components';
+import { ChevronLeft, ChevronRight } from 'sublimity-ui';
 import { FlashcardInputs } from './_form/_flashcard-inputs';
 
 type CardSide = 'front' | 'back';
@@ -18,7 +17,7 @@ export default (): React.ReactElement => {
       side: 'front',
     }
   );
-  const cards = useRecoilValue(flashcardState);
+  const [cards, updateCards] = useRecoilState(flashcardState);
   const updateIndex = (v: number) => setIndex(v);
 
   useEffect(() => {
@@ -91,7 +90,17 @@ export default (): React.ReactElement => {
           />
         </CardWrapper>
         <InputWrapper>
-          <FlashcardInputs cardIndex={index} setIndex={updateIndex} />
+          <FlashcardInputs
+            cardIndex={index}
+            setIndex={updateIndex}
+            disable={!cards.length}
+            addCard={(s, d) =>
+              updateCards([{ subject: s, description: d }, ...cards])
+            }
+            removeCard={(idx) =>
+              updateCards(cards.filter((c) => c.subject !== cards[idx].subject))
+            }
+          />
         </InputWrapper>
       </Section>
     </MenuLayout>

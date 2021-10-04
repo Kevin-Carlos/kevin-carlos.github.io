@@ -11,6 +11,8 @@ export default (): JSX.Element => {
 
   useEffect(() => {
     setTimeout(() => setHeaderBGVisibility('hide'), 500);
+
+    return () => setHeaderBGVisibility('show');
   }, []);
 
   return (

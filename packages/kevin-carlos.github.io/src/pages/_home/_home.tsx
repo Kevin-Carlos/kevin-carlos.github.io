@@ -2,7 +2,7 @@ import { theme as DefaultSiteTheme } from 'common/styles';
 import React, { FC } from 'react';
 import Particles, { ISourceOptions } from 'react-tsparticles';
 import styled, { useTheme } from 'styled-components';
-import { Hero } from './_hero';
+import { Hero } from './_Hero/_hero';
 
 export const Homepage: FC = () => {
   const theme = useTheme();

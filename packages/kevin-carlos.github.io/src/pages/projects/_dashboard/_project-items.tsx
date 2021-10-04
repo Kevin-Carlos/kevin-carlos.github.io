@@ -1,10 +1,10 @@
-import React from 'react';
 import { links } from 'common/links';
+import React from 'react';
 
 interface Items {
   name: string;
   description: React.ReactChild;
-  path: string | null;
+  path: string;
 }
 
 export const projectItems: Items[] = [

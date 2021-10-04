@@ -33,7 +33,6 @@ const StyledButton = styled.button<{
   color: ColorNames;
   isDisabled?: boolean;
 }>`
-  width: 20rem;
   max-height: 10rem;
   padding: 1.25rem 1.5rem;
   background-color: ${(props) => colors[props.color]};

@@ -1,11 +1,11 @@
+import { Head } from 'common/site-head';
+import { theme } from 'common/styles';
+import { GlobalStyle } from 'common/styles/global';
 import React, { FC, useContext } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import { Header } from './menu/header';
-import { Footer } from './menu/footer';
 import { MenuContext } from './menu-context';
-import { GlobalStyle } from 'common/styles/global';
-import { theme } from 'common/styles';
-import { Head } from 'common/site-head';
+import { Footer } from './menu/footer';
+import { Header } from './menu/header';
 
 export const MenuLayout: FC = ({ children }) => {
   const menuCtx = useContext(MenuContext);
@@ -13,9 +13,9 @@ export const MenuLayout: FC = ({ children }) => {
   return (
     // Wrap theme here because seems to not work in gatsby-* files, theres a flash
     <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <Head />
       <GridLayout>
-        <GlobalStyle />
-        <Head />
         <GridHeader backgroundVisibility={menuCtx.transparentizeHeaderBG} />
         <GridContent>{children}</GridContent>
         <GridFooter hideFooterItems={menuCtx.hideFooterItems} />

@@ -14,4 +14,4 @@ export const theme = {
   },
   mediaQuery,
   zIndices,
-} as const;
+};
