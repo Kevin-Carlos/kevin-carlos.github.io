@@ -1,4 +1,4 @@
-import { atom } from 'recoil';
+import { atom, selector } from 'recoil';
 
 export const flashcardState = atom({
   key: 'website-cards',
@@ -12,4 +12,11 @@ export const flashcardState = atom({
       description: 'A Tesla',
     },
   ],
+});
+
+export const currentFlashcardState = selector({
+  key: 'CurrentFlashcardState',
+  get: ({ get }) => {
+    return get(flashcardState);
+  },
 });

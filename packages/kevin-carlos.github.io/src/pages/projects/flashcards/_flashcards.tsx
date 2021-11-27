@@ -1,6 +1,7 @@
+import { Section } from 'common/layout';
 import React, { FC, useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import { flashcardState } from 'state/flashcards';
+import { currentFlashcardState } from 'state/flashcards';
 import styled from 'styled-components';
 import { ChevronLeft, ChevronRight } from 'sublimity-ui';
 import { FlashcardInputs } from './_form/_flashcard-inputs';
@@ -15,80 +16,82 @@ export const Flashcards: FC = () => {
       side: 'front',
     }
   );
-  const cards = useRecoilValue(flashcardState);
+  const cards = useRecoilValue(currentFlashcardState);
 
   const updateIndex = (v: number) => setIndex(v);
 
   return (
     <>
       <h1>Flashcards</h1>
-      <CardWrapper>
-        <StyledChevronLeft
-          // Extra check just to ensure no crash happens
-          onClick={() => {
-            if (index === 0) {
-              return;
-            }
-
-            updateIndex(index - 1);
-            setSideOfCard({ idx: index - 1, side: 'front' });
-          }}
-          shouldHide={index === 0}
-        />
-        <Flashcard
-          onClick={() =>
-            /* Flip card */
-            setSideOfCard({
-              idx: index,
-              side: sideOfCard.side === 'front' ? 'back' : 'front',
-            })
-          }
-          side={sideOfCard.side}
-        >
-          <p style={{ userSelect: 'none' }}>
-            {cards.length ? (
-              sideOfCard.side === 'front' ? (
-                cards[index].subject
-              ) : (
-                <>
-                  {cards[index].description.includes('http') ? (
-                    <a
-                      href={cards[index].description}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      {cards[index].description}
-                    </a>
-                  ) : (
-                    cards[index].description
-                  )}
-                </>
-              )
-            ) : (
-              []
-            )}
-          </p>
-        </Flashcard>
-        <StyledChevronRight
-          onClick={() => {
+      <Section>
+        <CardWrapper>
+          <StyledChevronLeft
             // Extra check just to ensure no crash happens
-            if (index === cards.length - 1) {
-              return;
-            }
+            onClick={() => {
+              if (index === 0) {
+                return;
+              }
 
-            setSideOfCard({ idx: index + 1, side: 'front' });
-            updateIndex(index + 1);
-          }}
-          shouldHide={index === cards.length - 1 || !cards.length}
-        />
-      </CardWrapper>
-      <InputWrapper>
-        <FlashcardInputs
-          cardIndex={index}
-          setIndex={updateIndex}
-          disable={!cards.length}
-        />
-      </InputWrapper>
+              updateIndex(index - 1);
+              setSideOfCard({ idx: index - 1, side: 'front' });
+            }}
+            shouldHide={index === 0}
+          />
+          <Flashcard
+            onClick={() =>
+              /* Flip card */
+              setSideOfCard({
+                idx: index,
+                side: sideOfCard.side === 'front' ? 'back' : 'front',
+              })
+            }
+            side={sideOfCard.side}
+          >
+            <p style={{ userSelect: 'none' }}>
+              {cards.length ? (
+                sideOfCard.side === 'front' ? (
+                  cards[index].subject
+                ) : (
+                  <>
+                    {cards[index].description.includes('http') ? (
+                      <a
+                        href={cards[index].description}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {cards[index].description}
+                      </a>
+                    ) : (
+                      cards[index].description
+                    )}
+                  </>
+                )
+              ) : (
+                []
+              )}
+            </p>
+          </Flashcard>
+          <StyledChevronRight
+            onClick={() => {
+              // Extra check just to ensure no crash happens
+              if (index === cards.length - 1) {
+                return;
+              }
+
+              setSideOfCard({ idx: index + 1, side: 'front' });
+              updateIndex(index + 1);
+            }}
+            shouldHide={index === cards.length - 1 || !cards.length}
+          />
+        </CardWrapper>
+        <InputWrapper>
+          <FlashcardInputs
+            cardIndex={index}
+            setIndex={updateIndex}
+            disable={!cards.length}
+          />
+        </InputWrapper>
+      </Section>
     </>
   );
 };
@@ -106,8 +109,8 @@ const CardWrapper = styled.div`
 `;
 
 const Flashcard = styled.div<{ side: CardSide }>`
-  width: 30rem;
-  height: 20rem;
+  width: 100%;
+  height: 30rem;
   display: flex;
   justify-content: center;
   align-items: center;

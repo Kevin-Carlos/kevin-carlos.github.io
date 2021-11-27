@@ -22,21 +22,21 @@
           }
         },
         {
-          "name": "/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/.yarn/__virtual__/@babel-plugin-proposal-optional-chaining-virtual-2ab2dce6f2/0/cache/@babel-plugin-proposal-optional-chaining-npm-7.14.5-0a1af66b08-9e39e20d16.zip/node_modules/@babel/plugin-proposal-optional-chaining/lib/index.js",
+          "name": "/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/node_modules/@babel/plugin-proposal-optional-chaining/lib/index.js",
           "options": {}
         },
         {
-          "name": "/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/.yarn/__virtual__/@babel-plugin-proposal-nullish-coalescing-operator-virtual-bd794251a9/0/cache/@babel-plugin-proposal-nullish-coalescing-operator-npm-7.14.5-f47974419f-033d9483c2.zip/node_modules/@babel/plugin-proposal-nullish-coalescing-operator/lib/index.js",
+          "name": "/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/node_modules/@babel/plugin-proposal-nullish-coalescing-operator/lib/index.js",
           "options": {}
         },
         {
-          "name": "/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/.yarn/__virtual__/@babel-plugin-proposal-numeric-separator-virtual-94b2669216/0/cache/@babel-plugin-proposal-numeric-separator-npm-7.14.5-5dbb482582-22093297ec.zip/node_modules/@babel/plugin-proposal-numeric-separator/lib/index.js",
+          "name": "/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/node_modules/@babel/plugin-proposal-numeric-separator/lib/index.js",
           "options": {}
         }
       ],
       "presets": [
         {
-          "name": "/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/.yarn/__virtual__/@babel-preset-typescript-virtual-1543638e34/0/cache/@babel-preset-typescript-npm-7.15.0-7f28ed0b02-2c480bb0ef.zip/node_modules/@babel/preset-typescript/lib/index.js",
+          "name": "/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/node_modules/@babel/preset-typescript/lib/index.js",
           "options": {
             "plugins": [],
             "allExtensions": false,
@@ -57,15 +57,15 @@
           "options": {}
         },
         {
-          "name": "/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/.yarn/__virtual__/@babel-plugin-proposal-optional-chaining-virtual-2ab2dce6f2/0/cache/@babel-plugin-proposal-optional-chaining-npm-7.14.5-0a1af66b08-9e39e20d16.zip/node_modules/@babel/plugin-proposal-optional-chaining/lib/index.js",
+          "name": "/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/node_modules/@babel/plugin-proposal-optional-chaining/lib/index.js",
           "options": {}
         },
         {
-          "name": "/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/.yarn/__virtual__/@babel-plugin-proposal-nullish-coalescing-operator-virtual-bd794251a9/0/cache/@babel-plugin-proposal-nullish-coalescing-operator-npm-7.14.5-f47974419f-033d9483c2.zip/node_modules/@babel/plugin-proposal-nullish-coalescing-operator/lib/index.js",
+          "name": "/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/node_modules/@babel/plugin-proposal-nullish-coalescing-operator/lib/index.js",
           "options": {}
         },
         {
-          "name": "/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/.yarn/__virtual__/@babel-plugin-proposal-numeric-separator-virtual-94b2669216/0/cache/@babel-plugin-proposal-numeric-separator-npm-7.14.5-5dbb482582-22093297ec.zip/node_modules/@babel/plugin-proposal-numeric-separator/lib/index.js",
+          "name": "/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/node_modules/@babel/plugin-proposal-numeric-separator/lib/index.js",
           "options": {}
         },
         {
@@ -86,7 +86,7 @@
       ],
       "presets": [
         {
-          "name": "/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/.yarn/__virtual__/@babel-preset-typescript-virtual-1543638e34/0/cache/@babel-preset-typescript-npm-7.15.0-7f28ed0b02-2c480bb0ef.zip/node_modules/@babel/preset-typescript/lib/index.js",
+          "name": "/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/node_modules/@babel/preset-typescript/lib/index.js",
           "options": {
             "plugins": [],
             "allExtensions": false,
@@ -107,15 +107,15 @@
           "options": {}
         },
         {
-          "name": "/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/.yarn/__virtual__/@babel-plugin-proposal-optional-chaining-virtual-2ab2dce6f2/0/cache/@babel-plugin-proposal-optional-chaining-npm-7.14.5-0a1af66b08-9e39e20d16.zip/node_modules/@babel/plugin-proposal-optional-chaining/lib/index.js",
+          "name": "/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/node_modules/@babel/plugin-proposal-optional-chaining/lib/index.js",
           "options": {}
         },
         {
-          "name": "/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/.yarn/__virtual__/@babel-plugin-proposal-nullish-coalescing-operator-virtual-bd794251a9/0/cache/@babel-plugin-proposal-nullish-coalescing-operator-npm-7.14.5-f47974419f-033d9483c2.zip/node_modules/@babel/plugin-proposal-nullish-coalescing-operator/lib/index.js",
+          "name": "/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/node_modules/@babel/plugin-proposal-nullish-coalescing-operator/lib/index.js",
           "options": {}
         },
         {
-          "name": "/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/.yarn/__virtual__/@babel-plugin-proposal-numeric-separator-virtual-94b2669216/0/cache/@babel-plugin-proposal-numeric-separator-npm-7.14.5-5dbb482582-22093297ec.zip/node_modules/@babel/plugin-proposal-numeric-separator/lib/index.js",
+          "name": "/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/node_modules/@babel/plugin-proposal-numeric-separator/lib/index.js",
           "options": {}
         },
         {
@@ -136,7 +136,7 @@
       ],
       "presets": [
         {
-          "name": "/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/.yarn/__virtual__/@babel-preset-typescript-virtual-1543638e34/0/cache/@babel-preset-typescript-npm-7.15.0-7f28ed0b02-2c480bb0ef.zip/node_modules/@babel/preset-typescript/lib/index.js",
+          "name": "/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/node_modules/@babel/preset-typescript/lib/index.js",
           "options": {
             "plugins": [],
             "allExtensions": false,
@@ -157,15 +157,15 @@
           "options": {}
         },
         {
-          "name": "/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/.yarn/__virtual__/@babel-plugin-proposal-optional-chaining-virtual-2ab2dce6f2/0/cache/@babel-plugin-proposal-optional-chaining-npm-7.14.5-0a1af66b08-9e39e20d16.zip/node_modules/@babel/plugin-proposal-optional-chaining/lib/index.js",
+          "name": "/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/node_modules/@babel/plugin-proposal-optional-chaining/lib/index.js",
           "options": {}
         },
         {
-          "name": "/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/.yarn/__virtual__/@babel-plugin-proposal-nullish-coalescing-operator-virtual-bd794251a9/0/cache/@babel-plugin-proposal-nullish-coalescing-operator-npm-7.14.5-f47974419f-033d9483c2.zip/node_modules/@babel/plugin-proposal-nullish-coalescing-operator/lib/index.js",
+          "name": "/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/node_modules/@babel/plugin-proposal-nullish-coalescing-operator/lib/index.js",
           "options": {}
         },
         {
-          "name": "/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/.yarn/__virtual__/@babel-plugin-proposal-numeric-separator-virtual-94b2669216/0/cache/@babel-plugin-proposal-numeric-separator-npm-7.14.5-5dbb482582-22093297ec.zip/node_modules/@babel/plugin-proposal-numeric-separator/lib/index.js",
+          "name": "/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/node_modules/@babel/plugin-proposal-numeric-separator/lib/index.js",
           "options": {}
         },
         {
@@ -186,7 +186,7 @@
       ],
       "presets": [
         {
-          "name": "/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/.yarn/__virtual__/@babel-preset-typescript-virtual-1543638e34/0/cache/@babel-preset-typescript-npm-7.15.0-7f28ed0b02-2c480bb0ef.zip/node_modules/@babel/preset-typescript/lib/index.js",
+          "name": "/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/node_modules/@babel/preset-typescript/lib/index.js",
           "options": {
             "plugins": [],
             "allExtensions": false,

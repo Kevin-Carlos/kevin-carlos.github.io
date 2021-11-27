@@ -10,6 +10,13 @@ import { helloInLanguages } from './_languages';
 export const AnimatedHello: FC = () => {
   const valueRef = useRef<HTMLSpanElement | null>(null);
 
+  const [items, setItems] = useState(
+    helloInLanguages
+      .map((hi) => ({ value: hi, sort: Math.random() }))
+      .sort((a, b) => a.sort - b.sort)
+      .map((v) => v.value)
+  );
+
   const [index, setIndex] = useState(0);
   const [length, setLength] = useState(helloInLanguages[index].length);
 
@@ -39,14 +46,14 @@ export const AnimatedHello: FC = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setIndex((state) => (state + 1) % helloInLanguages.length);
+      setIndex((prevIndex) => (prevIndex + 1) % helloInLanguages.length);
     }, 1000 * 3.9);
 
     return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
-    setLength(valueRef.current?.clientWidth || helloInLanguages[index].length);
+    setLength(valueRef.current?.clientWidth || helloInLanguages.length);
   }, [index]);
 
   return (
@@ -56,7 +63,7 @@ export const AnimatedHello: FC = () => {
           ref={valueRef}
           style={{ ...styles, position: 'absolute' }}
         >
-          {helloInLanguages[i]},
+          {items[i]},
         </animated.span>
       ))}
       <animated.span

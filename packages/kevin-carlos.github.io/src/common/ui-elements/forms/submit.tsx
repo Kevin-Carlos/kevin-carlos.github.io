@@ -1,7 +1,7 @@
+import { darken, lighten } from 'polished';
 import React, { FC } from 'react';
 import styled from 'styled-components';
-import { darken, lighten } from 'polished';
-import { ColorNames, colors } from 'common/styles';
+import { ColorNames, colors } from 'sublimity-ui';
 
 interface SubmitButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {

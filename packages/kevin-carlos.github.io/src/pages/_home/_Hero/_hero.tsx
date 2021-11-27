@@ -13,7 +13,7 @@ type HeroProps = {
 export const Hero: FC<HeroProps> = ({ className }) => {
   return (
     <Content className={className}>
-      <h1>
+      <h1 style={{ marginBottom: 0 }}>
         <AnimatedHello />
         <ColoredName>Kevin Carlos</ColoredName>
       </h1>
@@ -45,10 +45,12 @@ const Content = styled.div`
 
 const ColoredName = styled.p`
   color: ${({ theme }) => lighten(0.15, theme.colors.light_teal)};
+  margin: 0;
 `;
 
 const StyledDivider = styled(Divider)`
-  margin-bottom: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
 `;
 
 const StyledButton = styled.button`

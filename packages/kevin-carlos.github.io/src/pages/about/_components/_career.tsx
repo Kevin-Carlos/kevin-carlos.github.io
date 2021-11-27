@@ -12,7 +12,7 @@ export const CareerBlurb = (): React.ReactElement => {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-start',
-        height: '50vh',
+        minHeight: '50vh',
       }}
     >
       <TabsList>

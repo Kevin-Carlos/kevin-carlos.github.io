@@ -64,7 +64,6 @@ const Card = styled.div`
   border-radius: 0.3rem;
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
-  border-top-color: transparent;
   transition: box-shadow 0.25s ease-in-out, transform 0.25s ease-in-out;
   cursor: pointer;
   position: relative;
@@ -77,8 +76,8 @@ const Card = styled.div`
     top: 0;
     left: 0;
     right: 0;
-    border-top-left-radius: 3rem;
-    border-top-right-radius: 3rem;
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
     border-top: 5px solid ${({ theme }) => theme.colors.orange};
   }
 

@@ -1,4 +1,3 @@
-import { darken } from 'polished';
 import React, { FC } from 'react';
 import styled from 'styled-components';
 import { colors } from '../../theme';
@@ -18,6 +17,6 @@ const TabLI = styled.li`
   transition: color 0.25s ease-in-out;
 
   &:hover {
-    color: ${darken(0.1, colors.orange)};
+    color: ${colors.orange};
   }
 `;
