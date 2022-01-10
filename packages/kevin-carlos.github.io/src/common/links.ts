@@ -8,6 +8,7 @@ export const links = {
   projects: () => ({
     root: () => `/projects`,
     project: () => ({
+      lootCrate: () => `/projects/loot-crate`,
       flashcards: () => `/projects/flashcards`,
     }),
   }),

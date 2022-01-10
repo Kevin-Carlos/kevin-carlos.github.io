@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { MenuLayout, Section } from '../../../common/layout';
 import { Flashcards } from './_flashcards';
 
