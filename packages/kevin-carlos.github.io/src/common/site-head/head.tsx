@@ -1,6 +1,6 @@
+import { graphql, useStaticQuery } from 'gatsby';
 import React, { FC } from 'react';
 import { Helmet } from 'react-helmet';
-import { graphql, useStaticQuery } from 'gatsby';
 
 type SiteMetaProps = {
   title: string;
@@ -11,8 +11,6 @@ type SiteMetaProps = {
 export const Head: FC = () => {
   const { site } = useStaticQuery(query);
   const siteMeta: SiteMetaProps = site.siteMetadata;
-
-  console.log('site', site);
 
   return (
     <Helmet>

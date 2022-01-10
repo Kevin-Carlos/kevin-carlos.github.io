@@ -31,6 +31,7 @@ export const Colors = () => {
     <CircleList>
       {Object.entries(colors).map((color) => (
         <li
+          key={color[0]}
           style={{
             display: 'flex',
             flexDirection: 'column',

@@ -41,9 +41,9 @@ Basic.args = {
   children: (
     <>
       <Description>
-        Too many companies have been led down the path of believing they have
+        {`Too many companies have been led down the path of believing they have
         the same technical requirements as Fortune 100 enterprises, and we're
-        here to fix that.
+        here to fix that.`}
       </Description>
       <Description>
         Our goal is simple: enable developers to spend more time building

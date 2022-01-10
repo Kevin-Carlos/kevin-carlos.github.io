@@ -10,7 +10,7 @@ import { helloInLanguages } from './_languages';
 export const AnimatedHello: FC = () => {
   const valueRef = useRef<HTMLSpanElement | null>(null);
 
-  const [items, setItems] = useState(
+  const [items] = useState(
     helloInLanguages
       .map((hi) => ({ value: hi, sort: Math.random() }))
       .sort((a, b) => a.sort - b.sort)
