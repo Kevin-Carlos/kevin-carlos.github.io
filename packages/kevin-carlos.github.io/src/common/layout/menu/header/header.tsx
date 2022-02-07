@@ -1,14 +1,14 @@
-import React, { FC, useState, useRef, useCallback } from 'react';
-import styled from 'styled-components';
-import { menuItems } from './nav-items';
 import darkLogo from 'common/assets/images/logo-dark.png';
-import { transparentize } from 'polished';
-import { links } from 'common/links';
-import { HamburgerIcon } from './hamburger-icon';
-import { HamburgerMenu } from './hamburger-menu';
 import { useClickOutside } from 'common/hooks';
+import { links } from 'common/links';
 import { LinkButton } from 'common/ui-elements/button';
 import { Link } from 'gatsby';
+import { transparentize } from 'polished';
+import React, { FC, useCallback, useRef, useState } from 'react';
+import styled from 'styled-components';
+import { HamburgerIcon } from './hamburger-icon';
+import { HamburgerMenu } from './hamburger-menu';
+import { menuItems } from './nav-items';
 // import { Link } from "react-router-dom";
 
 interface HeaderProps {

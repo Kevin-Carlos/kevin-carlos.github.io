@@ -18,4 +18,5 @@ module.exports = {
     'spaced-comment': ['warn', 'always'],
     'no-console': 'warn',
   },
+  ignorePatterns: ['remix.config.js'],
 };

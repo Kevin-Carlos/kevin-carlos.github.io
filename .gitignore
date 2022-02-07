@@ -4,3 +4,12 @@ dist
 dist-ssr
 *.local
 .cache
+
+# yarn non-pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
