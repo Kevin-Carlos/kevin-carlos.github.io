@@ -20,7 +20,7 @@ export const Layout: FC<LayoutProps> = ({ children, hideFooter }) => {
     <Fragment>
       <div className="grid grid-rows-[60px_1fr_60px] h-full w-full">
         <Header />
-        <main>{children}</main>
+        <main className="overflow-y-scroll z-30">{children}</main>
         {!hideFooter ? <Footer /> : null}
       </div>
       <OverlayTriangle />
