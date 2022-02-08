@@ -1,4 +1,5 @@
-import { FC } from 'react';
+import clsx from 'clsx';
+import { FC, Fragment } from 'react';
 import { Link } from 'remix';
 
 const UnderLine = () => {
@@ -9,36 +10,50 @@ const UnderLine = () => {
 
 type LinkText = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
   animateScale?: boolean;
+  childrenClassName?: string;
 };
 
 export const LinkText: FC<LinkText> = ({
   children,
+  childrenClassName,
   href,
   animateScale = true,
   ...props
 }) => {
+  const classNames = clsx([
+    'group',
+    'hover:scale-105',
+    'transition-transform',
+    'duration-200',
+    'ease-in-out',
+    props.className,
+  ]);
+
+  const LinkChildren = () => {
+    return (
+      <Fragment>
+        <span className={childrenClassName}>{children}</span>
+        {animateScale ? <UnderLine /> : null}
+      </Fragment>
+    );
+  };
+
   if (href?.includes('http')) {
     return (
       <a
         {...props}
         href={href}
         target={href?.includes('http') ? '_blank' : undefined}
-        className="group hover:scale-105 transition-transform duration-200 ease-in-out"
+        className={classNames}
       >
-        <span>{children}</span>
-        <UnderLine />
+        <LinkChildren />
       </a>
     );
   }
 
   return (
-    <Link
-      {...props}
-      to={href ?? ''}
-      className="group hover:scale-105 transition-transform duration-200 ease-in-out"
-    >
-      <span>{children}</span>
-      <UnderLine />
+    <Link {...props} to={href ?? ''} className={classNames}>
+      <LinkChildren />
     </Link>
   );
 };

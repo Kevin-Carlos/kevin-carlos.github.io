@@ -7,7 +7,7 @@ import Particles, {
 import { Layout } from '~/common/layout';
 import { type Theme } from '~/ThemeContext';
 import { useTheme } from '~/useTheme';
-import { Hero } from './_hero';
+import { Hero } from './hero';
 
 export default function Index() {
   const [mode] = useTheme();

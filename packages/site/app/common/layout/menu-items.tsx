@@ -6,6 +6,8 @@ import {
   UserFocus,
 } from 'phosphor-react';
 import React, { FC } from 'react';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import SiteLogo from '~/common/assets/images/logo-dark.png';
 import { links } from '~/common/links';
 
@@ -26,7 +28,7 @@ type NavItems = {
 
 const ImageIcons: FC<JSX.IntrinsicElements['img']> = ({ ...props }) => (
   <img
-    className="max-w-[30px] mr-5 transition opacity duration-[250] ease-in-out"
+    className="max-w-[30px] md:mr-5 transition opacity duration-[250] ease-in-out"
     {...props}
   />
 );

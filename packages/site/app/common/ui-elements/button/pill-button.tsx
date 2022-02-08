@@ -1,15 +1,17 @@
 import clsx from 'clsx';
 import { type FC } from 'react';
+import { Link, LinkProps } from 'remix';
+
+type PillButtonProps = JSX.IntrinsicElements['button'] & {
+  to?: LinkProps['to'];
+};
 
 /**
  * Not to be confused with switch-like pill button
  * This just is styled to look like a pill
  */
-export const PillButton: FC<JSX.IntrinsicElements['button']> = ({
-  children,
-  ...props
-}) => {
-  return (
+export const PillButton: FC<PillButtonProps> = ({ children, to, ...props }) => {
+  const MainButton = () => (
     <button
       {...props}
       className={clsx(
@@ -28,4 +30,14 @@ export const PillButton: FC<JSX.IntrinsicElements['button']> = ({
       {children}
     </button>
   );
+
+  if (to) {
+    return (
+      <Link to={to}>
+        <MainButton />
+      </Link>
+    );
+  }
+
+  return <MainButton />;
 };

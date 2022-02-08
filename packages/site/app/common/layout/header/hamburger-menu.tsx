@@ -43,13 +43,18 @@ export const HamburgerMenu: FC<HamburgerMenuProps> = ({
       style={spring}
       className="bg-theme-lteal absolute top-0 right-0 h-screen w-screen z-40"
     >
-      <nav>
-        <ul>
+      <nav className="h-full w-full">
+        <ul className="h-full w-full space-y-4 flex flex-col justify-center items-center">
           {menuItems.map((i, idx) => (
-            <li key={`ham-${i.name}_${idx}`}>
-              {i.icon}
-              <LinkText href={i.path} animateScale={false}>
-                {i.name}
+            <li key={`ham-${i.name}_${idx}`} className="flex">
+              <LinkText
+                href={i.path}
+                className="text-2xl"
+                childrenClassName="grid grid-cols-[1fr_1fr] justify-items-end space-x-4"
+                animateScale={false}
+              >
+                {i.icon}
+                <span>{i.name}</span>
               </LinkText>
             </li>
           ))}

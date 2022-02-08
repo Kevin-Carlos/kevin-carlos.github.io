@@ -1,4 +1,5 @@
 import { colors, Divider } from 'sublimity-ui';
+import { links } from '~/common/links';
 import { PillButton } from '~/common/ui-elements';
 import { useTheme } from '~/useTheme';
 import { AnimatedHello } from './animated-hello';
@@ -19,7 +20,10 @@ export const Hero = () => {
         className="my-6"
       />
       <div className="space-x-6">
-        <PillButton className="bg-theme-lteal2 dark:bg-theme-lteal hover:!text-theme-white hover:!bg-theme-dteal ">
+        <PillButton
+          to={links.aboutMe()}
+          className="bg-theme-lteal2 dark:bg-theme-lteal hover:!text-theme-white hover:!bg-theme-dteal"
+        >
           About Me
         </PillButton>
         <PillButton className="bg-theme-lgray dark:bg-theme-dgray hover:!text-theme-white hover:!bg-theme-blue">
