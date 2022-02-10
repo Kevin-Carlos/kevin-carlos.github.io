@@ -10,7 +10,7 @@ export const helloInLanguages = [
   'مرحبا',
   'Ahoj',
   'Ciao',
-  // 'こんにちは',
+  'こんにちは',
   '你好',
   'Χαίρετε',
   'שלום',
@@ -18,5 +18,5 @@ export const helloInLanguages = [
   'Сайн уу',
   'Привет',
   'Hallå',
-  // 'xin chào',
+  'xin chào',
 ] as const;

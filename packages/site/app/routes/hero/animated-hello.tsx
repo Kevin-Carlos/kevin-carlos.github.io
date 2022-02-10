@@ -22,19 +22,19 @@ export const AnimatedHello = () => {
 
   // Transition the 'hiItems' to fade in and out
   const transitions = useTransition(index, {
-    from: { opacity: 0 },
+    from: { opacity: 0, width: 'max-content' },
     enter: { opacity: 1 },
     leave: { opacity: 0 },
     config: { tension: 60, friction: 10 },
   });
 
   // Add a spring to liven up the animation of the 'I'm' movement
-  const { marginLeft } = useSpring({
+  const { left } = useSpring({
     from: {
-      marginLeft: 0,
+      left: 0,
     },
     to: {
-      marginLeft: length + 12,
+      left: length + 12,
     },
     config: {
       tension: 110,
@@ -48,7 +48,6 @@ export const AnimatedHello = () => {
     const interval = setInterval(() => {
       setIndex((prevIndex) => (prevIndex + 1) % helloInLanguages.length);
     }, 1000 * 2);
-
     return () => clearInterval(interval);
   }, []);
 
@@ -70,7 +69,8 @@ export const AnimatedHello = () => {
         <animated.span
           key={length}
           style={{
-            marginLeft,
+            position: 'absolute',
+            left,
           }}
         >
           {"I'm"}
