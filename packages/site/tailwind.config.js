@@ -25,7 +25,16 @@ module.exports = {
       body: ['Quicksand', 'sans-serif'],
       accent: ['Poppins', 'sans-serif'],
     },
-    extend: {},
+    extend: {
+      keyframes: {
+        ripple: {
+          to: { transform: 'scale(4)', opacity: '0' },
+        },
+      },
+      animation: {
+        ripple: 'ripple 600ms linear',
+      },
+    },
   },
   variants: {},
   plugins: [],

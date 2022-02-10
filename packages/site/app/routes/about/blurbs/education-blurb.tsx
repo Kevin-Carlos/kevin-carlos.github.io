@@ -4,7 +4,7 @@ import { colors, Divider } from 'sublimity-ui';
 export const EducationBlurb = (): React.ReactElement => {
   return (
     <>
-      <h2 style={{ marginTop: 0 }}>University of Nevada, Reno</h2>
+      <h2 className="mb-2 text-xl">University of Nevada, Reno</h2>
       <div className="flex flex-col items-center h-full">
         <div
           style={{
@@ -26,8 +26,8 @@ export const EducationBlurb = (): React.ReactElement => {
           <p>
             My coursework and area of interest was in Machine Learning and A.I.
             For my Senior project, I worked as the primary front-end developer
-            on a team of three. Our goal was to refactor and rebuild from
-            scratch an in-use production application.
+            on a team of three. Our goal was to refactor and rebuild, from the
+            ground up, an in-use production application.
           </p>
         </div>
       </div>

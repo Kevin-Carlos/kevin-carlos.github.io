@@ -1,6 +1,7 @@
 import { type FC } from 'react';
 import { animated, useSpring } from 'react-spring';
 import { AboutMeBlurb } from './about-me-blurb';
+import { CareerBlurb } from './career-blurb';
 import { EducationBlurb } from './education-blurb';
 
 export type BlurbType = 'about' | 'education' | 'career';
@@ -21,7 +22,7 @@ export const ContentBlurb: FC<ContentBlurbProps> = ({ type }) => {
     <animated.div style={spring} className="p-5 relative w-full">
       {type === 'about' && <AboutMeBlurb />}
       {type === 'education' && <EducationBlurb />}
-      {/* {type === 'career' && <CareerBlurb />} */}
+      {type === 'career' && <CareerBlurb />}
     </animated.div>
   );
 };
