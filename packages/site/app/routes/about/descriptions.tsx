@@ -8,22 +8,27 @@ export const Descriptions = () => {
   const [index, setIndex] = useState(0);
 
   return (
-    <div
-      className={clsx(
-        'rounded-lg',
-        'h-[60vh]',
-        'w-full',
-        'md:w-[60vw]',
-        'flex',
-        'flex-col',
-        'md:flex-row',
-        'items-center'
-      )}
-    >
-      <Circles index={index} setIndex={(n) => setIndex(n)} />
-      <div className="dark:text-theme-white">
-        <ContentBlurb type={circleItems[index].key} />
+    <>
+      <div
+        className={clsx(
+          'rounded-lg',
+          'h-full',
+          'w-full',
+          'md:w-[60vw]',
+          'flex',
+          'flex-col',
+          'md:flex-row',
+          'items-center'
+        )}
+      >
+        <Circles index={index} setIndex={(n) => setIndex(n)} />
+        {/* Conditionally set height if career bubble is chosen */}
+        <div
+          className={clsx(['dark:text-theme-white', index === 2 && 'h-full'])}
+        >
+          <ContentBlurb type={circleItems[index].key} />
+        </div>
       </div>
-    </div>
+    </>
   );
 };

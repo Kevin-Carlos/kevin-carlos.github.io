@@ -1,15 +1,17 @@
-import { type FC } from 'react';
-
-const Paragraph: FC = ({ children }) => {
-  return <p className="mb-2">{children}</p>;
-};
+import { Paragraph } from '~/common/ui-elements';
 
 export const Square8 = () => {
   return (
     <div>
       <Paragraph>
-        In April of 2021, I joined a Stealth Startup as the Lead Frontend
-        Engineer.
+        In April of 2021, I joined Square 8 as a fullstack engineer and
+        initially helped the mobile application reach completion before
+        transitioning to the web application.
+      </Paragraph>
+
+      <Paragraph>
+        Shortly after, I was offered the opportunity to become the frontend Lead
+        and have ........
       </Paragraph>
 
       <Paragraph>
@@ -18,8 +20,8 @@ export const Square8 = () => {
       </Paragraph>
 
       <Paragraph>
-        {`It's my goal to ensure everyone on my team has the tools to succeed and
-        grow!`}
+        One of my favorite projects has been building a webhook based
+        GitLab/Slack bot written in Go.
       </Paragraph>
     </div>
   );

@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import { type FC } from 'react';
 import { animated, useTransition } from 'react-spring';
+import { ActiveCircle1, ActiveCircle2, ActiveCircle3 } from './active-circles';
 import { circleItems } from './circle-items';
 
 const Bubbles: FC<CirclesProps> = ({ index, setIndex }) => {
@@ -12,7 +13,7 @@ const Bubbles: FC<CirclesProps> = ({ index, setIndex }) => {
     leave: { opacity: 0, transform: 'scale(0)' },
   });
 
-  const createRipple = (event: React.MouseEvent<HTMLLIElement>) => {
+  const createRipple = (event: React.MouseEvent<HTMLDivElement>) => {
     event.preventDefault();
 
     const button = event.currentTarget;
@@ -45,43 +46,52 @@ const Bubbles: FC<CirclesProps> = ({ index, setIndex }) => {
     <ul className="flex flex-wrap justify-center md:flex-nowrap">
       {transitionedHeaderItems((styles, item) => {
         return (
-          <animated.li
-            style={{
-              ...styles,
-              boxShadow: '8px 6px 10px rgb(0 0 0 / 20%)',
-            }}
-            onClick={(ev) => {
-              createRipple(ev);
+          <li className="relative">
+            {index === 0 && item.key === circleItems[index].key ? (
+              <div className="absolute top-[6px] left-[2px]">
+                <ActiveCircle1 />
+              </div>
+            ) : null}
+            {index === 1 && item.key === circleItems[index].key ? (
+              <div className="absolute top-[-3px] left-[-6px]">
+                <ActiveCircle2 />
+              </div>
+            ) : null}
+            {index === 2 && item.key === circleItems[index].key ? (
+              <div className="absolute top-[-4px] left-[6px]">
+                <ActiveCircle3 />
+              </div>
+            ) : null}
+            <animated.div
+              style={{
+                ...styles,
+                boxShadow: '8px 6px 10px rgb(0 0 0 / 20%)',
+              }}
+              onClick={(ev) => {
+                createRipple(ev);
 
-              // setHeaderType(item.key);
-              setIndex(circleItems.findIndex((c) => c.key === item.key));
-            }}
-            className={clsx([
-              item.color,
-              item.size,
-              'rounded-full',
-              'dark:text-theme-white',
-              'flex',
-              'items-center',
-              'justify-center',
-              'cursor-pointer',
-              'm-3',
-              'font-semibold',
-              'relative',
-              'overflow-hidden',
-              'transition-colors',
-            ])}
-          >
-            <h1
+                // setHeaderType(item.key);
+                setIndex(circleItems.findIndex((c) => c.key === item.key));
+              }}
               className={clsx([
-                item.key === circleItems[index].key && 'border-b-2',
-                item.key === circleItems[index].key && 'border-b-theme-dgray',
-                item.key === circleItems[index].key && 'border-solid',
+                item.color,
+                item.size,
+                'rounded-full',
+                'dark:text-theme-white',
+                'flex',
+                'items-center',
+                'justify-center',
+                'cursor-pointer',
+                'm-3',
+                'font-semibold',
+                'relative',
+                'overflow-hidden',
+                'transition-colors',
               ])}
             >
-              {item.title}
-            </h1>
-          </animated.li>
+              <h1>{item.title}</h1>
+            </animated.div>
+          </li>
         );
       })}
     </ul>

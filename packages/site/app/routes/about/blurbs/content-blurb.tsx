@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { type FC } from 'react';
 import { animated, useSpring } from 'react-spring';
 import { AboutMeBlurb } from './about-me-blurb';
@@ -19,7 +20,15 @@ export const ContentBlurb: FC<ContentBlurbProps> = ({ type }) => {
   });
 
   return (
-    <animated.div style={spring} className="p-5 relative w-full">
+    <animated.div
+      style={spring}
+      className={clsx([
+        'p-5',
+        'relative',
+        'w-full',
+        type === 'career' && 'h-full',
+      ])}
+    >
       {type === 'about' && <AboutMeBlurb />}
       {type === 'education' && <EducationBlurb />}
       {type === 'career' && <CareerBlurb />}

@@ -40,7 +40,8 @@ export const menuItems: NavItems[] = [
     icon: (
       <ImageIcons
         src={SiteLogo}
-        alt="Site logo for mobile navigation"
+        alt="Kevin Carlos logo"
+        aria-label="Kevin Carlos logo"
         style={{ backgroundColor: 'white', borderRadius: '50%' }}
       />
     ),
@@ -53,6 +54,7 @@ export const menuItems: NavItems[] = [
       <Code
         size={ICON_SIZE}
         weight="duotone"
+        aria-label="Projects"
         className="dark:text-theme-white text-theme-black hover:!text-theme-blue dark:hover:!text-theme-orange transition-colors duration-[250ms] ease-in-out"
       />
     ),
@@ -64,6 +66,7 @@ export const menuItems: NavItems[] = [
       <UserFocus
         size={ICON_SIZE}
         weight="duotone"
+        aria-label="About Me"
         className="dark:text-theme-white text-theme-black hover:!text-theme-blue dark:hover:!text-theme-orange transition-colors duration-[250ms] ease-in-out"
       />
     ),
@@ -71,11 +74,11 @@ export const menuItems: NavItems[] = [
   {
     name: 'LinkedIn',
     path: links.linkedIn(),
-    // icon: <ImageIcons src={LinkedIn} alt="LinkedIn hamburger menu icon" />,
     icon: (
       <LinkedinLogo
         size={ICON_SIZE}
         weight="duotone"
+        aria-label="LinkedIn logo"
         className="dark:text-theme-white text-theme-black hover:!text-theme-blue dark:hover:!text-theme-orange transition-colors duration-[250ms] ease-in-out"
       />
     ),
@@ -83,11 +86,11 @@ export const menuItems: NavItems[] = [
   {
     name: 'GitHub',
     path: links.github(),
-    // icon: <ImageIcons src={Github} alt="GitHub hamburger menu icon" />,
     icon: (
       <GithubLogo
         size={ICON_SIZE}
         weight="duotone"
+        aria-label="Github logo"
         className="dark:text-theme-white text-theme-black hover:!text-theme-blue dark:hover:!text-theme-orange transition-colors duration-[250ms] ease-in-out"
       />
     ),
@@ -95,11 +98,11 @@ export const menuItems: NavItems[] = [
   {
     name: 'GitLab',
     path: links.gitlab(),
-    // icon: <ImageIcons src={StackOverflow} alt="SO hamburger menu icon" />,
     icon: (
       <GitlabLogo
         size={ICON_SIZE}
         weight="duotone"
+        aria-label="GitLab logo"
         className="dark:text-theme-white text-theme-black hover:!text-theme-blue dark:hover:!text-theme-orange transition-colors duration-[250ms] ease-in-out"
       />
     ),

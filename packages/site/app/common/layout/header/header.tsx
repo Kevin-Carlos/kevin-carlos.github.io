@@ -22,7 +22,7 @@ export const Header = () => {
   }, [mobileNav]);
 
   return (
-    <header className="flex dark:text-theme-white py-2 px-6 z-40">
+    <header role="banner" className="flex dark:text-theme-white py-2 px-6 z-40">
       <div className="grid gap-4 grid-cols-[auto_1fr]">
         <Logo />
         <div className="flex items-center justify-center">
@@ -34,7 +34,10 @@ export const Header = () => {
           <Sun size={24} />
         </div>
       </div>
-      <nav className="hidden md:flex flex-grow items-center justify-end space-x-4">
+      <nav
+        role="navigation"
+        className="hidden md:flex flex-grow items-center justify-end space-x-4"
+      >
         {menuItems.map((mi, idx) => {
           if (mi.mobileOnly) {
             return;

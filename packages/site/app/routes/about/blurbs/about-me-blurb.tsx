@@ -1,9 +1,6 @@
-import React, { type FC } from 'react';
+import React from 'react';
 import { colors, Divider } from 'sublimity-ui';
-
-const Paragraph: FC = ({ children }) => {
-  return <p className="mb-5">{children}</p>;
-};
+import { Paragraph } from '~/common/ui-elements';
 
 export const AboutMeBlurb = (): React.ReactElement => {
   const D = () => {

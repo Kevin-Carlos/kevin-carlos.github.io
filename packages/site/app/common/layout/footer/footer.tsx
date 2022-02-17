@@ -4,8 +4,11 @@ import { menuItems } from '../menu-items';
 
 export const Footer = () => {
   return (
-    <footer className="flex justify-center w-screen items-end pb-3">
-      <nav className="flex justify-evenly space-x-4">
+    <footer
+      role="contentinfo"
+      className="flex justify-center w-screen items-end pb-3"
+    >
+      <nav role="navigation" className="flex justify-evenly space-x-4">
         {menuItems.map((mi) => {
           if (mi.path === links.home()) {
             return;

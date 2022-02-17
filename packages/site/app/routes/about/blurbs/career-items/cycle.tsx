@@ -1,11 +1,7 @@
 // import { Blockquote, colors } from 'sublimity-ui';
 
 import { type FC } from 'react';
-import { Blockquote } from '~/common/ui-elements';
-
-const Paragraph: FC = ({ children }) => {
-  return <p className="mb-5">{children}</p>;
-};
+import { Blockquote, Paragraph } from '~/common/ui-elements';
 
 export const Cycle: FC = () => {
   return (
