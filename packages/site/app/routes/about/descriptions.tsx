@@ -24,7 +24,7 @@ export const Descriptions = () => {
         <Circles index={index} setIndex={(n) => setIndex(n)} />
         {/* Conditionally set height if career bubble is chosen */}
         <div
-          className={clsx(['dark:text-theme-white', index === 2 && 'h-full'])}
+          className={clsx(['dark:text-theme-white', 'flex', 'justify-center'])}
         >
           <ContentBlurb type={circleItems[index].key} />
         </div>

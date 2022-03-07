@@ -46,7 +46,7 @@ const Bubbles: FC<CirclesProps> = ({ index, setIndex }) => {
     <ul className="flex flex-wrap justify-center md:flex-nowrap">
       {transitionedHeaderItems((styles, item) => {
         return (
-          <li className="relative">
+          <li className="relative hover:scale-105 transition-transform ease-in-out">
             {index === 0 && item.key === circleItems[index].key ? (
               <div className="absolute top-[6px] left-[2px]">
                 <ActiveCircle1 />

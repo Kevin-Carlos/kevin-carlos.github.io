@@ -1,5 +1,5 @@
 import React from 'react';
-import { colors, Divider } from 'sublimity-ui';
+import { BlurbDivider } from './blurb-divider';
 
 export const EducationBlurb = (): React.ReactElement => {
   return (
@@ -20,7 +20,7 @@ export const EducationBlurb = (): React.ReactElement => {
           </p>
 
           <div>
-            <Divider className="my-5" color={colors.orange} />
+            <BlurbDivider />
           </div>
 
           <p>

@@ -9,6 +9,8 @@ import { HamburgerIcon } from './hamburger-icon';
 import { HamburgerMenu } from './hamburger-menu';
 import { Logo } from './logo';
 
+const ICON_SIZE = 24;
+
 export const Header = () => {
   const [mode, setMode] = useTheme();
 
@@ -26,12 +28,20 @@ export const Header = () => {
       <div className="grid gap-4 grid-cols-[auto_1fr]">
         <Logo />
         <div className="flex items-center justify-center">
-          <Moon size={24} />
+          <Moon
+            size={ICON_SIZE}
+            className="cursor-pointer"
+            onClick={() => setMode('dark')}
+          />
           <Switch
             checked={mode === 'light' ? true : false}
             onCheckedChange={(checked) => setMode(checked ? 'light' : 'dark')}
           />
-          <Sun size={24} />
+          <Sun
+            size={ICON_SIZE}
+            className="cursor-pointer"
+            onClick={() => setMode('light')}
+          />
         </div>
       </div>
       <nav

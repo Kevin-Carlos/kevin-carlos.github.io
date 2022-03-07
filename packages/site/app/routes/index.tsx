@@ -4,12 +4,14 @@ import Particles, {
   type IParticlesProps,
   type RecursivePartial,
 } from 'react-tsparticles';
+import { useReducedMotion } from '~/common/hooks/motion';
 import { Layout } from '~/common/layout';
 import { type Theme } from '~/ThemeContext';
 import { useTheme } from '~/useTheme';
 import { Hero } from './hero';
 
 export default function Index() {
+  const prefersReducedMotion = useReducedMotion();
   const [mode] = useTheme();
 
   const getParticleOptions: (mode: Theme) => RecursivePartial<IOptions> =
@@ -141,11 +143,13 @@ export default function Index() {
   return (
     <Layout hideFooter>
       <Hero />
-      <Particles
-        id="tsparticles-home-bg"
-        options={getParticleOptions(mode)}
-        className="fixed top-0 bottom-0 right-0 left-0 h-screen z-20"
-      />
+      {!prefersReducedMotion ? (
+        <Particles
+          id="tsparticles-home-bg"
+          options={getParticleOptions(mode)}
+          className="fixed top-0 bottom-0 right-0 left-0 h-screen z-20"
+        />
+      ) : null}
     </Layout>
   );
 }

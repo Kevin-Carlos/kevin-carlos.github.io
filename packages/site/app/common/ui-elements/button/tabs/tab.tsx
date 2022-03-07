@@ -15,14 +15,15 @@ export const Tab: FC<TabProps> = ({
 }) => {
   const commonActiveClasses = [
     active && 'border-b-2',
-    active && 'border-b-theme-orange',
+    active && 'dark:border-b-theme-orange',
     active && 'relative',
     active && 'before:content-[""]',
     active && 'before:absolute',
     active && 'before:bottom-[-2px]',
     active && 'before:w-0',
     active && 'before:border-t-[2px]',
-    active && 'before:border-theme-black',
+    active && 'before:border-theme-white',
+    active && 'dark:before:border-theme-black',
   ];
 
   const firstChildActiveClasses =
@@ -30,7 +31,8 @@ export const Tab: FC<TabProps> = ({
       ? [
           ...commonActiveClasses,
           active && 'before:right-0',
-          active && 'before:border-l-theme-orange',
+          active && 'before:border-l-theme-black',
+          active && 'dark:before:border-l-theme-orange',
           active && 'before:border-l-[2px]',
         ]
       : [];
@@ -40,7 +42,8 @@ export const Tab: FC<TabProps> = ({
       ? [
           ...commonActiveClasses,
           active && 'before:left-0',
-          active && 'before:border-r-theme-orange',
+          active && 'before:border-r-theme-black',
+          active && 'dark:before:border-r-theme-orange',
           active && 'before:border-r-[2px]',
         ]
       : [];
@@ -59,7 +62,7 @@ export const Tab: FC<TabProps> = ({
         'transition-colors',
         'duration-[250ms]',
         'ease-in-out',
-        'hover:text-theme-lgray',
+        'hover:text-theme-lteal',
         'dark:hover:text-theme-orange',
       ])}
     >

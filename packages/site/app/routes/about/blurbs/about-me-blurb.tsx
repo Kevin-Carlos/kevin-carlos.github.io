@@ -1,15 +1,11 @@
 import React from 'react';
-import { colors, Divider } from 'sublimity-ui';
 import { Paragraph } from '~/common/ui-elements';
+import { BlurbDivider } from './blurb-divider';
 
 export const AboutMeBlurb = (): React.ReactElement => {
-  const D = () => {
-    return <Divider className="my-5" color={colors.orange} />;
-  };
-
   return (
     <div>
-      <D />
+      <BlurbDivider />
       <Paragraph>{`Hi, I'm Kevin!`}</Paragraph>
       <Paragraph>
         From an early age, I was introduced to Halo by a friend and got hooked
@@ -34,7 +30,7 @@ export const AboutMeBlurb = (): React.ReactElement => {
           See my resume
         </a>
       </p> */}
-      <D />
+      <BlurbDivider />
     </div>
   );
 };

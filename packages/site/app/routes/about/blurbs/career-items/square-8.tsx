@@ -10,18 +10,17 @@ export const Square8 = () => {
       </Paragraph>
 
       <Paragraph>
-        Shortly after, I was offered the opportunity to become the frontend Lead
-        and have ........
-      </Paragraph>
-
-      <Paragraph>
-        My responsibilites range from mentorship, code-reviews, planning
-        milestones and sprints, to architecting app-wide scaleable solutions.
+        Shortly after, I was offered the opportunity to become the frontend
+        Lead. This opportunity has allowed me to grow my leadership, mentorship,
+        and planning skills. I have also contributed architectual decisions,
+        coding standardizations and implemented some best-practices whilst doing
+        so.
       </Paragraph>
 
       <Paragraph>
         One of my favorite projects has been building a webhook based
-        GitLab/Slack bot written in Go.
+        GitLab/Slack bot written in GO that is used company wide to help reduce
+        feedback loops.
       </Paragraph>
     </div>
   );
