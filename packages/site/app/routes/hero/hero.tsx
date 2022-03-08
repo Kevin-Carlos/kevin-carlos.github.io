@@ -26,7 +26,10 @@ export const Hero = () => {
         >
           About Me
         </PillButton>
-        <PillButton className="bg-theme-lgray dark:bg-theme-dgray hover:!text-theme-white hover:!bg-theme-blue">
+        <PillButton
+          to={links.projects().root()}
+          className="bg-theme-lgray dark:bg-theme-dgray hover:!text-theme-white hover:!bg-theme-blue"
+        >
           Projects
         </PillButton>
       </div>

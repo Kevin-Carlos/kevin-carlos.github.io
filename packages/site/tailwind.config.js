@@ -26,6 +26,9 @@ module.exports = {
       accent: ['Poppins', 'sans-serif'],
     },
     extend: {
+      gridTemplateColumns: {
+        'auto-fit-card': 'repeat(auto-fit, minmax(520px, 1fr))',
+      },
       keyframes: {
         ripple: {
           to: { transform: 'scale(4)', opacity: '0' },
