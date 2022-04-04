@@ -15,7 +15,7 @@ export const CharacterModal: FC = ({ children }) => {
       <ModalOverlay />
       <div className="relative h-full w-full">
         <div className="absolute top-0 bottom-0 left-0 right-0 flex justify-center items-center z-20">
-          <span>{children}</span>
+          <span className="text-theme-white">{children}</span>
         </div>
       </div>
     </div>
