@@ -1,7 +1,7 @@
 import { Pen } from 'phosphor-react';
 import { type FC } from 'react';
-import { colors, Divider } from 'sublimity-ui';
 import { useDarkMode } from '~/common/hooks/theme';
+import { colors, Divider } from '../library';
 
 type BlockquoteProps = {
   author: string;

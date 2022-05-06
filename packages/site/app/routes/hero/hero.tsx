@@ -1,6 +1,6 @@
-import { colors, Divider } from 'sublimity-ui';
 import { links } from '~/common/links';
 import { PillButton } from '~/common/ui-elements';
+import { colors, Divider } from '~/common/ui-elements/library';
 import { useTheme } from '~/useTheme';
 import { AnimatedHello } from './animated-hello';
 

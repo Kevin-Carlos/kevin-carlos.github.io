@@ -1,5 +1,3 @@
-// import { Blockquote, colors } from 'sublimity-ui';
-
 import { type FC } from 'react';
 import { Blockquote, Paragraph } from '~/common/ui-elements';
 

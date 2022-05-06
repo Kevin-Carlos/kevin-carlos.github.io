@@ -1,8 +1,9 @@
 import { Moon, Sun } from 'phosphor-react';
 import { Fragment, useCallback, useRef, useState } from 'react';
-import { colors, Divider, Switch } from 'sublimity-ui';
+
 import { useClickOutside } from '~/common/hooks/events';
 import { LinkText } from '~/common/ui-elements';
+import { colors, Divider, Switch } from '~/common/ui-elements/library';
 import { useTheme } from '~/useTheme';
 import { menuItems } from '../menu-items';
 import { HamburgerIcon } from './hamburger-icon';
