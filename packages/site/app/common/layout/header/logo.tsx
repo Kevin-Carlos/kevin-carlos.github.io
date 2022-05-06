@@ -1,4 +1,4 @@
-import { Link } from 'remix';
+import { Link } from '@remix-run/react';
 import darkLogo from '~/common/assets/images/logo-dark.png';
 import { links } from '~/common/links';
 

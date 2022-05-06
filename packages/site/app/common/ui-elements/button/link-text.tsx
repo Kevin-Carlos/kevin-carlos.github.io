@@ -1,6 +1,6 @@
+import { Link } from '@remix-run/react';
 import clsx from 'clsx';
 import { FC, Fragment } from 'react';
-import { Link } from 'remix';
 
 const UnderLine = () => {
   return (

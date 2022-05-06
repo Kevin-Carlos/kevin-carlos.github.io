@@ -1,6 +1,6 @@
+import { Link, type LinkProps } from '@remix-run/react';
 import clsx from 'clsx';
 import { type FC } from 'react';
-import { Link, LinkProps } from 'remix';
 
 type PillButtonProps = JSX.IntrinsicElements['button'] & {
   to?: LinkProps['to'];

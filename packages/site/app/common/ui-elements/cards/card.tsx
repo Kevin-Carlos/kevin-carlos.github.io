@@ -1,6 +1,6 @@
+import { Link } from '@remix-run/react';
 import clsx from 'clsx';
 import { type FC } from 'react';
-import { Link } from 'remix';
 
 const MaybeLinkedContent: FC<{ to?: string }> = ({ to, children }) => {
   if (!to) {

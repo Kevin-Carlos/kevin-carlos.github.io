@@ -1,4 +1,4 @@
-import type { MetaFunction } from 'remix';
+import type { MetaFunction } from '@remix-run/cloudflare';
 import {
   Links,
   LiveReload,
@@ -6,7 +6,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-} from 'remix';
+} from '@remix-run/react';
 import { useDarkMode } from './common/hooks/theme';
 import styles from './tailwind.css';
 import { ThemeCtx } from './ThemeContext';
@@ -25,9 +25,11 @@ export const links = () => {
   ];
 };
 
-export const meta: MetaFunction = () => {
-  return { title: 'Kevin Carlos' };
-};
+export const meta: MetaFunction = () => ({
+  charset: 'utf-8',
+  title: 'Kevin Carlos',
+  viewport: 'width=device-width,initial-scale=1',
+});
 
 export default function App() {
   const [themeMode, setThemeMode] = useDarkMode();
@@ -35,8 +37,6 @@ export default function App() {
   return (
     <html lang="en" className="h-full w-full">
       <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
         <Links />
       </head>
@@ -46,7 +46,7 @@ export default function App() {
         </ThemeCtx.Provider>
         <ScrollRestoration />
         <Scripts />
-        {process.env.NODE_ENV === 'development' && <LiveReload />}
+        <LiveReload />
       </body>
     </html>
   );

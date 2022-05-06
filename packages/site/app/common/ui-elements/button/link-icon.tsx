@@ -1,5 +1,5 @@
+import { Link } from '@remix-run/react';
 import { FC } from 'react';
-import { Link } from 'remix';
 
 type LinkIconProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
   animateScale?: boolean;
