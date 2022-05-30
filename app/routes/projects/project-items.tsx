@@ -18,4 +18,9 @@ export const projectItems: ProjectItem[] = [
     ),
     path: links.projects().project().lootCrate(),
   },
+  // {
+  //   name: 'Loaders',
+  //   description: <p>Building loading spinners / indicators for fun.</p>,
+  //   path: links.projects().project().loaders(),
+  // },
 ];

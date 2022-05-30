@@ -1,72 +1,49 @@
+import { styled } from '@stitches/react';
 import clsx from 'clsx';
 import { type FC } from 'react';
 
-export type TabProps = JSX.IntrinsicElements['li'] & {
-  /** 1 based */
-  childNumber: number;
+const TabListItem = styled('li', {
+  cursor: 'pointer',
+  padding: '20px 8px 8px',
+  position: 'relative',
+
+  variants: {
+    active: {
+      true: {
+        '&::before': {
+          content: '',
+          position: 'absolute',
+          bottom: '-2px',
+          height: '3px',
+          width: 'calc(100% - 16px)', // 16px is the horizontal padding
+        },
+      },
+    },
+  },
+});
+
+export type TabProps = Omit<JSX.IntrinsicElements['li'], 'ref'> & {
   active: boolean;
 };
 
-export const Tab: FC<TabProps> = ({
-  children,
-  childNumber,
-  active,
-  ...rest
-}) => {
-  const commonActiveClasses = [
-    active && 'border-b-2',
-    active && 'dark:border-b-theme-orange',
-    active && 'relative',
-    active && 'before:content-[""]',
-    active && 'before:absolute',
-    active && 'before:bottom-[-2px]',
-    active && 'before:w-0',
-    active && 'before:border-t-[2px]',
-    active && 'before:border-theme-white',
-    active && 'dark:before:border-theme-black',
-  ];
-
-  const firstChildActiveClasses =
-    childNumber === 1
-      ? [
-          ...commonActiveClasses,
-          active && 'before:right-0',
-          active && 'before:border-l-theme-black',
-          active && 'dark:before:border-l-theme-orange',
-          active && 'before:border-l-[2px]',
-        ]
-      : [];
-
-  const lastChildActiveClasses =
-    childNumber === 2
-      ? [
-          ...commonActiveClasses,
-          active && 'before:left-0',
-          active && 'before:border-r-theme-black',
-          active && 'dark:before:border-r-theme-orange',
-          active && 'before:border-r-[2px]',
-        ]
-      : [];
-
+export const Tab: FC<TabProps> = ({ children, active, className, ...rest }) => {
   return (
-    <li
+    <TabListItem
       {...rest}
+      active={active}
       className={clsx([
-        rest.className,
-        ...firstChildActiveClasses,
-        ...lastChildActiveClasses,
-        'cursor-pointer',
-        'px-2',
-        'py-5',
-        'bg-transparent',
+        className,
         'transition-colors',
         'duration-[250ms]',
         'ease-in-out',
         'hover:text-theme-lteal',
         'dark:hover:text-theme-orange',
+
+        'dark:before:bg-theme-orange',
+        'before:bg-theme-dteal',
       ])}
     >
       {children}
-    </li>
+    </TabListItem>
   );
 };

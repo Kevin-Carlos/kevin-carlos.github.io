@@ -8,18 +8,10 @@ export const CareerBlurb = () => {
   return (
     <div className="flex flex-col">
       <TabsList>
-        <Tab
-          active={tab === 'sq8'}
-          childNumber={1}
-          onClick={() => setTab('sq8')}
-        >
+        <Tab active={tab === 'sq8'} onClick={() => setTab('sq8')}>
           <span>Square 8</span>
         </Tab>
-        <Tab
-          active={tab === 'cycle'}
-          childNumber={2}
-          onClick={() => setTab('cycle')}
-        >
+        <Tab active={tab === 'cycle'} onClick={() => setTab('cycle')}>
           <span>Cycle</span>
         </Tab>
       </TabsList>
