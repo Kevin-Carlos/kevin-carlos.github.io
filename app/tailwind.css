@@ -625,12 +625,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 48px;
 }
 
+.mr-5 {
+  margin-right: 1.25rem;
+}
+
 .mb-2 {
   margin-bottom: 0.5rem;
 }
 
-.mr-5 {
-  margin-right: 1.25rem;
+.block {
+  display: block;
 }
 
 .inline {
@@ -954,11 +958,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(230 155 28 / var(--tw-bg-opacity));
 }
 
-.bg-theme-dteal {
-  --tw-bg-opacity: 1;
-  background-color: rgb(43 77 89 / var(--tw-bg-opacity));
-}
-
 .bg-theme-lteal2 {
   --tw-bg-opacity: 1;
   background-color: rgb(92 194 183 / var(--tw-bg-opacity));
@@ -967,6 +966,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-theme-lgray {
   --tw-bg-opacity: 1;
   background-color: rgb(189 189 189 / var(--tw-bg-opacity));
+}
+
+.bg-theme-dteal {
+  --tw-bg-opacity: 1;
+  background-color: rgb(43 77 89 / var(--tw-bg-opacity));
 }
 
 .bg-theme-black {
@@ -1083,10 +1087,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .opacity-0 {
   opacity: 0;
-}
-
-.opacity-70 {
-  opacity: 0.7;
 }
 
 .backdrop-blur-sm {
@@ -1286,11 +1286,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
 
-.dark .dark\:bg-theme-orange {
-  --tw-bg-opacity: 1;
-  background-color: rgb(230 155 28 / var(--tw-bg-opacity));
-}
-
 .dark .dark\:bg-theme-lteal {
   --tw-bg-opacity: 1;
   background-color: rgb(57 153 142 / var(--tw-bg-opacity));
@@ -1304,6 +1299,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .dark .dark\:bg-theme-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.dark .dark\:bg-theme-orange {
+  --tw-bg-opacity: 1;
+  background-color: rgb(230 155 28 / var(--tw-bg-opacity));
 }
 
 .dark .dark\:bg-theme-dteal {
@@ -1337,22 +1337,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(230 155 28 / var(--tw-bg-opacity));
 }
 
-.dark .dark\:before\:bg-theme-dteal::before {
-  content: var(--tw-content);
-  --tw-bg-opacity: 1;
-  background-color: rgb(43 77 89 / var(--tw-bg-opacity));
-}
-
 .dark .dark\:after\:bg-theme-orange::after {
   content: var(--tw-content);
   --tw-bg-opacity: 1;
   background-color: rgb(230 155 28 / var(--tw-bg-opacity));
-}
-
-.dark .dark\:after\:bg-theme-dteal::after {
-  content: var(--tw-content);
-  --tw-bg-opacity: 1;
-  background-color: rgb(43 77 89 / var(--tw-bg-opacity));
 }
 
 .dark .dark\:hover\:\!text-theme-orange:hover {

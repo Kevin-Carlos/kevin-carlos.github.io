@@ -44,8 +44,7 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-spring": "9.4.2",
-    "react-tsparticles": "1.35.2",
-    "styled-components": "5.2.1"
+    "react-tsparticles": "1.35.2"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "3.4.0",
@@ -53,7 +52,6 @@
     "@remix-run/eslint-config": "1.4.3",
     "@types/react": "17.0.24",
     "@types/react-dom": "17.0.9",
-    "@types/styled-components": "5.1.14",
     "@typescript-eslint/eslint-plugin": "5.9.0",
     "@typescript-eslint/parser": "5.9.0",
     "concurrently": "7.0.0",
