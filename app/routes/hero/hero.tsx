@@ -1,6 +1,6 @@
 import { links } from '~/common/links';
 import { PillButton } from '~/common/ui-elements';
-import { colors, Divider } from '~/common/ui-elements/library';
+import { Divider } from '~/common/ui-elements/library';
 import { useTheme } from '~/useTheme';
 import { AnimatedHello } from './animated-hello';
 
@@ -15,10 +15,9 @@ export const Hero = () => {
           Kevin Carlos
         </p>
       </h1>
-      <Divider
-        color={mode === 'dark' ? colors.orange : colors.light_teal}
-        className="my-6"
-      />
+
+      <Divider className="my-6" orientation="horizontal" />
+
       <div className="space-x-6">
         <PillButton
           to={links.aboutMe()}

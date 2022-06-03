@@ -15,6 +15,6 @@ export const colors = {
   light_teal: `rgb(57, 153, 142)`,
   // rgb(43, 77, 89)
   dark_teal: `rgb(43, 77, 89)`,
-} as const;
+};
 
 export type ColorNames = keyof typeof colors;

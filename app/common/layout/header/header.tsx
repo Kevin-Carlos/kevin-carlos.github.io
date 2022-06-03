@@ -1,9 +1,8 @@
 import { Moon, Sun } from 'phosphor-react';
 import { Fragment, useCallback, useRef, useState } from 'react';
-
 import { useClickOutside } from '~/common/hooks/events';
 import { LinkText } from '~/common/ui-elements';
-import { colors, Divider, Switch } from '~/common/ui-elements/library';
+import { Switch } from '~/common/ui-elements/library';
 import { useTheme } from '~/useTheme';
 import { menuItems } from '../menu-items';
 import { HamburgerIcon } from './hamburger-icon';
@@ -57,12 +56,6 @@ export const Header = () => {
           return (
             <Fragment key={`header-${mi.name}`}>
               <LinkText href={mi.path}>{mi.name}</LinkText>
-              {idx !== menuItems.length - 1 ? (
-                <Divider
-                  orientation="vertical"
-                  color={mode === 'dark' ? colors.dark_teal : colors.light_teal}
-                />
-              ) : null}
             </Fragment>
           );
         })}

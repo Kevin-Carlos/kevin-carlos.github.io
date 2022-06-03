@@ -14,11 +14,7 @@ export const Blockquote: FC<BlockquoteProps> = ({ children, author }) => {
 
   return (
     <div className="grid grid-cols-[auto_1fr] mb-5">
-      <Divider
-        color={colorToUse}
-        orientation="vertical"
-        style={{ marginRight: '20px' }}
-      />
+      <Divider orientation="vertical" className="mr-5" />
       <blockquote className="text-sm">
         {children}
         <p className="italic font-semibold">

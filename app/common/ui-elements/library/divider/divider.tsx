@@ -1,34 +1,83 @@
 import * as Separator from '@radix-ui/react-separator';
-import { transparentize } from 'polished';
-import styled from 'styled-components';
+import clsx from 'clsx';
+import { styled } from '~/stitches/stitches.config';
 
 export type DividerProps = Pick<
   Separator.SeparatorProps,
   'decorative' | 'orientation'
 > & {
-  color: string;
-  highlightColor?: string;
+  className?: string;
 };
 
-export const Divider = styled(Separator.Root)<DividerProps>`
-  ${({ orientation }) =>
-    orientation === 'vertical'
-      ? `
-    width: 2px;
-    height: 100%;
-  `
-      : `
-    height: 2px;
-    width: 100%;
-  `};
+const StyledDivider = styled(Separator.Root, {
+  variants: {
+    orientation: {
+      vertical: {
+        'width': '2px',
+        'height': '100%',
+        'position': 'relative',
 
-  background: radial-gradient(
-    circle,
-    ${(props) => props.color} 0%,
-    ${(props) =>
-        props.highlightColor
-          ? transparentize(1, props.highlightColor)
-          : transparentize(1, 'rgba(189, 189, 189, 1)')}
-      100%
+        '&::before': {
+          content: '',
+          position: 'absolute',
+          top: 0,
+          left: '-1px',
+          height: '4px',
+          width: '4px',
+        },
+
+        '&::after': {
+          content: '',
+          position: 'absolute',
+          bottom: 0,
+          left: '-1px',
+          height: '4px',
+          width: '4px',
+        },
+      },
+      horizontal: {
+        'height': '2px',
+        'width': '100%',
+        'position': 'relative',
+
+        '&::before': {
+          content: '',
+          position: 'absolute',
+          left: 0,
+          top: '-1px',
+          height: '4px',
+          width: '4px',
+        },
+
+        '&::after': {
+          content: '',
+          position: 'absolute',
+          right: 0,
+          top: '-1px',
+          height: '4px',
+          width: '4px',
+        },
+      },
+    },
+  },
+  defaultVariants: {
+    orientation: 'horizontal',
+  },
+});
+
+export const Divider = ({ orientation, className }: DividerProps) => {
+  return (
+    <StyledDivider
+      orientation={orientation}
+      className={clsx([
+        className,
+        'dark:bg-theme-orange',
+        'bg-theme-dteal',
+        'dark:before:bg-theme-orange',
+        'before:bg-theme-dteal',
+        'dark:after:bg-theme-orange',
+        'after:bg-theme-dteal',
+      ])}
+    />
   );
-`;
+};

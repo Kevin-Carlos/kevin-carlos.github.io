@@ -245,34 +245,34 @@ var require_react_development = __commonJS({
         {
           ReactSharedInternals.ReactDebugCurrentFrame = ReactDebugCurrentFrame;
         }
-        function warn(format3) {
+        function warn(format2) {
           {
             for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
               args[_key - 1] = arguments[_key];
             }
-            printWarning("warn", format3, args);
+            printWarning("warn", format2, args);
           }
         }
-        function error(format3) {
+        function error(format2) {
           {
             for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
               args[_key2 - 1] = arguments[_key2];
             }
-            printWarning("error", format3, args);
+            printWarning("error", format2, args);
           }
         }
-        function printWarning(level, format3, args) {
+        function printWarning(level, format2, args) {
           {
             var ReactDebugCurrentFrame2 = ReactSharedInternals.ReactDebugCurrentFrame;
             var stack = ReactDebugCurrentFrame2.getStackAddendum();
             if (stack !== "") {
-              format3 += "%s";
+              format2 += "%s";
               args = args.concat([stack]);
             }
             var argsWithFormat = args.map(function(item) {
               return "" + item;
             });
-            argsWithFormat.unshift("Warning: " + format3);
+            argsWithFormat.unshift("Warning: " + format2);
             Function.prototype.apply.call(console[level], console, argsWithFormat);
           }
         }
@@ -8835,34 +8835,34 @@ var require_react_dom_server_node_development = __commonJS({
           return "Minified React error #" + code + "; visit " + url + " for the full message or use the non-minified dev environment for full errors and additional helpful warnings.";
         }
         var ReactSharedInternals = React28.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
-        function warn(format3) {
+        function warn(format2) {
           {
             for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
               args[_key - 1] = arguments[_key];
             }
-            printWarning("warn", format3, args);
+            printWarning("warn", format2, args);
           }
         }
-        function error(format3) {
+        function error(format2) {
           {
             for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
               args[_key2 - 1] = arguments[_key2];
             }
-            printWarning("error", format3, args);
+            printWarning("error", format2, args);
           }
         }
-        function printWarning(level, format3, args) {
+        function printWarning(level, format2, args) {
           {
             var ReactDebugCurrentFrame2 = ReactSharedInternals.ReactDebugCurrentFrame;
             var stack = ReactDebugCurrentFrame2.getStackAddendum();
             if (stack !== "") {
-              format3 += "%s";
+              format2 += "%s";
               args = args.concat([stack]);
             }
             var argsWithFormat = args.map(function(item) {
               return "" + item;
             });
-            argsWithFormat.unshift("Warning: " + format3);
+            argsWithFormat.unshift("Warning: " + format2);
             Function.prototype.apply.call(console[level], console, argsWithFormat);
           }
         }
@@ -12090,13 +12090,13 @@ var require_react_dom_server_node_development = __commonJS({
             renderer.destroy();
           }
         }
-        function _inheritsLoose2(subClass, superClass) {
+        function _inheritsLoose(subClass, superClass) {
           subClass.prototype = Object.create(superClass.prototype);
           subClass.prototype.constructor = subClass;
           subClass.__proto__ = superClass;
         }
         var ReactMarkupReadableStream = /* @__PURE__ */ function(_Readable) {
-          _inheritsLoose2(ReactMarkupReadableStream2, _Readable);
+          _inheritsLoose(ReactMarkupReadableStream2, _Readable);
           function ReactMarkupReadableStream2(element, makeStaticMarkup, options) {
             var _this;
             _this = _Readable.call(this, {}) || this;
@@ -12152,301 +12152,6 @@ var require_server = __commonJS({
     "use strict";
     init_react();
     module.exports = require_server_node();
-  }
-});
-
-// node_modules/react-is/cjs/react-is.development.js
-var require_react_is_development = __commonJS({
-  "node_modules/react-is/cjs/react-is.development.js"(exports) {
-    "use strict";
-    init_react();
-    if (true) {
-      (function() {
-        "use strict";
-        var hasSymbol = typeof Symbol === "function" && Symbol.for;
-        var REACT_ELEMENT_TYPE = hasSymbol ? Symbol.for("react.element") : 60103;
-        var REACT_PORTAL_TYPE = hasSymbol ? Symbol.for("react.portal") : 60106;
-        var REACT_FRAGMENT_TYPE = hasSymbol ? Symbol.for("react.fragment") : 60107;
-        var REACT_STRICT_MODE_TYPE = hasSymbol ? Symbol.for("react.strict_mode") : 60108;
-        var REACT_PROFILER_TYPE = hasSymbol ? Symbol.for("react.profiler") : 60114;
-        var REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for("react.provider") : 60109;
-        var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for("react.context") : 60110;
-        var REACT_ASYNC_MODE_TYPE = hasSymbol ? Symbol.for("react.async_mode") : 60111;
-        var REACT_CONCURRENT_MODE_TYPE = hasSymbol ? Symbol.for("react.concurrent_mode") : 60111;
-        var REACT_FORWARD_REF_TYPE = hasSymbol ? Symbol.for("react.forward_ref") : 60112;
-        var REACT_SUSPENSE_TYPE = hasSymbol ? Symbol.for("react.suspense") : 60113;
-        var REACT_SUSPENSE_LIST_TYPE = hasSymbol ? Symbol.for("react.suspense_list") : 60120;
-        var REACT_MEMO_TYPE = hasSymbol ? Symbol.for("react.memo") : 60115;
-        var REACT_LAZY_TYPE = hasSymbol ? Symbol.for("react.lazy") : 60116;
-        var REACT_BLOCK_TYPE = hasSymbol ? Symbol.for("react.block") : 60121;
-        var REACT_FUNDAMENTAL_TYPE = hasSymbol ? Symbol.for("react.fundamental") : 60117;
-        var REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for("react.responder") : 60118;
-        var REACT_SCOPE_TYPE = hasSymbol ? Symbol.for("react.scope") : 60119;
-        function isValidElementType(type) {
-          return typeof type === "string" || typeof type === "function" || type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === "object" && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE || type.$$typeof === REACT_BLOCK_TYPE);
-        }
-        function typeOf(object) {
-          if (typeof object === "object" && object !== null) {
-            var $$typeof = object.$$typeof;
-            switch ($$typeof) {
-              case REACT_ELEMENT_TYPE:
-                var type = object.type;
-                switch (type) {
-                  case REACT_ASYNC_MODE_TYPE:
-                  case REACT_CONCURRENT_MODE_TYPE:
-                  case REACT_FRAGMENT_TYPE:
-                  case REACT_PROFILER_TYPE:
-                  case REACT_STRICT_MODE_TYPE:
-                  case REACT_SUSPENSE_TYPE:
-                    return type;
-                  default:
-                    var $$typeofType = type && type.$$typeof;
-                    switch ($$typeofType) {
-                      case REACT_CONTEXT_TYPE:
-                      case REACT_FORWARD_REF_TYPE:
-                      case REACT_LAZY_TYPE:
-                      case REACT_MEMO_TYPE:
-                      case REACT_PROVIDER_TYPE:
-                        return $$typeofType;
-                      default:
-                        return $$typeof;
-                    }
-                }
-              case REACT_PORTAL_TYPE:
-                return $$typeof;
-            }
-          }
-          return void 0;
-        }
-        var AsyncMode = REACT_ASYNC_MODE_TYPE;
-        var ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
-        var ContextConsumer = REACT_CONTEXT_TYPE;
-        var ContextProvider = REACT_PROVIDER_TYPE;
-        var Element = REACT_ELEMENT_TYPE;
-        var ForwardRef = REACT_FORWARD_REF_TYPE;
-        var Fragment8 = REACT_FRAGMENT_TYPE;
-        var Lazy = REACT_LAZY_TYPE;
-        var Memo = REACT_MEMO_TYPE;
-        var Portal = REACT_PORTAL_TYPE;
-        var Profiler = REACT_PROFILER_TYPE;
-        var StrictMode = REACT_STRICT_MODE_TYPE;
-        var Suspense = REACT_SUSPENSE_TYPE;
-        var hasWarnedAboutDeprecatedIsAsyncMode = false;
-        function isAsyncMode(object) {
-          {
-            if (!hasWarnedAboutDeprecatedIsAsyncMode) {
-              hasWarnedAboutDeprecatedIsAsyncMode = true;
-              console["warn"]("The ReactIs.isAsyncMode() alias has been deprecated, and will be removed in React 17+. Update your code to use ReactIs.isConcurrentMode() instead. It has the exact same API.");
-            }
-          }
-          return isConcurrentMode(object) || typeOf(object) === REACT_ASYNC_MODE_TYPE;
-        }
-        function isConcurrentMode(object) {
-          return typeOf(object) === REACT_CONCURRENT_MODE_TYPE;
-        }
-        function isContextConsumer(object) {
-          return typeOf(object) === REACT_CONTEXT_TYPE;
-        }
-        function isContextProvider(object) {
-          return typeOf(object) === REACT_PROVIDER_TYPE;
-        }
-        function isElement(object) {
-          return typeof object === "object" && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
-        }
-        function isForwardRef(object) {
-          return typeOf(object) === REACT_FORWARD_REF_TYPE;
-        }
-        function isFragment(object) {
-          return typeOf(object) === REACT_FRAGMENT_TYPE;
-        }
-        function isLazy(object) {
-          return typeOf(object) === REACT_LAZY_TYPE;
-        }
-        function isMemo(object) {
-          return typeOf(object) === REACT_MEMO_TYPE;
-        }
-        function isPortal(object) {
-          return typeOf(object) === REACT_PORTAL_TYPE;
-        }
-        function isProfiler(object) {
-          return typeOf(object) === REACT_PROFILER_TYPE;
-        }
-        function isStrictMode(object) {
-          return typeOf(object) === REACT_STRICT_MODE_TYPE;
-        }
-        function isSuspense(object) {
-          return typeOf(object) === REACT_SUSPENSE_TYPE;
-        }
-        exports.AsyncMode = AsyncMode;
-        exports.ConcurrentMode = ConcurrentMode;
-        exports.ContextConsumer = ContextConsumer;
-        exports.ContextProvider = ContextProvider;
-        exports.Element = Element;
-        exports.ForwardRef = ForwardRef;
-        exports.Fragment = Fragment8;
-        exports.Lazy = Lazy;
-        exports.Memo = Memo;
-        exports.Portal = Portal;
-        exports.Profiler = Profiler;
-        exports.StrictMode = StrictMode;
-        exports.Suspense = Suspense;
-        exports.isAsyncMode = isAsyncMode;
-        exports.isConcurrentMode = isConcurrentMode;
-        exports.isContextConsumer = isContextConsumer;
-        exports.isContextProvider = isContextProvider;
-        exports.isElement = isElement;
-        exports.isForwardRef = isForwardRef;
-        exports.isFragment = isFragment;
-        exports.isLazy = isLazy;
-        exports.isMemo = isMemo;
-        exports.isPortal = isPortal;
-        exports.isProfiler = isProfiler;
-        exports.isStrictMode = isStrictMode;
-        exports.isSuspense = isSuspense;
-        exports.isValidElementType = isValidElementType;
-        exports.typeOf = typeOf;
-      })();
-    }
-  }
-});
-
-// node_modules/react-is/index.js
-var require_react_is = __commonJS({
-  "node_modules/react-is/index.js"(exports, module) {
-    "use strict";
-    init_react();
-    if (false) {
-      module.exports = null;
-    } else {
-      module.exports = require_react_is_development();
-    }
-  }
-});
-
-// node_modules/shallowequal/index.js
-var require_shallowequal = __commonJS({
-  "node_modules/shallowequal/index.js"(exports, module) {
-    init_react();
-    module.exports = function shallowEqual(objA, objB, compare3, compareContext) {
-      var ret = compare3 ? compare3.call(compareContext, objA, objB) : void 0;
-      if (ret !== void 0) {
-        return !!ret;
-      }
-      if (objA === objB) {
-        return true;
-      }
-      if (typeof objA !== "object" || !objA || typeof objB !== "object" || !objB) {
-        return false;
-      }
-      var keysA = Object.keys(objA);
-      var keysB = Object.keys(objB);
-      if (keysA.length !== keysB.length) {
-        return false;
-      }
-      var bHasOwnProperty = Object.prototype.hasOwnProperty.bind(objB);
-      for (var idx = 0; idx < keysA.length; idx++) {
-        var key = keysA[idx];
-        if (!bHasOwnProperty(key)) {
-          return false;
-        }
-        var valueA = objA[key];
-        var valueB = objB[key];
-        ret = compare3 ? compare3.call(compareContext, valueA, valueB, key) : void 0;
-        if (ret === false || ret === void 0 && valueA !== valueB) {
-          return false;
-        }
-      }
-      return true;
-    };
-  }
-});
-
-// node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js
-var require_hoist_non_react_statics_cjs = __commonJS({
-  "node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js"(exports, module) {
-    "use strict";
-    init_react();
-    var reactIs = require_react_is();
-    var REACT_STATICS = {
-      childContextTypes: true,
-      contextType: true,
-      contextTypes: true,
-      defaultProps: true,
-      displayName: true,
-      getDefaultProps: true,
-      getDerivedStateFromError: true,
-      getDerivedStateFromProps: true,
-      mixins: true,
-      propTypes: true,
-      type: true
-    };
-    var KNOWN_STATICS = {
-      name: true,
-      length: true,
-      prototype: true,
-      caller: true,
-      callee: true,
-      arguments: true,
-      arity: true
-    };
-    var FORWARD_REF_STATICS = {
-      "$$typeof": true,
-      render: true,
-      defaultProps: true,
-      displayName: true,
-      propTypes: true
-    };
-    var MEMO_STATICS = {
-      "$$typeof": true,
-      compare: true,
-      defaultProps: true,
-      displayName: true,
-      propTypes: true,
-      type: true
-    };
-    var TYPE_STATICS = {};
-    TYPE_STATICS[reactIs.ForwardRef] = FORWARD_REF_STATICS;
-    TYPE_STATICS[reactIs.Memo] = MEMO_STATICS;
-    function getStatics(component) {
-      if (reactIs.isMemo(component)) {
-        return MEMO_STATICS;
-      }
-      return TYPE_STATICS[component["$$typeof"]] || REACT_STATICS;
-    }
-    var defineProperty = Object.defineProperty;
-    var getOwnPropertyNames = Object.getOwnPropertyNames;
-    var getOwnPropertySymbols = Object.getOwnPropertySymbols;
-    var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
-    var getPrototypeOf = Object.getPrototypeOf;
-    var objectPrototype = Object.prototype;
-    function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
-      if (typeof sourceComponent !== "string") {
-        if (objectPrototype) {
-          var inheritedComponent = getPrototypeOf(sourceComponent);
-          if (inheritedComponent && inheritedComponent !== objectPrototype) {
-            hoistNonReactStatics(targetComponent, inheritedComponent, blacklist);
-          }
-        }
-        var keys2 = getOwnPropertyNames(sourceComponent);
-        if (getOwnPropertySymbols) {
-          keys2 = keys2.concat(getOwnPropertySymbols(sourceComponent));
-        }
-        var targetStatics = getStatics(targetComponent);
-        var sourceStatics = getStatics(sourceComponent);
-        for (var i5 = 0; i5 < keys2.length; ++i5) {
-          var key = keys2[i5];
-          if (!KNOWN_STATICS[key] && !(blacklist && blacklist[key]) && !(sourceStatics && sourceStatics[key]) && !(targetStatics && targetStatics[key])) {
-            var descriptor = getOwnPropertyDescriptor(sourceComponent, key);
-            try {
-              defineProperty(targetComponent, key, descriptor);
-            } catch (e8) {
-            }
-          }
-        }
-      }
-      return targetComponent;
-    }
-    module.exports = hoistNonReactStatics;
   }
 });
 
@@ -13249,34 +12954,34 @@ var require_react_dom_development = __commonJS({
         var Scheduler = require_scheduler();
         var tracing = require_tracing();
         var ReactSharedInternals = React28.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
-        function warn(format3) {
+        function warn(format2) {
           {
             for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
               args[_key - 1] = arguments[_key];
             }
-            printWarning("warn", format3, args);
+            printWarning("warn", format2, args);
           }
         }
-        function error(format3) {
+        function error(format2) {
           {
             for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
               args[_key2 - 1] = arguments[_key2];
             }
-            printWarning("error", format3, args);
+            printWarning("error", format2, args);
           }
         }
-        function printWarning(level, format3, args) {
+        function printWarning(level, format2, args) {
           {
             var ReactDebugCurrentFrame2 = ReactSharedInternals.ReactDebugCurrentFrame;
             var stack = ReactDebugCurrentFrame2.getStackAddendum();
             if (stack !== "") {
-              format3 += "%s";
+              format2 += "%s";
               args = args.concat([stack]);
             }
             var argsWithFormat = args.map(function(item) {
               return "" + item;
             });
-            argsWithFormat.unshift("Warning: " + format3);
+            argsWithFormat.unshift("Warning: " + format2);
             Function.prototype.apply.call(console[level], console, argsWithFormat);
           }
         }
@@ -31224,6 +30929,301 @@ var require_react_dom = __commonJS({
   }
 });
 
+// node_modules/react-is/cjs/react-is.development.js
+var require_react_is_development = __commonJS({
+  "node_modules/react-is/cjs/react-is.development.js"(exports) {
+    "use strict";
+    init_react();
+    if (true) {
+      (function() {
+        "use strict";
+        var hasSymbol = typeof Symbol === "function" && Symbol.for;
+        var REACT_ELEMENT_TYPE = hasSymbol ? Symbol.for("react.element") : 60103;
+        var REACT_PORTAL_TYPE = hasSymbol ? Symbol.for("react.portal") : 60106;
+        var REACT_FRAGMENT_TYPE = hasSymbol ? Symbol.for("react.fragment") : 60107;
+        var REACT_STRICT_MODE_TYPE = hasSymbol ? Symbol.for("react.strict_mode") : 60108;
+        var REACT_PROFILER_TYPE = hasSymbol ? Symbol.for("react.profiler") : 60114;
+        var REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for("react.provider") : 60109;
+        var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for("react.context") : 60110;
+        var REACT_ASYNC_MODE_TYPE = hasSymbol ? Symbol.for("react.async_mode") : 60111;
+        var REACT_CONCURRENT_MODE_TYPE = hasSymbol ? Symbol.for("react.concurrent_mode") : 60111;
+        var REACT_FORWARD_REF_TYPE = hasSymbol ? Symbol.for("react.forward_ref") : 60112;
+        var REACT_SUSPENSE_TYPE = hasSymbol ? Symbol.for("react.suspense") : 60113;
+        var REACT_SUSPENSE_LIST_TYPE = hasSymbol ? Symbol.for("react.suspense_list") : 60120;
+        var REACT_MEMO_TYPE = hasSymbol ? Symbol.for("react.memo") : 60115;
+        var REACT_LAZY_TYPE = hasSymbol ? Symbol.for("react.lazy") : 60116;
+        var REACT_BLOCK_TYPE = hasSymbol ? Symbol.for("react.block") : 60121;
+        var REACT_FUNDAMENTAL_TYPE = hasSymbol ? Symbol.for("react.fundamental") : 60117;
+        var REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for("react.responder") : 60118;
+        var REACT_SCOPE_TYPE = hasSymbol ? Symbol.for("react.scope") : 60119;
+        function isValidElementType(type) {
+          return typeof type === "string" || typeof type === "function" || type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === "object" && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE || type.$$typeof === REACT_BLOCK_TYPE);
+        }
+        function typeOf(object) {
+          if (typeof object === "object" && object !== null) {
+            var $$typeof = object.$$typeof;
+            switch ($$typeof) {
+              case REACT_ELEMENT_TYPE:
+                var type = object.type;
+                switch (type) {
+                  case REACT_ASYNC_MODE_TYPE:
+                  case REACT_CONCURRENT_MODE_TYPE:
+                  case REACT_FRAGMENT_TYPE:
+                  case REACT_PROFILER_TYPE:
+                  case REACT_STRICT_MODE_TYPE:
+                  case REACT_SUSPENSE_TYPE:
+                    return type;
+                  default:
+                    var $$typeofType = type && type.$$typeof;
+                    switch ($$typeofType) {
+                      case REACT_CONTEXT_TYPE:
+                      case REACT_FORWARD_REF_TYPE:
+                      case REACT_LAZY_TYPE:
+                      case REACT_MEMO_TYPE:
+                      case REACT_PROVIDER_TYPE:
+                        return $$typeofType;
+                      default:
+                        return $$typeof;
+                    }
+                }
+              case REACT_PORTAL_TYPE:
+                return $$typeof;
+            }
+          }
+          return void 0;
+        }
+        var AsyncMode = REACT_ASYNC_MODE_TYPE;
+        var ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
+        var ContextConsumer = REACT_CONTEXT_TYPE;
+        var ContextProvider = REACT_PROVIDER_TYPE;
+        var Element = REACT_ELEMENT_TYPE;
+        var ForwardRef = REACT_FORWARD_REF_TYPE;
+        var Fragment8 = REACT_FRAGMENT_TYPE;
+        var Lazy = REACT_LAZY_TYPE;
+        var Memo = REACT_MEMO_TYPE;
+        var Portal = REACT_PORTAL_TYPE;
+        var Profiler = REACT_PROFILER_TYPE;
+        var StrictMode = REACT_STRICT_MODE_TYPE;
+        var Suspense = REACT_SUSPENSE_TYPE;
+        var hasWarnedAboutDeprecatedIsAsyncMode = false;
+        function isAsyncMode(object) {
+          {
+            if (!hasWarnedAboutDeprecatedIsAsyncMode) {
+              hasWarnedAboutDeprecatedIsAsyncMode = true;
+              console["warn"]("The ReactIs.isAsyncMode() alias has been deprecated, and will be removed in React 17+. Update your code to use ReactIs.isConcurrentMode() instead. It has the exact same API.");
+            }
+          }
+          return isConcurrentMode(object) || typeOf(object) === REACT_ASYNC_MODE_TYPE;
+        }
+        function isConcurrentMode(object) {
+          return typeOf(object) === REACT_CONCURRENT_MODE_TYPE;
+        }
+        function isContextConsumer(object) {
+          return typeOf(object) === REACT_CONTEXT_TYPE;
+        }
+        function isContextProvider(object) {
+          return typeOf(object) === REACT_PROVIDER_TYPE;
+        }
+        function isElement(object) {
+          return typeof object === "object" && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
+        }
+        function isForwardRef(object) {
+          return typeOf(object) === REACT_FORWARD_REF_TYPE;
+        }
+        function isFragment(object) {
+          return typeOf(object) === REACT_FRAGMENT_TYPE;
+        }
+        function isLazy(object) {
+          return typeOf(object) === REACT_LAZY_TYPE;
+        }
+        function isMemo(object) {
+          return typeOf(object) === REACT_MEMO_TYPE;
+        }
+        function isPortal(object) {
+          return typeOf(object) === REACT_PORTAL_TYPE;
+        }
+        function isProfiler(object) {
+          return typeOf(object) === REACT_PROFILER_TYPE;
+        }
+        function isStrictMode(object) {
+          return typeOf(object) === REACT_STRICT_MODE_TYPE;
+        }
+        function isSuspense(object) {
+          return typeOf(object) === REACT_SUSPENSE_TYPE;
+        }
+        exports.AsyncMode = AsyncMode;
+        exports.ConcurrentMode = ConcurrentMode;
+        exports.ContextConsumer = ContextConsumer;
+        exports.ContextProvider = ContextProvider;
+        exports.Element = Element;
+        exports.ForwardRef = ForwardRef;
+        exports.Fragment = Fragment8;
+        exports.Lazy = Lazy;
+        exports.Memo = Memo;
+        exports.Portal = Portal;
+        exports.Profiler = Profiler;
+        exports.StrictMode = StrictMode;
+        exports.Suspense = Suspense;
+        exports.isAsyncMode = isAsyncMode;
+        exports.isConcurrentMode = isConcurrentMode;
+        exports.isContextConsumer = isContextConsumer;
+        exports.isContextProvider = isContextProvider;
+        exports.isElement = isElement;
+        exports.isForwardRef = isForwardRef;
+        exports.isFragment = isFragment;
+        exports.isLazy = isLazy;
+        exports.isMemo = isMemo;
+        exports.isPortal = isPortal;
+        exports.isProfiler = isProfiler;
+        exports.isStrictMode = isStrictMode;
+        exports.isSuspense = isSuspense;
+        exports.isValidElementType = isValidElementType;
+        exports.typeOf = typeOf;
+      })();
+    }
+  }
+});
+
+// node_modules/react-is/index.js
+var require_react_is = __commonJS({
+  "node_modules/react-is/index.js"(exports, module) {
+    "use strict";
+    init_react();
+    if (false) {
+      module.exports = null;
+    } else {
+      module.exports = require_react_is_development();
+    }
+  }
+});
+
+// node_modules/shallowequal/index.js
+var require_shallowequal = __commonJS({
+  "node_modules/shallowequal/index.js"(exports, module) {
+    init_react();
+    module.exports = function shallowEqual(objA, objB, compare3, compareContext) {
+      var ret = compare3 ? compare3.call(compareContext, objA, objB) : void 0;
+      if (ret !== void 0) {
+        return !!ret;
+      }
+      if (objA === objB) {
+        return true;
+      }
+      if (typeof objA !== "object" || !objA || typeof objB !== "object" || !objB) {
+        return false;
+      }
+      var keysA = Object.keys(objA);
+      var keysB = Object.keys(objB);
+      if (keysA.length !== keysB.length) {
+        return false;
+      }
+      var bHasOwnProperty = Object.prototype.hasOwnProperty.bind(objB);
+      for (var idx = 0; idx < keysA.length; idx++) {
+        var key = keysA[idx];
+        if (!bHasOwnProperty(key)) {
+          return false;
+        }
+        var valueA = objA[key];
+        var valueB = objB[key];
+        ret = compare3 ? compare3.call(compareContext, valueA, valueB, key) : void 0;
+        if (ret === false || ret === void 0 && valueA !== valueB) {
+          return false;
+        }
+      }
+      return true;
+    };
+  }
+});
+
+// node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js
+var require_hoist_non_react_statics_cjs = __commonJS({
+  "node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js"(exports, module) {
+    "use strict";
+    init_react();
+    var reactIs = require_react_is();
+    var REACT_STATICS = {
+      childContextTypes: true,
+      contextType: true,
+      contextTypes: true,
+      defaultProps: true,
+      displayName: true,
+      getDefaultProps: true,
+      getDerivedStateFromError: true,
+      getDerivedStateFromProps: true,
+      mixins: true,
+      propTypes: true,
+      type: true
+    };
+    var KNOWN_STATICS = {
+      name: true,
+      length: true,
+      prototype: true,
+      caller: true,
+      callee: true,
+      arguments: true,
+      arity: true
+    };
+    var FORWARD_REF_STATICS = {
+      "$$typeof": true,
+      render: true,
+      defaultProps: true,
+      displayName: true,
+      propTypes: true
+    };
+    var MEMO_STATICS = {
+      "$$typeof": true,
+      compare: true,
+      defaultProps: true,
+      displayName: true,
+      propTypes: true,
+      type: true
+    };
+    var TYPE_STATICS = {};
+    TYPE_STATICS[reactIs.ForwardRef] = FORWARD_REF_STATICS;
+    TYPE_STATICS[reactIs.Memo] = MEMO_STATICS;
+    function getStatics(component) {
+      if (reactIs.isMemo(component)) {
+        return MEMO_STATICS;
+      }
+      return TYPE_STATICS[component["$$typeof"]] || REACT_STATICS;
+    }
+    var defineProperty = Object.defineProperty;
+    var getOwnPropertyNames = Object.getOwnPropertyNames;
+    var getOwnPropertySymbols = Object.getOwnPropertySymbols;
+    var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
+    var getPrototypeOf = Object.getPrototypeOf;
+    var objectPrototype = Object.prototype;
+    function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
+      if (typeof sourceComponent !== "string") {
+        if (objectPrototype) {
+          var inheritedComponent = getPrototypeOf(sourceComponent);
+          if (inheritedComponent && inheritedComponent !== objectPrototype) {
+            hoistNonReactStatics(targetComponent, inheritedComponent, blacklist);
+          }
+        }
+        var keys2 = getOwnPropertyNames(sourceComponent);
+        if (getOwnPropertySymbols) {
+          keys2 = keys2.concat(getOwnPropertySymbols(sourceComponent));
+        }
+        var targetStatics = getStatics(targetComponent);
+        var sourceStatics = getStatics(sourceComponent);
+        for (var i5 = 0; i5 < keys2.length; ++i5) {
+          var key = keys2[i5];
+          if (!KNOWN_STATICS[key] && !(blacklist && blacklist[key]) && !(sourceStatics && sourceStatics[key]) && !(targetStatics && targetStatics[key])) {
+            var descriptor = getOwnPropertyDescriptor(sourceComponent, key);
+            try {
+              defineProperty(targetComponent, key, descriptor);
+            } catch (e8) {
+            }
+          }
+        }
+      }
+      return targetComponent;
+    }
+    module.exports = hoistNonReactStatics;
+  }
+});
+
 // node_modules/tsparticles/pjs.js
 var require_pjs = __commonJS({
   "node_modules/tsparticles/pjs.js"(exports) {
@@ -32407,7 +32407,7 @@ var require_ColorUtils = __commonJS({
           } else {
             const hslColor = (_b = colorValue.hsl) !== null && _b !== void 0 ? _b : color.value;
             if (hslColor.h !== void 0 && hslColor.l !== void 0) {
-              res = hslToRgb3(hslColor);
+              res = hslToRgb2(hslColor);
             } else {
               const hsvColor = (_c = colorValue.hsv) !== null && _c !== void 0 ? _c : color.value;
               if (hsvColor.h !== void 0 && hsvColor.v !== void 0) {
@@ -32421,8 +32421,8 @@ var require_ColorUtils = __commonJS({
     }
     exports.colorToRgb = colorToRgb;
     function colorToHsl(color, index2, useIndex = true) {
-      const rgb3 = colorToRgb(color, index2, useIndex);
-      return rgb3 !== void 0 ? rgbToHsl(rgb3) : void 0;
+      const rgb2 = colorToRgb(color, index2, useIndex);
+      return rgb2 !== void 0 ? rgbToHsl(rgb2) : void 0;
     }
     exports.colorToHsl = colorToHsl;
     function rgbToHsl(color) {
@@ -32458,7 +32458,7 @@ var require_ColorUtils = __commonJS({
       return stringToRgba(input);
     }
     exports.stringToRgb = stringToRgb;
-    function hslToRgb3(hsl2) {
+    function hslToRgb2(hsl2) {
       const result = { b: 0, g: 0, r: 0 };
       const hslPercent = {
         h: hsl2.h / 360,
@@ -32481,9 +32481,9 @@ var require_ColorUtils = __commonJS({
       result.b = Math.floor(result.b * 255);
       return result;
     }
-    exports.hslToRgb = hslToRgb3;
+    exports.hslToRgb = hslToRgb2;
     function hslaToRgba(hsla2) {
-      const rgbResult = hslToRgb3(hsla2);
+      const rgbResult = hslToRgb2(hsla2);
       return {
         a: hsla2.a,
         b: rgbResult.b,
@@ -32597,11 +32597,11 @@ var require_ColorUtils = __commonJS({
       };
     }
     exports.hsvaToRgba = hsvaToRgba;
-    function rgbToHsv(rgb3) {
+    function rgbToHsv(rgb2) {
       const rgbPercent = {
-        r: rgb3.r / 255,
-        g: rgb3.g / 255,
-        b: rgb3.b / 255
+        r: rgb2.r / 255,
+        g: rgb2.g / 255,
+        b: rgb2.b / 255
       }, xMax = Math.max(rgbPercent.r, rgbPercent.g, rgbPercent.b), xMin = Math.min(rgbPercent.r, rgbPercent.g, rgbPercent.b), v3 = xMax, c6 = xMax - xMin;
       let h3 = 0;
       if (v3 === rgbPercent.r) {
@@ -32619,10 +32619,10 @@ var require_ColorUtils = __commonJS({
       };
     }
     exports.rgbToHsv = rgbToHsv;
-    function rgbaToHsva(rgba3) {
-      const hsvResult = rgbToHsv(rgba3);
+    function rgbaToHsva(rgba2) {
+      const hsvResult = rgbToHsv(rgba2);
       return {
-        a: rgba3.a,
+        a: rgba2.a,
         h: hsvResult.h,
         s: hsvResult.s,
         v: hsvResult.v
@@ -32652,17 +32652,17 @@ var require_ColorUtils = __commonJS({
     exports.getStyleFromHsv = getStyleFromHsv;
     function colorMix(color1, color2, size1, size2) {
       let rgb1 = color1;
-      let rgb22 = color2;
+      let rgb2 = color2;
       if (rgb1.r === void 0) {
-        rgb1 = hslToRgb3(color1);
+        rgb1 = hslToRgb2(color1);
       }
-      if (rgb22.r === void 0) {
-        rgb22 = hslToRgb3(color2);
+      if (rgb2.r === void 0) {
+        rgb2 = hslToRgb2(color2);
       }
       return {
-        b: (0, NumberUtils_1.mix)(rgb1.b, rgb22.b, size1, size2),
-        g: (0, NumberUtils_1.mix)(rgb1.g, rgb22.g, size1, size2),
-        r: (0, NumberUtils_1.mix)(rgb1.r, rgb22.r, size1, size2)
+        b: (0, NumberUtils_1.mix)(rgb1.b, rgb2.b, size1, size2),
+        g: (0, NumberUtils_1.mix)(rgb1.g, rgb2.g, size1, size2),
+        r: (0, NumberUtils_1.mix)(rgb1.r, rgb2.r, size1, size2)
       };
     }
     exports.colorMix = colorMix;
@@ -32678,7 +32678,7 @@ var require_ColorUtils = __commonJS({
         } else {
           const hslColor = sourceColor !== null && sourceColor !== void 0 ? sourceColor : destColor;
           if (hslColor) {
-            return hslToRgb3(hslColor);
+            return hslToRgb2(hslColor);
           }
         }
       } else {
@@ -33501,8 +33501,8 @@ var require_EventListeners = __commonJS({
       handleThemeChange(e8) {
         const mediaEvent = e8;
         const themeName = mediaEvent.matches ? this.container.options.defaultDarkTheme : this.container.options.defaultLightTheme;
-        const theme = this.container.options.themes.find((theme2) => theme2.name === themeName);
-        if (theme && theme.default.auto) {
+        const theme2 = this.container.options.themes.find((theme3) => theme3.name === themeName);
+        if (theme2 && theme2.default.auto) {
           this.container.loadTheme(themeName);
         }
       }
@@ -38963,9 +38963,9 @@ var require_Options = __commonJS({
         }
         this.responsive.sort((a4, b4) => a4.maxWidth - b4.maxWidth);
         if (data.themes !== void 0) {
-          for (const theme of data.themes) {
+          for (const theme2 of data.themes) {
             const optTheme = new Theme_1.Theme();
-            optTheme.load(theme);
+            optTheme.load(theme2);
             this.themes.push(optTheme);
           }
         }
@@ -38974,7 +38974,7 @@ var require_Options = __commonJS({
       }
       setTheme(name) {
         if (name) {
-          const chosenTheme = this.themes.find((theme) => theme.name === name);
+          const chosenTheme = this.themes.find((theme2) => theme2.name === name);
           if (chosenTheme) {
             this.load(chosenTheme.options);
           }
@@ -38997,7 +38997,7 @@ var require_Options = __commonJS({
     exports.Options = Options;
     _Options_instances = /* @__PURE__ */ new WeakSet(), _Options_findDefaultTheme = function _Options_findDefaultTheme2(mode) {
       var _a;
-      return (_a = this.themes.find((theme) => theme.default.value && theme.default.mode === mode)) !== null && _a !== void 0 ? _a : this.themes.find((theme) => theme.default.value && theme.default.mode === Enums_1.ThemeMode.any);
+      return (_a = this.themes.find((theme2) => theme2.default.value && theme2.default.mode === mode)) !== null && _a !== void 0 ? _a : this.themes.find((theme2) => theme2.default.value && theme2.default.mode === Enums_1.ThemeMode.any);
     };
   }
 });
@@ -49672,12 +49672,12 @@ init_react();
 var import_react5 = __toESM(require_react());
 var useDarkMode = () => {
   const [mode, setM] = (0, import_react5.useState)("dark");
-  const setMode = (0, import_react5.useCallback)((theme) => {
-    if (theme === "dark") {
+  const setMode = (0, import_react5.useCallback)((theme2) => {
+    if (theme2 === "dark") {
       document.documentElement.classList.add("dark");
       localStorage.setItem("theme", "dark");
       setM("dark");
-    } else if (theme === "light") {
+    } else if (theme2 === "light") {
       document.documentElement.classList.remove("dark");
       localStorage.setItem("theme", "light");
       setM("light");
@@ -49696,7 +49696,7 @@ var useDarkMode = () => {
 };
 
 // app/tailwind.css
-var tailwind_default = "/build/_assets/tailwind-AUBZH5JB.css";
+var tailwind_default = "/build/_assets/tailwind-ARQ2SEWM.css";
 
 // app/ThemeContext.ts
 init_react();
@@ -49893,7 +49893,7 @@ __export(weighted_box_exports, {
   WeightedBox: () => WeightedBox
 });
 init_react();
-var import_react28 = __toESM(require_react());
+var import_react29 = __toESM(require_react());
 
 // app/common/ui-elements/button/index.ts
 init_react();
@@ -52573,613 +52573,274 @@ Defaulting to \`${e2}\`.`;
 } };
 var Root = Separator;
 
-// node_modules/polished/dist/polished.esm.js
+// app/stitches/stitches.config.ts
 init_react();
+var { theme, styled } = q();
 
-// node_modules/polished/node_modules/@babel/runtime/helpers/esm/extends.js
-init_react();
-function _extends6() {
-  _extends6 = Object.assign || function(target) {
-    for (var i5 = 1; i5 < arguments.length; i5++) {
-      var source = arguments[i5];
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
+// app/common/ui-elements/library/divider/divider.tsx
+var StyledDivider = styled(Root, {
+  variants: {
+    orientation: {
+      vertical: {
+        "width": "2px",
+        "height": "100%",
+        "position": "relative",
+        "&::before": {
+          content: "",
+          position: "absolute",
+          top: 0,
+          left: "-1px",
+          height: "4px",
+          width: "4px"
+        },
+        "&::after": {
+          content: "",
+          position: "absolute",
+          bottom: 0,
+          left: "-1px",
+          height: "4px",
+          width: "4px"
+        }
+      },
+      horizontal: {
+        "height": "2px",
+        "width": "100%",
+        "position": "relative",
+        "&::before": {
+          content: "",
+          position: "absolute",
+          left: 0,
+          top: "-1px",
+          height: "4px",
+          width: "4px"
+        },
+        "&::after": {
+          content: "",
+          position: "absolute",
+          right: 0,
+          top: "-1px",
+          height: "4px",
+          width: "4px"
         }
       }
     }
-    return target;
-  };
-  return _extends6.apply(this, arguments);
-}
-
-// node_modules/polished/node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js
-init_react();
-function _assertThisInitialized(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  },
+  defaultVariants: {
+    orientation: "horizontal"
   }
-  return self;
-}
-
-// node_modules/polished/node_modules/@babel/runtime/helpers/esm/inheritsLoose.js
-init_react();
-
-// node_modules/polished/node_modules/@babel/runtime/helpers/esm/setPrototypeOf.js
-init_react();
-function _setPrototypeOf(o6, p3) {
-  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf2(o7, p4) {
-    o7.__proto__ = p4;
-    return o7;
-  };
-  return _setPrototypeOf(o6, p3);
-}
-
-// node_modules/polished/node_modules/@babel/runtime/helpers/esm/inheritsLoose.js
-function _inheritsLoose(subClass, superClass) {
-  subClass.prototype = Object.create(superClass.prototype);
-  subClass.prototype.constructor = subClass;
-  _setPrototypeOf(subClass, superClass);
-}
-
-// node_modules/polished/node_modules/@babel/runtime/helpers/esm/wrapNativeSuper.js
-init_react();
-
-// node_modules/polished/node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js
-init_react();
-function _getPrototypeOf(o6) {
-  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf2(o7) {
-    return o7.__proto__ || Object.getPrototypeOf(o7);
-  };
-  return _getPrototypeOf(o6);
-}
-
-// node_modules/polished/node_modules/@babel/runtime/helpers/esm/isNativeFunction.js
-init_react();
-function _isNativeFunction(fn) {
-  return Function.toString.call(fn).indexOf("[native code]") !== -1;
-}
-
-// node_modules/polished/node_modules/@babel/runtime/helpers/esm/construct.js
-init_react();
-
-// node_modules/polished/node_modules/@babel/runtime/helpers/esm/isNativeReflectConstruct.js
-init_react();
-function _isNativeReflectConstruct() {
-  if (typeof Reflect === "undefined" || !Reflect.construct)
-    return false;
-  if (Reflect.construct.sham)
-    return false;
-  if (typeof Proxy === "function")
-    return true;
-  try {
-    Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function() {
-    }));
-    return true;
-  } catch (e8) {
-    return false;
-  }
-}
-
-// node_modules/polished/node_modules/@babel/runtime/helpers/esm/construct.js
-function _construct(Parent, args, Class) {
-  if (_isNativeReflectConstruct()) {
-    _construct = Reflect.construct;
-  } else {
-    _construct = function _construct2(Parent2, args2, Class2) {
-      var a4 = [null];
-      a4.push.apply(a4, args2);
-      var Constructor = Function.bind.apply(Parent2, a4);
-      var instance = new Constructor();
-      if (Class2)
-        _setPrototypeOf(instance, Class2.prototype);
-      return instance;
-    };
-  }
-  return _construct.apply(null, arguments);
-}
-
-// node_modules/polished/node_modules/@babel/runtime/helpers/esm/wrapNativeSuper.js
-function _wrapNativeSuper(Class) {
-  var _cache = typeof Map === "function" ? /* @__PURE__ */ new Map() : void 0;
-  _wrapNativeSuper = function _wrapNativeSuper2(Class2) {
-    if (Class2 === null || !_isNativeFunction(Class2))
-      return Class2;
-    if (typeof Class2 !== "function") {
-      throw new TypeError("Super expression must either be null or a function");
-    }
-    if (typeof _cache !== "undefined") {
-      if (_cache.has(Class2))
-        return _cache.get(Class2);
-      _cache.set(Class2, Wrapper);
-    }
-    function Wrapper() {
-      return _construct(Class2, arguments, _getPrototypeOf(this).constructor);
-    }
-    Wrapper.prototype = Object.create(Class2.prototype, {
-      constructor: {
-        value: Wrapper,
-        enumerable: false,
-        writable: true,
-        configurable: true
-      }
-    });
-    return _setPrototypeOf(Wrapper, Class2);
-  };
-  return _wrapNativeSuper(Class);
-}
-
-// node_modules/polished/node_modules/@babel/runtime/helpers/esm/taggedTemplateLiteralLoose.js
-init_react();
-
-// node_modules/polished/dist/polished.esm.js
-var ERRORS = {
-  "1": "Passed invalid arguments to hsl, please pass multiple numbers e.g. hsl(360, 0.75, 0.4) or an object e.g. rgb({ hue: 255, saturation: 0.4, lightness: 0.75 }).\n\n",
-  "2": "Passed invalid arguments to hsla, please pass multiple numbers e.g. hsla(360, 0.75, 0.4, 0.7) or an object e.g. rgb({ hue: 255, saturation: 0.4, lightness: 0.75, alpha: 0.7 }).\n\n",
-  "3": "Passed an incorrect argument to a color function, please pass a string representation of a color.\n\n",
-  "4": "Couldn't generate valid rgb string from %s, it returned %s.\n\n",
-  "5": "Couldn't parse the color string. Please provide the color as a string in hex, rgb, rgba, hsl or hsla notation.\n\n",
-  "6": "Passed invalid arguments to rgb, please pass multiple numbers e.g. rgb(255, 205, 100) or an object e.g. rgb({ red: 255, green: 205, blue: 100 }).\n\n",
-  "7": "Passed invalid arguments to rgba, please pass multiple numbers e.g. rgb(255, 205, 100, 0.75) or an object e.g. rgb({ red: 255, green: 205, blue: 100, alpha: 0.75 }).\n\n",
-  "8": "Passed invalid argument to toColorString, please pass a RgbColor, RgbaColor, HslColor or HslaColor object.\n\n",
-  "9": "Please provide a number of steps to the modularScale helper.\n\n",
-  "10": "Please pass a number or one of the predefined scales to the modularScale helper as the ratio.\n\n",
-  "11": 'Invalid value passed as base to modularScale, expected number or em string but got "%s"\n\n',
-  "12": 'Expected a string ending in "px" or a number passed as the first argument to %s(), got "%s" instead.\n\n',
-  "13": 'Expected a string ending in "px" or a number passed as the second argument to %s(), got "%s" instead.\n\n',
-  "14": 'Passed invalid pixel value ("%s") to %s(), please pass a value like "12px" or 12.\n\n',
-  "15": 'Passed invalid base value ("%s") to %s(), please pass a value like "12px" or 12.\n\n',
-  "16": "You must provide a template to this method.\n\n",
-  "17": "You passed an unsupported selector state to this method.\n\n",
-  "18": "minScreen and maxScreen must be provided as stringified numbers with the same units.\n\n",
-  "19": "fromSize and toSize must be provided as stringified numbers with the same units.\n\n",
-  "20": "expects either an array of objects or a single object with the properties prop, fromSize, and toSize.\n\n",
-  "21": "expects the objects in the first argument array to have the properties `prop`, `fromSize`, and `toSize`.\n\n",
-  "22": "expects the first argument object to have the properties `prop`, `fromSize`, and `toSize`.\n\n",
-  "23": "fontFace expects a name of a font-family.\n\n",
-  "24": "fontFace expects either the path to the font file(s) or a name of a local copy.\n\n",
-  "25": "fontFace expects localFonts to be an array.\n\n",
-  "26": "fontFace expects fileFormats to be an array.\n\n",
-  "27": "radialGradient requries at least 2 color-stops to properly render.\n\n",
-  "28": "Please supply a filename to retinaImage() as the first argument.\n\n",
-  "29": "Passed invalid argument to triangle, please pass correct pointingDirection e.g. 'right'.\n\n",
-  "30": "Passed an invalid value to `height` or `width`. Please provide a pixel based unit.\n\n",
-  "31": "The animation shorthand only takes 8 arguments. See the specification for more information: http://mdn.io/animation\n\n",
-  "32": "To pass multiple animations please supply them in arrays, e.g. animation(['rotate', '2s'], ['move', '1s'])\nTo pass a single animation please supply them in simple values, e.g. animation('rotate', '2s')\n\n",
-  "33": "The animation shorthand arrays can only have 8 elements. See the specification for more information: http://mdn.io/animation\n\n",
-  "34": "borderRadius expects a radius value as a string or number as the second argument.\n\n",
-  "35": 'borderRadius expects one of "top", "bottom", "left" or "right" as the first argument.\n\n',
-  "36": "Property must be a string value.\n\n",
-  "37": "Syntax Error at %s.\n\n",
-  "38": "Formula contains a function that needs parentheses at %s.\n\n",
-  "39": "Formula is missing closing parenthesis at %s.\n\n",
-  "40": "Formula has too many closing parentheses at %s.\n\n",
-  "41": "All values in a formula must have the same unit or be unitless.\n\n",
-  "42": "Please provide a number of steps to the modularScale helper.\n\n",
-  "43": "Please pass a number or one of the predefined scales to the modularScale helper as the ratio.\n\n",
-  "44": "Invalid value passed as base to modularScale, expected number or em/rem string but got %s.\n\n",
-  "45": "Passed invalid argument to hslToColorString, please pass a HslColor or HslaColor object.\n\n",
-  "46": "Passed invalid argument to rgbToColorString, please pass a RgbColor or RgbaColor object.\n\n",
-  "47": "minScreen and maxScreen must be provided as stringified numbers with the same units.\n\n",
-  "48": "fromSize and toSize must be provided as stringified numbers with the same units.\n\n",
-  "49": "Expects either an array of objects or a single object with the properties prop, fromSize, and toSize.\n\n",
-  "50": "Expects the objects in the first argument array to have the properties prop, fromSize, and toSize.\n\n",
-  "51": "Expects the first argument object to have the properties prop, fromSize, and toSize.\n\n",
-  "52": "fontFace expects either the path to the font file(s) or a name of a local copy.\n\n",
-  "53": "fontFace expects localFonts to be an array.\n\n",
-  "54": "fontFace expects fileFormats to be an array.\n\n",
-  "55": "fontFace expects a name of a font-family.\n\n",
-  "56": "linearGradient requries at least 2 color-stops to properly render.\n\n",
-  "57": "radialGradient requries at least 2 color-stops to properly render.\n\n",
-  "58": "Please supply a filename to retinaImage() as the first argument.\n\n",
-  "59": "Passed invalid argument to triangle, please pass correct pointingDirection e.g. 'right'.\n\n",
-  "60": "Passed an invalid value to `height` or `width`. Please provide a pixel based unit.\n\n",
-  "61": "Property must be a string value.\n\n",
-  "62": "borderRadius expects a radius value as a string or number as the second argument.\n\n",
-  "63": 'borderRadius expects one of "top", "bottom", "left" or "right" as the first argument.\n\n',
-  "64": "The animation shorthand only takes 8 arguments. See the specification for more information: http://mdn.io/animation.\n\n",
-  "65": "To pass multiple animations please supply them in arrays, e.g. animation(['rotate', '2s'], ['move', '1s'])\\nTo pass a single animation please supply them in simple values, e.g. animation('rotate', '2s').\n\n",
-  "66": "The animation shorthand arrays can only have 8 elements. See the specification for more information: http://mdn.io/animation.\n\n",
-  "67": "You must provide a template to this method.\n\n",
-  "68": "You passed an unsupported selector state to this method.\n\n",
-  "69": 'Expected a string ending in "px" or a number passed as the first argument to %s(), got %s instead.\n\n',
-  "70": 'Expected a string ending in "px" or a number passed as the second argument to %s(), got %s instead.\n\n',
-  "71": 'Passed invalid pixel value %s to %s(), please pass a value like "12px" or 12.\n\n',
-  "72": 'Passed invalid base value %s to %s(), please pass a value like "12px" or 12.\n\n',
-  "73": "Please provide a valid CSS variable.\n\n",
-  "74": "CSS variable not found and no default was provided.\n\n",
-  "75": "important requires a valid style object, got a %s instead.\n\n",
-  "76": "fromSize and toSize must be provided as stringified numbers with the same units as minScreen and maxScreen.\n\n",
-  "77": 'remToPx expects a value in "rem" but you provided it in "%s".\n\n',
-  "78": 'base must be set in "px" or "%" but you set it in "%s".\n'
-};
-function format2() {
-  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-    args[_key] = arguments[_key];
-  }
-  var a4 = args[0];
-  var b4 = [];
-  var c6;
-  for (c6 = 1; c6 < args.length; c6 += 1) {
-    b4.push(args[c6]);
-  }
-  b4.forEach(function(d3) {
-    a4 = a4.replace(/%[a-z]/, d3);
+});
+var Divider = ({ orientation, className }) => {
+  return /* @__PURE__ */ React.createElement(StyledDivider, {
+    orientation,
+    className: clsx_m_default([
+      className,
+      "dark:bg-theme-orange",
+      "bg-theme-dteal",
+      "dark:before:bg-theme-orange",
+      "before:bg-theme-dteal",
+      "dark:after:bg-theme-orange",
+      "after:bg-theme-dteal"
+    ])
   });
-  return a4;
-}
-var PolishedError = /* @__PURE__ */ function(_Error) {
-  _inheritsLoose(PolishedError2, _Error);
-  function PolishedError2(code) {
-    var _this;
-    if (false) {
-      _this = _Error.call(this, "An error occurred. See https://github.com/styled-components/polished/blob/main/src/internalHelpers/errors.md#" + code + " for more information.") || this;
-    } else {
-      for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
-        args[_key2 - 1] = arguments[_key2];
-      }
-      _this = _Error.call(this, format2.apply(void 0, [ERRORS[code]].concat(args))) || this;
-    }
-    return _assertThisInitialized(_this);
-  }
-  return PolishedError2;
-}(/* @__PURE__ */ _wrapNativeSuper(Error));
-function colorToInt(color) {
-  return Math.round(color * 255);
-}
-function convertToInt(red, green, blue) {
-  return colorToInt(red) + "," + colorToInt(green) + "," + colorToInt(blue);
-}
-function hslToRgb(hue, saturation, lightness, convert) {
-  if (convert === void 0) {
-    convert = convertToInt;
-  }
-  if (saturation === 0) {
-    return convert(lightness, lightness, lightness);
-  }
-  var huePrime = (hue % 360 + 360) % 360 / 60;
-  var chroma = (1 - Math.abs(2 * lightness - 1)) * saturation;
-  var secondComponent = chroma * (1 - Math.abs(huePrime % 2 - 1));
-  var red = 0;
-  var green = 0;
-  var blue = 0;
-  if (huePrime >= 0 && huePrime < 1) {
-    red = chroma;
-    green = secondComponent;
-  } else if (huePrime >= 1 && huePrime < 2) {
-    red = secondComponent;
-    green = chroma;
-  } else if (huePrime >= 2 && huePrime < 3) {
-    green = chroma;
-    blue = secondComponent;
-  } else if (huePrime >= 3 && huePrime < 4) {
-    green = secondComponent;
-    blue = chroma;
-  } else if (huePrime >= 4 && huePrime < 5) {
-    red = secondComponent;
-    blue = chroma;
-  } else if (huePrime >= 5 && huePrime < 6) {
-    red = chroma;
-    blue = secondComponent;
-  }
-  var lightnessModification = lightness - chroma / 2;
-  var finalRed = red + lightnessModification;
-  var finalGreen = green + lightnessModification;
-  var finalBlue = blue + lightnessModification;
-  return convert(finalRed, finalGreen, finalBlue);
-}
-var namedColorMap = {
-  aliceblue: "f0f8ff",
-  antiquewhite: "faebd7",
-  aqua: "00ffff",
-  aquamarine: "7fffd4",
-  azure: "f0ffff",
-  beige: "f5f5dc",
-  bisque: "ffe4c4",
-  black: "000",
-  blanchedalmond: "ffebcd",
-  blue: "0000ff",
-  blueviolet: "8a2be2",
-  brown: "a52a2a",
-  burlywood: "deb887",
-  cadetblue: "5f9ea0",
-  chartreuse: "7fff00",
-  chocolate: "d2691e",
-  coral: "ff7f50",
-  cornflowerblue: "6495ed",
-  cornsilk: "fff8dc",
-  crimson: "dc143c",
-  cyan: "00ffff",
-  darkblue: "00008b",
-  darkcyan: "008b8b",
-  darkgoldenrod: "b8860b",
-  darkgray: "a9a9a9",
-  darkgreen: "006400",
-  darkgrey: "a9a9a9",
-  darkkhaki: "bdb76b",
-  darkmagenta: "8b008b",
-  darkolivegreen: "556b2f",
-  darkorange: "ff8c00",
-  darkorchid: "9932cc",
-  darkred: "8b0000",
-  darksalmon: "e9967a",
-  darkseagreen: "8fbc8f",
-  darkslateblue: "483d8b",
-  darkslategray: "2f4f4f",
-  darkslategrey: "2f4f4f",
-  darkturquoise: "00ced1",
-  darkviolet: "9400d3",
-  deeppink: "ff1493",
-  deepskyblue: "00bfff",
-  dimgray: "696969",
-  dimgrey: "696969",
-  dodgerblue: "1e90ff",
-  firebrick: "b22222",
-  floralwhite: "fffaf0",
-  forestgreen: "228b22",
-  fuchsia: "ff00ff",
-  gainsboro: "dcdcdc",
-  ghostwhite: "f8f8ff",
-  gold: "ffd700",
-  goldenrod: "daa520",
-  gray: "808080",
-  green: "008000",
-  greenyellow: "adff2f",
-  grey: "808080",
-  honeydew: "f0fff0",
-  hotpink: "ff69b4",
-  indianred: "cd5c5c",
-  indigo: "4b0082",
-  ivory: "fffff0",
-  khaki: "f0e68c",
-  lavender: "e6e6fa",
-  lavenderblush: "fff0f5",
-  lawngreen: "7cfc00",
-  lemonchiffon: "fffacd",
-  lightblue: "add8e6",
-  lightcoral: "f08080",
-  lightcyan: "e0ffff",
-  lightgoldenrodyellow: "fafad2",
-  lightgray: "d3d3d3",
-  lightgreen: "90ee90",
-  lightgrey: "d3d3d3",
-  lightpink: "ffb6c1",
-  lightsalmon: "ffa07a",
-  lightseagreen: "20b2aa",
-  lightskyblue: "87cefa",
-  lightslategray: "789",
-  lightslategrey: "789",
-  lightsteelblue: "b0c4de",
-  lightyellow: "ffffe0",
-  lime: "0f0",
-  limegreen: "32cd32",
-  linen: "faf0e6",
-  magenta: "f0f",
-  maroon: "800000",
-  mediumaquamarine: "66cdaa",
-  mediumblue: "0000cd",
-  mediumorchid: "ba55d3",
-  mediumpurple: "9370db",
-  mediumseagreen: "3cb371",
-  mediumslateblue: "7b68ee",
-  mediumspringgreen: "00fa9a",
-  mediumturquoise: "48d1cc",
-  mediumvioletred: "c71585",
-  midnightblue: "191970",
-  mintcream: "f5fffa",
-  mistyrose: "ffe4e1",
-  moccasin: "ffe4b5",
-  navajowhite: "ffdead",
-  navy: "000080",
-  oldlace: "fdf5e6",
-  olive: "808000",
-  olivedrab: "6b8e23",
-  orange: "ffa500",
-  orangered: "ff4500",
-  orchid: "da70d6",
-  palegoldenrod: "eee8aa",
-  palegreen: "98fb98",
-  paleturquoise: "afeeee",
-  palevioletred: "db7093",
-  papayawhip: "ffefd5",
-  peachpuff: "ffdab9",
-  peru: "cd853f",
-  pink: "ffc0cb",
-  plum: "dda0dd",
-  powderblue: "b0e0e6",
-  purple: "800080",
-  rebeccapurple: "639",
-  red: "f00",
-  rosybrown: "bc8f8f",
-  royalblue: "4169e1",
-  saddlebrown: "8b4513",
-  salmon: "fa8072",
-  sandybrown: "f4a460",
-  seagreen: "2e8b57",
-  seashell: "fff5ee",
-  sienna: "a0522d",
-  silver: "c0c0c0",
-  skyblue: "87ceeb",
-  slateblue: "6a5acd",
-  slategray: "708090",
-  slategrey: "708090",
-  snow: "fffafa",
-  springgreen: "00ff7f",
-  steelblue: "4682b4",
-  tan: "d2b48c",
-  teal: "008080",
-  thistle: "d8bfd8",
-  tomato: "ff6347",
-  turquoise: "40e0d0",
-  violet: "ee82ee",
-  wheat: "f5deb3",
-  white: "fff",
-  whitesmoke: "f5f5f5",
-  yellow: "ff0",
-  yellowgreen: "9acd32"
 };
-function nameToHex(color) {
-  if (typeof color !== "string")
-    return color;
-  var normalizedColorName = color.toLowerCase();
-  return namedColorMap[normalizedColorName] ? "#" + namedColorMap[normalizedColorName] : color;
+
+// node_modules/@radix-ui/react-use-previous/dist/index.module.js
+init_react();
+var e3 = __toESM(require_react());
+function usePrevious(r5) {
+  const u4 = e3.useRef({ value: r5, previous: r5 });
+  return e3.useMemo(() => (u4.current.value !== r5 && (u4.current.previous = u4.current.value, u4.current.value = r5), u4.current.previous), [r5]);
 }
-var hexRegex = /^#[a-fA-F0-9]{6}$/;
-var hexRgbaRegex = /^#[a-fA-F0-9]{8}$/;
-var reducedHexRegex = /^#[a-fA-F0-9]{3}$/;
-var reducedRgbaHexRegex = /^#[a-fA-F0-9]{4}$/;
-var rgbRegex = /^rgb\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)$/i;
-var rgbaRegex = /^rgba\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*([-+]?[0-9]*[.]?[0-9]+)\s*\)$/i;
-var hslRegex = /^hsl\(\s*(\d{0,3}[.]?[0-9]+)\s*,\s*(\d{1,3}[.]?[0-9]?)%\s*,\s*(\d{1,3}[.]?[0-9]?)%\s*\)$/i;
-var hslaRegex = /^hsla\(\s*(\d{0,3}[.]?[0-9]+)\s*,\s*(\d{1,3}[.]?[0-9]?)%\s*,\s*(\d{1,3}[.]?[0-9]?)%\s*,\s*([-+]?[0-9]*[.]?[0-9]+)\s*\)$/i;
-function parseToRgb(color) {
-  if (typeof color !== "string") {
-    throw new PolishedError(3);
-  }
-  var normalizedColor = nameToHex(color);
-  if (normalizedColor.match(hexRegex)) {
-    return {
-      red: parseInt("" + normalizedColor[1] + normalizedColor[2], 16),
-      green: parseInt("" + normalizedColor[3] + normalizedColor[4], 16),
-      blue: parseInt("" + normalizedColor[5] + normalizedColor[6], 16)
-    };
-  }
-  if (normalizedColor.match(hexRgbaRegex)) {
-    var alpha = parseFloat((parseInt("" + normalizedColor[7] + normalizedColor[8], 16) / 255).toFixed(2));
-    return {
-      red: parseInt("" + normalizedColor[1] + normalizedColor[2], 16),
-      green: parseInt("" + normalizedColor[3] + normalizedColor[4], 16),
-      blue: parseInt("" + normalizedColor[5] + normalizedColor[6], 16),
-      alpha
-    };
-  }
-  if (normalizedColor.match(reducedHexRegex)) {
-    return {
-      red: parseInt("" + normalizedColor[1] + normalizedColor[1], 16),
-      green: parseInt("" + normalizedColor[2] + normalizedColor[2], 16),
-      blue: parseInt("" + normalizedColor[3] + normalizedColor[3], 16)
-    };
-  }
-  if (normalizedColor.match(reducedRgbaHexRegex)) {
-    var _alpha = parseFloat((parseInt("" + normalizedColor[4] + normalizedColor[4], 16) / 255).toFixed(2));
-    return {
-      red: parseInt("" + normalizedColor[1] + normalizedColor[1], 16),
-      green: parseInt("" + normalizedColor[2] + normalizedColor[2], 16),
-      blue: parseInt("" + normalizedColor[3] + normalizedColor[3], 16),
-      alpha: _alpha
-    };
-  }
-  var rgbMatched = rgbRegex.exec(normalizedColor);
-  if (rgbMatched) {
-    return {
-      red: parseInt("" + rgbMatched[1], 10),
-      green: parseInt("" + rgbMatched[2], 10),
-      blue: parseInt("" + rgbMatched[3], 10)
-    };
-  }
-  var rgbaMatched = rgbaRegex.exec(normalizedColor.substring(0, 50));
-  if (rgbaMatched) {
-    return {
-      red: parseInt("" + rgbaMatched[1], 10),
-      green: parseInt("" + rgbaMatched[2], 10),
-      blue: parseInt("" + rgbaMatched[3], 10),
-      alpha: parseFloat("" + rgbaMatched[4])
-    };
-  }
-  var hslMatched = hslRegex.exec(normalizedColor);
-  if (hslMatched) {
-    var hue = parseInt("" + hslMatched[1], 10);
-    var saturation = parseInt("" + hslMatched[2], 10) / 100;
-    var lightness = parseInt("" + hslMatched[3], 10) / 100;
-    var rgbColorString = "rgb(" + hslToRgb(hue, saturation, lightness) + ")";
-    var hslRgbMatched = rgbRegex.exec(rgbColorString);
-    if (!hslRgbMatched) {
-      throw new PolishedError(4, normalizedColor, rgbColorString);
-    }
-    return {
-      red: parseInt("" + hslRgbMatched[1], 10),
-      green: parseInt("" + hslRgbMatched[2], 10),
-      blue: parseInt("" + hslRgbMatched[3], 10)
-    };
-  }
-  var hslaMatched = hslaRegex.exec(normalizedColor.substring(0, 50));
-  if (hslaMatched) {
-    var _hue = parseInt("" + hslaMatched[1], 10);
-    var _saturation = parseInt("" + hslaMatched[2], 10) / 100;
-    var _lightness = parseInt("" + hslaMatched[3], 10) / 100;
-    var _rgbColorString = "rgb(" + hslToRgb(_hue, _saturation, _lightness) + ")";
-    var _hslRgbMatched = rgbRegex.exec(_rgbColorString);
-    if (!_hslRgbMatched) {
-      throw new PolishedError(4, normalizedColor, _rgbColorString);
-    }
-    return {
-      red: parseInt("" + _hslRgbMatched[1], 10),
-      green: parseInt("" + _hslRgbMatched[2], 10),
-      blue: parseInt("" + _hslRgbMatched[3], 10),
-      alpha: parseFloat("" + hslaMatched[4])
-    };
-  }
-  throw new PolishedError(5);
+
+// node_modules/@radix-ui/react-use-controllable-state/dist/index.module.js
+init_react();
+
+// node_modules/@radix-ui/react-use-callback-ref/dist/index.module.js
+init_react();
+var e4 = __toESM(require_react());
+function useCallbackRef(r5) {
+  const t6 = e4.useRef(r5);
+  return e4.useEffect(() => {
+    t6.current = r5;
+  }), e4.useMemo(() => (...e8) => {
+    var r6;
+    return (r6 = t6.current) === null || r6 === void 0 ? void 0 : r6.call(t6, ...e8);
+  }, []);
 }
-var reduceHexValue = function reduceHexValue2(value) {
-  if (value.length === 7 && value[1] === value[2] && value[3] === value[4] && value[5] === value[6]) {
-    return "#" + value[1] + value[3] + value[5];
+
+// node_modules/@radix-ui/react-use-controllable-state/dist/index.module.js
+var t3 = __toESM(require_react());
+function useControllableState({ prop: o6, defaultProp: r5, onChange: n5 = () => {
+} }) {
+  const [a4, u4] = function({ defaultProp: o7, onChange: r6 }) {
+    const n6 = t3.useState(o7), [a5] = n6, u5 = t3.useRef(a5), c7 = useCallbackRef(r6);
+    return t3.useEffect(() => {
+      u5.current !== a5 && (c7(a5), u5.current = a5);
+    }, [a5, u5, c7]), n6;
+  }({ defaultProp: r5, onChange: n5 }), c6 = o6 !== void 0, f2 = c6 ? o6 : a4, l6 = useCallbackRef(n5);
+  return [f2, t3.useCallback((e8) => {
+    if (c6) {
+      const t6 = e8, r6 = typeof e8 == "function" ? t6(o6) : e8;
+      r6 !== o6 && l6(r6);
+    } else
+      u4(e8);
+  }, [c6, o6, u4, l6])];
+}
+
+// node_modules/@radix-ui/react-label/dist/index.module.js
+init_react();
+
+// node_modules/@radix-ui/react-context/dist/index.module.js
+init_react();
+var e5 = __toESM(require_react());
+function createContext6(t6, n5) {
+  const o6 = /* @__PURE__ */ e5.createContext(n5);
+  function r5(t7) {
+    const _a = t7, { children: n6 } = _a, r6 = __objRest(_a, ["children"]), c6 = e5.useMemo(() => r6, Object.values(r6));
+    return e5.createElement(o6.Provider, { value: c6 }, n6);
   }
-  return value;
+  return r5.displayName = t6 + "Provider", [r5, function(r6) {
+    const c6 = e5.useContext(o6);
+    if (c6)
+      return c6;
+    if (n5 !== void 0)
+      return n5;
+    throw new Error(`\`${r6}\` must be used within \`${t6}\``);
+  }];
+}
+function createContextScope(n5, o6 = []) {
+  let r5 = [];
+  const c6 = () => {
+    const t6 = r5.map((t7) => /* @__PURE__ */ e5.createContext(t7));
+    return function(o7) {
+      const r6 = (o7 == null ? void 0 : o7[n5]) || t6;
+      return e5.useMemo(() => ({ [`__scope${n5}`]: __spreadProps(__spreadValues({}, o7), { [n5]: r6 }) }), [o7, r6]);
+    };
+  };
+  return c6.scopeName = n5, [function(t6, o7) {
+    const c7 = /* @__PURE__ */ e5.createContext(o7), u4 = r5.length;
+    function s4(t7) {
+      const _a = t7, { scope: o8, children: r6 } = _a, s5 = __objRest(_a, ["scope", "children"]), i5 = (o8 == null ? void 0 : o8[n5][u4]) || c7, a4 = e5.useMemo(() => s5, Object.values(s5));
+      return e5.createElement(i5.Provider, { value: a4 }, r6);
+    }
+    return r5 = [...r5, o7], s4.displayName = t6 + "Provider", [s4, function(r6, s5) {
+      const i5 = (s5 == null ? void 0 : s5[n5][u4]) || c7, a4 = e5.useContext(i5);
+      if (a4)
+        return a4;
+      if (o7 !== void 0)
+        return o7;
+      throw new Error(`\`${r6}\` must be used within \`${t6}\``);
+    }];
+  }, t4(c6, ...o6)];
+}
+function t4(...t6) {
+  const n5 = t6[0];
+  if (t6.length === 1)
+    return n5;
+  const o6 = () => {
+    const o7 = t6.map((e8) => ({ useScope: e8(), scopeName: e8.scopeName }));
+    return function(t7) {
+      const r5 = o7.reduce((e8, { useScope: n6, scopeName: o8 }) => __spreadValues(__spreadValues({}, e8), n6(t7)[`__scope${o8}`]), {});
+      return e5.useMemo(() => ({ [`__scope${n5.scopeName}`]: r5 }), [r5]);
+    };
+  };
+  return o6.scopeName = n5.scopeName, o6;
+}
+
+// node_modules/@radix-ui/react-label/dist/index.module.js
+var l3 = __toESM(require_react());
+var [i3, a2] = createContext6("Label", { id: void 0, controlRef: { current: null } });
+var useLabelContext = (e8) => {
+  const t6 = a2("LabelConsumer"), { controlRef: r5 } = t6;
+  return l3.useEffect(() => {
+    e8 && (r5.current = e8);
+  }, [e8, r5]), t6.id;
 };
-var reduceHexValue$1 = reduceHexValue;
-function numberToHex(value) {
-  var hex2 = value.toString(16);
-  return hex2.length === 1 ? "0" + hex2 : hex2;
-}
-function rgb(value, green, blue) {
-  if (typeof value === "number" && typeof green === "number" && typeof blue === "number") {
-    return reduceHexValue$1("#" + numberToHex(value) + numberToHex(green) + numberToHex(blue));
-  } else if (typeof value === "object" && green === void 0 && blue === void 0) {
-    return reduceHexValue$1("#" + numberToHex(value.red) + numberToHex(value.green) + numberToHex(value.blue));
-  }
-  throw new PolishedError(6);
-}
-function rgba(firstValue, secondValue, thirdValue, fourthValue) {
-  if (typeof firstValue === "string" && typeof secondValue === "number") {
-    var rgbValue = parseToRgb(firstValue);
-    return "rgba(" + rgbValue.red + "," + rgbValue.green + "," + rgbValue.blue + "," + secondValue + ")";
-  } else if (typeof firstValue === "number" && typeof secondValue === "number" && typeof thirdValue === "number" && typeof fourthValue === "number") {
-    return fourthValue >= 1 ? rgb(firstValue, secondValue, thirdValue) : "rgba(" + firstValue + "," + secondValue + "," + thirdValue + "," + fourthValue + ")";
-  } else if (typeof firstValue === "object" && secondValue === void 0 && thirdValue === void 0 && fourthValue === void 0) {
-    return firstValue.alpha >= 1 ? rgb(firstValue.red, firstValue.green, firstValue.blue) : "rgba(" + firstValue.red + "," + firstValue.green + "," + firstValue.blue + "," + firstValue.alpha + ")";
-  }
-  throw new PolishedError(7);
-}
-function curried(f2, length, acc) {
-  return function fn() {
-    var combined = acc.concat(Array.prototype.slice.call(arguments));
-    return combined.length >= length ? f2.apply(this, combined) : curried(f2, length, combined);
+
+// node_modules/@radix-ui/primitive/dist/index.module.js
+init_react();
+function composeEventHandlers2(e8, n5, { checkForDefaultPrevented: t6 = true } = {}) {
+  return function(r5) {
+    if (e8 == null || e8(r5), t6 === false || !r5.defaultPrevented)
+      return n5 == null ? void 0 : n5(r5);
   };
 }
-function curry(f2) {
-  return curried(f2, f2.length, []);
+
+// app/common/ui-elements/library/switch/index.ts
+init_react();
+
+// app/common/ui-elements/library/switch/Switch.tsx
+init_react();
+
+// node_modules/@radix-ui/react-switch/dist/index.module.js
+init_react();
+
+// node_modules/@radix-ui/react-use-size/dist/index.module.js
+init_react();
+var e6 = __toESM(require_react());
+function useSize(r5) {
+  const [i5, t6] = e6.useState(void 0);
+  return e6.useEffect(() => {
+    if (r5) {
+      const e8 = new ResizeObserver((e9) => {
+        if (!Array.isArray(e9))
+          return;
+        if (!e9.length)
+          return;
+        const i6 = e9[0];
+        let o6, n5;
+        if ("borderBoxSize" in i6) {
+          const e10 = i6.borderBoxSize, r6 = Array.isArray(e10) ? e10[0] : e10;
+          o6 = r6.inlineSize, n5 = r6.blockSize;
+        } else {
+          const e10 = r5.getBoundingClientRect();
+          o6 = e10.width, n5 = e10.height;
+        }
+        t6({ width: o6, height: n5 });
+      });
+      return e8.observe(r5, { box: "border-box" }), () => e8.unobserve(r5);
+    }
+    t6(void 0);
+  }, [r5]), i5;
 }
-function guard(lowerBoundary, upperBoundary, value) {
-  return Math.max(lowerBoundary, Math.min(upperBoundary, value));
+
+// node_modules/@radix-ui/react-switch/dist/index.module.js
+var s2 = __toESM(require_react());
+var [l4, u2] = createContextScope("Switch");
+var [p2, m2] = l4("Switch");
+var Switch = /* @__PURE__ */ s2.forwardRef((r5, o6) => {
+  const _a = r5, { __scopeSwitch: c6, "aria-labelledby": l6, name: u4, checked: m4, defaultChecked: f2, required: x3, disabled: k3, value: w3 = "on", onCheckedChange: v3 } = _a, S3 = __objRest(_a, ["__scopeSwitch", "aria-labelledby", "name", "checked", "defaultChecked", "required", "disabled", "value", "onCheckedChange"]), [y3, E3] = s2.useState(null), C2 = useComposedRefs(o6, (e8) => E3(e8)), g3 = useLabelContext(y3), R3 = l6 || g3, T3 = s2.useRef(false), P2 = !y3 || Boolean(y3.closest("form")), [_2 = false, q3] = useControllableState({ prop: m4, defaultProp: f2, onChange: v3 });
+  return s2.createElement(p2, { scope: c6, checked: _2, disabled: k3 }, /* @__PURE__ */ s2.createElement(Primitive.button, _extends5({ type: "button", role: "switch", "aria-checked": _2, "aria-labelledby": R3, "aria-required": x3, "data-state": h2(_2), "data-disabled": k3 ? "" : void 0, disabled: k3, value: w3 }, S3, { ref: C2, onClick: composeEventHandlers2(r5.onClick, (e8) => {
+    q3((e9) => !e9), P2 && (T3.current = e8.isPropagationStopped(), T3.current || e8.stopPropagation());
+  }) })), P2 && /* @__PURE__ */ s2.createElement(b2, { control: y3, bubbles: !T3.current, name: u4, value: w3, checked: _2, required: x3, disabled: k3, style: { transform: "translateX(-100%)" } }));
+});
+var SwitchThumb = /* @__PURE__ */ s2.forwardRef((e8, r5) => {
+  const _a = e8, { __scopeSwitch: o6 } = _a, a4 = __objRest(_a, ["__scopeSwitch"]), c6 = m2("SwitchThumb", o6);
+  return s2.createElement(Primitive.span, _extends5({ "data-state": h2(c6.checked), "data-disabled": c6.disabled ? "" : void 0 }, a4, { ref: r5 }));
+});
+var b2 = (e8) => {
+  const _a = e8, { control: t6, checked: a4, bubbles: c6 = true } = _a, i5 = __objRest(_a, ["control", "checked", "bubbles"]), n5 = s2.useRef(null), l6 = usePrevious(a4), u4 = useSize(t6);
+  return s2.useEffect(() => {
+    const e9 = n5.current, t7 = window.HTMLInputElement.prototype, r5 = Object.getOwnPropertyDescriptor(t7, "checked").set;
+    if (l6 !== a4 && r5) {
+      const t8 = new Event("click", { bubbles: c6 });
+      r5.call(e9, a4), e9.dispatchEvent(t8);
+    }
+  }, [l6, a4, c6]), /* @__PURE__ */ s2.createElement("input", _extends5({ type: "checkbox", "aria-hidden": true, defaultChecked: a4 }, i5, { tabIndex: -1, ref: n5, style: __spreadProps(__spreadValues(__spreadValues({}, e8.style), u4), { position: "absolute", pointerEvents: "none", opacity: 0, margin: 0 }) }));
+};
+function h2(e8) {
+  return e8 ? "checked" : "unchecked";
 }
-function transparentize(amount, color) {
-  if (color === "transparent")
-    return color;
-  var parsedColor = parseToRgb(color);
-  var alpha = typeof parsedColor.alpha === "number" ? parsedColor.alpha : 1;
-  var colorWithAlpha = _extends6({}, parsedColor, {
-    alpha: guard(0, 1, +(alpha * 100 - parseFloat(amount) * 100).toFixed(2) / 100)
-  });
-  return rgba(colorWithAlpha);
-}
-var curriedTransparentize = /* @__PURE__ */ curry(transparentize);
-var curriedTransparentize$1 = curriedTransparentize;
+var Root2 = Switch;
+var Thumb = SwitchThumb;
+
+// app/common/ui-elements/library/switch/Switch.tsx
+var import_react28 = __toESM(require_react());
 
 // node_modules/styled-components/dist/styled-components.esm.js
 init_react();
 var import_react_is = __toESM(require_react_is());
-var import_react26 = __toESM(require_react());
+var import_react27 = __toESM(require_react());
 var import_shallowequal = __toESM(require_shallowequal());
 
 // node_modules/@emotion/stylis/dist/stylis.esm.js
@@ -53770,7 +53431,7 @@ var w2 = Object.freeze({});
 function E2(e8) {
   return typeof e8 == "function";
 }
-function b2(e8) {
+function b3(e8) {
   return typeof e8 == "string" && e8 || e8.displayName || e8.name || "Component";
 }
 function N2(e8) {
@@ -54114,27 +53775,27 @@ function ae(e8) {
     return t7.name || D2(15), ee(e9, t7.name);
   }, 5381).toString() : "", m4;
 }
-var ce = import_react26.default.createContext();
+var ce = import_react27.default.createContext();
 var ue = ce.Consumer;
-var le = import_react26.default.createContext();
+var le = import_react27.default.createContext();
 var de = (le.Consumer, new Z2());
 var he = ae();
 function pe() {
-  return (0, import_react26.useContext)(ce) || de;
+  return (0, import_react27.useContext)(ce) || de;
 }
 function fe() {
-  return (0, import_react26.useContext)(le) || he;
+  return (0, import_react27.useContext)(le) || he;
 }
 function me(e8) {
-  var t6 = (0, import_react26.useState)(e8.stylisPlugins), n5 = t6[0], s4 = t6[1], c6 = pe(), u4 = (0, import_react26.useMemo)(function() {
+  var t6 = (0, import_react27.useState)(e8.stylisPlugins), n5 = t6[0], s4 = t6[1], c6 = pe(), u4 = (0, import_react27.useMemo)(function() {
     var t7 = c6;
     return e8.sheet ? t7 = e8.sheet : e8.target && (t7 = t7.reconstructWithOptions({ target: e8.target }, false)), e8.disableCSSOMInjection && (t7 = t7.reconstructWithOptions({ useCSSOMInjection: false })), t7;
-  }, [e8.disableCSSOMInjection, e8.sheet, e8.target]), l6 = (0, import_react26.useMemo)(function() {
+  }, [e8.disableCSSOMInjection, e8.sheet, e8.target]), l6 = (0, import_react27.useMemo)(function() {
     return ae({ options: { prefix: !e8.disableVendorPrefixes }, plugins: n5 });
   }, [e8.disableVendorPrefixes, n5]);
-  return (0, import_react26.useEffect)(function() {
+  return (0, import_react27.useEffect)(function() {
     (0, import_shallowequal.default)(n5, e8.stylisPlugins) || s4(e8.stylisPlugins);
-  }, [e8.stylisPlugins]), import_react26.default.createElement(ce.Provider, { value: u4 }, import_react26.default.createElement(le.Provider, { value: l6 }, true ? import_react26.default.Children.only(e8.children) : e8.children));
+  }, [e8.stylisPlugins]), import_react27.default.createElement(ce.Provider, { value: u4 }, import_react27.default.createElement(le.Provider, { value: l6 }, true ? import_react27.default.Children.only(e8.children) : e8.children));
 }
 var ve = function() {
   function e8(e9, t6) {
@@ -54177,7 +53838,7 @@ function Ne(e8, n5, r5, o6) {
     if (typeof (l6 = e8) != "function" || l6.prototype && l6.prototype.isReactComponent || !n5)
       return e8;
     var u4 = e8(n5);
-    return (0, import_react_is.isElement)(u4) && console.warn(b2(e8) + " is not a styled component and cannot be referred to via component selector. See https://www.styled-components.com/docs/advanced#referring-to-other-components for more details."), Ne(u4, n5, r5, o6);
+    return (0, import_react_is.isElement)(u4) && console.warn(b3(e8) + " is not a styled component and cannot be referred to via component selector. See https://www.styled-components.com/docs/advanced#referring-to-other-components for more details."), Ne(u4, n5, r5, o6);
   }
   var l6;
   return e8 instanceof ve ? r5 ? (e8.inject(r5, o6), e8.getName(o6)) : e8 : g2(e8) ? function e9(t6, n6) {
@@ -54198,7 +53859,7 @@ var Ie = function(e8, t6) {
   if (true) {
     var n5 = "The component " + e8 + (t6 ? ' with the id of "' + t6 + '"' : "") + " has been created dynamically.\nYou may see this warning because you've called styled inside another component.\nTo resolve this only create new StyledComponents outside of any render method and function component.";
     try {
-      (0, import_react26.useRef)(), Ae.has(n5) || (console.warn(n5), Ae.add(n5));
+      (0, import_react27.useRef)(), Ae.has(n5) || (console.warn(n5), Ae.add(n5));
     } catch (e9) {
       Ce.test(e9.message) && Ae.delete(n5);
     }
@@ -54239,7 +53900,7 @@ function Me(e8) {
   }
   return e8;
 }
-var Be = import_react26.default.createContext();
+var Be = import_react27.default.createContext();
 var ze = Be.Consumer;
 var Ge = {};
 function Fe(e8, t6, n5) {
@@ -54249,7 +53910,7 @@ function Fe(e8, t6, n5) {
     var r5 = n6 + "-" + je("5.2.1" + n6 + Ge[n6]);
     return t7 ? t7 + "-" + r5 : r5;
   }(t6.displayName, t6.parentComponentId) : d3, p3 = t6.displayName, y3 = p3 === void 0 ? function(e9) {
-    return Te(e9) ? "styled." + e9 : "Styled(" + b2(e9) + ")";
+    return Te(e9) ? "styled." + e9 : "Styled(" + b3(e9) + ")";
   }(e8) : p3, g3 = t6.displayName && t6.componentId ? De(t6.displayName) + "-" + t6.componentId : t6.componentId || h3, _2 = o6 && e8.attrs ? Array.prototype.concat(e8.attrs, c6).filter(Boolean) : c6, C2 = t6.shouldForwardProp;
   o6 && e8.shouldForwardProp && (C2 = t6.shouldForwardProp ? function(n6, r5) {
     return e8.shouldForwardProp(n6, r5) && t6.shouldForwardProp(n6, r5);
@@ -54257,7 +53918,7 @@ function Fe(e8, t6, n5) {
   var A3, I4 = new oe(n5, g3, o6 ? e8.componentStyle : void 0), P2 = I4.isStatic && c6.length === 0, O3 = function(e9, t7) {
     return function(e10, t8, n6, r5) {
       var o7 = e10.attrs, i6 = e10.componentStyle, a5 = e10.defaultProps, c7 = e10.foldedComponentIds, d4 = e10.shouldForwardProp, h4 = e10.styledComponentId, p4 = e10.target;
-      (0, import_react26.useDebugValue)(h4);
+      (0, import_react27.useDebugValue)(h4);
       var m4 = function(e11, t9, n7) {
         e11 === void 0 && (e11 = w2);
         var r6 = v2({}, t9, { theme: e11 }), o8 = {};
@@ -54266,16 +53927,16 @@ function Fe(e8, t6, n5) {
           for (t10 in E2(i7) && (i7 = i7(r6)), i7)
             r6[t10] = o8[t10] = t10 === "className" ? (n8 = o8[t10], s4 = i7[t10], n8 && s4 ? n8 + " " + s4 : n8 || s4) : i7[t10];
         }), [r6, o8];
-      }(Pe(t8, (0, import_react26.useContext)(Be), a5) || w2, t8, o7), y4 = m4[0], g4 = m4[1], S3 = function(e11, t9, n7, r6) {
+      }(Pe(t8, (0, import_react27.useContext)(Be), a5) || w2, t8, o7), y4 = m4[0], g4 = m4[1], S3 = function(e11, t9, n7, r6) {
         var o8 = pe(), s4 = fe(), i7 = t9 ? e11.generateAndInjectStyles(w2, o8, s4) : e11.generateAndInjectStyles(n7, o8, s4);
-        return (0, import_react26.useDebugValue)(i7), !t9 && r6 && r6(i7), i7;
+        return (0, import_react27.useDebugValue)(i7), !t9 && r6 && r6(i7), i7;
       }(i6, r5, y4, true ? e10.warnTooManyClasses : void 0), b4 = n6, N3 = g4.$as || t8.$as || g4.as || t8.as || p4, _3 = Te(N3), C3 = g4 !== t8 ? v2({}, t8, {}, g4) : t8, A4 = {};
       for (var I5 in C3)
         I5[0] !== "$" && I5 !== "as" && (I5 === "forwardedAs" ? A4.as = C3[I5] : (d4 ? d4(I5, is_prop_valid_esm_default) : !_3 || is_prop_valid_esm_default(I5)) && (A4[I5] = C3[I5]));
-      return t8.style && g4.style !== t8.style && (A4.style = v2({}, t8.style, {}, g4.style)), A4.className = Array.prototype.concat(c7, h4, S3 !== h4 ? S3 : null, t8.className, g4.className).filter(Boolean).join(" "), A4.ref = b4, (0, import_react26.createElement)(N3, A4);
+      return t8.style && g4.style !== t8.style && (A4.style = v2({}, t8.style, {}, g4.style)), A4.className = Array.prototype.concat(c7, h4, S3 !== h4 ? S3 : null, t8.className, g4.className).filter(Boolean).join(" "), A4.ref = b4, (0, import_react27.createElement)(N3, A4);
     }(A3, e9, t7, P2);
   };
-  return O3.displayName = y3, (A3 = import_react26.default.forwardRef(O3)).attrs = _2, A3.componentStyle = I4, A3.displayName = y3, A3.shouldForwardProp = C2, A3.foldedComponentIds = o6 ? Array.prototype.concat(e8.foldedComponentIds, e8.styledComponentId) : S2, A3.styledComponentId = g3, A3.target = o6 ? e8.target : e8, A3.withComponent = function(e9) {
+  return O3.displayName = y3, (A3 = import_react27.default.forwardRef(O3)).attrs = _2, A3.componentStyle = I4, A3.displayName = y3, A3.shouldForwardProp = C2, A3.foldedComponentIds = o6 ? Array.prototype.concat(e8.foldedComponentIds, e8.styledComponentId) : S2, A3.styledComponentId = g3, A3.target = o6 ? e8.target : e8, A3.withComponent = function(e9) {
     var r5 = t6.componentId, o7 = function(e10, t7) {
       if (e10 == null)
         return {};
@@ -54283,7 +53944,7 @@ function Fe(e8, t6, n5) {
       for (r6 = 0; r6 < s5.length; r6++)
         n6 = s5[r6], t7.indexOf(n6) >= 0 || (o8[n6] = e10[n6]);
       return o8;
-    }(t6, ["componentId"]), s4 = r5 && r5 + "-" + (Te(e9) ? e9 : De(b2(e9)));
+    }(t6, ["componentId"]), s4 = r5 && r5 + "-" + (Te(e9) ? e9 : De(b3(e9)));
     return Fe(e9, v2({}, o7, { attrs: _2, componentId: s4 }), n5);
   }, Object.defineProperty(A3, "defaultProps", { get: function() {
     return this._foldedDefaultProps;
@@ -54346,14 +54007,14 @@ var Ue = function() {
       if (e9.sealed)
         return D2(2);
       var n5 = ((t7 = {})[_] = "", t7["data-styled-version"] = "5.2.1", t7.dangerouslySetInnerHTML = { __html: e9.instance.toString() }, t7), o6 = Y2();
-      return o6 && (n5.nonce = o6), [import_react26.default.createElement("style", v2({}, n5, { key: "sc-0-0" }))];
+      return o6 && (n5.nonce = o6), [import_react27.default.createElement("style", v2({}, n5, { key: "sc-0-0" }))];
     }, this.seal = function() {
       e9.sealed = true;
     }, this.instance = new Z2({ isServer: true }), this.sealed = false;
   }
   var t6 = e8.prototype;
   return t6.collectStyles = function(e9) {
-    return this.sealed ? D2(2) : import_react26.default.createElement(me, { sheet: this.instance }, e9);
+    return this.sealed ? D2(2) : import_react27.default.createElement(me, { sheet: this.instance }, e9);
   }, t6.interleaveWithNodeStream = function(e9) {
     if (A2)
       return D2(3);
@@ -54376,217 +54037,6 @@ var Ue = function() {
 }();
 typeof navigator != "undefined" && navigator.product === "ReactNative" && console.warn("It looks like you've imported 'styled-components' on React Native.\nPerhaps you're looking to import 'styled-components/native'?\nRead more about this at https://www.styled-components.com/docs/basics#react-native"), "development";
 var styled_components_esm_default = Ye;
-
-// app/common/ui-elements/library/divider/divider.tsx
-var Divider = styled_components_esm_default(Root)`
-  ${({ orientation }) => orientation === "vertical" ? `
-    width: 2px;
-    height: 100%;
-  ` : `
-    height: 2px;
-    width: 100%;
-  `};
-
-  background: radial-gradient(
-    circle,
-    ${(props) => props.color} 0%,
-    ${(props) => props.highlightColor ? curriedTransparentize$1(1, props.highlightColor) : curriedTransparentize$1(1, "rgba(189, 189, 189, 1)")}
-      100%
-  );
-`;
-
-// node_modules/@radix-ui/react-use-previous/dist/index.module.js
-init_react();
-var e4 = __toESM(require_react());
-function usePrevious(r5) {
-  const u4 = e4.useRef({ value: r5, previous: r5 });
-  return e4.useMemo(() => (u4.current.value !== r5 && (u4.current.previous = u4.current.value, u4.current.value = r5), u4.current.previous), [r5]);
-}
-
-// node_modules/@radix-ui/react-use-controllable-state/dist/index.module.js
-init_react();
-
-// node_modules/@radix-ui/react-use-callback-ref/dist/index.module.js
-init_react();
-var e5 = __toESM(require_react());
-function useCallbackRef(r5) {
-  const t6 = e5.useRef(r5);
-  return e5.useEffect(() => {
-    t6.current = r5;
-  }), e5.useMemo(() => (...e8) => {
-    var r6;
-    return (r6 = t6.current) === null || r6 === void 0 ? void 0 : r6.call(t6, ...e8);
-  }, []);
-}
-
-// node_modules/@radix-ui/react-use-controllable-state/dist/index.module.js
-var t4 = __toESM(require_react());
-function useControllableState({ prop: o6, defaultProp: r5, onChange: n5 = () => {
-} }) {
-  const [a4, u4] = function({ defaultProp: o7, onChange: r6 }) {
-    const n6 = t4.useState(o7), [a5] = n6, u5 = t4.useRef(a5), c7 = useCallbackRef(r6);
-    return t4.useEffect(() => {
-      u5.current !== a5 && (c7(a5), u5.current = a5);
-    }, [a5, u5, c7]), n6;
-  }({ defaultProp: r5, onChange: n5 }), c6 = o6 !== void 0, f2 = c6 ? o6 : a4, l6 = useCallbackRef(n5);
-  return [f2, t4.useCallback((e8) => {
-    if (c6) {
-      const t6 = e8, r6 = typeof e8 == "function" ? t6(o6) : e8;
-      r6 !== o6 && l6(r6);
-    } else
-      u4(e8);
-  }, [c6, o6, u4, l6])];
-}
-
-// node_modules/@radix-ui/react-label/dist/index.module.js
-init_react();
-
-// node_modules/@radix-ui/react-context/dist/index.module.js
-init_react();
-var e6 = __toESM(require_react());
-function createContext6(t6, n5) {
-  const o6 = /* @__PURE__ */ e6.createContext(n5);
-  function r5(t7) {
-    const _a = t7, { children: n6 } = _a, r6 = __objRest(_a, ["children"]), c6 = e6.useMemo(() => r6, Object.values(r6));
-    return e6.createElement(o6.Provider, { value: c6 }, n6);
-  }
-  return r5.displayName = t6 + "Provider", [r5, function(r6) {
-    const c6 = e6.useContext(o6);
-    if (c6)
-      return c6;
-    if (n5 !== void 0)
-      return n5;
-    throw new Error(`\`${r6}\` must be used within \`${t6}\``);
-  }];
-}
-function createContextScope(n5, o6 = []) {
-  let r5 = [];
-  const c6 = () => {
-    const t6 = r5.map((t7) => /* @__PURE__ */ e6.createContext(t7));
-    return function(o7) {
-      const r6 = (o7 == null ? void 0 : o7[n5]) || t6;
-      return e6.useMemo(() => ({ [`__scope${n5}`]: __spreadProps(__spreadValues({}, o7), { [n5]: r6 }) }), [o7, r6]);
-    };
-  };
-  return c6.scopeName = n5, [function(t6, o7) {
-    const c7 = /* @__PURE__ */ e6.createContext(o7), u4 = r5.length;
-    function s4(t7) {
-      const _a = t7, { scope: o8, children: r6 } = _a, s5 = __objRest(_a, ["scope", "children"]), i5 = (o8 == null ? void 0 : o8[n5][u4]) || c7, a4 = e6.useMemo(() => s5, Object.values(s5));
-      return e6.createElement(i5.Provider, { value: a4 }, r6);
-    }
-    return r5 = [...r5, o7], s4.displayName = t6 + "Provider", [s4, function(r6, s5) {
-      const i5 = (s5 == null ? void 0 : s5[n5][u4]) || c7, a4 = e6.useContext(i5);
-      if (a4)
-        return a4;
-      if (o7 !== void 0)
-        return o7;
-      throw new Error(`\`${r6}\` must be used within \`${t6}\``);
-    }];
-  }, t5(c6, ...o6)];
-}
-function t5(...t6) {
-  const n5 = t6[0];
-  if (t6.length === 1)
-    return n5;
-  const o6 = () => {
-    const o7 = t6.map((e8) => ({ useScope: e8(), scopeName: e8.scopeName }));
-    return function(t7) {
-      const r5 = o7.reduce((e8, { useScope: n6, scopeName: o8 }) => __spreadValues(__spreadValues({}, e8), n6(t7)[`__scope${o8}`]), {});
-      return e6.useMemo(() => ({ [`__scope${n5.scopeName}`]: r5 }), [r5]);
-    };
-  };
-  return o6.scopeName = n5.scopeName, o6;
-}
-
-// node_modules/@radix-ui/react-label/dist/index.module.js
-var l4 = __toESM(require_react());
-var [i4, a3] = createContext6("Label", { id: void 0, controlRef: { current: null } });
-var useLabelContext = (e8) => {
-  const t6 = a3("LabelConsumer"), { controlRef: r5 } = t6;
-  return l4.useEffect(() => {
-    e8 && (r5.current = e8);
-  }, [e8, r5]), t6.id;
-};
-
-// node_modules/@radix-ui/primitive/dist/index.module.js
-init_react();
-function composeEventHandlers2(e8, n5, { checkForDefaultPrevented: t6 = true } = {}) {
-  return function(r5) {
-    if (e8 == null || e8(r5), t6 === false || !r5.defaultPrevented)
-      return n5 == null ? void 0 : n5(r5);
-  };
-}
-
-// app/common/ui-elements/library/switch/index.ts
-init_react();
-
-// app/common/ui-elements/library/switch/Switch.tsx
-init_react();
-
-// node_modules/@radix-ui/react-switch/dist/index.module.js
-init_react();
-
-// node_modules/@radix-ui/react-use-size/dist/index.module.js
-init_react();
-var e7 = __toESM(require_react());
-function useSize(r5) {
-  const [i5, t6] = e7.useState(void 0);
-  return e7.useEffect(() => {
-    if (r5) {
-      const e8 = new ResizeObserver((e9) => {
-        if (!Array.isArray(e9))
-          return;
-        if (!e9.length)
-          return;
-        const i6 = e9[0];
-        let o6, n5;
-        if ("borderBoxSize" in i6) {
-          const e10 = i6.borderBoxSize, r6 = Array.isArray(e10) ? e10[0] : e10;
-          o6 = r6.inlineSize, n5 = r6.blockSize;
-        } else {
-          const e10 = r5.getBoundingClientRect();
-          o6 = e10.width, n5 = e10.height;
-        }
-        t6({ width: o6, height: n5 });
-      });
-      return e8.observe(r5, { box: "border-box" }), () => e8.unobserve(r5);
-    }
-    t6(void 0);
-  }, [r5]), i5;
-}
-
-// node_modules/@radix-ui/react-switch/dist/index.module.js
-var s3 = __toESM(require_react());
-var [l5, u3] = createContextScope("Switch");
-var [p2, m3] = l5("Switch");
-var Switch = /* @__PURE__ */ s3.forwardRef((r5, o6) => {
-  const _a = r5, { __scopeSwitch: c6, "aria-labelledby": l6, name: u4, checked: m4, defaultChecked: f2, required: x3, disabled: k3, value: w3 = "on", onCheckedChange: v3 } = _a, S3 = __objRest(_a, ["__scopeSwitch", "aria-labelledby", "name", "checked", "defaultChecked", "required", "disabled", "value", "onCheckedChange"]), [y3, E3] = s3.useState(null), C2 = useComposedRefs(o6, (e8) => E3(e8)), g3 = useLabelContext(y3), R3 = l6 || g3, T3 = s3.useRef(false), P2 = !y3 || Boolean(y3.closest("form")), [_2 = false, q3] = useControllableState({ prop: m4, defaultProp: f2, onChange: v3 });
-  return s3.createElement(p2, { scope: c6, checked: _2, disabled: k3 }, /* @__PURE__ */ s3.createElement(Primitive.button, _extends5({ type: "button", role: "switch", "aria-checked": _2, "aria-labelledby": R3, "aria-required": x3, "data-state": h2(_2), "data-disabled": k3 ? "" : void 0, disabled: k3, value: w3 }, S3, { ref: C2, onClick: composeEventHandlers2(r5.onClick, (e8) => {
-    q3((e9) => !e9), P2 && (T3.current = e8.isPropagationStopped(), T3.current || e8.stopPropagation());
-  }) })), P2 && /* @__PURE__ */ s3.createElement(b3, { control: y3, bubbles: !T3.current, name: u4, value: w3, checked: _2, required: x3, disabled: k3, style: { transform: "translateX(-100%)" } }));
-});
-var SwitchThumb = /* @__PURE__ */ s3.forwardRef((e8, r5) => {
-  const _a = e8, { __scopeSwitch: o6 } = _a, a4 = __objRest(_a, ["__scopeSwitch"]), c6 = m3("SwitchThumb", o6);
-  return s3.createElement(Primitive.span, _extends5({ "data-state": h2(c6.checked), "data-disabled": c6.disabled ? "" : void 0 }, a4, { ref: r5 }));
-});
-var b3 = (e8) => {
-  const _a = e8, { control: t6, checked: a4, bubbles: c6 = true } = _a, i5 = __objRest(_a, ["control", "checked", "bubbles"]), n5 = s3.useRef(null), l6 = usePrevious(a4), u4 = useSize(t6);
-  return s3.useEffect(() => {
-    const e9 = n5.current, t7 = window.HTMLInputElement.prototype, r5 = Object.getOwnPropertyDescriptor(t7, "checked").set;
-    if (l6 !== a4 && r5) {
-      const t8 = new Event("click", { bubbles: c6 });
-      r5.call(e9, a4), e9.dispatchEvent(t8);
-    }
-  }, [l6, a4, c6]), /* @__PURE__ */ s3.createElement("input", _extends5({ type: "checkbox", "aria-hidden": true, defaultChecked: a4 }, i5, { tabIndex: -1, ref: n5, style: __spreadProps(__spreadValues(__spreadValues({}, e8.style), u4), { position: "absolute", pointerEvents: "none", opacity: 0, margin: 0 }) }));
-};
-function h2(e8) {
-  return e8 ? "checked" : "unchecked";
-}
-var Root2 = Switch;
-var Thumb = SwitchThumb;
-
-// app/common/ui-elements/library/switch/Switch.tsx
-var import_react27 = __toESM(require_react());
 
 // app/common/ui-elements/library/theme/index.ts
 init_react();
@@ -54644,15 +54094,15 @@ var Thumb2 = styled_components_esm_default(Thumb)`
 `;
 var Switch2 = (_a) => {
   var props = __objRest(_a, []);
-  const [isChecked, setIsChecked] = (0, import_react27.useState)(props.checked ?? false);
-  return /* @__PURE__ */ import_react27.default.createElement(Root3, __spreadProps(__spreadValues({}, props), {
+  const [isChecked, setIsChecked] = (0, import_react28.useState)(props.checked ?? false);
+  return /* @__PURE__ */ import_react28.default.createElement(Root3, __spreadProps(__spreadValues({}, props), {
     onCheckedChange: (c6) => {
       if (props.onCheckedChange) {
         props.onCheckedChange(c6);
       }
       setIsChecked(c6);
     }
-  }), /* @__PURE__ */ import_react27.default.createElement(Thumb2, {
+  }), /* @__PURE__ */ import_react28.default.createElement(Thumb2, {
     $checked: isChecked
   }));
 };
@@ -54664,9 +54114,8 @@ var Blockquote = ({ children, author }) => {
   return /* @__PURE__ */ React.createElement("div", {
     className: "grid grid-cols-[auto_1fr] mb-5"
   }, /* @__PURE__ */ React.createElement(Divider, {
-    color: colorToUse,
     orientation: "vertical",
-    style: { marginRight: "20px" }
+    className: "mr-5"
   }), /* @__PURE__ */ React.createElement("blockquote", {
     className: "text-sm"
   }, children, /* @__PURE__ */ React.createElement("p", {
@@ -54707,11 +54156,11 @@ var randomBoxOdds = {
   mythical: 0.4
 };
 var WeightedBox = () => {
-  const [charOpened, setCharOpened] = (0, import_react28.useState)(void 0);
+  const [charOpened, setCharOpened] = (0, import_react29.useState)(void 0);
   const openBoxHandler = () => {
     setCharOpened(openBox(randomBoxOdds));
   };
-  (0, import_react28.useEffect)(() => {
+  (0, import_react29.useEffect)(() => {
     if (charOpened) {
       setTimeout(() => {
         setCharOpened(void 0);
@@ -54748,7 +54197,7 @@ __export(naive_box_exports, {
   NaiveBox: () => NaiveBox
 });
 init_react();
-var import_react29 = __toESM(require_react());
+var import_react30 = __toESM(require_react());
 var shuffle = (array) => {
   let currentIndex = array.length;
   let randomIndex;
@@ -54779,18 +54228,18 @@ var createBag = () => {
   return shuffle(bag);
 };
 var NaiveBox = () => {
-  const [bag, setBag] = (0, import_react29.useState)([]);
-  (0, import_react29.useEffect)(() => {
+  const [bag, setBag] = (0, import_react30.useState)([]);
+  (0, import_react30.useEffect)(() => {
     const newBag = createBag();
     setBag(newBag);
   }, []);
-  const [charOpened, setCharOpened] = (0, import_react29.useState)(void 0);
+  const [charOpened, setCharOpened] = (0, import_react30.useState)(void 0);
   const openBoxHandler = () => {
     const randomIndex = Math.floor(Math.random() * 2e3);
     const char = bag[randomIndex];
     setCharOpened(char);
   };
-  (0, import_react29.useEffect)(() => {
+  (0, import_react30.useEffect)(() => {
     if (charOpened) {
       setTimeout(() => {
         setCharOpened(void 0);
@@ -54860,7 +54309,7 @@ init_react();
 
 // app/routes/projects/loot-crate/crates/naive-box.tsx
 init_react();
-var import_react30 = __toESM(require_react());
+var import_react31 = __toESM(require_react());
 var shuffle2 = (array) => {
   let currentIndex = array.length;
   let randomIndex;
@@ -54891,18 +54340,18 @@ var createBag2 = () => {
   return shuffle2(bag);
 };
 var NaiveBox2 = () => {
-  const [bag, setBag] = (0, import_react30.useState)([]);
-  (0, import_react30.useEffect)(() => {
+  const [bag, setBag] = (0, import_react31.useState)([]);
+  (0, import_react31.useEffect)(() => {
     const newBag = createBag2();
     setBag(newBag);
   }, []);
-  const [charOpened, setCharOpened] = (0, import_react30.useState)(void 0);
+  const [charOpened, setCharOpened] = (0, import_react31.useState)(void 0);
   const openBoxHandler = () => {
     const randomIndex = Math.floor(Math.random() * 2e3);
     const char = bag[randomIndex];
     setCharOpened(char);
   };
-  (0, import_react30.useEffect)(() => {
+  (0, import_react31.useEffect)(() => {
     if (charOpened) {
       setTimeout(() => {
         setCharOpened(void 0);
@@ -54935,7 +54384,7 @@ var NaiveBox2 = () => {
 
 // app/routes/projects/loot-crate/crates/weighted-box.tsx
 init_react();
-var import_react31 = __toESM(require_react());
+var import_react32 = __toESM(require_react());
 var randomBoxOdds2 = {
   common: 74,
   rare: 19,
@@ -54944,11 +54393,11 @@ var randomBoxOdds2 = {
   mythical: 0.4
 };
 var WeightedBox2 = () => {
-  const [charOpened, setCharOpened] = (0, import_react31.useState)(void 0);
+  const [charOpened, setCharOpened] = (0, import_react32.useState)(void 0);
   const openBoxHandler = () => {
     setCharOpened(openBox(randomBoxOdds2));
   };
-  (0, import_react31.useEffect)(() => {
+  (0, import_react32.useEffect)(() => {
     if (charOpened) {
       setTimeout(() => {
         setCharOpened(void 0);
@@ -55023,7 +54472,7 @@ __export(education_blurb_exports, {
   EducationBlurb: () => EducationBlurb
 });
 init_react();
-var import_react32 = __toESM(require_react());
+var import_react33 = __toESM(require_react());
 
 // app/routes/about/blurbs/blurb-divider.tsx
 init_react();
@@ -55037,17 +54486,17 @@ var BlurbDivider = () => {
 
 // route:/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/app/routes/about/blurbs/education-blurb.tsx
 var EducationBlurb = () => {
-  return /* @__PURE__ */ import_react32.default.createElement(import_react32.default.Fragment, null, /* @__PURE__ */ import_react32.default.createElement("h2", {
+  return /* @__PURE__ */ import_react33.default.createElement(import_react33.default.Fragment, null, /* @__PURE__ */ import_react33.default.createElement("h2", {
     className: "mb-2 text-xl"
-  }, "University of Nevada, Reno"), /* @__PURE__ */ import_react32.default.createElement("div", {
+  }, "University of Nevada, Reno"), /* @__PURE__ */ import_react33.default.createElement("div", {
     className: "flex flex-col items-center h-full"
-  }, /* @__PURE__ */ import_react32.default.createElement("div", {
+  }, /* @__PURE__ */ import_react33.default.createElement("div", {
     style: {
       display: "flex",
       flexDirection: "column",
       justifyContent: "space-evenly"
     }
-  }, /* @__PURE__ */ import_react32.default.createElement("p", null, "I graduated in the winter of 2019 from the University of Nevada, Reno with a Bachelors in Computer Science and Engineering and a minor in Mathematics."), /* @__PURE__ */ import_react32.default.createElement("div", null, /* @__PURE__ */ import_react32.default.createElement(BlurbDivider, null)), /* @__PURE__ */ import_react32.default.createElement("p", null, "My coursework and area of interest was in Machine Learning and A.I. For my Senior project, I worked as the primary front-end developer on a team of three. Our goal was to refactor and rebuild, from the ground up, an in-use production application."))));
+  }, /* @__PURE__ */ import_react33.default.createElement("p", null, "I graduated in the winter of 2019 from the University of Nevada, Reno with a Bachelors in Computer Science and Engineering and a minor in Mathematics."), /* @__PURE__ */ import_react33.default.createElement("div", null, /* @__PURE__ */ import_react33.default.createElement(BlurbDivider, null)), /* @__PURE__ */ import_react33.default.createElement("p", null, "My coursework and area of interest was in Machine Learning and A.I. For my Senior project, I worked as the primary front-end developer on a team of three. Our goal was to refactor and rebuild, from the ground up, an in-use production application."))));
 };
 
 // route:/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/app/routes/about/blurbs/about-me-blurb.tsx
@@ -55056,9 +54505,9 @@ __export(about_me_blurb_exports, {
   AboutMeBlurb: () => AboutMeBlurb
 });
 init_react();
-var import_react33 = __toESM(require_react());
+var import_react34 = __toESM(require_react());
 var AboutMeBlurb = () => {
-  return /* @__PURE__ */ import_react33.default.createElement("div", null, /* @__PURE__ */ import_react33.default.createElement(BlurbDivider, null), /* @__PURE__ */ import_react33.default.createElement(Paragraph, null, `Hi, I'm Kevin!`), /* @__PURE__ */ import_react33.default.createElement(Paragraph, null, "From an early age, I was introduced to Halo by a friend and got hooked into gaming. Like many, I got into Computer Science to build games, but in doing so found a world of much more."), /* @__PURE__ */ import_react33.default.createElement(Paragraph, null, "Through school, I learned just how vast the realm of CS is and questioned what path I should take. Tesla was becoming more and more popular and I saw what they were doing with Machine Learning and A.I; So I made these my focus. I was drawn towards this path because I wanted to help develop life-changing technologies that impact and shape the world we live in."), /* @__PURE__ */ import_react33.default.createElement(Paragraph, null, "Near the end of my schooling career, I was afforded an opportunity to become a Frontend Software Engineer and in doing so have found that there are more ways to impact and shape the world!"), /* @__PURE__ */ import_react33.default.createElement(BlurbDivider, null));
+  return /* @__PURE__ */ import_react34.default.createElement("div", null, /* @__PURE__ */ import_react34.default.createElement(BlurbDivider, null), /* @__PURE__ */ import_react34.default.createElement(Paragraph, null, `Hi, I'm Kevin!`), /* @__PURE__ */ import_react34.default.createElement(Paragraph, null, "From an early age, I was introduced to Halo by a friend and got hooked into gaming. Like many, I got into Computer Science to build games, but in doing so found a world of much more."), /* @__PURE__ */ import_react34.default.createElement(Paragraph, null, "Through school, I learned just how vast the realm of CS is and questioned what path I should take. Tesla was becoming more and more popular and I saw what they were doing with Machine Learning and A.I; So I made these my focus. I was drawn towards this path because I wanted to help develop life-changing technologies that impact and shape the world we live in."), /* @__PURE__ */ import_react34.default.createElement(Paragraph, null, "Near the end of my schooling career, I was afforded an opportunity to become a Frontend Software Engineer and in doing so have found that there are more ways to impact and shape the world!"), /* @__PURE__ */ import_react34.default.createElement(BlurbDivider, null));
 };
 
 // route:/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/app/routes/about/blurbs/blurb-divider.tsx
@@ -55253,7 +54702,7 @@ function eachSafely(values, each2) {
 
 // node_modules/@react-spring/shared/dist/react-spring-shared.esm.js
 var React18 = __toESM(require_react());
-var import_react34 = __toESM(require_react());
+var import_react35 = __toESM(require_react());
 function noop2() {
 }
 var defineHidden = (obj, key, value) => Object.defineProperty(obj, key, {
@@ -55575,8 +55024,8 @@ var PERCENTAGE = NUMBER + "%";
 function call(...parts) {
   return "\\(\\s*(" + parts.join(")\\s*,\\s*(") + ")\\s*\\)";
 }
-var rgb2 = new RegExp("rgb" + call(NUMBER, NUMBER, NUMBER));
-var rgba2 = new RegExp("rgba" + call(NUMBER, NUMBER, NUMBER, NUMBER));
+var rgb = new RegExp("rgb" + call(NUMBER, NUMBER, NUMBER));
+var rgba = new RegExp("rgba" + call(NUMBER, NUMBER, NUMBER, NUMBER));
 var hsl = new RegExp("hsl" + call(NUMBER, PERCENTAGE, PERCENTAGE));
 var hsla = new RegExp("hsla" + call(NUMBER, PERCENTAGE, PERCENTAGE, NUMBER));
 var hex3 = /^#([0-9a-fA-F]{1})([0-9a-fA-F]{1})([0-9a-fA-F]{1})$/;
@@ -55593,10 +55042,10 @@ function normalizeColor(color) {
   if (colors$1 && colors$1[color] !== void 0) {
     return colors$1[color];
   }
-  if (match = rgb2.exec(color)) {
+  if (match = rgb.exec(color)) {
     return (parse255(match[1]) << 24 | parse255(match[2]) << 16 | parse255(match[3]) << 8 | 255) >>> 0;
   }
-  if (match = rgba2.exec(color)) {
+  if (match = rgba.exec(color)) {
     return (parse255(match[1]) << 24 | parse255(match[2]) << 16 | parse255(match[3]) << 8 | parse1(match[4])) >>> 0;
   }
   if (match = hex3.exec(color)) {
@@ -55608,10 +55057,10 @@ function normalizeColor(color) {
     return parseInt(match[1] + match[1] + match[2] + match[2] + match[3] + match[3] + match[4] + match[4], 16) >>> 0;
   }
   if (match = hsl.exec(color)) {
-    return (hslToRgb2(parse360(match[1]), parsePercentage(match[2]), parsePercentage(match[3])) | 255) >>> 0;
+    return (hslToRgb(parse360(match[1]), parsePercentage(match[2]), parsePercentage(match[3])) | 255) >>> 0;
   }
   if (match = hsla.exec(color)) {
-    return (hslToRgb2(parse360(match[1]), parsePercentage(match[2]), parsePercentage(match[3])) | parse1(match[4])) >>> 0;
+    return (hslToRgb(parse360(match[1]), parsePercentage(match[2]), parsePercentage(match[3])) | parse1(match[4])) >>> 0;
   }
   return null;
 }
@@ -55628,7 +55077,7 @@ function hue2rgb(p3, q3, t6) {
     return p3 + (q3 - p3) * (2 / 3 - t6) * 6;
   return p3;
 }
-function hslToRgb2(h3, s4, l6) {
+function hslToRgb(h3, s4, l6) {
   const q3 = l6 < 0.5 ? l6 * (1 + s4) : l6 + s4 - l6 * s4;
   const p3 = 2 * l6 - q3;
   const r5 = hue2rgb(p3, q3, h3 + 1 / 3);
@@ -55739,8 +55188,8 @@ function findRange(input, inputRange) {
       break;
   return i5 - 1;
 }
-function _extends7() {
-  _extends7 = Object.assign || function(target) {
+function _extends6() {
+  _extends6 = Object.assign || function(target) {
     for (var i5 = 1; i5 < arguments.length; i5++) {
       var source = arguments[i5];
       for (var key in source) {
@@ -55751,7 +55200,7 @@ function _extends7() {
     }
     return target;
   };
-  return _extends7.apply(this, arguments);
+  return _extends6.apply(this, arguments);
 }
 var $get = Symbol.for("FluidValue.get");
 var $observers = Symbol.for("FluidValue.observers");
@@ -55821,7 +55270,7 @@ var setHidden = (target, key, value) => Object.defineProperty(target, key, {
 var numberRegex = /[+\-]?(?:0|[1-9]\d*)(?:\.\d*)?(?:[eE][+\-]?\d+)?/g;
 var colorRegex = /(#(?:[0-9a-f]{2}){2,4}|(#[0-9a-f]{3})|(rgb|hsl)a?\((-?\d+%?[,\s]+){2,3}\s*[\d\.]+%?\))/gi;
 var unitRegex = new RegExp(`(${numberRegex.source})(%|[a-z]+)`, "i");
-var rgbaRegex2 = /rgba\(([0-9\.-]+), ([0-9\.-]+), ([0-9\.-]+), ([0-9\.-]+)\)/gi;
+var rgbaRegex = /rgba\(([0-9\.-]+), ([0-9\.-]+), ([0-9\.-]+), ([0-9\.-]+)\)/gi;
 var cssVariableRegex = /var\((--[a-zA-Z0-9-_]+),? ?([a-zA-Z0-9 ()%#.,-]+)?\)/;
 var variableToRgba = (input) => {
   const [token, fallback] = parseCSSVariable(input);
@@ -55867,14 +55316,14 @@ var createStringInterpolator = (config3) => {
     }
     return values[i5];
   }));
-  const interpolators = outputRanges.map((output2) => createInterpolator(_extends7({}, config3, {
+  const interpolators = outputRanges.map((output2) => createInterpolator(_extends6({}, config3, {
     output: output2
   })));
   return (input) => {
     var _output$find;
     const missingUnit = !unitRegex.test(output[0]) && ((_output$find = output.find((value) => unitRegex.test(value))) == null ? void 0 : _output$find.replace(numberRegex, ""));
     let i5 = 0;
-    return output[0].replace(numberRegex, () => `${interpolators[i5++](input)}${missingUnit || ""}`).replace(rgbaRegex2, rgbaRound);
+    return output[0].replace(numberRegex, () => `${interpolators[i5++](input)}${missingUnit || ""}`).replace(rgbaRegex, rgbaRound);
   };
 };
 var prefix = "react-spring: ";
@@ -55902,11 +55351,11 @@ function deprecateDirectCall() {
 function isAnimatedString(value) {
   return is.str(value) && (value[0] == "#" || /\d/.test(value) || !isSSR() && cssVariableRegex.test(value) || value in (colors$1 || {}));
 }
-var useOnce = (effect) => (0, import_react34.useEffect)(effect, emptyDeps);
+var useOnce = (effect) => (0, import_react35.useEffect)(effect, emptyDeps);
 var emptyDeps = [];
 function useForceUpdate() {
-  const update3 = (0, import_react34.useState)()[1];
-  const mounted = (0, import_react34.useState)(makeMountedRef)[0];
+  const update3 = (0, import_react35.useState)()[1];
+  const mounted = (0, import_react35.useState)(makeMountedRef)[0];
   useOnce(mounted.unmount);
   return () => {
     if (mounted.current) {
@@ -55924,11 +55373,11 @@ function makeMountedRef() {
   return mounted;
 }
 function useMemoOne(getResult, inputs) {
-  const [initial] = (0, import_react34.useState)(() => ({
+  const [initial] = (0, import_react35.useState)(() => ({
     inputs,
     result: getResult()
   }));
-  const committed = (0, import_react34.useRef)();
+  const committed = (0, import_react35.useRef)();
   const prevCache = committed.current;
   let cache = prevCache;
   if (cache) {
@@ -55942,7 +55391,7 @@ function useMemoOne(getResult, inputs) {
   } else {
     cache = initial;
   }
-  (0, import_react34.useEffect)(() => {
+  (0, import_react35.useEffect)(() => {
     committed.current = cache;
     if (prevCache == initial) {
       initial.inputs = initial.result = void 0;
@@ -55962,8 +55411,8 @@ function areInputsEqual(next, prev) {
   return true;
 }
 function usePrev(value) {
-  const prevRef = (0, import_react34.useRef)();
-  (0, import_react34.useEffect)(() => {
+  const prevRef = (0, import_react35.useRef)();
+  (0, import_react35.useEffect)(() => {
     prevRef.current = value;
   });
   return prevRef.current;
@@ -55972,12 +55421,12 @@ var useLayoutEffect5 = typeof window !== "undefined" && window.document && windo
 
 // node_modules/@react-spring/core/dist/react-spring-core.esm.js
 var React20 = __toESM(require_react());
-var import_react36 = __toESM(require_react());
+var import_react37 = __toESM(require_react());
 
 // node_modules/@react-spring/animated/dist/react-spring-animated.esm.js
 init_react();
 var React19 = __toESM(require_react());
-var import_react35 = __toESM(require_react());
+var import_react36 = __toESM(require_react());
 var $node = Symbol.for("Animated:node");
 var isAnimated = (value) => !!value && value[$node] === value;
 var getAnimated = (owner) => owner && owner[$node];
@@ -56161,8 +55610,8 @@ function getAnimatedType(value) {
   const parentNode = getAnimated(value);
   return parentNode ? parentNode.constructor : is.arr(value) ? AnimatedArray : isAnimatedString(value) ? AnimatedString : AnimatedValue;
 }
-function _extends8() {
-  _extends8 = Object.assign || function(target) {
+function _extends7() {
+  _extends7 = Object.assign || function(target) {
     for (var i5 = 1; i5 < arguments.length; i5++) {
       var source = arguments[i5];
       for (var key in source) {
@@ -56173,13 +55622,13 @@ function _extends8() {
     }
     return target;
   };
-  return _extends8.apply(this, arguments);
+  return _extends7.apply(this, arguments);
 }
 var withAnimated = (Component, host2) => {
   const hasInstance = !is.fun(Component) || Component.prototype && Component.prototype.isReactComponent;
-  return (0, import_react35.forwardRef)((givenProps, givenRef) => {
-    const instanceRef = (0, import_react35.useRef)(null);
-    const ref = hasInstance && (0, import_react35.useCallback)((value) => {
+  return (0, import_react36.forwardRef)((givenProps, givenRef) => {
+    const instanceRef = (0, import_react36.useRef)(null);
+    const ref = hasInstance && (0, import_react36.useCallback)((value) => {
       instanceRef.current = updateRef(givenRef, value);
     }, [givenRef]);
     const [props, deps] = getAnimatedState(givenProps, host2);
@@ -56195,7 +55644,7 @@ var withAnimated = (Component, host2) => {
       }
     };
     const observer = new PropsObserver(callback, deps);
-    const observerRef = (0, import_react35.useRef)();
+    const observerRef = (0, import_react36.useRef)();
     useLayoutEffect5(() => {
       const lastObserver = observerRef.current;
       observerRef.current = observer;
@@ -56205,13 +55654,13 @@ var withAnimated = (Component, host2) => {
         raf.cancel(lastObserver.update);
       }
     });
-    (0, import_react35.useEffect)(callback, []);
+    (0, import_react36.useEffect)(callback, []);
     useOnce(() => () => {
       const observer2 = observerRef.current;
       each(observer2.deps, (dep) => removeFluidObserver(dep, observer2));
     });
     const usedProps = host2.getComponentProps(props.getValue());
-    return React19.createElement(Component, _extends8({}, usedProps, {
+    return React19.createElement(Component, _extends7({}, usedProps, {
       ref
     }));
   });
@@ -56231,7 +55680,7 @@ function getAnimatedState(props, host2) {
   const dependencies = /* @__PURE__ */ new Set();
   TreeContext.dependencies = dependencies;
   if (props.style)
-    props = _extends8({}, props, {
+    props = _extends7({}, props, {
       style: host2.createAnimatedStyle(props.style)
     });
   props = new AnimatedObject(props);
@@ -56287,8 +55736,8 @@ init_react();
 init_react();
 
 // node_modules/@react-spring/core/dist/react-spring-core.esm.js
-function _extends9() {
-  _extends9 = Object.assign || function(target) {
+function _extends8() {
+  _extends8 = Object.assign || function(target) {
     for (var i5 = 1; i5 < arguments.length; i5++) {
       var source = arguments[i5];
       for (var key in source) {
@@ -56299,7 +55748,7 @@ function _extends9() {
     }
     return target;
   };
-  return _extends9.apply(this, arguments);
+  return _extends8.apply(this, arguments);
 }
 function callProp(value, ...args) {
   return is.fun(value) ? value(...args) : value;
@@ -56380,7 +55829,7 @@ function inferTo(props) {
     eachProp(props, (val, key) => key in to2 || (out[key] = val));
     return out;
   }
-  return _extends9({}, props);
+  return _extends8({}, props);
 }
 function computeGoal(value) {
   value = getFluidValue(value);
@@ -56487,7 +55936,7 @@ var easings = {
   easeOutBounce: bounceOut,
   easeInOutBounce: (x3) => x3 < 0.5 ? (1 - bounceOut(1 - 2 * x3)) / 2 : (1 + bounceOut(2 * x3 - 1)) / 2
 };
-var defaults = _extends9({}, config2.default, {
+var defaults = _extends8({}, config2.default, {
   mass: 1,
   damping: 1,
   easing: easings.linear,
@@ -56515,9 +55964,9 @@ var AnimationConfig = class {
 };
 function mergeConfig(config3, newConfig, defaultConfig) {
   if (defaultConfig) {
-    defaultConfig = _extends9({}, defaultConfig);
+    defaultConfig = _extends8({}, defaultConfig);
     sanitizeConfig(defaultConfig, newConfig);
-    newConfig = _extends9({}, defaultConfig, newConfig);
+    newConfig = _extends8({}, defaultConfig, newConfig);
   }
   sanitizeConfig(config3, newConfig);
   Object.assign(config3, newConfig);
@@ -56625,7 +56074,7 @@ function scheduleProps(callId, {
         cancel = true;
       }
       try {
-        actions.start(_extends9({}, props, {
+        actions.start(_extends8({}, props, {
           callId,
           cancel
         }), resolve);
@@ -56691,7 +56140,7 @@ function runAsync(to2, props, state, target) {
           throw skipAnimationSignal;
         }
         bailIfEnded(bailSignal);
-        const props2 = is.obj(arg1) ? _extends9({}, arg1) : _extends9({}, arg2, {
+        const props2 = is.obj(arg1) ? _extends8({}, arg1) : _extends8({}, arg2, {
           to: arg1
         });
         props2.parentId = callId;
@@ -56862,7 +56311,7 @@ var SpringValue = class extends FrameValue {
     this._lastToId = 0;
     this._memoizedDuration = 0;
     if (!is.und(arg1) || !is.und(arg2)) {
-      const props = is.obj(arg1) ? _extends9({}, arg1) : _extends9({}, arg2, {
+      const props = is.obj(arg1) ? _extends8({}, arg1) : _extends8({}, arg2, {
         from: arg1
       });
       if (is.und(props.default)) {
@@ -57052,7 +56501,7 @@ var SpringValue = class extends FrameValue {
   start(to2, arg2) {
     let queue2;
     if (!is.und(to2)) {
-      queue2 = [is.obj(to2) ? to2 : _extends9({}, arg2, {
+      queue2 = [is.obj(to2) ? to2 : _extends8({}, arg2, {
         to: to2
       })];
     } else {
@@ -57116,7 +56565,7 @@ var SpringValue = class extends FrameValue {
     return range;
   }
   _update(_ref, isLoop) {
-    let props = _extends9({}, _ref);
+    let props = _extends8({}, _ref);
     const {
       key,
       defaultProps
@@ -57424,7 +56873,7 @@ function createLoopUpdate(props, loop2 = props.loop, to2 = props.to) {
     const overrides = loopRet !== true && inferTo(loopRet);
     const reverse = (overrides || props).reverse;
     const reset = !overrides || overrides.reset;
-    return createUpdate(_extends9({}, props, {
+    return createUpdate(_extends8({}, props, {
       loop: loop2,
       default: false,
       pause: void 0,
@@ -57497,7 +56946,7 @@ var Controller = class {
       this._flush = flush2;
     }
     if (props) {
-      this.start(_extends9({
+      this.start(_extends8({
         default: true
       }, props));
     }
@@ -57732,14 +57181,14 @@ async function flushUpdate(ctrl, props, isLoop) {
   return result;
 }
 function getSprings(ctrl, props) {
-  const springs = _extends9({}, ctrl.springs);
+  const springs = _extends8({}, ctrl.springs);
   if (props) {
     each(toArray(props), (props2) => {
       if (is.und(props2.keys)) {
         props2 = createUpdate(props2);
       }
       if (!is.obj(props2.to)) {
-        props2 = _extends9({}, props2, {
+        props2 = _extends8({}, props2, {
           to: void 0
         });
       }
@@ -57801,7 +57250,7 @@ var SpringContext = (_ref) => {
   let {
     children
   } = _ref, props = _objectWithoutPropertiesLoose3(_ref, _excluded$3);
-  const inherited = (0, import_react36.useContext)(ctx);
+  const inherited = (0, import_react37.useContext)(ctx);
   const pause = props.pause || !!inherited.pause, immediate = props.immediate || !!inherited.immediate;
   props = useMemoOne(() => ({
     pause,
@@ -57894,10 +57343,10 @@ function useSprings(length, props, deps) {
   const propsFn = is.fun(props) && props;
   if (propsFn && !deps)
     deps = [];
-  const ref = (0, import_react36.useMemo)(() => propsFn || arguments.length == 3 ? SpringRef() : void 0, []);
-  const layoutId = (0, import_react36.useRef)(0);
+  const ref = (0, import_react37.useMemo)(() => propsFn || arguments.length == 3 ? SpringRef() : void 0, []);
+  const layoutId = (0, import_react37.useRef)(0);
   const forceUpdate = useForceUpdate();
-  const state = (0, import_react36.useMemo)(() => ({
+  const state = (0, import_react37.useMemo)(() => ({
     ctrls: [],
     queue: [],
     flush(ctrl, updates2) {
@@ -57912,10 +57361,10 @@ function useSprings(length, props, deps) {
       });
     }
   }), []);
-  const ctrls = (0, import_react36.useRef)([...state.ctrls]);
+  const ctrls = (0, import_react37.useRef)([...state.ctrls]);
   const updates = [];
   const prevLength = usePrev(length) || 0;
-  (0, import_react36.useMemo)(() => {
+  (0, import_react37.useMemo)(() => {
     each(ctrls.current.slice(length, prevLength), (ctrl) => {
       detachRefs(ctrl, ref);
       ctrl.stop(true);
@@ -57923,7 +57372,7 @@ function useSprings(length, props, deps) {
     ctrls.current.length = length;
     declareUpdates(prevLength, length);
   }, [length]);
-  (0, import_react36.useMemo)(() => {
+  (0, import_react37.useMemo)(() => {
     declareUpdates(0, Math.min(prevLength, length));
   }, deps);
   function declareUpdates(startIndex, endIndex) {
@@ -57936,7 +57385,7 @@ function useSprings(length, props, deps) {
     }
   }
   const springs = ctrls.current.map((ctrl, i5) => getSprings(ctrl, updates[i5]));
-  const context = (0, import_react36.useContext)(SpringContext);
+  const context = (0, import_react37.useContext)(SpringContext);
   const prevContext = usePrev(context);
   const hasContext = context !== prevContext && hasProps(context);
   useLayoutEffect5(() => {
@@ -57970,7 +57419,7 @@ function useSprings(length, props, deps) {
   useOnce(() => () => {
     each(state.ctrls, (ctrl) => ctrl.stop(true));
   });
-  const values = springs.map((x3) => _extends9({}, x3));
+  const values = springs.map((x3) => _extends8({}, x3));
   return ref ? [values, ref] : values;
 }
 function useSpring(props, deps) {
@@ -57997,10 +57446,10 @@ function useTransition2(data, props, deps) {
     ref: propsRef,
     config: propsConfig
   } = propsFn ? propsFn() : props;
-  const ref = (0, import_react36.useMemo)(() => propsFn || arguments.length == 3 ? SpringRef() : void 0, []);
+  const ref = (0, import_react37.useMemo)(() => propsFn || arguments.length == 3 ? SpringRef() : void 0, []);
   const items = toArray(data);
   const transitions = [];
-  const usedTransitions = (0, import_react36.useRef)(null);
+  const usedTransitions = (0, import_react37.useRef)(null);
   const prevTransitions = reset ? null : usedTransitions.current;
   useLayoutEffect5(() => {
     usedTransitions.current = transitions;
@@ -58056,7 +57505,7 @@ function useTransition2(data, props, deps) {
       const t6 = prevTransitions[prevIndex];
       if (~keyIndex) {
         i5 = transitions.indexOf(t6);
-        transitions[i5] = _extends9({}, t6, {
+        transitions[i5] = _extends8({}, t6, {
           item: items[keyIndex]
         });
       } else if (leave) {
@@ -58071,8 +57520,8 @@ function useTransition2(data, props, deps) {
   const forceUpdate = useForceUpdate();
   const defaultProps = getDefaultProps(props);
   const changes = /* @__PURE__ */ new Map();
-  const exitingTransitions = (0, import_react36.useRef)(/* @__PURE__ */ new Map());
-  const forceChange = (0, import_react36.useRef)(false);
+  const exitingTransitions = (0, import_react37.useRef)(/* @__PURE__ */ new Map());
+  const forceChange = (0, import_react37.useRef)(false);
   each(transitions, (t6, i5) => {
     const key = t6.key;
     const prevPhase = t6.phase;
@@ -58108,7 +57557,7 @@ function useTransition2(data, props, deps) {
       to2.config = callProp(config3, t6.item, i5, phase);
     }
     delay += trail;
-    const payload = _extends9({}, defaultProps, {
+    const payload = _extends8({}, defaultProps, {
       delay: propsDelay + delay,
       ref: propsRef,
       immediate: p3.immediate,
@@ -58169,7 +57618,7 @@ function useTransition2(data, props, deps) {
       });
     }
   });
-  const context = (0, import_react36.useContext)(SpringContext);
+  const context = (0, import_react37.useContext)(SpringContext);
   const prevContext = usePrev(context);
   const hasContext = context !== prevContext && hasProps(context);
   useLayoutEffect5(() => {
@@ -58219,8 +57668,8 @@ function useTransition2(data, props, deps) {
     const {
       springs
     } = changes.get(t6) || t6.ctrl;
-    const elem = render(_extends9({}, springs), t6.item, t6, i5);
-    return elem && elem.type ? React20.createElement(elem.type, _extends9({}, elem.props, {
+    const elem = render(_extends8({}, springs), t6.item, t6, i5);
+    return elem && elem.type ? React20.createElement(elem.type, _extends8({}, elem.props, {
       key: is.str(t6.key) || is.num(t6.key) ? t6.key : t6.ctrl.id,
       ref: elem.ref
     })) : elem;
@@ -58555,21 +58004,21 @@ var animated = host.animated;
 
 // app/routes/about/blurbs/about-me-blurb.tsx
 init_react();
-var import_react37 = __toESM(require_react());
+var import_react38 = __toESM(require_react());
 var AboutMeBlurb2 = () => {
-  return /* @__PURE__ */ import_react37.default.createElement("div", null, /* @__PURE__ */ import_react37.default.createElement(BlurbDivider, null), /* @__PURE__ */ import_react37.default.createElement(Paragraph, null, `Hi, I'm Kevin!`), /* @__PURE__ */ import_react37.default.createElement(Paragraph, null, "From an early age, I was introduced to Halo by a friend and got hooked into gaming. Like many, I got into Computer Science to build games, but in doing so found a world of much more."), /* @__PURE__ */ import_react37.default.createElement(Paragraph, null, "Through school, I learned just how vast the realm of CS is and questioned what path I should take. Tesla was becoming more and more popular and I saw what they were doing with Machine Learning and A.I; So I made these my focus. I was drawn towards this path because I wanted to help develop life-changing technologies that impact and shape the world we live in."), /* @__PURE__ */ import_react37.default.createElement(Paragraph, null, "Near the end of my schooling career, I was afforded an opportunity to become a Frontend Software Engineer and in doing so have found that there are more ways to impact and shape the world!"), /* @__PURE__ */ import_react37.default.createElement(BlurbDivider, null));
+  return /* @__PURE__ */ import_react38.default.createElement("div", null, /* @__PURE__ */ import_react38.default.createElement(BlurbDivider, null), /* @__PURE__ */ import_react38.default.createElement(Paragraph, null, `Hi, I'm Kevin!`), /* @__PURE__ */ import_react38.default.createElement(Paragraph, null, "From an early age, I was introduced to Halo by a friend and got hooked into gaming. Like many, I got into Computer Science to build games, but in doing so found a world of much more."), /* @__PURE__ */ import_react38.default.createElement(Paragraph, null, "Through school, I learned just how vast the realm of CS is and questioned what path I should take. Tesla was becoming more and more popular and I saw what they were doing with Machine Learning and A.I; So I made these my focus. I was drawn towards this path because I wanted to help develop life-changing technologies that impact and shape the world we live in."), /* @__PURE__ */ import_react38.default.createElement(Paragraph, null, "Near the end of my schooling career, I was afforded an opportunity to become a Frontend Software Engineer and in doing so have found that there are more ways to impact and shape the world!"), /* @__PURE__ */ import_react38.default.createElement(BlurbDivider, null));
 };
 
 // app/routes/about/blurbs/career-blurb.tsx
 init_react();
-var import_react38 = __toESM(require_react());
+var import_react39 = __toESM(require_react());
 
 // app/routes/about/blurbs/career-items/index.ts
 init_react();
 
 // app/routes/about/blurbs/career-blurb.tsx
 var CareerBlurb = () => {
-  const [tab, setTab] = (0, import_react38.useState)("sq8");
+  const [tab, setTab] = (0, import_react39.useState)("sq8");
   return /* @__PURE__ */ React.createElement("div", {
     className: "flex flex-col"
   }, /* @__PURE__ */ React.createElement(TabsList, null, /* @__PURE__ */ React.createElement(Tab, {
@@ -58583,19 +58032,19 @@ var CareerBlurb = () => {
 
 // app/routes/about/blurbs/education-blurb.tsx
 init_react();
-var import_react39 = __toESM(require_react());
+var import_react40 = __toESM(require_react());
 var EducationBlurb2 = () => {
-  return /* @__PURE__ */ import_react39.default.createElement(import_react39.default.Fragment, null, /* @__PURE__ */ import_react39.default.createElement("h2", {
+  return /* @__PURE__ */ import_react40.default.createElement(import_react40.default.Fragment, null, /* @__PURE__ */ import_react40.default.createElement("h2", {
     className: "mb-2 text-xl"
-  }, "University of Nevada, Reno"), /* @__PURE__ */ import_react39.default.createElement("div", {
+  }, "University of Nevada, Reno"), /* @__PURE__ */ import_react40.default.createElement("div", {
     className: "flex flex-col items-center h-full"
-  }, /* @__PURE__ */ import_react39.default.createElement("div", {
+  }, /* @__PURE__ */ import_react40.default.createElement("div", {
     style: {
       display: "flex",
       flexDirection: "column",
       justifyContent: "space-evenly"
     }
-  }, /* @__PURE__ */ import_react39.default.createElement("p", null, "I graduated in the winter of 2019 from the University of Nevada, Reno with a Bachelors in Computer Science and Engineering and a minor in Mathematics."), /* @__PURE__ */ import_react39.default.createElement("div", null, /* @__PURE__ */ import_react39.default.createElement(BlurbDivider, null)), /* @__PURE__ */ import_react39.default.createElement("p", null, "My coursework and area of interest was in Machine Learning and A.I. For my Senior project, I worked as the primary front-end developer on a team of three. Our goal was to refactor and rebuild, from the ground up, an in-use production application."))));
+  }, /* @__PURE__ */ import_react40.default.createElement("p", null, "I graduated in the winter of 2019 from the University of Nevada, Reno with a Bachelors in Computer Science and Engineering and a minor in Mathematics."), /* @__PURE__ */ import_react40.default.createElement("div", null, /* @__PURE__ */ import_react40.default.createElement(BlurbDivider, null)), /* @__PURE__ */ import_react40.default.createElement("p", null, "My coursework and area of interest was in Machine Learning and A.I. For my Senior project, I worked as the primary front-end developer on a team of three. Our goal was to refactor and rebuild, from the ground up, an in-use production application."))));
 };
 
 // route:/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/app/routes/about/blurbs/content-blurb.tsx
@@ -58623,9 +58072,9 @@ __export(career_blurb_exports, {
   CareerBlurb: () => CareerBlurb2
 });
 init_react();
-var import_react40 = __toESM(require_react());
+var import_react41 = __toESM(require_react());
 var CareerBlurb2 = () => {
-  const [tab, setTab] = (0, import_react40.useState)("sq8");
+  const [tab, setTab] = (0, import_react41.useState)("sq8");
   return /* @__PURE__ */ React.createElement("div", {
     className: "flex flex-col"
   }, /* @__PURE__ */ React.createElement(TabsList, null, /* @__PURE__ */ React.createElement(Tab, {
@@ -58652,16 +58101,16 @@ init_react();
 
 // app/common/layout/header/header.tsx
 init_react();
-var import_react47 = __toESM(require_react());
+var import_react48 = __toESM(require_react());
 
 // app/common/hooks/events/index.ts
 init_react();
 
 // app/common/hooks/events/useClickOutside.ts
 init_react();
-var import_react41 = __toESM(require_react());
+var import_react42 = __toESM(require_react());
 var useClickOutside = (ref, funcHandler) => {
-  (0, import_react41.useEffect)(() => {
+  (0, import_react42.useEffect)(() => {
     const clickHandler = (ev) => {
       if (!ref.current || ref.current.contains(ev.target)) {
         return;
@@ -58675,9 +58124,9 @@ var useClickOutside = (ref, funcHandler) => {
 
 // app/useTheme.ts
 init_react();
-var import_react42 = __toESM(require_react());
+var import_react43 = __toESM(require_react());
 var useTheme = () => {
-  const ctx2 = (0, import_react42.useContext)(ThemeCtx);
+  const ctx2 = (0, import_react43.useContext)(ThemeCtx);
   if (!ctx2) {
     throw new Error("ThemeCtx must be used underneath a provider");
   }
@@ -58686,7 +58135,7 @@ var useTheme = () => {
 
 // app/common/layout/menu-items.tsx
 init_react();
-var import_react43 = __toESM(require_react());
+var import_react44 = __toESM(require_react());
 
 // app/common/assets/images/logo-dark.png
 var logo_dark_default = "/build/_assets/logo-dark-7KTW3LX4.png";
@@ -58713,7 +58162,7 @@ var links2 = {
 var ICON_SIZE = 24;
 var ImageIcons = (_a) => {
   var props = __objRest(_a, []);
-  return /* @__PURE__ */ import_react43.default.createElement("img", __spreadValues({
+  return /* @__PURE__ */ import_react44.default.createElement("img", __spreadValues({
     className: "max-w-[30px] md:mr-5 transition opacity duration-[250] ease-in-out"
   }, props));
 };
@@ -58721,7 +58170,7 @@ var menuItems = [
   {
     name: "Home",
     path: links2.home(),
-    icon: /* @__PURE__ */ import_react43.default.createElement(ImageIcons, {
+    icon: /* @__PURE__ */ import_react44.default.createElement(ImageIcons, {
       src: logo_dark_default,
       alt: "Kevin Carlos logo",
       "aria-label": "Kevin Carlos logo",
@@ -58732,7 +58181,7 @@ var menuItems = [
   {
     name: "Projects",
     path: links2.projects().root(),
-    icon: /* @__PURE__ */ import_react43.default.createElement(Code_esm_default, {
+    icon: /* @__PURE__ */ import_react44.default.createElement(Code_esm_default, {
       size: ICON_SIZE,
       weight: "duotone",
       "aria-label": "Projects",
@@ -58742,7 +58191,7 @@ var menuItems = [
   {
     name: "About Me",
     path: links2.aboutMe(),
-    icon: /* @__PURE__ */ import_react43.default.createElement(UserFocus_esm_default, {
+    icon: /* @__PURE__ */ import_react44.default.createElement(UserFocus_esm_default, {
       size: ICON_SIZE,
       weight: "duotone",
       "aria-label": "About Me",
@@ -58752,7 +58201,7 @@ var menuItems = [
   {
     name: "LinkedIn",
     path: links2.linkedIn(),
-    icon: /* @__PURE__ */ import_react43.default.createElement(LinkedinLogo_esm_default, {
+    icon: /* @__PURE__ */ import_react44.default.createElement(LinkedinLogo_esm_default, {
       size: ICON_SIZE,
       weight: "duotone",
       "aria-label": "LinkedIn logo",
@@ -58762,7 +58211,7 @@ var menuItems = [
   {
     name: "GitHub",
     path: links2.github(),
-    icon: /* @__PURE__ */ import_react43.default.createElement(GithubLogo_esm_default, {
+    icon: /* @__PURE__ */ import_react44.default.createElement(GithubLogo_esm_default, {
       size: ICON_SIZE,
       weight: "duotone",
       "aria-label": "Github logo",
@@ -58772,7 +58221,7 @@ var menuItems = [
   {
     name: "GitLab",
     path: links2.gitlab(),
-    icon: /* @__PURE__ */ import_react43.default.createElement(GitlabLogo_esm_default, {
+    icon: /* @__PURE__ */ import_react44.default.createElement(GitlabLogo_esm_default, {
       size: ICON_SIZE,
       weight: "duotone",
       "aria-label": "GitLab logo",
@@ -58783,12 +58232,12 @@ var menuItems = [
 
 // app/common/layout/header/hamburger-icon.tsx
 init_react();
-var import_react44 = __toESM(require_react());
+var import_react45 = __toESM(require_react());
 var HamburgerBar = ({
   isOpen,
   number
 }) => {
-  return /* @__PURE__ */ import_react44.default.createElement("div", {
+  return /* @__PURE__ */ import_react45.default.createElement("div", {
     className: clsx_m_default([
       "w-6",
       "h-[2.5px]",
@@ -58810,16 +58259,16 @@ var HamburgerIcon = ({
   isOpen,
   setIsOpen
 }) => {
-  return /* @__PURE__ */ import_react44.default.createElement("button", {
+  return /* @__PURE__ */ import_react45.default.createElement("button", {
     onClick: () => setIsOpen(!isOpen),
     className: "z-50 relative flex flex-col justify-evenly"
-  }, /* @__PURE__ */ import_react44.default.createElement(HamburgerBar, {
+  }, /* @__PURE__ */ import_react45.default.createElement(HamburgerBar, {
     isOpen,
     number: 1
-  }), /* @__PURE__ */ import_react44.default.createElement(HamburgerBar, {
+  }), /* @__PURE__ */ import_react45.default.createElement(HamburgerBar, {
     isOpen,
     number: 2
-  }), /* @__PURE__ */ import_react44.default.createElement(HamburgerBar, {
+  }), /* @__PURE__ */ import_react45.default.createElement(HamburgerBar, {
     isOpen,
     number: 3
   }));
@@ -58827,7 +58276,7 @@ var HamburgerIcon = ({
 
 // app/common/layout/header/hamburger-menu.tsx
 init_react();
-var import_react45 = __toESM(require_react());
+var import_react46 = __toESM(require_react());
 var HamburgerMenu = ({
   isOpen,
   setIsOpen
@@ -58836,7 +58285,7 @@ var HamburgerMenu = ({
     from: { opacity: 0, transform: `translateX(100vw)` },
     to: isOpen ? { opacity: 1, transform: `translateX(0vw)` } : { opacity: 0, transform: `translateX(100vw)` }
   });
-  (0, import_react45.useEffect)(() => {
+  (0, import_react46.useEffect)(() => {
     const handleResize = () => {
       if (window.innerWidth > 1200) {
         setIsOpen(false);
@@ -58847,23 +58296,23 @@ var HamburgerMenu = ({
     }
     return () => window.removeEventListener("resize", handleResize);
   }, [isOpen, setIsOpen]);
-  return /* @__PURE__ */ import_react45.default.createElement(animated.menu, {
+  return /* @__PURE__ */ import_react46.default.createElement(animated.menu, {
     style: spring,
     className: "bg-theme-lteal absolute top-0 right-0 h-screen w-screen z-40"
-  }, /* @__PURE__ */ import_react45.default.createElement("nav", {
+  }, /* @__PURE__ */ import_react46.default.createElement("nav", {
     role: "navigation",
     className: "h-full w-full"
-  }, /* @__PURE__ */ import_react45.default.createElement("ul", {
+  }, /* @__PURE__ */ import_react46.default.createElement("ul", {
     className: "h-full w-full space-y-4 flex flex-col justify-center items-center"
-  }, menuItems.map((i5, idx) => /* @__PURE__ */ import_react45.default.createElement("li", {
+  }, menuItems.map((i5, idx) => /* @__PURE__ */ import_react46.default.createElement("li", {
     key: `ham-${i5.name}_${idx}`,
     className: "flex justify-center w-full"
-  }, /* @__PURE__ */ import_react45.default.createElement(LinkText, {
+  }, /* @__PURE__ */ import_react46.default.createElement(LinkText, {
     href: i5.path,
     className: "text-2xl",
     childrenClassName: "grid grid-cols-[1fr_200px] justify-items-center",
     animateScale: false
-  }, i5.icon, /* @__PURE__ */ import_react45.default.createElement("span", {
+  }, i5.icon, /* @__PURE__ */ import_react46.default.createElement("span", {
     className: "justify-self-end"
   }, i5.name)))))));
 };
@@ -58890,10 +58339,10 @@ var Logo = () => {
 var ICON_SIZE2 = 24;
 var Header = () => {
   const [mode, setMode] = useTheme();
-  const [mobileNav, toggleMobileNav] = (0, import_react47.useState)(false);
-  const menuRef = (0, import_react47.useRef)(null);
+  const [mobileNav, toggleMobileNav] = (0, import_react48.useState)(false);
+  const menuRef = (0, import_react48.useRef)(null);
   useClickOutside(menuRef, () => toggleMobileNav(false));
-  const setIsOpen = (0, import_react47.useCallback)(() => {
+  const setIsOpen = (0, import_react48.useCallback)(() => {
     toggleMobileNav(!mobileNav);
   }, [mobileNav]);
   return /* @__PURE__ */ React.createElement("header", {
@@ -58921,14 +58370,11 @@ var Header = () => {
     if (mi.mobileOnly) {
       return;
     }
-    return /* @__PURE__ */ React.createElement(import_react47.Fragment, {
+    return /* @__PURE__ */ React.createElement(import_react48.Fragment, {
       key: `header-${mi.name}`
     }, /* @__PURE__ */ React.createElement(LinkText, {
       href: mi.path
-    }, mi.name), idx !== menuItems.length - 1 ? /* @__PURE__ */ React.createElement(Divider, {
-      orientation: "vertical",
-      color: mode === "dark" ? colors.dark_teal : colors.light_teal
-    }) : null);
+    }, mi.name));
   })), /* @__PURE__ */ React.createElement("div", {
     ref: menuRef,
     className: "md:hidden flex justify-end flex-grow"
@@ -58943,7 +58389,7 @@ var Header = () => {
 
 // app/common/layout/layout.tsx
 init_react();
-var import_react48 = __toESM(require_react());
+var import_react49 = __toESM(require_react());
 
 // app/common/layout/footer/index.ts
 init_react();
@@ -58976,7 +58422,7 @@ var OverlayTriangle = () => {
   });
 };
 var Layout = ({ children, hideFooter }) => {
-  return /* @__PURE__ */ React.createElement(import_react48.Fragment, null, /* @__PURE__ */ React.createElement("div", {
+  return /* @__PURE__ */ React.createElement(import_react49.Fragment, null, /* @__PURE__ */ React.createElement("div", {
     className: "grid grid-rows-[60px_1fr_60px] h-full w-full"
   }, /* @__PURE__ */ React.createElement(Header, null), /* @__PURE__ */ React.createElement("main", {
     role: "main",
@@ -59123,7 +58569,7 @@ __export(animated_hello_exports, {
   AnimatedHello: () => AnimatedHello
 });
 init_react();
-var import_react49 = __toESM(require_react());
+var import_react50 = __toESM(require_react());
 
 // app/routes/hero/languages.ts
 init_react();
@@ -59152,10 +58598,10 @@ var helloInLanguages = [
 
 // route:/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/app/routes/hero/animated-hello.tsx
 var AnimatedHello = () => {
-  const valueRef = (0, import_react49.useRef)(null);
-  const [items] = (0, import_react49.useState)(helloInLanguages.map((hi) => ({ value: hi, sort: Math.random() })).sort((a4, b4) => a4.sort - b4.sort).map((v3) => v3.value));
-  const [index2, setIndex] = (0, import_react49.useState)(0);
-  const [length, setLength] = (0, import_react49.useState)(helloInLanguages[index2].length);
+  const valueRef = (0, import_react50.useRef)(null);
+  const [items] = (0, import_react50.useState)(helloInLanguages.map((hi) => ({ value: hi, sort: Math.random() })).sort((a4, b4) => a4.sort - b4.sort).map((v3) => v3.value));
+  const [index2, setIndex] = (0, import_react50.useState)(0);
+  const [length, setLength] = (0, import_react50.useState)(helloInLanguages[index2].length);
   const transitions = useTransition2(index2, {
     from: { opacity: 0, width: "max-content" },
     enter: { opacity: 1 },
@@ -59176,24 +58622,24 @@ var AnimatedHello = () => {
       bounce: 1
     }
   });
-  (0, import_react49.useEffect)(() => {
+  (0, import_react50.useEffect)(() => {
     const interval = setInterval(() => {
       setIndex((prevIndex) => (prevIndex + 1) % helloInLanguages.length);
     }, 1e3 * 2);
     return () => clearInterval(interval);
   }, []);
-  (0, import_react49.useEffect)(() => {
+  (0, import_react50.useEffect)(() => {
     var _a;
     setLength(((_a = valueRef.current) == null ? void 0 : _a.clientWidth) || helloInLanguages.length);
   }, [index2]);
-  return /* @__PURE__ */ import_react49.default.createElement("span", {
+  return /* @__PURE__ */ import_react50.default.createElement("span", {
     className: "absolute"
-  }, /* @__PURE__ */ import_react49.default.createElement("span", {
+  }, /* @__PURE__ */ import_react50.default.createElement("span", {
     className: "relative"
-  }, transitions((styles, i5) => /* @__PURE__ */ import_react49.default.createElement(animated.span, {
+  }, transitions((styles, i5) => /* @__PURE__ */ import_react50.default.createElement(animated.span, {
     ref: valueRef,
     style: __spreadProps(__spreadValues({}, styles), { position: "absolute" })
-  }, items[i5], ",")), /* @__PURE__ */ import_react49.default.createElement(animated.span, {
+  }, items[i5], ",")), /* @__PURE__ */ import_react50.default.createElement(animated.span, {
     key: length,
     style: {
       position: "absolute",
@@ -59265,7 +58711,7 @@ __export(descriptions_exports, {
   Descriptions: () => Descriptions
 });
 init_react();
-var import_react50 = __toESM(require_react());
+var import_react51 = __toESM(require_react());
 
 // app/routes/about/blurbs/index.ts
 init_react();
@@ -59465,7 +58911,7 @@ var Circles = ({ index: index2, setIndex }) => {
 
 // route:/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/app/routes/about/descriptions.tsx
 var Descriptions = () => {
-  const [index2, setIndex] = (0, import_react50.useState)(0);
+  const [index2, setIndex] = (0, import_react51.useState)(0);
   return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", {
     className: clsx_m_default("rounded-lg", "h-full", "w-full", "md:w-[60vw]", "flex", "flex-col", "md:flex-row", "items-center")
   }, /* @__PURE__ */ React.createElement(Circles, {
@@ -59628,9 +59074,9 @@ init_react();
 
 // app/routes/about/descriptions.tsx
 init_react();
-var import_react51 = __toESM(require_react());
+var import_react52 = __toESM(require_react());
 var Descriptions2 = () => {
-  const [index2, setIndex] = (0, import_react51.useState)(0);
+  const [index2, setIndex] = (0, import_react52.useState)(0);
   return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", {
     className: clsx_m_default("rounded-lg", "h-full", "w-full", "md:w-[60vw]", "flex", "flex-col", "md:flex-row", "items-center")
   }, /* @__PURE__ */ React.createElement(Circles, {
@@ -59662,12 +59108,12 @@ init_react();
 
 // app/routes/hero/animated-hello.tsx
 init_react();
-var import_react52 = __toESM(require_react());
+var import_react53 = __toESM(require_react());
 var AnimatedHello2 = () => {
-  const valueRef = (0, import_react52.useRef)(null);
-  const [items] = (0, import_react52.useState)(helloInLanguages.map((hi) => ({ value: hi, sort: Math.random() })).sort((a4, b4) => a4.sort - b4.sort).map((v3) => v3.value));
-  const [index2, setIndex] = (0, import_react52.useState)(0);
-  const [length, setLength] = (0, import_react52.useState)(helloInLanguages[index2].length);
+  const valueRef = (0, import_react53.useRef)(null);
+  const [items] = (0, import_react53.useState)(helloInLanguages.map((hi) => ({ value: hi, sort: Math.random() })).sort((a4, b4) => a4.sort - b4.sort).map((v3) => v3.value));
+  const [index2, setIndex] = (0, import_react53.useState)(0);
+  const [length, setLength] = (0, import_react53.useState)(helloInLanguages[index2].length);
   const transitions = useTransition2(index2, {
     from: { opacity: 0, width: "max-content" },
     enter: { opacity: 1 },
@@ -59688,24 +59134,24 @@ var AnimatedHello2 = () => {
       bounce: 1
     }
   });
-  (0, import_react52.useEffect)(() => {
+  (0, import_react53.useEffect)(() => {
     const interval = setInterval(() => {
       setIndex((prevIndex) => (prevIndex + 1) % helloInLanguages.length);
     }, 1e3 * 2);
     return () => clearInterval(interval);
   }, []);
-  (0, import_react52.useEffect)(() => {
+  (0, import_react53.useEffect)(() => {
     var _a;
     setLength(((_a = valueRef.current) == null ? void 0 : _a.clientWidth) || helloInLanguages.length);
   }, [index2]);
-  return /* @__PURE__ */ import_react52.default.createElement("span", {
+  return /* @__PURE__ */ import_react53.default.createElement("span", {
     className: "absolute"
-  }, /* @__PURE__ */ import_react52.default.createElement("span", {
+  }, /* @__PURE__ */ import_react53.default.createElement("span", {
     className: "relative"
-  }, transitions((styles, i5) => /* @__PURE__ */ import_react52.default.createElement(animated.span, {
+  }, transitions((styles, i5) => /* @__PURE__ */ import_react53.default.createElement(animated.span, {
     ref: valueRef,
     style: __spreadProps(__spreadValues({}, styles), { position: "absolute" })
-  }, items[i5], ",")), /* @__PURE__ */ import_react52.default.createElement(animated.span, {
+  }, items[i5], ",")), /* @__PURE__ */ import_react53.default.createElement(animated.span, {
     key: length,
     style: {
       position: "absolute",
@@ -59724,8 +59170,8 @@ var Hero = () => {
   }, /* @__PURE__ */ React.createElement(AnimatedHello2, null), /* @__PURE__ */ React.createElement("p", {
     className: "font-semibold dark:text-theme-lteal2 text-theme-dteal pt-4 mt-[48px]"
   }, "Kevin Carlos")), /* @__PURE__ */ React.createElement(Divider, {
-    color: mode === "dark" ? colors.orange : colors.light_teal,
-    className: "my-6"
+    className: "my-6",
+    orientation: "horizontal"
   }), /* @__PURE__ */ React.createElement("div", {
     className: "space-x-6"
   }, /* @__PURE__ */ React.createElement(PillButton, {
@@ -59752,8 +59198,8 @@ var Hero2 = () => {
   }, /* @__PURE__ */ React.createElement(AnimatedHello2, null), /* @__PURE__ */ React.createElement("p", {
     className: "font-semibold dark:text-theme-lteal2 text-theme-dteal pt-4 mt-[48px]"
   }, "Kevin Carlos")), /* @__PURE__ */ React.createElement(Divider, {
-    color: mode === "dark" ? colors.orange : colors.light_teal,
-    className: "my-6"
+    className: "my-6",
+    orientation: "horizontal"
   }), /* @__PURE__ */ React.createElement("div", {
     className: "space-x-6"
   }, /* @__PURE__ */ React.createElement(PillButton, {
@@ -59771,7 +59217,7 @@ __export(routes_exports, {
   default: () => Index4
 });
 init_react();
-var import_react54 = __toESM(require_react());
+var import_react55 = __toESM(require_react());
 var import_react_tsparticles = __toESM(require_react_tsparticles());
 
 // app/common/hooks/motion/index.ts
@@ -59779,10 +59225,10 @@ init_react();
 
 // app/common/hooks/motion/useReducedMotion.ts
 init_react();
-var import_react53 = __toESM(require_react());
+var import_react54 = __toESM(require_react());
 var useReducedMotion = () => {
-  const [prefersReducedMotion, setPrefersReducedMotion] = (0, import_react53.useState)(false);
-  (0, import_react53.useLayoutEffect)(() => {
+  const [prefersReducedMotion, setPrefersReducedMotion] = (0, import_react54.useState)(false);
+  (0, import_react54.useLayoutEffect)(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (mediaQuery.matches) {
       setPrefersReducedMotion(true);
@@ -59802,7 +59248,7 @@ init_react();
 function Index4() {
   const prefersReducedMotion = useReducedMotion();
   const [mode] = useTheme();
-  const getParticleOptions = (0, import_react54.useCallback)((mode2) => {
+  const getParticleOptions = (0, import_react55.useCallback)((mode2) => {
     const opts = {
       fpsLimit: 60,
       detectRetina: true,
@@ -59932,7 +59378,7 @@ function Index4() {
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
 init_react();
-var assets_manifest_default = { "version": "bef14394", "entry": { "module": "/build/entry.client-Y44ZTFR2.js", "imports": ["/build/_shared/chunk-KWLKFF5Z.js", "/build/_shared/chunk-SPG4GL7V.js", "/build/_shared/chunk-IYRIQ6PI.js"] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "module": "/build/root-F4JQYGAP.js", "imports": ["/build/_shared/chunk-453APP7H.js", "/build/_shared/chunk-KZIRCZOW.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/active-circles": { "id": "routes/about/active-circles", "parentId": "root", "path": "about/active-circles", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/active-circles-JFQT6RTK.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/about-me-blurb": { "id": "routes/about/blurbs/about-me-blurb", "parentId": "root", "path": "about/blurbs/about-me-blurb", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/about-me-blurb-5EA2TH7P.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/blurb-divider": { "id": "routes/about/blurbs/blurb-divider", "parentId": "root", "path": "about/blurbs/blurb-divider", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/blurb-divider-QMQGZVIX.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/career-blurb": { "id": "routes/about/blurbs/career-blurb", "parentId": "root", "path": "about/blurbs/career-blurb", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/career-blurb-QOER4V3R.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/career-items/cycle": { "id": "routes/about/blurbs/career-items/cycle", "parentId": "root", "path": "about/blurbs/career-items/cycle", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/career-items/cycle-XJ24FVQ2.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/career-items/index": { "id": "routes/about/blurbs/career-items/index", "parentId": "root", "path": "about/blurbs/career-items", "index": true, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/career-items/index-YADPAMTX.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/career-items/square-8": { "id": "routes/about/blurbs/career-items/square-8", "parentId": "root", "path": "about/blurbs/career-items/square-8", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/career-items/square-8-LXO2W6M2.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/content-blurb": { "id": "routes/about/blurbs/content-blurb", "parentId": "root", "path": "about/blurbs/content-blurb", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/content-blurb-LOSJ6M4P.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/education-blurb": { "id": "routes/about/blurbs/education-blurb", "parentId": "root", "path": "about/blurbs/education-blurb", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/education-blurb-RW6MT7YQ.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/index": { "id": "routes/about/blurbs/index", "parentId": "root", "path": "about/blurbs", "index": true, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/index-6KRDMMM7.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/circle-items": { "id": "routes/about/circle-items", "parentId": "root", "path": "about/circle-items", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/circle-items-DBGB5NYV.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/circles": { "id": "routes/about/circles", "parentId": "root", "path": "about/circles", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/circles-QXZOVHP2.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/descriptions": { "id": "routes/about/descriptions", "parentId": "root", "path": "about/descriptions", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/descriptions-IXPYUDQT.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/index": { "id": "routes/about/index", "parentId": "root", "path": "about", "index": true, "caseSensitive": void 0, "module": "/build/routes/about/index-VFKIVZX5.js", "imports": ["/build/_shared/chunk-3ZLDZNNF.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/hero/animated-hello": { "id": "routes/hero/animated-hello", "parentId": "root", "path": "hero/animated-hello", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/hero/animated-hello-7DTII4K5.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/hero/hero": { "id": "routes/hero/hero", "parentId": "root", "path": "hero/hero", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/hero/hero-5ERDF47L.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/hero/index": { "id": "routes/hero/index", "parentId": "root", "path": "hero", "index": true, "caseSensitive": void 0, "module": "/build/routes/hero/index-R2DVXZOP.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/hero/languages": { "id": "routes/hero/languages", "parentId": "root", "path": "hero/languages", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/hero/languages-N3PCZHAG.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/index": { "id": "routes/index", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "module": "/build/routes/index-NGDESGMG.js", "imports": ["/build/_shared/chunk-3ZLDZNNF.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/index": { "id": "routes/projects/index", "parentId": "root", "path": "projects", "index": true, "caseSensitive": void 0, "module": "/build/routes/projects/index-LR3YY7FW.js", "imports": ["/build/_shared/chunk-3ZLDZNNF.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loaders/index": { "id": "routes/projects/loaders/index", "parentId": "root", "path": "projects/loaders", "index": true, "caseSensitive": void 0, "module": "/build/routes/projects/loaders/index-NABN2N2J.js", "imports": ["/build/_shared/chunk-3ZLDZNNF.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/helpers/centered-text-item": { "id": "routes/projects/loot-crate/crates/helpers/centered-text-item", "parentId": "root", "path": "projects/loot-crate/crates/helpers/centered-text-item", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/helpers/centered-text-item-T4FSRVPN.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/helpers/character-modal": { "id": "routes/projects/loot-crate/crates/helpers/character-modal", "parentId": "root", "path": "projects/loot-crate/crates/helpers/character-modal", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/helpers/character-modal-KVBKXEND.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/helpers/crate-info-item": { "id": "routes/projects/loot-crate/crates/helpers/crate-info-item", "parentId": "root", "path": "projects/loot-crate/crates/helpers/crate-info-item", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/helpers/crate-info-item-ZGBK72K7.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/helpers/index": { "id": "routes/projects/loot-crate/crates/helpers/index", "parentId": "root", "path": "projects/loot-crate/crates/helpers", "index": true, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/helpers/index-SYINZWLJ.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/index": { "id": "routes/projects/loot-crate/crates/index", "parentId": "root", "path": "projects/loot-crate/crates", "index": true, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/index-VGG24IWG.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/naive-box": { "id": "routes/projects/loot-crate/crates/naive-box", "parentId": "root", "path": "projects/loot-crate/crates/naive-box", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/naive-box-N2ZGZI7S.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/open-box": { "id": "routes/projects/loot-crate/crates/open-box", "parentId": "root", "path": "projects/loot-crate/crates/open-box", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/open-box-RZIVYJJB.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/weighted-box": { "id": "routes/projects/loot-crate/crates/weighted-box", "parentId": "root", "path": "projects/loot-crate/crates/weighted-box", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/weighted-box-NOBCMPKE.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/index": { "id": "routes/projects/loot-crate/index", "parentId": "root", "path": "projects/loot-crate", "index": true, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/index-VJZTT336.js", "imports": ["/build/_shared/chunk-3ZLDZNNF.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/project-items": { "id": "routes/projects/project-items", "parentId": "root", "path": "projects/project-items", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/project-items-W4UHB7CB.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false } }, "url": "/build/manifest-BEF14394.js" };
+var assets_manifest_default = { "version": "7cdb3f73", "entry": { "module": "/build/entry.client-Y44ZTFR2.js", "imports": ["/build/_shared/chunk-KWLKFF5Z.js", "/build/_shared/chunk-SPG4GL7V.js", "/build/_shared/chunk-IYRIQ6PI.js"] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "module": "/build/root-EZRD3RCO.js", "imports": ["/build/_shared/chunk-453APP7H.js", "/build/_shared/chunk-KZIRCZOW.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/active-circles": { "id": "routes/about/active-circles", "parentId": "root", "path": "about/active-circles", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/active-circles-JFQT6RTK.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/about-me-blurb": { "id": "routes/about/blurbs/about-me-blurb", "parentId": "root", "path": "about/blurbs/about-me-blurb", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/about-me-blurb-5EA2TH7P.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/blurb-divider": { "id": "routes/about/blurbs/blurb-divider", "parentId": "root", "path": "about/blurbs/blurb-divider", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/blurb-divider-QMQGZVIX.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/career-blurb": { "id": "routes/about/blurbs/career-blurb", "parentId": "root", "path": "about/blurbs/career-blurb", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/career-blurb-QOER4V3R.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/career-items/cycle": { "id": "routes/about/blurbs/career-items/cycle", "parentId": "root", "path": "about/blurbs/career-items/cycle", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/career-items/cycle-XJ24FVQ2.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/career-items/index": { "id": "routes/about/blurbs/career-items/index", "parentId": "root", "path": "about/blurbs/career-items", "index": true, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/career-items/index-YADPAMTX.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/career-items/square-8": { "id": "routes/about/blurbs/career-items/square-8", "parentId": "root", "path": "about/blurbs/career-items/square-8", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/career-items/square-8-LXO2W6M2.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/content-blurb": { "id": "routes/about/blurbs/content-blurb", "parentId": "root", "path": "about/blurbs/content-blurb", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/content-blurb-LOSJ6M4P.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/education-blurb": { "id": "routes/about/blurbs/education-blurb", "parentId": "root", "path": "about/blurbs/education-blurb", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/education-blurb-RW6MT7YQ.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/index": { "id": "routes/about/blurbs/index", "parentId": "root", "path": "about/blurbs", "index": true, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/index-6KRDMMM7.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/circle-items": { "id": "routes/about/circle-items", "parentId": "root", "path": "about/circle-items", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/circle-items-DBGB5NYV.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/circles": { "id": "routes/about/circles", "parentId": "root", "path": "about/circles", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/circles-QXZOVHP2.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/descriptions": { "id": "routes/about/descriptions", "parentId": "root", "path": "about/descriptions", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/descriptions-IXPYUDQT.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/index": { "id": "routes/about/index", "parentId": "root", "path": "about", "index": true, "caseSensitive": void 0, "module": "/build/routes/about/index-JUJNNSJW.js", "imports": ["/build/_shared/chunk-FFIP4ER6.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/hero/animated-hello": { "id": "routes/hero/animated-hello", "parentId": "root", "path": "hero/animated-hello", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/hero/animated-hello-7DTII4K5.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/hero/hero": { "id": "routes/hero/hero", "parentId": "root", "path": "hero/hero", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/hero/hero-5ERDF47L.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/hero/index": { "id": "routes/hero/index", "parentId": "root", "path": "hero", "index": true, "caseSensitive": void 0, "module": "/build/routes/hero/index-R2DVXZOP.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/hero/languages": { "id": "routes/hero/languages", "parentId": "root", "path": "hero/languages", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/hero/languages-N3PCZHAG.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/index": { "id": "routes/index", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "module": "/build/routes/index-G6W7HKGZ.js", "imports": ["/build/_shared/chunk-FFIP4ER6.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/index": { "id": "routes/projects/index", "parentId": "root", "path": "projects", "index": true, "caseSensitive": void 0, "module": "/build/routes/projects/index-7KUP7KXE.js", "imports": ["/build/_shared/chunk-FFIP4ER6.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loaders/index": { "id": "routes/projects/loaders/index", "parentId": "root", "path": "projects/loaders", "index": true, "caseSensitive": void 0, "module": "/build/routes/projects/loaders/index-UFOIIBYG.js", "imports": ["/build/_shared/chunk-FFIP4ER6.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/helpers/centered-text-item": { "id": "routes/projects/loot-crate/crates/helpers/centered-text-item", "parentId": "root", "path": "projects/loot-crate/crates/helpers/centered-text-item", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/helpers/centered-text-item-T4FSRVPN.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/helpers/character-modal": { "id": "routes/projects/loot-crate/crates/helpers/character-modal", "parentId": "root", "path": "projects/loot-crate/crates/helpers/character-modal", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/helpers/character-modal-KVBKXEND.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/helpers/crate-info-item": { "id": "routes/projects/loot-crate/crates/helpers/crate-info-item", "parentId": "root", "path": "projects/loot-crate/crates/helpers/crate-info-item", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/helpers/crate-info-item-ZGBK72K7.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/helpers/index": { "id": "routes/projects/loot-crate/crates/helpers/index", "parentId": "root", "path": "projects/loot-crate/crates/helpers", "index": true, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/helpers/index-SYINZWLJ.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/index": { "id": "routes/projects/loot-crate/crates/index", "parentId": "root", "path": "projects/loot-crate/crates", "index": true, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/index-VGG24IWG.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/naive-box": { "id": "routes/projects/loot-crate/crates/naive-box", "parentId": "root", "path": "projects/loot-crate/crates/naive-box", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/naive-box-N2ZGZI7S.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/open-box": { "id": "routes/projects/loot-crate/crates/open-box", "parentId": "root", "path": "projects/loot-crate/crates/open-box", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/open-box-RZIVYJJB.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/weighted-box": { "id": "routes/projects/loot-crate/crates/weighted-box", "parentId": "root", "path": "projects/loot-crate/crates/weighted-box", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/weighted-box-NOBCMPKE.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/index": { "id": "routes/projects/loot-crate/index", "parentId": "root", "path": "projects/loot-crate", "index": true, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/index-BAIOOS3Y.js", "imports": ["/build/_shared/chunk-FFIP4ER6.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/project-items": { "id": "routes/projects/project-items", "parentId": "root", "path": "projects/project-items", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/project-items-W4UHB7CB.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false } }, "url": "/build/manifest-7CDB3F73.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var entry = { module: entry_server_exports };
