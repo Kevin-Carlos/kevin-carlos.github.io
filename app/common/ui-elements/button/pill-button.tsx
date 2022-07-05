@@ -10,10 +10,16 @@ type PillButtonProps = JSX.IntrinsicElements['button'] & {
  * Not to be confused with switch-like pill button
  * This just is styled to look like a pill
  */
-export const PillButton: FC<PillButtonProps> = ({ children, to, ...props }) => {
+export const PillButton: FC<PillButtonProps> = ({
+  children,
+  to,
+  disabled,
+  ...props
+}) => {
   const MainButton = () => (
     <button
       {...props}
+      disabled={disabled}
       className={clsx(
         'font-accent',
         'py-2',
@@ -24,6 +30,7 @@ export const PillButton: FC<PillButtonProps> = ({ children, to, ...props }) => {
         'transition-colors',
         'duration-[250ms]',
         'ease-in-out',
+        'disabled:opacity-50',
         props.className
       )}
     >

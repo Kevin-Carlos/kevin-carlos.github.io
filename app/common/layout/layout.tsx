@@ -1,4 +1,4 @@
-import { Fragment, type FC } from 'react';
+import { Fragment, type FC, type ReactNode } from 'react';
 import { Footer } from './footer';
 import { Header } from './header';
 
@@ -13,6 +13,7 @@ const OverlayTriangle = () => {
 
 type LayoutProps = {
   hideFooter?: boolean;
+  children: ReactNode | ReactNode[];
 };
 
 export const Layout: FC<LayoutProps> = ({ children, hideFooter }) => {
