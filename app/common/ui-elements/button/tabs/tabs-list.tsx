@@ -1,6 +1,5 @@
-import { styled } from '@stitches/react';
-import clsx from 'clsx';
 import { type FC } from 'react';
+import { styled } from '~/stitches';
 
 const StyledOL = styled('ol', {
   'position': 'relative',
@@ -11,6 +10,8 @@ const StyledOL = styled('ol', {
   'borderBottomWidth': '1px',
   'padding': '0 12px',
 
+  'borderColor': '$tabBorder',
+
   '&::before': {
     content: '',
     height: '4px',
@@ -18,6 +19,8 @@ const StyledOL = styled('ol', {
     position: 'absolute',
     bottom: '-2.5px',
     left: 0,
+
+    backgroundColor: '$tabBg',
   },
 
   '&::after': {
@@ -27,6 +30,8 @@ const StyledOL = styled('ol', {
     position: 'absolute',
     bottom: '-2.5px',
     right: 0,
+
+    backgroundColor: '$tabBg',
   },
 });
 
@@ -35,22 +40,9 @@ export type TabsListProps = {
   className?: string;
 };
 
-// TODO remove dependency on styled-components and tw and just use stitches
 export const TabsList: FC<TabsListProps> = ({ children, className }) => {
   return (
-    <StyledOL
-      className={clsx([
-        className,
-        'dark:before:bg-theme-orange',
-        'before:bg-theme-dteal',
-
-        'dark:after:bg-theme-orange',
-        'after:bg-theme-dteal',
-
-        'dark:border-theme-orange',
-        'border-theme-dteal',
-      ])}
-    >
+    <StyledOL className={className}>
       {Array.isArray(children) ? children.map((c) => c) : children}
     </StyledOL>
   );

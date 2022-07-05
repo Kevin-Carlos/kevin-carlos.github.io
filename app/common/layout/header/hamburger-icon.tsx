@@ -1,33 +1,66 @@
-import clsx from 'clsx';
-import React, { FC } from 'react';
+import { type FC } from 'react';
+import { styled } from '~/stitches';
+
+const HamburgerSlice = styled('div', {
+  position: 'relative',
+  width: '24px',
+  height: '2.5px',
+  borderRadius: '8px',
+  transformOrigin: '1px',
+  transition: 'transform 250ms ease-in-out',
+  backgroundColor: '$hamburger',
+
+  variants: {
+    num: {
+      '1': {},
+      '2': {},
+      '3': {},
+    },
+    isOpen: {
+      true: {},
+    },
+  },
+
+  compoundVariants: [
+    {
+      num: '1',
+      isOpen: true,
+      css: {
+        transform: 'rotate(45deg)',
+      },
+    },
+    {
+      num: '2',
+      isOpen: true,
+      css: {
+        transform: 'translateX(20px)',
+        opacity: 0,
+      },
+    },
+    {
+      num: '3',
+      isOpen: true,
+      css: {
+        transform: 'rotate(-45deg)',
+      },
+    },
+  ],
+});
 
 const HamburgerBar: FC<{ isOpen: boolean; number: number }> = ({
   isOpen,
   number,
 }) => {
-  return (
-    <div
-      className={clsx([
-        'w-6',
-        'h-[2.5px]',
-        'rounded-lg',
-        'relative',
-        'origin-[1px]',
-        'bg-theme-white',
-        'transition-transform',
-        'duration-[250ms]',
-        'ease-in-out',
-        // Bar 1
-        isOpen && number === 1 && 'rotate-45',
-        // Bar 2
-        isOpen && number === 2 && 'translate-x-5',
-        isOpen && number === 2 && 'opacity-0',
-        // Bar 3
-        isOpen && number === 3 && '-rotate-45',
-      ])}
-    />
-  );
+  return <HamburgerSlice isOpen={isOpen} num={number} />;
 };
+
+const HamburgerButton = styled('button', {
+  zIndex: 50,
+  position: 'relative',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-evenly',
+});
 
 type HamburgerIconProps = {
   isOpen: boolean;
@@ -39,13 +72,10 @@ export const HamburgerIcon: FC<HamburgerIconProps> = ({
   setIsOpen,
 }) => {
   return (
-    <button
-      onClick={() => setIsOpen(!isOpen)}
-      className="z-50 relative flex flex-col justify-evenly"
-    >
+    <HamburgerButton onClick={() => setIsOpen(!isOpen)}>
       <HamburgerBar isOpen={isOpen} number={1} />
       <HamburgerBar isOpen={isOpen} number={2} />
       <HamburgerBar isOpen={isOpen} number={3} />
-    </button>
+    </HamburgerButton>
   );
 };

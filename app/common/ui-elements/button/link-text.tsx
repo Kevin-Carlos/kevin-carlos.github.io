@@ -1,14 +1,46 @@
 import { Link } from '@remix-run/react';
-import clsx from 'clsx';
-import { FC, Fragment } from 'react';
+import {
+  Fragment,
+  type AnchorHTMLAttributes,
+  type FC,
+  type ReactNode,
+} from 'react';
+import { styled } from '~/stitches';
 
-const UnderLine = () => {
-  return (
-    <hr className="group-hover:w-7 bg-theme-orange absolute -bottom-1 left-0 w-0 h-[2px] transition-all duration-200 ease-in-out border-0" />
-  );
-};
+const UnderLine = styled('hr', {
+  'backgroundColor': '$orange',
+  'width': 0,
+  'height': '2px',
+  'transition': 'all 200ms ease-in-out',
+  'borderWidth': 0,
 
-type LinkText = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
+  'position': 'absolute',
+  'bottom': '4px',
+  'left': 0,
+
+  '&:hover': {
+    width: '28px',
+  },
+});
+
+const OutsideLink = styled('a', {
+  'transition': 'transform 200ms ease-in-out',
+
+  '&:hover': {
+    transform: 'scale(1.05)',
+  },
+});
+
+const RemixLink = styled(Link, {
+  'transition': 'transform 200ms ease-in-out',
+
+  '&:hover': {
+    transform: 'scale(1.05)',
+  },
+});
+
+type LinkText = AnchorHTMLAttributes<HTMLAnchorElement> & {
+  children: ReactNode;
   animateScale?: boolean;
   childrenClassName?: string;
 };
@@ -20,15 +52,6 @@ export const LinkText: FC<LinkText> = ({
   animateScale = true,
   ...props
 }) => {
-  const classNames = clsx([
-    'group',
-    'hover:scale-105',
-    'transition-transform',
-    'duration-200',
-    'ease-in-out',
-    props.className,
-  ]);
-
   const LinkChildren = () => {
     return (
       <Fragment>
@@ -40,20 +63,20 @@ export const LinkText: FC<LinkText> = ({
 
   if (href?.includes('http')) {
     return (
-      <a
+      <OutsideLink
         {...props}
         href={href}
         target={href?.includes('http') ? '_blank' : undefined}
-        className={classNames}
+        className={props.className}
       >
         <LinkChildren />
-      </a>
+      </OutsideLink>
     );
   }
 
   return (
-    <Link {...props} to={href ?? ''} className={classNames}>
+    <RemixLink {...props} className={props.className} to={href ?? ''}>
       <LinkChildren />
-    </Link>
+    </RemixLink>
   );
 };

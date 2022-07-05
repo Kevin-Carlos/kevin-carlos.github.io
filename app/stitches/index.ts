@@ -1,1 +1,5 @@
-export * from './client.context';
+export {
+  ClientStyleContext,
+  type ClientStyleContextData,
+} from './client.context';
+export * from './stitches.config';

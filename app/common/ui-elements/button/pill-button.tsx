@@ -1,8 +1,21 @@
 import { Link, type LinkProps } from '@remix-run/react';
-import clsx from 'clsx';
 import { type FC } from 'react';
+import { styled } from '~/stitches';
 
-type PillButtonProps = JSX.IntrinsicElements['button'] & {
+const StyledButton = styled('button', {
+  'fontFamily': '$accent',
+  'padding': '8px 20px',
+  'borderRadius': '20px',
+
+  'color': '$text',
+  'transition': 'color 250ms ease-in-out',
+
+  '&:disabled': {
+    opacity: '0.5',
+  },
+});
+
+type PillButtonProps = Omit<JSX.IntrinsicElements['button'], 'ref'> & {
   to?: LinkProps['to'];
 };
 
@@ -17,25 +30,9 @@ export const PillButton: FC<PillButtonProps> = ({
   ...props
 }) => {
   const MainButton = () => (
-    <button
-      {...props}
-      disabled={disabled}
-      className={clsx(
-        'font-accent',
-        'py-2',
-        'px-5',
-        'rounded-[20px]',
-        'text-theme-black',
-        'dark:text-theme-white',
-        'transition-colors',
-        'duration-[250ms]',
-        'ease-in-out',
-        'disabled:opacity-50',
-        props.className
-      )}
-    >
+    <StyledButton {...props} disabled={disabled} className={props.className}>
       {children}
-    </button>
+    </StyledButton>
   );
 
   if (to) {
