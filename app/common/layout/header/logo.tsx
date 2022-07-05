@@ -1,20 +1,32 @@
 import { Link } from '@remix-run/react';
 import darkLogo from '~/common/assets/images/logo-dark.png';
 import { links } from '~/common/links';
+import { styled } from '~/stitches';
 
-const Circle = () => {
-  return (
-    <div className="bg-theme-lgray dark:bg-theme-white w-10 h-10 absolute rounded-full border-0 transition ease-in-out  duration-200 group-hover:bg-opacity-60" />
-  );
-};
+const LogoWrapper = styled('div', {
+  position: 'relative',
+  width: '40px',
+  height: '40px',
+});
+
+const Circle = styled('div', {
+  width: '40px',
+  height: '40px',
+  borderRadius: '9999px',
+  borderWidth: 0,
+  backgroundColor: '$logo',
+
+  position: 'absolute',
+  transition: 'opacity 200ms ease-in-out',
+});
 
 export const Logo = () => {
   return (
-    <div className="relative w-10 h-10 group">
+    <LogoWrapper>
       <Link to={links.home()}>
         <Circle />
-        <img src={darkLogo} className="absolute w-10" />
+        <img src={darkLogo} style={{ position: 'absolute', width: '40px' }} />
       </Link>
-    </div>
+    </LogoWrapper>
   );
 };

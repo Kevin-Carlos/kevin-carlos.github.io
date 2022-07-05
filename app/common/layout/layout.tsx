@@ -1,15 +1,46 @@
 import { Fragment, type FC, type ReactNode } from 'react';
+import { styled } from '~/stitches';
 import { Footer } from './footer';
 import { Header } from './header';
 
-const OverlayTriangle = () => {
-  return (
-    <div
-      className="fixed w-screen h-full -bottom-[85%] -skew-y-[25deg] md:-skew-y-12 bg-theme-blue dark:bg-[rgb(0,0,0)] z-10 pointer-events-none before:border-2 before:relative after:absolute"
-      style={{ opacity: 0.2 }}
-    />
-  );
-};
+const OverlayTriangle = styled('div', {
+  'position': 'fixed',
+  'width': '100vw',
+  'height': '100%',
+  'bottom': '-85%',
+  'transform': 'skewY(-25deg)',
+  'backgroundColor': '$triangle',
+  'zIndex': 10,
+  'pointerEvents': 'none',
+  'opacity': 0.2,
+
+  // TODO STITCHES breakpoints
+  // md:-skew-y-12
+
+  '&::before': {
+    content: '',
+    position: 'relative',
+    borderWidth: '2px',
+  },
+
+  '&::after': {
+    content: '',
+    position: 'absolute',
+  },
+});
+
+const LayoutGrid = styled('div', {
+  display: 'grid',
+  gridTemplateRows: '60px 1fr 60px',
+
+  height: '100%',
+  width: '100%',
+});
+
+const Main = styled('main', {
+  overflowY: 'scroll',
+  zIndex: 30,
+});
 
 type LayoutProps = {
   hideFooter?: boolean;
@@ -19,13 +50,11 @@ type LayoutProps = {
 export const Layout: FC<LayoutProps> = ({ children, hideFooter }) => {
   return (
     <Fragment>
-      <div className="grid grid-rows-[60px_1fr_60px] h-full w-full">
+      <LayoutGrid>
         <Header />
-        <main role="main" className="overflow-y-scroll z-30">
-          {children}
-        </main>
+        <Main role="main">{children}</Main>
         {!hideFooter ? <Footer /> : null}
-      </div>
+      </LayoutGrid>
       <OverlayTriangle />
     </Fragment>
   );

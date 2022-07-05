@@ -147,7 +147,15 @@ export default function Index() {
         <Particles
           id="tsparticles-home-bg"
           options={getParticleOptions(mode)}
-          className="fixed top-0 bottom-0 right-0 left-0 h-screen z-20"
+          style={{
+            position: 'fixed',
+            top: 0,
+            bottom: 0,
+            right: 0,
+            left: 0,
+            height: '100vh',
+            zIndex: 20,
+          }}
         />
       ) : null}
     </Layout>

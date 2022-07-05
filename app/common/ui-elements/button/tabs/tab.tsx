@@ -1,13 +1,22 @@
-import { styled } from '@stitches/react';
-import clsx from 'clsx';
 import { type FC } from 'react';
+import { styled } from '~/stitches';
 
 const TabListItem = styled('li', {
-  cursor: 'pointer',
-  padding: '20px 8px 8px',
-  position: 'relative',
+  'cursor': 'pointer',
+  'padding': '20px 8px 8px',
+  'position': 'relative',
 
-  variants: {
+  'transition': 'color 250ms ease-in-out',
+
+  '&:hover': {
+    color: '$tabText',
+  },
+
+  '&::before': {
+    backgroundColor: '$tabBg',
+  },
+
+  'variants': {
     active: {
       true: {
         '&::before': {
@@ -28,21 +37,7 @@ export type TabProps = Omit<JSX.IntrinsicElements['li'], 'ref'> & {
 
 export const Tab: FC<TabProps> = ({ children, active, className, ...rest }) => {
   return (
-    <TabListItem
-      {...rest}
-      active={active}
-      className={clsx([
-        className,
-        'transition-colors',
-        'duration-[250ms]',
-        'ease-in-out',
-        'hover:text-theme-lteal',
-        'dark:hover:text-theme-orange',
-
-        'dark:before:bg-theme-orange',
-        'before:bg-theme-dteal',
-      ])}
-    >
+    <TabListItem {...rest} active={active} className={className}>
       {children}
     </TabListItem>
   );

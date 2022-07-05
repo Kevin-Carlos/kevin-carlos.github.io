@@ -10,13 +10,13 @@ export const useDarkMode: () => [
 
   const setMode = useCallback((theme: 'light' | 'dark') => {
     if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
+      // document.documentElement.classList.add('dark');
+      // localStorage.setItem('theme', 'dark');
 
       setM('dark');
     } else if (theme === 'light') {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
+      // document.documentElement.classList.remove('dark');
+      // localStorage.setItem('theme', 'light');
 
       setM('light');
     }
@@ -29,10 +29,10 @@ export const useDarkMode: () => [
       (!('theme' in localStorage) &&
         window.matchMedia('(prefers-color-scheme: dark)').matches)
     ) {
-      document.documentElement.classList.add('dark');
+      // document.documentElement.classList.add('dark');
       setM('dark');
     } else {
-      document.documentElement.classList.remove('dark');
+      // document.documentElement.classList.remove('dark');
       setM('light');
     }
   }, []);

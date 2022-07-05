@@ -1,4 +1,3 @@
-import clsx from 'clsx';
 import { type FC } from 'react';
 import { animated, useTransition } from 'react-spring';
 import { ActiveCircle1, ActiveCircle2, ActiveCircle3 } from './active-circles';
@@ -27,7 +26,7 @@ const Bubbles: FC<CirclesProps> = ({ index, setIndex }) => {
     circle.style.transform = 'scale(0)';
     circle.style.backgroundColor = 'rgba(255, 255, 255, 0.7)';
     circle.style.zIndex = '1000';
-    circle.className += ' animate-ripple';
+    circle.className += 'animate-ripple';
 
     circle.style.width = circle.style.height = `${diameter}px`;
     circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
@@ -73,21 +72,22 @@ const Bubbles: FC<CirclesProps> = ({ index, setIndex }) => {
                 // setHeaderType(item.key);
                 setIndex(circleItems.findIndex((c) => c.key === item.key));
               }}
-              className={clsx([
-                item.color,
-                item.size,
-                'rounded-full',
-                'dark:text-theme-white',
-                'flex',
-                'items-center',
-                'justify-center',
-                'cursor-pointer',
-                'm-3',
-                'font-semibold',
-                'relative',
-                'overflow-hidden',
-                'transition-colors',
-              ])}
+              // TODO STITCHES
+              // className={clsx([
+              //   item.color,
+              //   item.size,
+              //   'rounded-full',
+              //   'dark:text-theme-white',
+              //   'flex',
+              //   'items-center',
+              //   'justify-center',
+              //   'cursor-pointer',
+              //   'm-3',
+              //   'font-semibold',
+              //   'relative',
+              //   'overflow-hidden',
+              //   'transition-colors',
+              // ])}
             >
               <h1>{item.title}</h1>
             </animated.div>

@@ -1,9 +1,23 @@
-import clsx from 'clsx';
 import { type FC } from 'react';
 import { animated, useSpring } from 'react-spring';
+import { styled } from '~/stitches';
 import { AboutMeBlurb } from './about-me-blurb';
 import { CareerBlurb } from './career-blurb';
 import { EducationBlurb } from './education-blurb';
+
+const AnimatedDiv = styled(animated.div, {
+  position: 'relative',
+  padding: '20px',
+  width: '100%',
+
+  variants: {
+    career: {
+      true: {
+        height: '100%',
+      },
+    },
+  },
+});
 
 export type BlurbType = 'about' | 'education' | 'career';
 
@@ -20,18 +34,10 @@ export const ContentBlurb: FC<ContentBlurbProps> = ({ type }) => {
   });
 
   return (
-    <animated.div
-      style={spring}
-      className={clsx([
-        'p-5',
-        'relative',
-        'w-full',
-        type === 'career' && 'h-full',
-      ])}
-    >
+    <AnimatedDiv style={spring} career={type === 'career'}>
       {type === 'about' && <AboutMeBlurb />}
       {type === 'education' && <EducationBlurb />}
       {type === 'career' && <CareerBlurb />}
-    </animated.div>
+    </AnimatedDiv>
   );
 };
