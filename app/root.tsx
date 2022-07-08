@@ -15,13 +15,13 @@ import {
 import { useContext, useEffect } from 'react';
 import { useDarkMode } from './common/hooks/theme';
 import { getColorScheme } from './cookies';
-import { ClientStyleContext, styled } from './stitches';
+import { ClientStyleContext, darkTheme, styled } from './stitches';
 import { ThemeCtx } from './ThemeContext';
 
-// className="h-full w-full bg-theme-white dark:bg-theme-black font-body overflow-hidden"
 const Body = styled('body', {
   height: '100%',
   width: '100%',
+  margin: 0,
   fontFamily: '$body',
   overflow: 'hidden',
   backgroundColor: '$body',
@@ -33,8 +33,6 @@ export const headers: HeadersFunction = () => ({
 
 export const loader: LoaderFunction = async ({ request }) => {
   const cs = await getColorScheme(request);
-
-  console.log('COLOR SHCEME', cs);
 
   return { colorScheme: cs };
 };
@@ -86,7 +84,11 @@ export default function App() {
           suppressHydrationWarning
         />
       </head>
-      <Body className={colorScheme}>
+      <Body
+        className={
+          colorScheme === 'dark' ? colorScheme + ' ' + darkTheme : colorScheme
+        }
+      >
         <ThemeCtx.Provider value={{ mode: themeMode, setMode: setThemeMode }}>
           <Outlet />
         </ThemeCtx.Provider>

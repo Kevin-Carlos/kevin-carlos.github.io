@@ -24,11 +24,12 @@ const stitches = createStitches({
       text: '$white',
       body: '$white',
       bg: '$dteal',
+      links: '$black',
 
       // custom
       triangle: '$blue',
       logo: '$lgray',
-      hamburger: '$white',
+      headerIcons: '$black',
       tabText: '$lteal',
       tabBg: '$dteal',
       tabBorder: '$dteal',
@@ -42,6 +43,11 @@ const stitches = createStitches({
     },
     utils: {
       'grid-auto-fit': 'repeat(auto-fit, minmax(520px, 1fr))',
+    },
+    media: {
+      sm: '(min-width: 640px)',
+      md: '(min-width: 768px)',
+      lg: '(min-width: 1024px)',
     },
   },
 });
@@ -64,11 +70,12 @@ const darkTheme = createTheme('dark', {
     text: '$black',
     body: '$black',
     bg: '$orange',
+    links: '$white',
 
     // custom
     triangle: 'rgb(0, 0, 0)',
     logo: '$white',
-    hamburger: '$black',
+    headerIcons: '$white',
     tabText: '$orange',
     tabBg: '$orange',
     tabBorder: '$orange',

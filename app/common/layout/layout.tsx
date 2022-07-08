@@ -14,8 +14,9 @@ const OverlayTriangle = styled('div', {
   'pointerEvents': 'none',
   'opacity': 0.2,
 
-  // TODO STITCHES breakpoints
-  // md:-skew-y-12
+  '@media screen and (min-width: 640px)': {
+    transform: 'skewY(-25deg)',
+  },
 
   '&::before': {
     content: '',

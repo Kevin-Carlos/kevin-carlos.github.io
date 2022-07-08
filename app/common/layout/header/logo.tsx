@@ -3,12 +3,6 @@ import darkLogo from '~/common/assets/images/logo-dark.png';
 import { links } from '~/common/links';
 import { styled } from '~/stitches';
 
-const LogoWrapper = styled('div', {
-  position: 'relative',
-  width: '40px',
-  height: '40px',
-});
-
 const Circle = styled('div', {
   width: '40px',
   height: '40px',
@@ -18,6 +12,18 @@ const Circle = styled('div', {
 
   position: 'absolute',
   transition: 'opacity 200ms ease-in-out',
+});
+
+const LogoWrapper = styled('div', {
+  'position': 'relative',
+  'width': '40px',
+  'height': '40px',
+
+  '&:hover': {
+    '& > a > div': {
+      opacity: 0.4,
+    },
+  },
 });
 
 export const Logo = () => {
