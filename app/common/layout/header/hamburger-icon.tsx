@@ -8,7 +8,7 @@ const HamburgerSlice = styled('div', {
   borderRadius: '8px',
   transformOrigin: '1px',
   transition: 'transform 250ms ease-in-out',
-  backgroundColor: '$hamburger',
+  backgroundColor: '$headerIcons',
 
   variants: {
     num: {

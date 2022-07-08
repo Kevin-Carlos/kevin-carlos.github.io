@@ -1,5 +1,5 @@
 import { useFetcher } from '@remix-run/react';
-import { Moon } from 'phosphor-react';
+import { Moon, Sun } from 'phosphor-react';
 import { Fragment, useCallback, useRef, useState } from 'react';
 import { useClickOutside } from '~/common/hooks/events';
 import { LinkText } from '~/common/ui-elements';
@@ -27,25 +27,41 @@ const LogoAndModeWrapper = styled('div', {
   gridGap: '16px',
 });
 
-// className="hidden md:flex flex-grow items-center justify-end space-x-4"
 const Nav = styled('nav', {
-  // TODO STITCHES breakpoints
-  'display': 'flex',
+  'display': 'none',
   'flexGrow': 1,
   'alignItems': 'center',
   'justifyContent': 'flex-end',
 
   '& > a': {
-    margin: '0 16px',
+    margin: '0 8px',
+  },
+
+  '@media screen and (min-width: 640px)': {
+    display: 'flex',
+  },
+});
+
+const HamburgerWrapper = styled('div', {
+  'display': 'flex',
+  'justifyContent': 'flex-end',
+  'flexGrow': 1,
+
+  '@media screen and (min-width: 640px)': {
+    display: 'none',
   },
 });
 
 const StyledMoon = styled(Moon, {
-  backgroundColor: '$body',
+  '& > path': {
+    stroke: '$headerIcons',
+  },
 });
 
-const StyledSun = styled(Moon, {
-  backgroundColor: '$body',
+const StyledSun = styled(Sun, {
+  '& > circle, & > line': {
+    stroke: '$headerIcons',
+  },
 });
 
 export const Header = () => {
@@ -62,6 +78,18 @@ export const Header = () => {
     toggleMobileNav(!mobileNav);
   }, [mobileNav]);
 
+  const onThemeToggle = (mode: 'light' | 'dark') => {
+    themeMode.submit(
+      { mode: mode, url: window.location.pathname },
+      {
+        method: 'post',
+        action: '/theme/mode',
+      }
+    );
+
+    setMode(mode);
+  };
+
   return (
     <StyledHeader role="banner">
       <LogoAndModeWrapper>
@@ -71,45 +99,28 @@ export const Header = () => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            gap: '8px',
           }}
         >
           <StyledMoon
             size={ICON_SIZE}
             style={{ cursor: 'pointer' }}
             onClick={() => {
-              themeMode.submit(
-                { value: 'dark' },
-                {
-                  method: 'post',
-                  action: '/theme/mode',
-                }
-              );
-              setMode('dark');
+              onThemeToggle('dark');
             }}
           />
           <Switch
             checked={mode === 'light' ? true : false}
             onCheckedChange={(checked) => {
               const mode = checked ? 'light' : 'dark';
-              setMode(checked ? 'light' : 'dark');
-              themeMode.submit(
-                { mode: mode, url: window.location.pathname },
-                { method: 'post', action: '/theme/mode', replace: true }
-              );
+              onThemeToggle(mode);
             }}
           />
           <StyledSun
             size={ICON_SIZE}
             style={{ cursor: 'pointer' }}
             onClick={() => {
-              setMode('light');
-              themeMode.submit(
-                { value: 'light' },
-                {
-                  method: 'post',
-                  action: '/theme/mode',
-                }
-              );
+              onThemeToggle('light');
             }}
           />
         </div>
@@ -127,15 +138,10 @@ export const Header = () => {
           );
         })}
       </Nav>
-      <div
-        ref={menuRef}
-        // TODO STITCHES breakpoints
-        style={{ display: 'none' }}
-        className="md:hidden flex justify-end flex-grow"
-      >
+      <HamburgerWrapper ref={menuRef}>
         <HamburgerIcon isOpen={mobileNav} setIsOpen={setIsOpen} />
         <HamburgerMenu isOpen={mobileNav} setIsOpen={setIsOpen} />
-      </div>
+      </HamburgerWrapper>
     </StyledHeader>
   );
 };

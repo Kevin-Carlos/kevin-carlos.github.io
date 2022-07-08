@@ -8,34 +8,44 @@ import {
 import { styled } from '~/stitches';
 
 const UnderLine = styled('hr', {
-  'backgroundColor': '$orange',
-  'width': 0,
-  'height': '2px',
-  'transition': 'all 200ms ease-in-out',
-  'borderWidth': 0,
+  backgroundColor: '$orange',
+  width: 0,
+  height: '2px',
+  transition: 'width 200ms ease-in-out',
+  borderWidth: 0,
 
-  'position': 'absolute',
-  'bottom': '4px',
-  'left': 0,
-
-  '&:hover': {
-    width: '28px',
-  },
+  position: 'absolute',
+  bottom: '-12px',
+  left: 0,
 });
 
 const OutsideLink = styled('a', {
+  'position': 'relative',
+  'color': '$links',
+  'textDecoration': 'none',
   'transition': 'transform 200ms ease-in-out',
 
   '&:hover': {
     transform: 'scale(1.05)',
+
+    [`& ${UnderLine}`]: {
+      width: '28px',
+    },
   },
 });
 
 const RemixLink = styled(Link, {
+  'position': 'relative',
+  'color': '$links',
+  'textDecoration': 'none',
   'transition': 'transform 200ms ease-in-out',
 
   '&:hover': {
     transform: 'scale(1.05)',
+
+    [`& ${UnderLine}`]: {
+      width: '28px',
+    },
   },
 });
 

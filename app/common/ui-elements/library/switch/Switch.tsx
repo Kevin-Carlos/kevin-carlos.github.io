@@ -5,6 +5,13 @@ import { colors } from '../theme';
 
 export type SwitchProps = RadixSwitch.SwitchProps;
 
+// TODO figure out whats applying styles to the 'button' that make this conflict
+const SwitchWrapper = styled('div', {
+  '& > button': {
+    borderRadius: '9999px',
+  },
+});
+
 const Root = styled(RadixSwitch.Root, {
   'all': 'unset',
   'position': 'relative',
@@ -15,6 +22,10 @@ const Root = styled(RadixSwitch.Root, {
   'backgroundColor': colors.orange,
   'borderRadius': '9999px',
   'margin': '0 8px',
+
+  'button': {
+    border: '1px solid red',
+  },
 
   '&[data-state=checked]': {
     backgroundColor: colors.blue,
@@ -50,17 +61,19 @@ export const Switch: FC<SwitchProps> = ({ ...props }) => {
   const [isChecked, setIsChecked] = useState(props.checked ?? false);
 
   return (
-    <Root
-      {...props}
-      onCheckedChange={(c) => {
-        if (props.onCheckedChange) {
-          props.onCheckedChange(c);
-        }
+    <SwitchWrapper>
+      <Root
+        {...props}
+        onCheckedChange={(c) => {
+          if (props.onCheckedChange) {
+            props.onCheckedChange(c);
+          }
 
-        setIsChecked(c);
-      }}
-    >
-      <Thumb checked={isChecked} />
-    </Root>
+          setIsChecked(c);
+        }}
+      >
+        <Thumb checked={isChecked} />
+      </Root>
+    </SwitchWrapper>
   );
 };

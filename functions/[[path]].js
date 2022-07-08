@@ -977,7 +977,7 @@ var require_react_development = __commonJS({
           }
           return lazyType;
         }
-        function forwardRef17(render) {
+        function forwardRef18(render) {
           {
             if (render != null && render.$$typeof === REACT_MEMO_TYPE) {
               error("forwardRef requires a render function but received a `memo` component. Instead of forwardRef(memo(...)), use memo(forwardRef(...)).");
@@ -1098,7 +1098,7 @@ var require_react_development = __commonJS({
           var dispatcher = resolveDispatcher();
           return dispatcher.useRef(initialValue);
         }
-        function useEffect24(create, deps) {
+        function useEffect25(create, deps) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useEffect(create, deps);
         }
@@ -1661,14 +1661,14 @@ var require_react_development = __commonJS({
         exports.createElement = createElement$1;
         exports.createFactory = createFactory;
         exports.createRef = createRef;
-        exports.forwardRef = forwardRef17;
+        exports.forwardRef = forwardRef18;
         exports.isValidElement = isValidElement3;
         exports.lazy = lazy;
         exports.memo = memo;
         exports.useCallback = useCallback11;
         exports.useContext = useContext9;
         exports.useDebugValue = useDebugValue;
-        exports.useEffect = useEffect24;
+        exports.useEffect = useEffect25;
         exports.useImperativeHandle = useImperativeHandle;
         exports.useLayoutEffect = useLayoutEffect7;
         exports.useMemo = useMemo8;
@@ -8829,7 +8829,7 @@ var require_react_dom_server_node_development = __commonJS({
     if (true) {
       (function() {
         "use strict";
-        var React26 = require_react();
+        var React27 = require_react();
         var _assign = require_object_assign();
         var stream = require_stream();
         var ReactVersion = "17.0.2";
@@ -8840,7 +8840,7 @@ var require_react_dom_server_node_development = __commonJS({
           }
           return "Minified React error #" + code + "; visit " + url + " for the full message or use the non-minified dev environment for full errors and additional helpful warnings.";
         }
-        var ReactSharedInternals = React26.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+        var ReactSharedInternals = React27.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
         function warn(format3) {
           {
             for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -11077,7 +11077,7 @@ var require_react_dom_server_node_development = __commonJS({
           }
           warnUnknownProperties(type, props, eventRegistry);
         }
-        var toArray2 = React26.Children.toArray;
+        var toArray2 = React27.Children.toArray;
         var currentDebugStacks = [];
         var ReactCurrentDispatcher$1 = ReactSharedInternals.ReactCurrentDispatcher;
         var ReactDebugCurrentFrame$1;
@@ -11232,7 +11232,7 @@ var require_react_dom_server_node_development = __commonJS({
           return null;
         }
         function flattenTopLevelChildren(children) {
-          if (!React26.isValidElement(children)) {
+          if (!React27.isValidElement(children)) {
             return toArray2(children);
           }
           var element = children;
@@ -11240,7 +11240,7 @@ var require_react_dom_server_node_development = __commonJS({
             return [element];
           }
           var fragmentChildren = element.props.children;
-          if (!React26.isValidElement(fragmentChildren)) {
+          if (!React27.isValidElement(fragmentChildren)) {
             return toArray2(fragmentChildren);
           }
           var fragmentChildElement = fragmentChildren;
@@ -11251,7 +11251,7 @@ var require_react_dom_server_node_development = __commonJS({
             return children;
           }
           var content = "";
-          React26.Children.forEach(children, function(child) {
+          React27.Children.forEach(children, function(child) {
             if (child == null) {
               return;
             }
@@ -11317,7 +11317,7 @@ var require_react_dom_server_node_development = __commonJS({
           }
         }
         function resolve(child, context, threadID) {
-          while (React26.isValidElement(child)) {
+          while (React27.isValidElement(child)) {
             var element = child;
             var Component = element.type;
             {
@@ -11690,7 +11690,7 @@ var require_react_dom_server_node_development = __commonJS({
               context = _resolve.context;
               if (nextChild === null || nextChild === false) {
                 return "";
-              } else if (!React26.isValidElement(nextChild)) {
+              } else if (!React27.isValidElement(nextChild)) {
                 if (nextChild != null && nextChild.$$typeof != null) {
                   var $$typeof = nextChild.$$typeof;
                   if (!($$typeof !== REACT_PORTAL_TYPE)) {
@@ -11789,7 +11789,7 @@ var require_react_dom_server_node_development = __commonJS({
                   }
                   case REACT_MEMO_TYPE: {
                     var _element = nextChild;
-                    var _nextChildren6 = [React26.createElement(elementType.type, _assign({
+                    var _nextChildren6 = [React27.createElement(elementType.type, _assign({
                       ref: _element.ref
                     }, _element.props))];
                     var _frame6 = {
@@ -11871,7 +11871,7 @@ var require_react_dom_server_node_development = __commonJS({
                     var payload = lazyComponent._payload;
                     var init2 = lazyComponent._init;
                     var result = init2(payload);
-                    var _nextChildren10 = [React26.createElement(result, _assign({
+                    var _nextChildren10 = [React27.createElement(result, _assign({
                       ref: _element2.ref
                     }, _element2.props))];
                     var _frame10 = {
@@ -12955,11 +12955,11 @@ var require_react_dom_development = __commonJS({
     if (true) {
       (function() {
         "use strict";
-        var React26 = require_react();
+        var React27 = require_react();
         var _assign = require_object_assign();
         var Scheduler = require_scheduler();
         var tracing = require_tracing();
-        var ReactSharedInternals = React26.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+        var ReactSharedInternals = React27.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
         function warn(format3) {
           {
             for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -12991,7 +12991,7 @@ var require_react_dom_development = __commonJS({
             Function.prototype.apply.call(console[level], console, argsWithFormat);
           }
         }
-        if (!React26) {
+        if (!React27) {
           {
             throw Error("ReactDOM was loaded before React. Make sure you load the React package before loading ReactDOM.");
           }
@@ -14207,7 +14207,7 @@ var require_react_dom_development = __commonJS({
         var didWarnInvalidChild = false;
         function flattenChildren(children) {
           var content = "";
-          React26.Children.forEach(children, function(child) {
+          React27.Children.forEach(children, function(child) {
             if (child == null) {
               return;
             }
@@ -14218,7 +14218,7 @@ var require_react_dom_development = __commonJS({
         function validateProps(element, props) {
           {
             if (typeof props.children === "object" && props.children !== null) {
-              React26.Children.forEach(props.children, function(child) {
+              React27.Children.forEach(props.children, function(child) {
                 if (child == null) {
                   return;
                 }
@@ -21411,7 +21411,7 @@ var require_react_dom_development = __commonJS({
         }
         var fakeInternalInstance = {};
         var isArray3 = Array.isArray;
-        var emptyRefsObject = new React26.Component().refs;
+        var emptyRefsObject = new React27.Component().refs;
         var didWarnAboutStateAssignmentForComponent;
         var didWarnAboutUninitializedState;
         var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -49230,7 +49230,7 @@ function useFetcher() {
   return fetcherWithComponents;
 }
 var LiveReload = false ? () => null : function LiveReload2({
-  port = Number(52352),
+  port = Number(8002),
   nonce = void 0
 }) {
   let js = String.raw;
@@ -50584,9 +50584,10 @@ var stitches = q({
       text: "$white",
       body: "$white",
       bg: "$dteal",
+      links: "$black",
       triangle: "$blue",
       logo: "$lgray",
-      hamburger: "$white",
+      headerIcons: "$black",
       tabText: "$lteal",
       tabBg: "$dteal",
       tabBorder: "$dteal",
@@ -50599,6 +50600,11 @@ var stitches = q({
     },
     utils: {
       "grid-auto-fit": "repeat(auto-fit, minmax(520px, 1fr))"
+    },
+    media: {
+      sm: "(min-width: 640px)",
+      md: "(min-width: 768px)",
+      lg: "(min-width: 1024px)"
     }
   }
 });
@@ -50616,9 +50622,10 @@ var darkTheme = Q("dark", {
     text: "$black",
     body: "$black",
     bg: "$orange",
+    links: "$white",
     triangle: "rgb(0, 0, 0)",
     logo: "$white",
-    hamburger: "$black",
+    headerIcons: "$white",
     tabText: "$orange",
     tabBg: "$orange",
     tabBorder: "$orange",
@@ -50699,6 +50706,7 @@ var ThemeCtx = (0, import_react9.createContext)(void 0);
 var Body = styled("body", {
   height: "100%",
   width: "100%",
+  margin: 0,
   fontFamily: "$body",
   overflow: "hidden",
   backgroundColor: "$body"
@@ -50708,7 +50716,6 @@ var headers = () => ({
 });
 var loader = async ({ request }) => {
   const cs = await getColorScheme(request);
-  console.log("COLOR SHCEME", cs);
   return { colorScheme: cs };
 };
 var links = () => {
@@ -50746,7 +50753,7 @@ function App() {
     dangerouslySetInnerHTML: { __html: clientStyleData.sheet },
     suppressHydrationWarning: true
   })), /* @__PURE__ */ React.createElement(Body, {
-    className: colorScheme
+    className: colorScheme === "dark" ? colorScheme + " " + darkTheme : colorScheme
   }, /* @__PURE__ */ React.createElement(ThemeCtx.Provider, {
     value: { mode: themeMode, setMode: setThemeMode }
   }, /* @__PURE__ */ React.createElement(Outlet, null)), /* @__PURE__ */ React.createElement(ScrollRestoration, null), /* @__PURE__ */ React.createElement(Scripts, null), /* @__PURE__ */ React.createElement(LiveReload, null)));
@@ -50863,7 +50870,7 @@ __export(weighted_box_exports, {
   WeightedBox: () => WeightedBox
 });
 init_react();
-var import_react27 = __toESM(require_react());
+var import_react28 = __toESM(require_react());
 
 // app/common/ui-elements/button/index.ts
 init_react();
@@ -50895,28 +50902,37 @@ var LinkIcon = (_a) => {
 init_react();
 var import_react14 = __toESM(require_react());
 var UnderLine = styled("hr", {
-  "backgroundColor": "$orange",
-  "width": 0,
-  "height": "2px",
-  "transition": "all 200ms ease-in-out",
-  "borderWidth": 0,
-  "position": "absolute",
-  "bottom": "4px",
-  "left": 0,
-  "&:hover": {
-    width: "28px"
-  }
+  backgroundColor: "$orange",
+  width: 0,
+  height: "2px",
+  transition: "width 200ms ease-in-out",
+  borderWidth: 0,
+  position: "absolute",
+  bottom: "-12px",
+  left: 0
 });
 var OutsideLink = styled("a", {
+  "position": "relative",
+  "color": "$links",
+  "textDecoration": "none",
   "transition": "transform 200ms ease-in-out",
   "&:hover": {
-    transform: "scale(1.05)"
+    transform: "scale(1.05)",
+    [`& ${UnderLine}`]: {
+      width: "28px"
+    }
   }
 });
 var RemixLink = styled(Link2, {
+  "position": "relative",
+  "color": "$links",
+  "textDecoration": "none",
   "transition": "transform 200ms ease-in-out",
   "&:hover": {
-    transform: "scale(1.05)"
+    transform: "scale(1.05)",
+    [`& ${UnderLine}`]: {
+      width: "28px"
+    }
   }
 });
 var LinkText = (_a) => {
@@ -51144,8 +51160,8 @@ var IconContext = /* @__PURE__ */ (0, import_react17.createContext)({
   weight: "regular",
   mirrored: false
 });
-var renderPathForWeight = function renderPathForWeight2(weight, color, pathsByWeight8) {
-  var path = pathsByWeight8.get(weight);
+var renderPathForWeight = function renderPathForWeight2(weight, color, pathsByWeight9) {
+  var path = pathsByWeight9.get(weight);
   if (!!path)
     return path(color);
   console.error('Unsupported icon weight. Choose from "thin", "light", "regular", "bold", "fill", or "duotone".');
@@ -51175,7 +51191,7 @@ function _objectWithoutPropertiesLoose2(source, excluded) {
 
 // node_modules/phosphor-react/dist/lib/IconBase.esm.js
 var IconBase = /* @__PURE__ */ (0, import_react18.forwardRef)(function(props, ref) {
-  var color = props.color, size = props.size, weight = props.weight, mirrored = props.mirrored, children = props.children, renderPath15 = props.renderPath, restProps = _objectWithoutPropertiesLoose2(props, ["color", "size", "weight", "mirrored", "children", "renderPath"]);
+  var color = props.color, size = props.size, weight = props.weight, mirrored = props.mirrored, children = props.children, renderPath17 = props.renderPath, restProps = _objectWithoutPropertiesLoose2(props, ["color", "size", "weight", "mirrored", "children", "renderPath"]);
   var _useContext = (0, import_react18.useContext)(IconContext), _useContext$color = _useContext.color, contextColor = _useContext$color === void 0 ? "currentColor" : _useContext$color, contextSize = _useContext.size, _useContext$weight = _useContext.weight, contextWeight = _useContext$weight === void 0 ? "regular" : _useContext$weight, _useContext$mirrored = _useContext.mirrored, contextMirrored = _useContext$mirrored === void 0 ? false : _useContext$mirrored, restContext = _objectWithoutPropertiesLoose2(_useContext, ["color", "size", "weight", "mirrored"]);
   return import_react18.default.createElement("svg", Object.assign({
     ref,
@@ -51189,7 +51205,7 @@ var IconBase = /* @__PURE__ */ (0, import_react18.forwardRef)(function(props, re
     width: "256",
     height: "256",
     fill: "none"
-  }), renderPath15(weight != null ? weight : contextWeight, color != null ? color : contextColor));
+  }), renderPath17(weight != null ? weight : contextWeight, color != null ? color : contextColor));
 });
 IconBase.displayName = "IconBase";
 var IconBase_esm_default = IconBase;
@@ -52263,50 +52279,95 @@ var Pen = /* @__PURE__ */ (0, import_react24.forwardRef)(function(props, ref) {
 Pen.displayName = "Pen";
 var Pen_esm_default = Pen;
 
-// node_modules/phosphor-react/dist/icons/UserFocus.esm.js
+// node_modules/phosphor-react/dist/icons/Sun.esm.js
 init_react();
 var import_react25 = __toESM(require_react());
 var pathsByWeight7 = /* @__PURE__ */ new Map();
 pathsByWeight7.set("bold", function(color) {
-  return import_react25.default.createElement(import_react25.default.Fragment, null, import_react25.default.createElement("path", {
-    d: "M180,40h28a8,8,0,0,1,8,8V76",
-    fill: "none",
-    stroke: color,
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
-    strokeWidth: "24"
-  }), import_react25.default.createElement("path", {
-    d: "M180,216h28a8,8,0,0,0,8-8V180",
-    fill: "none",
-    stroke: color,
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
-    strokeWidth: "24"
-  }), import_react25.default.createElement("path", {
-    d: "M76,216H48a8,8,0,0,1-8-8V180",
-    fill: "none",
-    stroke: color,
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
-    strokeWidth: "24"
-  }), import_react25.default.createElement("path", {
-    d: "M76,40H48a8,8,0,0,0-8,8V76",
-    fill: "none",
-    stroke: color,
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
-    strokeWidth: "24"
-  }), import_react25.default.createElement("circle", {
+  return import_react25.default.createElement(import_react25.default.Fragment, null, import_react25.default.createElement("circle", {
     cx: "128",
-    cy: "112",
-    r: "32",
+    cy: "128",
+    r: "60",
     fill: "none",
     stroke: color,
     strokeLinecap: "round",
     strokeLinejoin: "round",
     strokeWidth: "24"
-  }), import_react25.default.createElement("path", {
-    d: "M80,168a60,60,0,0,1,96,0",
+  }), import_react25.default.createElement("line", {
+    x1: "128",
+    y1: "28",
+    x2: "128",
+    y2: "12",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "24"
+  }), import_react25.default.createElement("line", {
+    x1: "198.7",
+    y1: "57.3",
+    x2: "210",
+    y2: "46",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "24"
+  }), import_react25.default.createElement("line", {
+    x1: "228",
+    y1: "128",
+    x2: "244",
+    y2: "128",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "24"
+  }), import_react25.default.createElement("line", {
+    x1: "198.7",
+    y1: "198.7",
+    x2: "210",
+    y2: "210",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "24"
+  }), import_react25.default.createElement("line", {
+    x1: "128",
+    y1: "228",
+    x2: "128",
+    y2: "244",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "24"
+  }), import_react25.default.createElement("line", {
+    x1: "57.3",
+    y1: "198.7",
+    x2: "46",
+    y2: "210",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "24"
+  }), import_react25.default.createElement("line", {
+    x1: "28",
+    y1: "128",
+    x2: "12",
+    y2: "128",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "24"
+  }), import_react25.default.createElement("line", {
+    x1: "57.3",
+    y1: "57.3",
+    x2: "46",
+    y2: "46",
     fill: "none",
     stroke: color,
     strokeLinecap: "round",
@@ -52317,48 +52378,93 @@ pathsByWeight7.set("bold", function(color) {
 pathsByWeight7.set("duotone", function(color) {
   return import_react25.default.createElement(import_react25.default.Fragment, null, import_react25.default.createElement("circle", {
     cx: "128",
-    cy: "112",
-    r: "32",
+    cy: "128",
+    r: "60",
     opacity: "0.2"
-  }), import_react25.default.createElement("path", {
-    d: "M180,40h28a8,8,0,0,1,8,8V76",
-    fill: "none",
-    stroke: color,
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
-    strokeWidth: "16"
-  }), import_react25.default.createElement("path", {
-    d: "M180,216h28a8,8,0,0,0,8-8V180",
-    fill: "none",
-    stroke: color,
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
-    strokeWidth: "16"
-  }), import_react25.default.createElement("path", {
-    d: "M76,216H48a8,8,0,0,1-8-8V180",
-    fill: "none",
-    stroke: color,
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
-    strokeWidth: "16"
-  }), import_react25.default.createElement("path", {
-    d: "M76,40H48a8,8,0,0,0-8,8V76",
-    fill: "none",
-    stroke: color,
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
-    strokeWidth: "16"
   }), import_react25.default.createElement("circle", {
     cx: "128",
-    cy: "112",
-    r: "32",
+    cy: "128",
+    r: "60",
     fill: "none",
     stroke: color,
     strokeLinecap: "round",
     strokeLinejoin: "round",
     strokeWidth: "16"
-  }), import_react25.default.createElement("path", {
-    d: "M74.9,176a60.1,60.1,0,0,1,106.2,0",
+  }), import_react25.default.createElement("line", {
+    x1: "128",
+    y1: "36",
+    x2: "128",
+    y2: "16",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "16"
+  }), import_react25.default.createElement("line", {
+    x1: "62.9",
+    y1: "62.9",
+    x2: "48.8",
+    y2: "48.8",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "16"
+  }), import_react25.default.createElement("line", {
+    x1: "36",
+    y1: "128",
+    x2: "16",
+    y2: "128",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "16"
+  }), import_react25.default.createElement("line", {
+    x1: "62.9",
+    y1: "193.1",
+    x2: "48.8",
+    y2: "207.2",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "16"
+  }), import_react25.default.createElement("line", {
+    x1: "128",
+    y1: "220",
+    x2: "128",
+    y2: "240",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "16"
+  }), import_react25.default.createElement("line", {
+    x1: "193.1",
+    y1: "193.1",
+    x2: "207.2",
+    y2: "207.2",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "16"
+  }), import_react25.default.createElement("line", {
+    x1: "220",
+    y1: "128",
+    x2: "240",
+    y2: "128",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "16"
+  }), import_react25.default.createElement("line", {
+    x1: "193.1",
+    y1: "62.9",
+    x2: "207.2",
+    y2: "48.8",
     fill: "none",
     stroke: color,
     strokeLinecap: "round",
@@ -52367,50 +52473,113 @@ pathsByWeight7.set("duotone", function(color) {
   }));
 });
 pathsByWeight7.set("fill", function() {
-  return import_react25.default.createElement(import_react25.default.Fragment, null, import_react25.default.createElement("path", {
-    d: "M224,48V76a8,8,0,0,1-16,0V48H180a8,8,0,0,1,0-16h28A16,16,0,0,1,224,48Zm-8,124a8,8,0,0,0-8,8v28H180a8,8,0,0,0,0,16h28a16,16,0,0,0,16-16V180A8,8,0,0,0,216,172ZM76,208H48V180a8,8,0,0,0-16,0v28a16,16,0,0,0,16,16H76a8,8,0,0,0,0-16ZM40,84a8,8,0,0,0,8-8V48H76a8,8,0,0,0,0-16H48A16,16,0,0,0,32,48V76A8,8,0,0,0,40,84Zm61.1,57.5a69.1,69.1,0,0,0-33.3,30.8,7.8,7.8,0,0,0,.3,7.8,7.9,7.9,0,0,0,6.8,3.9H181.1a7.9,7.9,0,0,0,6.8-3.9,7.8,7.8,0,0,0,.3-7.8,69.1,69.1,0,0,0-33.3-30.8A39.5,39.5,0,0,0,168,112a40,40,0,0,0-80,0A39.5,39.5,0,0,0,101.1,141.5Z"
+  return import_react25.default.createElement(import_react25.default.Fragment, null, import_react25.default.createElement("circle", {
+    cx: "128",
+    cy: "128",
+    r: "68"
+  }), import_react25.default.createElement("path", {
+    d: "M128,44a8,8,0,0,0,8-8V16a8,8,0,0,0-16,0V36A8,8,0,0,0,128,44Z"
+  }), import_react25.default.createElement("path", {
+    d: "M57.3,68.6a8.1,8.1,0,0,0,11.3,0,8,8,0,0,0,0-11.3L54.5,43.1A8.1,8.1,0,1,0,43.1,54.5Z"
+  }), import_react25.default.createElement("path", {
+    d: "M44,128a8,8,0,0,0-8-8H16a8,8,0,0,0,0,16H36A8,8,0,0,0,44,128Z"
+  }), import_react25.default.createElement("path", {
+    d: "M57.3,187.4,43.1,201.5a8.1,8.1,0,0,0,0,11.4,8.5,8.5,0,0,0,5.7,2.3,8.3,8.3,0,0,0,5.7-2.3l14.1-14.2a8,8,0,0,0-11.3-11.3Z"
+  }), import_react25.default.createElement("path", {
+    d: "M128,212a8,8,0,0,0-8,8v20a8,8,0,0,0,16,0V220A8,8,0,0,0,128,212Z"
+  }), import_react25.default.createElement("path", {
+    d: "M198.7,187.4a8,8,0,0,0-11.3,11.3l14.1,14.2a8.3,8.3,0,0,0,5.7,2.3,8.5,8.5,0,0,0,5.7-2.3,8.1,8.1,0,0,0,0-11.4Z"
+  }), import_react25.default.createElement("path", {
+    d: "M240,120H220a8,8,0,0,0,0,16h20a8,8,0,0,0,0-16Z"
+  }), import_react25.default.createElement("path", {
+    d: "M193.1,70.9a7.8,7.8,0,0,0,5.6-2.3l14.2-14.1a8.1,8.1,0,0,0-11.4-11.4L187.4,57.3a8,8,0,0,0,0,11.3A7.8,7.8,0,0,0,193.1,70.9Z"
   }));
 });
 pathsByWeight7.set("light", function(color) {
-  return import_react25.default.createElement(import_react25.default.Fragment, null, import_react25.default.createElement("path", {
-    d: "M180,40h28a8,8,0,0,1,8,8V76",
-    fill: "none",
-    stroke: color,
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
-    strokeWidth: "12"
-  }), import_react25.default.createElement("path", {
-    d: "M180,216h28a8,8,0,0,0,8-8V180",
-    fill: "none",
-    stroke: color,
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
-    strokeWidth: "12"
-  }), import_react25.default.createElement("path", {
-    d: "M76,216H48a8,8,0,0,1-8-8V180",
-    fill: "none",
-    stroke: color,
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
-    strokeWidth: "12"
-  }), import_react25.default.createElement("path", {
-    d: "M76,40H48a8,8,0,0,0-8,8V76",
-    fill: "none",
-    stroke: color,
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
-    strokeWidth: "12"
-  }), import_react25.default.createElement("circle", {
+  return import_react25.default.createElement(import_react25.default.Fragment, null, import_react25.default.createElement("circle", {
     cx: "128",
-    cy: "112",
-    r: "32",
+    cy: "128",
+    r: "60",
     fill: "none",
     stroke: color,
     strokeLinecap: "round",
     strokeLinejoin: "round",
     strokeWidth: "12"
-  }), import_react25.default.createElement("path", {
-    d: "M74.9,176a60.1,60.1,0,0,1,106.2,0",
+  }), import_react25.default.createElement("line", {
+    x1: "128",
+    y1: "36",
+    x2: "128",
+    y2: "16",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "12"
+  }), import_react25.default.createElement("line", {
+    x1: "62.9",
+    y1: "62.9",
+    x2: "48.8",
+    y2: "48.8",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "12"
+  }), import_react25.default.createElement("line", {
+    x1: "36",
+    y1: "128",
+    x2: "16",
+    y2: "128",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "12"
+  }), import_react25.default.createElement("line", {
+    x1: "62.9",
+    y1: "193.1",
+    x2: "48.8",
+    y2: "207.2",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "12"
+  }), import_react25.default.createElement("line", {
+    x1: "128",
+    y1: "220",
+    x2: "128",
+    y2: "240",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "12"
+  }), import_react25.default.createElement("line", {
+    x1: "193.1",
+    y1: "193.1",
+    x2: "207.2",
+    y2: "207.2",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "12"
+  }), import_react25.default.createElement("line", {
+    x1: "220",
+    y1: "128",
+    x2: "240",
+    y2: "128",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "12"
+  }), import_react25.default.createElement("line", {
+    x1: "193.1",
+    y1: "62.9",
+    x2: "207.2",
+    y2: "48.8",
     fill: "none",
     stroke: color,
     strokeLinecap: "round",
@@ -52419,45 +52588,90 @@ pathsByWeight7.set("light", function(color) {
   }));
 });
 pathsByWeight7.set("thin", function(color) {
-  return import_react25.default.createElement(import_react25.default.Fragment, null, import_react25.default.createElement("path", {
-    d: "M180,40h28a8,8,0,0,1,8,8V76",
-    fill: "none",
-    stroke: color,
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
-    strokeWidth: "8"
-  }), import_react25.default.createElement("path", {
-    d: "M180,216h28a8,8,0,0,0,8-8V180",
-    fill: "none",
-    stroke: color,
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
-    strokeWidth: "8"
-  }), import_react25.default.createElement("path", {
-    d: "M76,216H48a8,8,0,0,1-8-8V180",
-    fill: "none",
-    stroke: color,
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
-    strokeWidth: "8"
-  }), import_react25.default.createElement("path", {
-    d: "M76,40H48a8,8,0,0,0-8,8V76",
-    fill: "none",
-    stroke: color,
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
-    strokeWidth: "8"
-  }), import_react25.default.createElement("circle", {
+  return import_react25.default.createElement(import_react25.default.Fragment, null, import_react25.default.createElement("circle", {
     cx: "128",
-    cy: "112",
-    r: "32",
+    cy: "128",
+    r: "60",
     fill: "none",
     stroke: color,
     strokeLinecap: "round",
     strokeLinejoin: "round",
     strokeWidth: "8"
-  }), import_react25.default.createElement("path", {
-    d: "M74.9,176a60.1,60.1,0,0,1,106.2,0",
+  }), import_react25.default.createElement("line", {
+    x1: "128",
+    y1: "36",
+    x2: "128",
+    y2: "16",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "8"
+  }), import_react25.default.createElement("line", {
+    x1: "62.9",
+    y1: "62.9",
+    x2: "48.8",
+    y2: "48.8",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "8"
+  }), import_react25.default.createElement("line", {
+    x1: "36",
+    y1: "128",
+    x2: "16",
+    y2: "128",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "8"
+  }), import_react25.default.createElement("line", {
+    x1: "62.9",
+    y1: "193.1",
+    x2: "48.8",
+    y2: "207.2",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "8"
+  }), import_react25.default.createElement("line", {
+    x1: "128",
+    y1: "220",
+    x2: "128",
+    y2: "240",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "8"
+  }), import_react25.default.createElement("line", {
+    x1: "193.1",
+    y1: "193.1",
+    x2: "207.2",
+    y2: "207.2",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "8"
+  }), import_react25.default.createElement("line", {
+    x1: "220",
+    y1: "128",
+    x2: "240",
+    y2: "128",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "8"
+  }), import_react25.default.createElement("line", {
+    x1: "193.1",
+    y1: "62.9",
+    x2: "207.2",
+    y2: "48.8",
     fill: "none",
     stroke: color,
     strokeLinecap: "round",
@@ -52466,45 +52680,90 @@ pathsByWeight7.set("thin", function(color) {
   }));
 });
 pathsByWeight7.set("regular", function(color) {
-  return import_react25.default.createElement(import_react25.default.Fragment, null, import_react25.default.createElement("path", {
-    d: "M180,40h28a8,8,0,0,1,8,8V76",
-    fill: "none",
-    stroke: color,
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
-    strokeWidth: "16"
-  }), import_react25.default.createElement("path", {
-    d: "M180,216h28a8,8,0,0,0,8-8V180",
-    fill: "none",
-    stroke: color,
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
-    strokeWidth: "16"
-  }), import_react25.default.createElement("path", {
-    d: "M76,216H48a8,8,0,0,1-8-8V180",
-    fill: "none",
-    stroke: color,
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
-    strokeWidth: "16"
-  }), import_react25.default.createElement("path", {
-    d: "M76,40H48a8,8,0,0,0-8,8V76",
-    fill: "none",
-    stroke: color,
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
-    strokeWidth: "16"
-  }), import_react25.default.createElement("circle", {
+  return import_react25.default.createElement(import_react25.default.Fragment, null, import_react25.default.createElement("circle", {
     cx: "128",
-    cy: "112",
-    r: "32",
+    cy: "128",
+    r: "60",
     fill: "none",
     stroke: color,
     strokeLinecap: "round",
     strokeLinejoin: "round",
     strokeWidth: "16"
-  }), import_react25.default.createElement("path", {
-    d: "M74.9,176a60.1,60.1,0,0,1,106.2,0",
+  }), import_react25.default.createElement("line", {
+    x1: "128",
+    y1: "36",
+    x2: "128",
+    y2: "16",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "16"
+  }), import_react25.default.createElement("line", {
+    x1: "62.9",
+    y1: "62.9",
+    x2: "48.8",
+    y2: "48.8",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "16"
+  }), import_react25.default.createElement("line", {
+    x1: "36",
+    y1: "128",
+    x2: "16",
+    y2: "128",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "16"
+  }), import_react25.default.createElement("line", {
+    x1: "62.9",
+    y1: "193.1",
+    x2: "48.8",
+    y2: "207.2",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "16"
+  }), import_react25.default.createElement("line", {
+    x1: "128",
+    y1: "220",
+    x2: "128",
+    y2: "240",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "16"
+  }), import_react25.default.createElement("line", {
+    x1: "193.1",
+    y1: "193.1",
+    x2: "207.2",
+    y2: "207.2",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "16"
+  }), import_react25.default.createElement("line", {
+    x1: "220",
+    y1: "128",
+    x2: "240",
+    y2: "128",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "16"
+  }), import_react25.default.createElement("line", {
+    x1: "193.1",
+    y1: "62.9",
+    x2: "207.2",
+    y2: "48.8",
     fill: "none",
     stroke: color,
     strokeLinecap: "round",
@@ -52515,11 +52774,273 @@ pathsByWeight7.set("regular", function(color) {
 var renderPath13 = function renderPath14(weight, color) {
   return renderPathForWeight(weight, color, pathsByWeight7);
 };
-var UserFocus = /* @__PURE__ */ (0, import_react25.forwardRef)(function(props, ref) {
+var Sun = /* @__PURE__ */ (0, import_react25.forwardRef)(function(props, ref) {
   return import_react25.default.createElement(IconBase_esm_default, Object.assign({
     ref
   }, props, {
     renderPath: renderPath13
+  }));
+});
+Sun.displayName = "Sun";
+var Sun_esm_default = Sun;
+
+// node_modules/phosphor-react/dist/icons/UserFocus.esm.js
+init_react();
+var import_react26 = __toESM(require_react());
+var pathsByWeight8 = /* @__PURE__ */ new Map();
+pathsByWeight8.set("bold", function(color) {
+  return import_react26.default.createElement(import_react26.default.Fragment, null, import_react26.default.createElement("path", {
+    d: "M180,40h28a8,8,0,0,1,8,8V76",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "24"
+  }), import_react26.default.createElement("path", {
+    d: "M180,216h28a8,8,0,0,0,8-8V180",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "24"
+  }), import_react26.default.createElement("path", {
+    d: "M76,216H48a8,8,0,0,1-8-8V180",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "24"
+  }), import_react26.default.createElement("path", {
+    d: "M76,40H48a8,8,0,0,0-8,8V76",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "24"
+  }), import_react26.default.createElement("circle", {
+    cx: "128",
+    cy: "112",
+    r: "32",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "24"
+  }), import_react26.default.createElement("path", {
+    d: "M80,168a60,60,0,0,1,96,0",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "24"
+  }));
+});
+pathsByWeight8.set("duotone", function(color) {
+  return import_react26.default.createElement(import_react26.default.Fragment, null, import_react26.default.createElement("circle", {
+    cx: "128",
+    cy: "112",
+    r: "32",
+    opacity: "0.2"
+  }), import_react26.default.createElement("path", {
+    d: "M180,40h28a8,8,0,0,1,8,8V76",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "16"
+  }), import_react26.default.createElement("path", {
+    d: "M180,216h28a8,8,0,0,0,8-8V180",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "16"
+  }), import_react26.default.createElement("path", {
+    d: "M76,216H48a8,8,0,0,1-8-8V180",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "16"
+  }), import_react26.default.createElement("path", {
+    d: "M76,40H48a8,8,0,0,0-8,8V76",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "16"
+  }), import_react26.default.createElement("circle", {
+    cx: "128",
+    cy: "112",
+    r: "32",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "16"
+  }), import_react26.default.createElement("path", {
+    d: "M74.9,176a60.1,60.1,0,0,1,106.2,0",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "16"
+  }));
+});
+pathsByWeight8.set("fill", function() {
+  return import_react26.default.createElement(import_react26.default.Fragment, null, import_react26.default.createElement("path", {
+    d: "M224,48V76a8,8,0,0,1-16,0V48H180a8,8,0,0,1,0-16h28A16,16,0,0,1,224,48Zm-8,124a8,8,0,0,0-8,8v28H180a8,8,0,0,0,0,16h28a16,16,0,0,0,16-16V180A8,8,0,0,0,216,172ZM76,208H48V180a8,8,0,0,0-16,0v28a16,16,0,0,0,16,16H76a8,8,0,0,0,0-16ZM40,84a8,8,0,0,0,8-8V48H76a8,8,0,0,0,0-16H48A16,16,0,0,0,32,48V76A8,8,0,0,0,40,84Zm61.1,57.5a69.1,69.1,0,0,0-33.3,30.8,7.8,7.8,0,0,0,.3,7.8,7.9,7.9,0,0,0,6.8,3.9H181.1a7.9,7.9,0,0,0,6.8-3.9,7.8,7.8,0,0,0,.3-7.8,69.1,69.1,0,0,0-33.3-30.8A39.5,39.5,0,0,0,168,112a40,40,0,0,0-80,0A39.5,39.5,0,0,0,101.1,141.5Z"
+  }));
+});
+pathsByWeight8.set("light", function(color) {
+  return import_react26.default.createElement(import_react26.default.Fragment, null, import_react26.default.createElement("path", {
+    d: "M180,40h28a8,8,0,0,1,8,8V76",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "12"
+  }), import_react26.default.createElement("path", {
+    d: "M180,216h28a8,8,0,0,0,8-8V180",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "12"
+  }), import_react26.default.createElement("path", {
+    d: "M76,216H48a8,8,0,0,1-8-8V180",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "12"
+  }), import_react26.default.createElement("path", {
+    d: "M76,40H48a8,8,0,0,0-8,8V76",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "12"
+  }), import_react26.default.createElement("circle", {
+    cx: "128",
+    cy: "112",
+    r: "32",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "12"
+  }), import_react26.default.createElement("path", {
+    d: "M74.9,176a60.1,60.1,0,0,1,106.2,0",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "12"
+  }));
+});
+pathsByWeight8.set("thin", function(color) {
+  return import_react26.default.createElement(import_react26.default.Fragment, null, import_react26.default.createElement("path", {
+    d: "M180,40h28a8,8,0,0,1,8,8V76",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "8"
+  }), import_react26.default.createElement("path", {
+    d: "M180,216h28a8,8,0,0,0,8-8V180",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "8"
+  }), import_react26.default.createElement("path", {
+    d: "M76,216H48a8,8,0,0,1-8-8V180",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "8"
+  }), import_react26.default.createElement("path", {
+    d: "M76,40H48a8,8,0,0,0-8,8V76",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "8"
+  }), import_react26.default.createElement("circle", {
+    cx: "128",
+    cy: "112",
+    r: "32",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "8"
+  }), import_react26.default.createElement("path", {
+    d: "M74.9,176a60.1,60.1,0,0,1,106.2,0",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "8"
+  }));
+});
+pathsByWeight8.set("regular", function(color) {
+  return import_react26.default.createElement(import_react26.default.Fragment, null, import_react26.default.createElement("path", {
+    d: "M180,40h28a8,8,0,0,1,8,8V76",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "16"
+  }), import_react26.default.createElement("path", {
+    d: "M180,216h28a8,8,0,0,0,8-8V180",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "16"
+  }), import_react26.default.createElement("path", {
+    d: "M76,216H48a8,8,0,0,1-8-8V180",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "16"
+  }), import_react26.default.createElement("path", {
+    d: "M76,40H48a8,8,0,0,0-8,8V76",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "16"
+  }), import_react26.default.createElement("circle", {
+    cx: "128",
+    cy: "112",
+    r: "32",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "16"
+  }), import_react26.default.createElement("path", {
+    d: "M74.9,176a60.1,60.1,0,0,1,106.2,0",
+    fill: "none",
+    stroke: color,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "16"
+  }));
+});
+var renderPath15 = function renderPath16(weight, color) {
+  return renderPathForWeight(weight, color, pathsByWeight8);
+};
+var UserFocus = /* @__PURE__ */ (0, import_react26.forwardRef)(function(props, ref) {
+  return import_react26.default.createElement(IconBase_esm_default, Object.assign({
+    ref
+  }, props, {
+    renderPath: renderPath15
   }));
 });
 UserFocus.displayName = "UserFocus";
@@ -52885,7 +53406,7 @@ var Root2 = Switch;
 var Thumb = SwitchThumb;
 
 // app/common/ui-elements/library/switch/Switch.tsx
-var import_react26 = __toESM(require_react());
+var import_react27 = __toESM(require_react());
 
 // app/common/ui-elements/library/theme/index.ts
 init_react();
@@ -52904,6 +53425,11 @@ var colors = {
 };
 
 // app/common/ui-elements/library/switch/Switch.tsx
+var SwitchWrapper = styled("div", {
+  "& > button": {
+    borderRadius: "9999px"
+  }
+});
 var Root3 = styled(Root2, {
   "all": "unset",
   "position": "relative",
@@ -52913,6 +53439,9 @@ var Root3 = styled(Root2, {
   "backgroundColor": colors.orange,
   "borderRadius": "9999px",
   "margin": "0 8px",
+  "button": {
+    border: "1px solid red"
+  },
   "&[data-state=checked]": {
     backgroundColor: colors.blue
   }
@@ -52941,17 +53470,17 @@ var Thumb2 = styled(Thumb, {
 });
 var Switch2 = (_a) => {
   var props = __objRest(_a, []);
-  const [isChecked, setIsChecked] = (0, import_react26.useState)(props.checked ?? false);
-  return /* @__PURE__ */ import_react26.default.createElement(Root3, __spreadProps(__spreadValues({}, props), {
+  const [isChecked, setIsChecked] = (0, import_react27.useState)(props.checked ?? false);
+  return /* @__PURE__ */ import_react27.default.createElement(SwitchWrapper, null, /* @__PURE__ */ import_react27.default.createElement(Root3, __spreadProps(__spreadValues({}, props), {
     onCheckedChange: (c6) => {
       if (props.onCheckedChange) {
         props.onCheckedChange(c6);
       }
       setIsChecked(c6);
     }
-  }), /* @__PURE__ */ import_react26.default.createElement(Thumb2, {
+  }), /* @__PURE__ */ import_react27.default.createElement(Thumb2, {
     checked: isChecked
-  }));
+  })));
 };
 
 // app/common/ui-elements/quotes/blockquote.tsx
@@ -53003,11 +53532,11 @@ var randomBoxOdds = {
   mythical: 0.4
 };
 var WeightedBox = () => {
-  const [charOpened, setCharOpened] = (0, import_react27.useState)(void 0);
+  const [charOpened, setCharOpened] = (0, import_react28.useState)(void 0);
   const openBoxHandler = () => {
     setCharOpened(openBox(randomBoxOdds));
   };
-  (0, import_react27.useEffect)(() => {
+  (0, import_react28.useEffect)(() => {
     if (charOpened) {
       setTimeout(() => {
         setCharOpened(void 0);
@@ -53044,7 +53573,7 @@ __export(naive_box_exports, {
   NaiveBox: () => NaiveBox
 });
 init_react();
-var import_react28 = __toESM(require_react());
+var import_react29 = __toESM(require_react());
 var shuffle = (array) => {
   let currentIndex = array.length;
   let randomIndex;
@@ -53075,18 +53604,18 @@ var createBag = () => {
   return shuffle(bag);
 };
 var NaiveBox = () => {
-  const [bag, setBag] = (0, import_react28.useState)([]);
-  (0, import_react28.useEffect)(() => {
+  const [bag, setBag] = (0, import_react29.useState)([]);
+  (0, import_react29.useEffect)(() => {
     const newBag = createBag();
     setBag(newBag);
   }, []);
-  const [charOpened, setCharOpened] = (0, import_react28.useState)(void 0);
+  const [charOpened, setCharOpened] = (0, import_react29.useState)(void 0);
   const openBoxHandler = () => {
     const randomIndex = Math.floor(Math.random() * 2e3);
     const char = bag[randomIndex];
     setCharOpened(char);
   };
-  (0, import_react28.useEffect)(() => {
+  (0, import_react29.useEffect)(() => {
     if (charOpened) {
       setTimeout(() => {
         setCharOpened(void 0);
@@ -53156,7 +53685,7 @@ init_react();
 
 // app/routes/projects/loot-crate/crates/naive-box.tsx
 init_react();
-var import_react29 = __toESM(require_react());
+var import_react30 = __toESM(require_react());
 var shuffle2 = (array) => {
   let currentIndex = array.length;
   let randomIndex;
@@ -53187,18 +53716,18 @@ var createBag2 = () => {
   return shuffle2(bag);
 };
 var NaiveBox2 = () => {
-  const [bag, setBag] = (0, import_react29.useState)([]);
-  (0, import_react29.useEffect)(() => {
+  const [bag, setBag] = (0, import_react30.useState)([]);
+  (0, import_react30.useEffect)(() => {
     const newBag = createBag2();
     setBag(newBag);
   }, []);
-  const [charOpened, setCharOpened] = (0, import_react29.useState)(void 0);
+  const [charOpened, setCharOpened] = (0, import_react30.useState)(void 0);
   const openBoxHandler = () => {
     const randomIndex = Math.floor(Math.random() * 2e3);
     const char = bag[randomIndex];
     setCharOpened(char);
   };
-  (0, import_react29.useEffect)(() => {
+  (0, import_react30.useEffect)(() => {
     if (charOpened) {
       setTimeout(() => {
         setCharOpened(void 0);
@@ -53231,7 +53760,7 @@ var NaiveBox2 = () => {
 
 // app/routes/projects/loot-crate/crates/weighted-box.tsx
 init_react();
-var import_react30 = __toESM(require_react());
+var import_react31 = __toESM(require_react());
 var randomBoxOdds2 = {
   common: 74,
   rare: 19,
@@ -53240,11 +53769,11 @@ var randomBoxOdds2 = {
   mythical: 0.4
 };
 var WeightedBox2 = () => {
-  const [charOpened, setCharOpened] = (0, import_react30.useState)(void 0);
+  const [charOpened, setCharOpened] = (0, import_react31.useState)(void 0);
   const openBoxHandler = () => {
     setCharOpened(openBox(randomBoxOdds2));
   };
-  (0, import_react30.useEffect)(() => {
+  (0, import_react31.useEffect)(() => {
     if (charOpened) {
       setTimeout(() => {
         setCharOpened(void 0);
@@ -53319,7 +53848,7 @@ __export(HaloCountdown_exports, {
   HaloCountdown: () => HaloCountdown
 });
 init_react();
-var import_react34 = __toESM(require_react());
+var import_react35 = __toESM(require_react());
 
 // node_modules/react-spring/dist/react-spring.esm.js
 init_react();
@@ -53491,8 +54020,8 @@ function eachSafely(values, each2) {
 }
 
 // node_modules/@react-spring/shared/dist/react-spring-shared.esm.js
-var React15 = __toESM(require_react());
-var import_react31 = __toESM(require_react());
+var React16 = __toESM(require_react());
+var import_react32 = __toESM(require_react());
 function noop2() {
 }
 var defineHidden = (obj, key, value) => Object.defineProperty(obj, key, {
@@ -54141,11 +54670,11 @@ function deprecateDirectCall() {
 function isAnimatedString(value) {
   return is.str(value) && (value[0] == "#" || /\d/.test(value) || !isSSR() && cssVariableRegex.test(value) || value in (colors$1 || {}));
 }
-var useOnce = (effect) => (0, import_react31.useEffect)(effect, emptyDeps);
+var useOnce = (effect) => (0, import_react32.useEffect)(effect, emptyDeps);
 var emptyDeps = [];
 function useForceUpdate() {
-  const update3 = (0, import_react31.useState)()[1];
-  const mounted = (0, import_react31.useState)(makeMountedRef)[0];
+  const update3 = (0, import_react32.useState)()[1];
+  const mounted = (0, import_react32.useState)(makeMountedRef)[0];
   useOnce(mounted.unmount);
   return () => {
     if (mounted.current) {
@@ -54163,11 +54692,11 @@ function makeMountedRef() {
   return mounted;
 }
 function useMemoOne(getResult, inputs) {
-  const [initial] = (0, import_react31.useState)(() => ({
+  const [initial] = (0, import_react32.useState)(() => ({
     inputs,
     result: getResult()
   }));
-  const committed = (0, import_react31.useRef)();
+  const committed = (0, import_react32.useRef)();
   const prevCache = committed.current;
   let cache = prevCache;
   if (cache) {
@@ -54181,7 +54710,7 @@ function useMemoOne(getResult, inputs) {
   } else {
     cache = initial;
   }
-  (0, import_react31.useEffect)(() => {
+  (0, import_react32.useEffect)(() => {
     committed.current = cache;
     if (prevCache == initial) {
       initial.inputs = initial.result = void 0;
@@ -54201,22 +54730,22 @@ function areInputsEqual(next, prev) {
   return true;
 }
 function usePrev(value) {
-  const prevRef = (0, import_react31.useRef)();
-  (0, import_react31.useEffect)(() => {
+  const prevRef = (0, import_react32.useRef)();
+  (0, import_react32.useEffect)(() => {
     prevRef.current = value;
   });
   return prevRef.current;
 }
-var useLayoutEffect5 = typeof window !== "undefined" && window.document && window.document.createElement ? React15.useLayoutEffect : React15.useEffect;
+var useLayoutEffect5 = typeof window !== "undefined" && window.document && window.document.createElement ? React16.useLayoutEffect : React16.useEffect;
 
 // node_modules/@react-spring/core/dist/react-spring-core.esm.js
-var React17 = __toESM(require_react());
-var import_react33 = __toESM(require_react());
+var React18 = __toESM(require_react());
+var import_react34 = __toESM(require_react());
 
 // node_modules/@react-spring/animated/dist/react-spring-animated.esm.js
 init_react();
-var React16 = __toESM(require_react());
-var import_react32 = __toESM(require_react());
+var React17 = __toESM(require_react());
+var import_react33 = __toESM(require_react());
 var $node = Symbol.for("Animated:node");
 var isAnimated = (value) => !!value && value[$node] === value;
 var getAnimated = (owner) => owner && owner[$node];
@@ -54416,9 +54945,9 @@ function _extends8() {
 }
 var withAnimated = (Component, host2) => {
   const hasInstance = !is.fun(Component) || Component.prototype && Component.prototype.isReactComponent;
-  return (0, import_react32.forwardRef)((givenProps, givenRef) => {
-    const instanceRef = (0, import_react32.useRef)(null);
-    const ref = hasInstance && (0, import_react32.useCallback)((value) => {
+  return (0, import_react33.forwardRef)((givenProps, givenRef) => {
+    const instanceRef = (0, import_react33.useRef)(null);
+    const ref = hasInstance && (0, import_react33.useCallback)((value) => {
       instanceRef.current = updateRef(givenRef, value);
     }, [givenRef]);
     const [props, deps] = getAnimatedState(givenProps, host2);
@@ -54434,7 +54963,7 @@ var withAnimated = (Component, host2) => {
       }
     };
     const observer = new PropsObserver(callback, deps);
-    const observerRef = (0, import_react32.useRef)();
+    const observerRef = (0, import_react33.useRef)();
     useLayoutEffect5(() => {
       const lastObserver = observerRef.current;
       observerRef.current = observer;
@@ -54444,13 +54973,13 @@ var withAnimated = (Component, host2) => {
         raf.cancel(lastObserver.update);
       }
     });
-    (0, import_react32.useEffect)(callback, []);
+    (0, import_react33.useEffect)(callback, []);
     useOnce(() => () => {
       const observer2 = observerRef.current;
       each(observer2.deps, (dep) => removeFluidObserver(dep, observer2));
     });
     const usedProps = host2.getComponentProps(props.getValue());
-    return React16.createElement(Component, _extends8({}, usedProps, {
+    return React17.createElement(Component, _extends8({}, usedProps, {
       ref
     }));
   });
@@ -56080,7 +56609,7 @@ var SpringContext = (_ref) => {
   let {
     children
   } = _ref, props = _objectWithoutPropertiesLoose3(_ref, _excluded$3);
-  const inherited = (0, import_react33.useContext)(ctx);
+  const inherited = (0, import_react34.useContext)(ctx);
   const pause = props.pause || !!inherited.pause, immediate = props.immediate || !!inherited.immediate;
   props = useMemoOne(() => ({
     pause,
@@ -56089,7 +56618,7 @@ var SpringContext = (_ref) => {
   const {
     Provider
   } = ctx;
-  return React17.createElement(Provider, {
+  return React18.createElement(Provider, {
     value: props
   }, children);
 };
@@ -56097,7 +56626,7 @@ var ctx = makeContext(SpringContext, {});
 SpringContext.Provider = ctx.Provider;
 SpringContext.Consumer = ctx.Consumer;
 function makeContext(target, init2) {
-  Object.assign(target, React17.createContext(init2));
+  Object.assign(target, React18.createContext(init2));
   target.Provider._context = target;
   target.Consumer._context = target;
   return target;
@@ -56173,10 +56702,10 @@ function useSprings(length, props, deps) {
   const propsFn = is.fun(props) && props;
   if (propsFn && !deps)
     deps = [];
-  const ref = (0, import_react33.useMemo)(() => propsFn || arguments.length == 3 ? SpringRef() : void 0, []);
-  const layoutId = (0, import_react33.useRef)(0);
+  const ref = (0, import_react34.useMemo)(() => propsFn || arguments.length == 3 ? SpringRef() : void 0, []);
+  const layoutId = (0, import_react34.useRef)(0);
   const forceUpdate = useForceUpdate();
-  const state = (0, import_react33.useMemo)(() => ({
+  const state = (0, import_react34.useMemo)(() => ({
     ctrls: [],
     queue: [],
     flush(ctrl, updates2) {
@@ -56191,10 +56720,10 @@ function useSprings(length, props, deps) {
       });
     }
   }), []);
-  const ctrls = (0, import_react33.useRef)([...state.ctrls]);
+  const ctrls = (0, import_react34.useRef)([...state.ctrls]);
   const updates = [];
   const prevLength = usePrev(length) || 0;
-  (0, import_react33.useMemo)(() => {
+  (0, import_react34.useMemo)(() => {
     each(ctrls.current.slice(length, prevLength), (ctrl) => {
       detachRefs(ctrl, ref);
       ctrl.stop(true);
@@ -56202,7 +56731,7 @@ function useSprings(length, props, deps) {
     ctrls.current.length = length;
     declareUpdates(prevLength, length);
   }, [length]);
-  (0, import_react33.useMemo)(() => {
+  (0, import_react34.useMemo)(() => {
     declareUpdates(0, Math.min(prevLength, length));
   }, deps);
   function declareUpdates(startIndex, endIndex) {
@@ -56215,7 +56744,7 @@ function useSprings(length, props, deps) {
     }
   }
   const springs = ctrls.current.map((ctrl, i4) => getSprings(ctrl, updates[i4]));
-  const context = (0, import_react33.useContext)(SpringContext);
+  const context = (0, import_react34.useContext)(SpringContext);
   const prevContext = usePrev(context);
   const hasContext = context !== prevContext && hasProps(context);
   useLayoutEffect5(() => {
@@ -56258,7 +56787,7 @@ function useSpring(props, deps) {
   return isFn || arguments.length == 2 ? [values, ref] : values;
 }
 var initSpringRef = () => SpringRef();
-var useSpringRef = () => (0, import_react33.useState)(initSpringRef)[0];
+var useSpringRef = () => (0, import_react34.useState)(initSpringRef)[0];
 var TransitionPhase;
 (function(TransitionPhase2) {
   TransitionPhase2["MOUNT"] = "mount";
@@ -56278,10 +56807,10 @@ function useTransition2(data, props, deps) {
     ref: propsRef,
     config: propsConfig
   } = propsFn ? propsFn() : props;
-  const ref = (0, import_react33.useMemo)(() => propsFn || arguments.length == 3 ? SpringRef() : void 0, []);
+  const ref = (0, import_react34.useMemo)(() => propsFn || arguments.length == 3 ? SpringRef() : void 0, []);
   const items = toArray(data);
   const transitions = [];
-  const usedTransitions = (0, import_react33.useRef)(null);
+  const usedTransitions = (0, import_react34.useRef)(null);
   const prevTransitions = reset ? null : usedTransitions.current;
   useLayoutEffect5(() => {
     usedTransitions.current = transitions;
@@ -56352,8 +56881,8 @@ function useTransition2(data, props, deps) {
   const forceUpdate = useForceUpdate();
   const defaultProps = getDefaultProps(props);
   const changes = /* @__PURE__ */ new Map();
-  const exitingTransitions = (0, import_react33.useRef)(/* @__PURE__ */ new Map());
-  const forceChange = (0, import_react33.useRef)(false);
+  const exitingTransitions = (0, import_react34.useRef)(/* @__PURE__ */ new Map());
+  const forceChange = (0, import_react34.useRef)(false);
   each(transitions, (t5, i4) => {
     const key = t5.key;
     const prevPhase = t5.phase;
@@ -56450,7 +56979,7 @@ function useTransition2(data, props, deps) {
       });
     }
   });
-  const context = (0, import_react33.useContext)(SpringContext);
+  const context = (0, import_react34.useContext)(SpringContext);
   const prevContext = usePrev(context);
   const hasContext = context !== prevContext && hasProps(context);
   useLayoutEffect5(() => {
@@ -56496,12 +57025,12 @@ function useTransition2(data, props, deps) {
       }
     });
   }, reset ? void 0 : deps);
-  const renderTransitions = (render) => React17.createElement(React17.Fragment, null, transitions.map((t5, i4) => {
+  const renderTransitions = (render) => React18.createElement(React18.Fragment, null, transitions.map((t5, i4) => {
     const {
       springs
     } = changes.get(t5) || t5.ctrl;
     const elem = render(_extends9({}, springs), t5.item, t5, i4);
-    return elem && elem.type ? React17.createElement(elem.type, _extends9({}, elem.props, {
+    return elem && elem.type ? React18.createElement(elem.type, _extends9({}, elem.props, {
       key: is.str(t5.key) || is.num(t5.key) ? t5.key : t5.ctrl.id,
       ref: elem.ref
     })) : elem;
@@ -56837,9 +57366,9 @@ var animated = host.animated;
 // route:/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/app/routes/projects/loaders/HaloCountdown.tsx
 var COUNTDOWN = 3;
 var HaloCountdown = () => {
-  const [currentTime, setCurrentTime] = (0, import_react34.useState)(COUNTDOWN);
-  const [showCountdown, setShowCountdown] = (0, import_react34.useState)(false);
-  const intervalRef = (0, import_react34.useRef)(null);
+  const [currentTime, setCurrentTime] = (0, import_react35.useState)(COUNTDOWN);
+  const [showCountdown, setShowCountdown] = (0, import_react35.useState)(false);
+  const intervalRef = (0, import_react35.useRef)(null);
   const springInStyles = useSpring({
     from: {
       transform: "translate3d(-50%, 50%, 0) scale(0)"
@@ -56864,7 +57393,7 @@ var HaloCountdown = () => {
     ref: borderLeftSlideSpringRef
   }));
   useChain(showCountdown ? [borderLeftSpringRef, borderLeftSlideSpringRef] : [borderLeftSlideSpringRef, borderLeftSpringRef]);
-  (0, import_react34.useEffect)(() => {
+  (0, import_react35.useEffect)(() => {
     if (!showCountdown) {
       return;
     }
@@ -56872,7 +57401,7 @@ var HaloCountdown = () => {
       setCurrentTime((prevTime) => prevTime - 1);
     }, 1e3);
   }, [showCountdown]);
-  (0, import_react34.useEffect)(() => {
+  (0, import_react35.useEffect)(() => {
     if (currentTime === 0 && intervalRef.current) {
       setShowCountdown(false);
       setCurrentTime(COUNTDOWN);
@@ -56913,7 +57442,7 @@ __export(education_blurb_exports, {
   EducationBlurb: () => EducationBlurb
 });
 init_react();
-var import_react35 = __toESM(require_react());
+var import_react36 = __toESM(require_react());
 
 // app/routes/about/blurbs/blurb-divider.tsx
 init_react();
@@ -56927,17 +57456,17 @@ var BlurbDivider = () => {
 
 // route:/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/app/routes/about/blurbs/education-blurb.tsx
 var EducationBlurb = () => {
-  return /* @__PURE__ */ import_react35.default.createElement(import_react35.default.Fragment, null, /* @__PURE__ */ import_react35.default.createElement("h2", {
+  return /* @__PURE__ */ import_react36.default.createElement(import_react36.default.Fragment, null, /* @__PURE__ */ import_react36.default.createElement("h2", {
     className: "mb-2 text-xl"
-  }, "University of Nevada, Reno"), /* @__PURE__ */ import_react35.default.createElement("div", {
+  }, "University of Nevada, Reno"), /* @__PURE__ */ import_react36.default.createElement("div", {
     className: "flex flex-col items-center h-full"
-  }, /* @__PURE__ */ import_react35.default.createElement("div", {
+  }, /* @__PURE__ */ import_react36.default.createElement("div", {
     style: {
       display: "flex",
       flexDirection: "column",
       justifyContent: "space-evenly"
     }
-  }, /* @__PURE__ */ import_react35.default.createElement("p", null, "I graduated in the winter of 2019 from the University of Nevada, Reno with a Bachelors in Computer Science and Engineering and a minor in Mathematics."), /* @__PURE__ */ import_react35.default.createElement("div", null, /* @__PURE__ */ import_react35.default.createElement(BlurbDivider, null)), /* @__PURE__ */ import_react35.default.createElement("p", null, "My coursework and area of interest was in Machine Learning and A.I. For my Senior project, I worked as the primary front-end developer on a team of three. Our goal was to refactor and rebuild, from the ground up, an in-use production application."))));
+  }, /* @__PURE__ */ import_react36.default.createElement("p", null, "I graduated in the winter of 2019 from the University of Nevada, Reno with a Bachelors in Computer Science and Engineering and a minor in Mathematics."), /* @__PURE__ */ import_react36.default.createElement("div", null, /* @__PURE__ */ import_react36.default.createElement(BlurbDivider, null)), /* @__PURE__ */ import_react36.default.createElement("p", null, "My coursework and area of interest was in Machine Learning and A.I. For my Senior project, I worked as the primary front-end developer on a team of three. Our goal was to refactor and rebuild, from the ground up, an in-use production application."))));
 };
 
 // route:/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/app/routes/about/blurbs/about-me-blurb.tsx
@@ -56946,9 +57475,9 @@ __export(about_me_blurb_exports, {
   AboutMeBlurb: () => AboutMeBlurb
 });
 init_react();
-var import_react36 = __toESM(require_react());
+var import_react37 = __toESM(require_react());
 var AboutMeBlurb = () => {
-  return /* @__PURE__ */ import_react36.default.createElement("div", null, /* @__PURE__ */ import_react36.default.createElement(BlurbDivider, null), /* @__PURE__ */ import_react36.default.createElement(Paragraph, null, `Hi, I'm Kevin!`), /* @__PURE__ */ import_react36.default.createElement(Paragraph, null, "From an early age, I was introduced to Halo by a friend and got hooked into gaming. Like many, I got into Computer Science to build games, but in doing so found a world of much more."), /* @__PURE__ */ import_react36.default.createElement(Paragraph, null, "Through school, I learned just how vast the realm of CS is and questioned what path I should take. Tesla was becoming more and more popular and I saw what they were doing with Machine Learning and A.I; So I made these my focus. I was drawn towards this path because I wanted to help develop life-changing technologies that impact and shape the world we live in."), /* @__PURE__ */ import_react36.default.createElement(Paragraph, null, "Near the end of my schooling career, I was afforded an opportunity to become a Frontend Software Engineer and in doing so have found that there are more ways to impact and shape the world!"), /* @__PURE__ */ import_react36.default.createElement(BlurbDivider, null));
+  return /* @__PURE__ */ import_react37.default.createElement("div", null, /* @__PURE__ */ import_react37.default.createElement(BlurbDivider, null), /* @__PURE__ */ import_react37.default.createElement(Paragraph, null, `Hi, I'm Kevin!`), /* @__PURE__ */ import_react37.default.createElement(Paragraph, null, "From an early age, I was introduced to Halo by a friend and got hooked into gaming. Like many, I got into Computer Science to build games, but in doing so found a world of much more."), /* @__PURE__ */ import_react37.default.createElement(Paragraph, null, "Through school, I learned just how vast the realm of CS is and questioned what path I should take. Tesla was becoming more and more popular and I saw what they were doing with Machine Learning and A.I; So I made these my focus. I was drawn towards this path because I wanted to help develop life-changing technologies that impact and shape the world we live in."), /* @__PURE__ */ import_react37.default.createElement(Paragraph, null, "Near the end of my schooling career, I was afforded an opportunity to become a Frontend Software Engineer and in doing so have found that there are more ways to impact and shape the world!"), /* @__PURE__ */ import_react37.default.createElement(BlurbDivider, null));
 };
 
 // route:/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/app/routes/about/blurbs/blurb-divider.tsx
@@ -56974,21 +57503,21 @@ init_react();
 
 // app/routes/about/blurbs/about-me-blurb.tsx
 init_react();
-var import_react37 = __toESM(require_react());
+var import_react38 = __toESM(require_react());
 var AboutMeBlurb2 = () => {
-  return /* @__PURE__ */ import_react37.default.createElement("div", null, /* @__PURE__ */ import_react37.default.createElement(BlurbDivider, null), /* @__PURE__ */ import_react37.default.createElement(Paragraph, null, `Hi, I'm Kevin!`), /* @__PURE__ */ import_react37.default.createElement(Paragraph, null, "From an early age, I was introduced to Halo by a friend and got hooked into gaming. Like many, I got into Computer Science to build games, but in doing so found a world of much more."), /* @__PURE__ */ import_react37.default.createElement(Paragraph, null, "Through school, I learned just how vast the realm of CS is and questioned what path I should take. Tesla was becoming more and more popular and I saw what they were doing with Machine Learning and A.I; So I made these my focus. I was drawn towards this path because I wanted to help develop life-changing technologies that impact and shape the world we live in."), /* @__PURE__ */ import_react37.default.createElement(Paragraph, null, "Near the end of my schooling career, I was afforded an opportunity to become a Frontend Software Engineer and in doing so have found that there are more ways to impact and shape the world!"), /* @__PURE__ */ import_react37.default.createElement(BlurbDivider, null));
+  return /* @__PURE__ */ import_react38.default.createElement("div", null, /* @__PURE__ */ import_react38.default.createElement(BlurbDivider, null), /* @__PURE__ */ import_react38.default.createElement(Paragraph, null, `Hi, I'm Kevin!`), /* @__PURE__ */ import_react38.default.createElement(Paragraph, null, "From an early age, I was introduced to Halo by a friend and got hooked into gaming. Like many, I got into Computer Science to build games, but in doing so found a world of much more."), /* @__PURE__ */ import_react38.default.createElement(Paragraph, null, "Through school, I learned just how vast the realm of CS is and questioned what path I should take. Tesla was becoming more and more popular and I saw what they were doing with Machine Learning and A.I; So I made these my focus. I was drawn towards this path because I wanted to help develop life-changing technologies that impact and shape the world we live in."), /* @__PURE__ */ import_react38.default.createElement(Paragraph, null, "Near the end of my schooling career, I was afforded an opportunity to become a Frontend Software Engineer and in doing so have found that there are more ways to impact and shape the world!"), /* @__PURE__ */ import_react38.default.createElement(BlurbDivider, null));
 };
 
 // app/routes/about/blurbs/career-blurb.tsx
 init_react();
-var import_react38 = __toESM(require_react());
+var import_react39 = __toESM(require_react());
 
 // app/routes/about/blurbs/career-items/index.ts
 init_react();
 
 // app/routes/about/blurbs/career-blurb.tsx
 var CareerBlurb = () => {
-  const [tab, setTab] = (0, import_react38.useState)("sq8");
+  const [tab, setTab] = (0, import_react39.useState)("sq8");
   return /* @__PURE__ */ React.createElement("div", {
     className: "flex flex-col"
   }, /* @__PURE__ */ React.createElement(TabsList, null, /* @__PURE__ */ React.createElement(Tab, {
@@ -57002,19 +57531,19 @@ var CareerBlurb = () => {
 
 // app/routes/about/blurbs/education-blurb.tsx
 init_react();
-var import_react39 = __toESM(require_react());
+var import_react40 = __toESM(require_react());
 var EducationBlurb2 = () => {
-  return /* @__PURE__ */ import_react39.default.createElement(import_react39.default.Fragment, null, /* @__PURE__ */ import_react39.default.createElement("h2", {
+  return /* @__PURE__ */ import_react40.default.createElement(import_react40.default.Fragment, null, /* @__PURE__ */ import_react40.default.createElement("h2", {
     className: "mb-2 text-xl"
-  }, "University of Nevada, Reno"), /* @__PURE__ */ import_react39.default.createElement("div", {
+  }, "University of Nevada, Reno"), /* @__PURE__ */ import_react40.default.createElement("div", {
     className: "flex flex-col items-center h-full"
-  }, /* @__PURE__ */ import_react39.default.createElement("div", {
+  }, /* @__PURE__ */ import_react40.default.createElement("div", {
     style: {
       display: "flex",
       flexDirection: "column",
       justifyContent: "space-evenly"
     }
-  }, /* @__PURE__ */ import_react39.default.createElement("p", null, "I graduated in the winter of 2019 from the University of Nevada, Reno with a Bachelors in Computer Science and Engineering and a minor in Mathematics."), /* @__PURE__ */ import_react39.default.createElement("div", null, /* @__PURE__ */ import_react39.default.createElement(BlurbDivider, null)), /* @__PURE__ */ import_react39.default.createElement("p", null, "My coursework and area of interest was in Machine Learning and A.I. For my Senior project, I worked as the primary front-end developer on a team of three. Our goal was to refactor and rebuild, from the ground up, an in-use production application."))));
+  }, /* @__PURE__ */ import_react40.default.createElement("p", null, "I graduated in the winter of 2019 from the University of Nevada, Reno with a Bachelors in Computer Science and Engineering and a minor in Mathematics."), /* @__PURE__ */ import_react40.default.createElement("div", null, /* @__PURE__ */ import_react40.default.createElement(BlurbDivider, null)), /* @__PURE__ */ import_react40.default.createElement("p", null, "My coursework and area of interest was in Machine Learning and A.I. For my Senior project, I worked as the primary front-end developer on a team of three. Our goal was to refactor and rebuild, from the ground up, an in-use production application."))));
 };
 
 // route:/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/app/routes/about/blurbs/content-blurb.tsx
@@ -57049,9 +57578,9 @@ __export(career_blurb_exports, {
   CareerBlurb: () => CareerBlurb2
 });
 init_react();
-var import_react40 = __toESM(require_react());
+var import_react41 = __toESM(require_react());
 var CareerBlurb2 = () => {
-  const [tab, setTab] = (0, import_react40.useState)("sq8");
+  const [tab, setTab] = (0, import_react41.useState)("sq8");
   return /* @__PURE__ */ React.createElement("div", {
     className: "flex flex-col"
   }, /* @__PURE__ */ React.createElement(TabsList, null, /* @__PURE__ */ React.createElement(Tab, {
@@ -57288,16 +57817,16 @@ init_react();
 
 // app/common/layout/header/header.tsx
 init_react();
-var import_react48 = __toESM(require_react());
+var import_react49 = __toESM(require_react());
 
 // app/common/hooks/events/index.ts
 init_react();
 
 // app/common/hooks/events/useClickOutside.ts
 init_react();
-var import_react42 = __toESM(require_react());
+var import_react43 = __toESM(require_react());
 var useClickOutside = (ref, funcHandler) => {
-  (0, import_react42.useEffect)(() => {
+  (0, import_react43.useEffect)(() => {
     const clickHandler = (ev) => {
       if (!ref.current || ref.current.contains(ev.target)) {
         return;
@@ -57311,9 +57840,9 @@ var useClickOutside = (ref, funcHandler) => {
 
 // app/useTheme.ts
 init_react();
-var import_react43 = __toESM(require_react());
+var import_react44 = __toESM(require_react());
 var useTheme = () => {
-  const ctx2 = (0, import_react43.useContext)(ThemeCtx);
+  const ctx2 = (0, import_react44.useContext)(ThemeCtx);
   if (!ctx2) {
     throw new Error("ThemeCtx must be used underneath a provider");
   }
@@ -57322,7 +57851,7 @@ var useTheme = () => {
 
 // app/common/layout/menu-items.tsx
 init_react();
-var import_react44 = __toESM(require_react());
+var import_react45 = __toESM(require_react());
 
 // app/common/assets/images/logo-dark.png
 var logo_dark_default = "/build/_assets/logo-dark-7KTW3LX4.png";
@@ -57349,7 +57878,7 @@ var links2 = {
 var ICON_SIZE = 24;
 var ImageIcons = (_a) => {
   var props = __objRest(_a, []);
-  return /* @__PURE__ */ import_react44.default.createElement("img", __spreadValues({
+  return /* @__PURE__ */ import_react45.default.createElement("img", __spreadValues({
     className: "max-w-[30px] md:mr-5 transition opacity duration-[250] ease-in-out"
   }, props));
 };
@@ -57357,7 +57886,7 @@ var menuItems = [
   {
     name: "Home",
     path: links2.home(),
-    icon: /* @__PURE__ */ import_react44.default.createElement(ImageIcons, {
+    icon: /* @__PURE__ */ import_react45.default.createElement(ImageIcons, {
       src: logo_dark_default,
       alt: "Kevin Carlos logo",
       "aria-label": "Kevin Carlos logo",
@@ -57368,7 +57897,7 @@ var menuItems = [
   {
     name: "Projects",
     path: links2.projects().root(),
-    icon: /* @__PURE__ */ import_react44.default.createElement(Code_esm_default, {
+    icon: /* @__PURE__ */ import_react45.default.createElement(Code_esm_default, {
       size: ICON_SIZE,
       weight: "duotone",
       "aria-label": "Projects",
@@ -57378,7 +57907,7 @@ var menuItems = [
   {
     name: "About Me",
     path: links2.aboutMe(),
-    icon: /* @__PURE__ */ import_react44.default.createElement(UserFocus_esm_default, {
+    icon: /* @__PURE__ */ import_react45.default.createElement(UserFocus_esm_default, {
       size: ICON_SIZE,
       weight: "duotone",
       "aria-label": "About Me",
@@ -57388,7 +57917,7 @@ var menuItems = [
   {
     name: "LinkedIn",
     path: links2.linkedIn(),
-    icon: /* @__PURE__ */ import_react44.default.createElement(LinkedinLogo_esm_default, {
+    icon: /* @__PURE__ */ import_react45.default.createElement(LinkedinLogo_esm_default, {
       size: ICON_SIZE,
       weight: "duotone",
       "aria-label": "LinkedIn logo",
@@ -57398,7 +57927,7 @@ var menuItems = [
   {
     name: "GitHub",
     path: links2.github(),
-    icon: /* @__PURE__ */ import_react44.default.createElement(GithubLogo_esm_default, {
+    icon: /* @__PURE__ */ import_react45.default.createElement(GithubLogo_esm_default, {
       size: ICON_SIZE,
       weight: "duotone",
       "aria-label": "Github logo",
@@ -57408,7 +57937,7 @@ var menuItems = [
   {
     name: "GitLab",
     path: links2.gitlab(),
-    icon: /* @__PURE__ */ import_react44.default.createElement(GitlabLogo_esm_default, {
+    icon: /* @__PURE__ */ import_react45.default.createElement(GitlabLogo_esm_default, {
       size: ICON_SIZE,
       weight: "duotone",
       "aria-label": "GitLab logo",
@@ -57426,7 +57955,7 @@ var HamburgerSlice = styled("div", {
   borderRadius: "8px",
   transformOrigin: "1px",
   transition: "transform 250ms ease-in-out",
-  backgroundColor: "$hamburger",
+  backgroundColor: "$headerIcons",
   variants: {
     num: {
       "1": {},
@@ -57498,7 +58027,7 @@ var HamburgerIcon = ({
 
 // app/common/layout/header/hamburger-menu.tsx
 init_react();
-var import_react45 = __toESM(require_react());
+var import_react46 = __toESM(require_react());
 var HamburgerMenu = ({
   isOpen,
   setIsOpen
@@ -57507,7 +58036,7 @@ var HamburgerMenu = ({
     from: { opacity: 0, transform: `translateX(100vw)` },
     to: isOpen ? { opacity: 1, transform: `translateX(0vw)` } : { opacity: 0, transform: `translateX(100vw)` }
   });
-  (0, import_react45.useEffect)(() => {
+  (0, import_react46.useEffect)(() => {
     const handleResize = () => {
       if (window.innerWidth > 1200) {
         setIsOpen(false);
@@ -57518,34 +58047,29 @@ var HamburgerMenu = ({
     }
     return () => window.removeEventListener("resize", handleResize);
   }, [isOpen, setIsOpen]);
-  return /* @__PURE__ */ import_react45.default.createElement(animated.menu, {
+  return /* @__PURE__ */ import_react46.default.createElement(animated.menu, {
     style: spring,
     className: "bg-theme-lteal absolute top-0 right-0 h-screen w-screen z-40"
-  }, /* @__PURE__ */ import_react45.default.createElement("nav", {
+  }, /* @__PURE__ */ import_react46.default.createElement("nav", {
     role: "navigation",
     className: "h-full w-full"
-  }, /* @__PURE__ */ import_react45.default.createElement("ul", {
+  }, /* @__PURE__ */ import_react46.default.createElement("ul", {
     className: "h-full w-full space-y-4 flex flex-col justify-center items-center"
-  }, menuItems.map((i4, idx) => /* @__PURE__ */ import_react45.default.createElement("li", {
+  }, menuItems.map((i4, idx) => /* @__PURE__ */ import_react46.default.createElement("li", {
     key: `ham-${i4.name}_${idx}`,
     className: "flex justify-center w-full"
-  }, /* @__PURE__ */ import_react45.default.createElement(LinkText, {
+  }, /* @__PURE__ */ import_react46.default.createElement(LinkText, {
     href: i4.path,
     className: "text-2xl",
     childrenClassName: "grid grid-cols-[1fr_200px] justify-items-center",
     animateScale: false
-  }, i4.icon, /* @__PURE__ */ import_react45.default.createElement("span", {
+  }, i4.icon, /* @__PURE__ */ import_react46.default.createElement("span", {
     className: "justify-self-end"
   }, i4.name)))))));
 };
 
 // app/common/layout/header/logo.tsx
 init_react();
-var LogoWrapper = styled("div", {
-  position: "relative",
-  width: "40px",
-  height: "40px"
-});
 var Circle = styled("div", {
   width: "40px",
   height: "40px",
@@ -57554,6 +58078,16 @@ var Circle = styled("div", {
   backgroundColor: "$logo",
   position: "absolute",
   transition: "opacity 200ms ease-in-out"
+});
+var LogoWrapper = styled("div", {
+  "position": "relative",
+  "width": "40px",
+  "height": "40px",
+  "&:hover": {
+    "& > a > div": {
+      opacity: 0.4
+    }
+  }
 });
 var Logo = () => {
   return /* @__PURE__ */ React.createElement(LogoWrapper, null, /* @__PURE__ */ React.createElement(Link2, {
@@ -57578,63 +58112,77 @@ var LogoAndModeWrapper = styled("div", {
   gridGap: "16px"
 });
 var Nav = styled("nav", {
-  "display": "flex",
+  "display": "none",
   "flexGrow": 1,
   "alignItems": "center",
   "justifyContent": "flex-end",
   "& > a": {
-    margin: "0 16px"
+    margin: "0 8px"
+  },
+  "@media screen and (min-width: 640px)": {
+    display: "flex"
+  }
+});
+var HamburgerWrapper = styled("div", {
+  "display": "flex",
+  "justifyContent": "flex-end",
+  "flexGrow": 1,
+  "@media screen and (min-width: 640px)": {
+    display: "none"
   }
 });
 var StyledMoon = styled(Moon_esm_default, {
-  backgroundColor: "$body"
+  "& > path": {
+    stroke: "$headerIcons"
+  }
 });
-var StyledSun = styled(Moon_esm_default, {
-  backgroundColor: "$body"
+var StyledSun = styled(Sun_esm_default, {
+  "& > circle, & > line": {
+    stroke: "$headerIcons"
+  }
 });
 var Header = () => {
   const [mode, setMode] = useTheme();
   const themeMode = useFetcher();
-  const [mobileNav, toggleMobileNav] = (0, import_react48.useState)(false);
-  const menuRef = (0, import_react48.useRef)(null);
+  const [mobileNav, toggleMobileNav] = (0, import_react49.useState)(false);
+  const menuRef = (0, import_react49.useRef)(null);
   useClickOutside(menuRef, () => toggleMobileNav(false));
-  const setIsOpen = (0, import_react48.useCallback)(() => {
+  const setIsOpen = (0, import_react49.useCallback)(() => {
     toggleMobileNav(!mobileNav);
   }, [mobileNav]);
+  const onThemeToggle = (mode2) => {
+    themeMode.submit({ mode: mode2, url: window.location.pathname }, {
+      method: "post",
+      action: "/theme/mode"
+    });
+    setMode(mode2);
+  };
   return /* @__PURE__ */ React.createElement(StyledHeader, {
     role: "banner"
   }, /* @__PURE__ */ React.createElement(LogoAndModeWrapper, null, /* @__PURE__ */ React.createElement(Logo, null), /* @__PURE__ */ React.createElement("div", {
     style: {
       display: "flex",
       alignItems: "center",
-      justifyContent: "center"
+      justifyContent: "center",
+      gap: "8px"
     }
   }, /* @__PURE__ */ React.createElement(StyledMoon, {
     size: ICON_SIZE2,
     style: { cursor: "pointer" },
     onClick: () => {
-      themeMode.submit({ value: "dark" }, {
-        method: "post",
-        action: "/theme/mode"
-      });
-      setMode("dark");
+      onThemeToggle("dark");
     }
   }), /* @__PURE__ */ React.createElement(Switch2, {
     checked: mode === "light" ? true : false,
     onCheckedChange: (checked2) => {
       const mode2 = checked2 ? "light" : "dark";
-      setMode(checked2 ? "light" : "dark");
-      themeMode.submit({ mode: mode2, url: window.location.pathname }, { method: "post", action: "/theme/mode", replace: true });
+      onThemeToggle(mode2);
     }
   }), /* @__PURE__ */ React.createElement(StyledSun, {
     size: ICON_SIZE2,
     style: { cursor: "pointer" },
     onClick: () => {
-      setMode("light");
-      themeMode.submit({ value: "light" }, {
-        method: "post",
-        action: "/theme/mode"
-      });
+      onThemeToggle("light");
     }
   }))), /* @__PURE__ */ React.createElement(Nav, {
     role: "navigation"
@@ -57642,15 +58190,13 @@ var Header = () => {
     if (mi.mobileOnly) {
       return;
     }
-    return /* @__PURE__ */ React.createElement(import_react48.Fragment, {
+    return /* @__PURE__ */ React.createElement(import_react49.Fragment, {
       key: `header-${mi.name}`
     }, /* @__PURE__ */ React.createElement(LinkText, {
       href: mi.path
     }, mi.name));
-  })), /* @__PURE__ */ React.createElement("div", {
-    ref: menuRef,
-    style: { display: "none" },
-    className: "md:hidden flex justify-end flex-grow"
+  })), /* @__PURE__ */ React.createElement(HamburgerWrapper, {
+    ref: menuRef
   }, /* @__PURE__ */ React.createElement(HamburgerIcon, {
     isOpen: mobileNav,
     setIsOpen
@@ -57662,7 +58208,7 @@ var Header = () => {
 
 // app/common/layout/layout.tsx
 init_react();
-var import_react49 = __toESM(require_react());
+var import_react50 = __toESM(require_react());
 
 // app/common/layout/footer/index.ts
 init_react();
@@ -57698,6 +58244,9 @@ var OverlayTriangle = styled("div", {
   "zIndex": 10,
   "pointerEvents": "none",
   "opacity": 0.2,
+  "@media screen and (min-width: 640px)": {
+    transform: "skewY(-25deg)"
+  },
   "&::before": {
     content: "",
     position: "relative",
@@ -57719,7 +58268,7 @@ var Main = styled("main", {
   zIndex: 30
 });
 var Layout = ({ children, hideFooter }) => {
-  return /* @__PURE__ */ React.createElement(import_react49.Fragment, null, /* @__PURE__ */ React.createElement(LayoutGrid, null, /* @__PURE__ */ React.createElement(Header, null), /* @__PURE__ */ React.createElement(Main, {
+  return /* @__PURE__ */ React.createElement(import_react50.Fragment, null, /* @__PURE__ */ React.createElement(LayoutGrid, null, /* @__PURE__ */ React.createElement(Header, null), /* @__PURE__ */ React.createElement(Main, {
     role: "main"
   }, children), !hideFooter ? /* @__PURE__ */ React.createElement(Footer, null) : null), /* @__PURE__ */ React.createElement(OverlayTriangle, null));
 };
@@ -58076,7 +58625,7 @@ __export(animated_hello_exports, {
   AnimatedHello: () => AnimatedHello
 });
 init_react();
-var import_react51 = __toESM(require_react());
+var import_react52 = __toESM(require_react());
 
 // app/routes/hero/languages.ts
 init_react();
@@ -58105,10 +58654,10 @@ var helloInLanguages = [
 
 // route:/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/app/routes/hero/animated-hello.tsx
 var AnimatedHello = () => {
-  const valueRef = (0, import_react51.useRef)(null);
-  const [items] = (0, import_react51.useState)(helloInLanguages.map((hi) => ({ value: hi, sort: Math.random() })).sort((a3, b3) => a3.sort - b3.sort).map((v2) => v2.value));
-  const [index, setIndex] = (0, import_react51.useState)(0);
-  const [length, setLength] = (0, import_react51.useState)(helloInLanguages[index].length);
+  const valueRef = (0, import_react52.useRef)(null);
+  const [items] = (0, import_react52.useState)(helloInLanguages.map((hi) => ({ value: hi, sort: Math.random() })).sort((a3, b3) => a3.sort - b3.sort).map((v2) => v2.value));
+  const [index, setIndex] = (0, import_react52.useState)(0);
+  const [length, setLength] = (0, import_react52.useState)(helloInLanguages[index].length);
   const transitions = useTransition2(index, {
     from: { opacity: 0, width: "max-content" },
     enter: { opacity: 1 },
@@ -58129,24 +58678,24 @@ var AnimatedHello = () => {
       bounce: 1
     }
   });
-  (0, import_react51.useEffect)(() => {
+  (0, import_react52.useEffect)(() => {
     const interval = setInterval(() => {
       setIndex((prevIndex) => (prevIndex + 1) % helloInLanguages.length);
     }, 1e3 * 2);
     return () => clearInterval(interval);
   }, []);
-  (0, import_react51.useEffect)(() => {
+  (0, import_react52.useEffect)(() => {
     var _a;
     setLength(((_a = valueRef.current) == null ? void 0 : _a.clientWidth) || helloInLanguages.length);
   }, [index]);
-  return /* @__PURE__ */ import_react51.default.createElement("span", {
+  return /* @__PURE__ */ import_react52.default.createElement("span", {
     className: "absolute"
-  }, /* @__PURE__ */ import_react51.default.createElement("span", {
+  }, /* @__PURE__ */ import_react52.default.createElement("span", {
     className: "relative"
-  }, transitions((styles, i4) => /* @__PURE__ */ import_react51.default.createElement(animated.span, {
+  }, transitions((styles, i4) => /* @__PURE__ */ import_react52.default.createElement(animated.span, {
     ref: valueRef,
     style: __spreadProps(__spreadValues({}, styles), { position: "absolute" })
-  }, items[i4], ",")), /* @__PURE__ */ import_react51.default.createElement(animated.span, {
+  }, items[i4], ",")), /* @__PURE__ */ import_react52.default.createElement(animated.span, {
     key: length,
     style: {
       position: "absolute",
@@ -58225,7 +58774,7 @@ __export(descriptions_exports, {
   Descriptions: () => Descriptions
 });
 init_react();
-var import_react52 = __toESM(require_react());
+var import_react53 = __toESM(require_react());
 
 // app/routes/about/blurbs/index.ts
 init_react();
@@ -58423,7 +58972,7 @@ var ContentWrapper = styled("div", {
   justifyContent: "center"
 });
 var Descriptions = () => {
-  const [index, setIndex] = (0, import_react52.useState)(0);
+  const [index, setIndex] = (0, import_react53.useState)(0);
   return /* @__PURE__ */ React.createElement(StyledDiv, null, /* @__PURE__ */ React.createElement(Circles, {
     index,
     setIndex: (n4) => setIndex(n4)
@@ -58572,7 +59121,7 @@ init_react();
 
 // app/routes/about/descriptions.tsx
 init_react();
-var import_react53 = __toESM(require_react());
+var import_react54 = __toESM(require_react());
 var StyledDiv2 = styled("div", {
   display: "flex",
   flexDirection: "column",
@@ -58587,7 +59136,7 @@ var ContentWrapper2 = styled("div", {
   justifyContent: "center"
 });
 var Descriptions2 = () => {
-  const [index, setIndex] = (0, import_react53.useState)(0);
+  const [index, setIndex] = (0, import_react54.useState)(0);
   return /* @__PURE__ */ React.createElement(StyledDiv2, null, /* @__PURE__ */ React.createElement(Circles, {
     index,
     setIndex: (n4) => setIndex(n4)
@@ -58615,12 +59164,12 @@ init_react();
 
 // app/routes/hero/animated-hello.tsx
 init_react();
-var import_react54 = __toESM(require_react());
+var import_react55 = __toESM(require_react());
 var AnimatedHello2 = () => {
-  const valueRef = (0, import_react54.useRef)(null);
-  const [items] = (0, import_react54.useState)(helloInLanguages.map((hi) => ({ value: hi, sort: Math.random() })).sort((a3, b3) => a3.sort - b3.sort).map((v2) => v2.value));
-  const [index, setIndex] = (0, import_react54.useState)(0);
-  const [length, setLength] = (0, import_react54.useState)(helloInLanguages[index].length);
+  const valueRef = (0, import_react55.useRef)(null);
+  const [items] = (0, import_react55.useState)(helloInLanguages.map((hi) => ({ value: hi, sort: Math.random() })).sort((a3, b3) => a3.sort - b3.sort).map((v2) => v2.value));
+  const [index, setIndex] = (0, import_react55.useState)(0);
+  const [length, setLength] = (0, import_react55.useState)(helloInLanguages[index].length);
   const transitions = useTransition2(index, {
     from: { opacity: 0, width: "max-content" },
     enter: { opacity: 1 },
@@ -58641,24 +59190,24 @@ var AnimatedHello2 = () => {
       bounce: 1
     }
   });
-  (0, import_react54.useEffect)(() => {
+  (0, import_react55.useEffect)(() => {
     const interval = setInterval(() => {
       setIndex((prevIndex) => (prevIndex + 1) % helloInLanguages.length);
     }, 1e3 * 2);
     return () => clearInterval(interval);
   }, []);
-  (0, import_react54.useEffect)(() => {
+  (0, import_react55.useEffect)(() => {
     var _a;
     setLength(((_a = valueRef.current) == null ? void 0 : _a.clientWidth) || helloInLanguages.length);
   }, [index]);
-  return /* @__PURE__ */ import_react54.default.createElement("span", {
+  return /* @__PURE__ */ import_react55.default.createElement("span", {
     className: "absolute"
-  }, /* @__PURE__ */ import_react54.default.createElement("span", {
+  }, /* @__PURE__ */ import_react55.default.createElement("span", {
     className: "relative"
-  }, transitions((styles, i4) => /* @__PURE__ */ import_react54.default.createElement(animated.span, {
+  }, transitions((styles, i4) => /* @__PURE__ */ import_react55.default.createElement(animated.span, {
     ref: valueRef,
     style: __spreadProps(__spreadValues({}, styles), { position: "absolute" })
-  }, items[i4], ",")), /* @__PURE__ */ import_react54.default.createElement(animated.span, {
+  }, items[i4], ",")), /* @__PURE__ */ import_react55.default.createElement(animated.span, {
     key: length,
     style: {
       position: "absolute",
@@ -58743,7 +59292,7 @@ __export(routes_exports, {
   default: () => Index4
 });
 init_react();
-var import_react56 = __toESM(require_react());
+var import_react57 = __toESM(require_react());
 var import_react_tsparticles = __toESM(require_react_tsparticles());
 
 // app/common/hooks/motion/index.ts
@@ -58751,10 +59300,11 @@ init_react();
 
 // app/common/hooks/motion/useReducedMotion.ts
 init_react();
-var import_react55 = __toESM(require_react());
+var import_react56 = __toESM(require_react());
+var useIsomorphicLayoutEffect = typeof window !== void 0 ? import_react56.useLayoutEffect : import_react56.useEffect;
 var useReducedMotion = () => {
-  const [prefersReducedMotion, setPrefersReducedMotion] = (0, import_react55.useState)(false);
-  (0, import_react55.useLayoutEffect)(() => {
+  const [prefersReducedMotion, setPrefersReducedMotion] = (0, import_react56.useState)(false);
+  useIsomorphicLayoutEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (mediaQuery.matches) {
       setPrefersReducedMotion(true);
@@ -58774,7 +59324,7 @@ init_react();
 function Index4() {
   const prefersReducedMotion = useReducedMotion();
   const [mode] = useTheme();
-  const getParticleOptions = (0, import_react56.useCallback)((mode2) => {
+  const getParticleOptions = (0, import_react57.useCallback)((mode2) => {
     const opts = {
       fpsLimit: 60,
       detectRetina: true,
@@ -58912,7 +59462,7 @@ function Index4() {
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
 init_react();
-var assets_manifest_default = { "version": "3325cb73", "entry": { "module": "/build/entry.client-XD5AHQWL.js", "imports": ["/build/_shared/chunk-AYUUTK2F.js", "/build/_shared/chunk-MY3YDAZT.js", "/build/_shared/chunk-N2P4UVFW.js"] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "module": "/build/root-LZQB2MA2.js", "imports": ["/build/_shared/chunk-POVZYMEF.js", "/build/_shared/chunk-E7SKMB7I.js"], "hasAction": false, "hasLoader": true, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/active-circles": { "id": "routes/about/active-circles", "parentId": "root", "path": "about/active-circles", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/active-circles-DBLH4R73.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/about-me-blurb": { "id": "routes/about/blurbs/about-me-blurb", "parentId": "root", "path": "about/blurbs/about-me-blurb", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/about-me-blurb-JFGQ7RSR.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/blurb-divider": { "id": "routes/about/blurbs/blurb-divider", "parentId": "root", "path": "about/blurbs/blurb-divider", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/blurb-divider-PNJWAFKB.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/career-blurb": { "id": "routes/about/blurbs/career-blurb", "parentId": "root", "path": "about/blurbs/career-blurb", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/career-blurb-26CTZW3X.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/career-items/cycle": { "id": "routes/about/blurbs/career-items/cycle", "parentId": "root", "path": "about/blurbs/career-items/cycle", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/career-items/cycle-WRXHW74L.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/career-items/index": { "id": "routes/about/blurbs/career-items/index", "parentId": "root", "path": "about/blurbs/career-items", "index": true, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/career-items/index-QMPQEVXT.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/career-items/square-8": { "id": "routes/about/blurbs/career-items/square-8", "parentId": "root", "path": "about/blurbs/career-items/square-8", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/career-items/square-8-KKMXTDN3.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/content-blurb": { "id": "routes/about/blurbs/content-blurb", "parentId": "root", "path": "about/blurbs/content-blurb", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/content-blurb-ZWVL3RCK.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/education-blurb": { "id": "routes/about/blurbs/education-blurb", "parentId": "root", "path": "about/blurbs/education-blurb", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/education-blurb-E6465KCD.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/index": { "id": "routes/about/blurbs/index", "parentId": "root", "path": "about/blurbs", "index": true, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/index-H2L26YHT.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/circle-items": { "id": "routes/about/circle-items", "parentId": "root", "path": "about/circle-items", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/circle-items-XQQWWFGJ.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/circles": { "id": "routes/about/circles", "parentId": "root", "path": "about/circles", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/circles-54QQASQA.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/descriptions": { "id": "routes/about/descriptions", "parentId": "root", "path": "about/descriptions", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/descriptions-KGM5MMQI.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/index": { "id": "routes/about/index", "parentId": "root", "path": "about", "index": true, "caseSensitive": void 0, "module": "/build/routes/about/index-3HJ4UBQM.js", "imports": ["/build/_shared/chunk-KL723UOX.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/hero/animated-hello": { "id": "routes/hero/animated-hello", "parentId": "root", "path": "hero/animated-hello", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/hero/animated-hello-3BK53ZN3.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/hero/hero": { "id": "routes/hero/hero", "parentId": "root", "path": "hero/hero", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/hero/hero-NCKF7SM5.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/hero/index": { "id": "routes/hero/index", "parentId": "root", "path": "hero", "index": true, "caseSensitive": void 0, "module": "/build/routes/hero/index-BNFXDADF.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/hero/languages": { "id": "routes/hero/languages", "parentId": "root", "path": "hero/languages", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/hero/languages-OCUYLAAC.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/index": { "id": "routes/index", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "module": "/build/routes/index-GKQSYKPL.js", "imports": ["/build/_shared/chunk-KL723UOX.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/index": { "id": "routes/projects/index", "parentId": "root", "path": "projects", "index": true, "caseSensitive": void 0, "module": "/build/routes/projects/index-J6M2WWBV.js", "imports": ["/build/_shared/chunk-KL723UOX.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loaders/HaloCountdown": { "id": "routes/projects/loaders/HaloCountdown", "parentId": "root", "path": "projects/loaders/HaloCountdown", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loaders/HaloCountdown-ZSLKTTT5.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loaders/Spinners": { "id": "routes/projects/loaders/Spinners", "parentId": "root", "path": "projects/loaders/Spinners", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loaders/Spinners-D3AMSO63.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loaders/index": { "id": "routes/projects/loaders/index", "parentId": "root", "path": "projects/loaders", "index": true, "caseSensitive": void 0, "module": "/build/routes/projects/loaders/index-ZYT2W33O.js", "imports": ["/build/_shared/chunk-KL723UOX.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/helpers/centered-text-item": { "id": "routes/projects/loot-crate/crates/helpers/centered-text-item", "parentId": "root", "path": "projects/loot-crate/crates/helpers/centered-text-item", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/helpers/centered-text-item-U3U4H77U.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/helpers/character-modal": { "id": "routes/projects/loot-crate/crates/helpers/character-modal", "parentId": "root", "path": "projects/loot-crate/crates/helpers/character-modal", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/helpers/character-modal-25TGUTOU.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/helpers/crate-info-item": { "id": "routes/projects/loot-crate/crates/helpers/crate-info-item", "parentId": "root", "path": "projects/loot-crate/crates/helpers/crate-info-item", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/helpers/crate-info-item-P6PJ56K7.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/helpers/index": { "id": "routes/projects/loot-crate/crates/helpers/index", "parentId": "root", "path": "projects/loot-crate/crates/helpers", "index": true, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/helpers/index-3WZS3LOW.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/index": { "id": "routes/projects/loot-crate/crates/index", "parentId": "root", "path": "projects/loot-crate/crates", "index": true, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/index-64Y6N2XR.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/naive-box": { "id": "routes/projects/loot-crate/crates/naive-box", "parentId": "root", "path": "projects/loot-crate/crates/naive-box", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/naive-box-EMY3NJVQ.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/open-box": { "id": "routes/projects/loot-crate/crates/open-box", "parentId": "root", "path": "projects/loot-crate/crates/open-box", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/open-box-3G5KGHFY.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/weighted-box": { "id": "routes/projects/loot-crate/crates/weighted-box", "parentId": "root", "path": "projects/loot-crate/crates/weighted-box", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/weighted-box-M6F4252F.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/index": { "id": "routes/projects/loot-crate/index", "parentId": "root", "path": "projects/loot-crate", "index": true, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/index-SY2SSRSO.js", "imports": ["/build/_shared/chunk-KL723UOX.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/project-items": { "id": "routes/projects/project-items", "parentId": "root", "path": "projects/project-items", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/project-items-6F4QKAGP.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/theme/mode": { "id": "routes/theme/mode", "parentId": "root", "path": "theme/mode", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/theme/mode-LHRTX733.js", "imports": void 0, "hasAction": true, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false } }, "url": "/build/manifest-3325CB73.js" };
+var assets_manifest_default = { "version": "ddc5510a", "entry": { "module": "/build/entry.client-N2ALYBKA.js", "imports": ["/build/_shared/chunk-AYUUTK2F.js", "/build/_shared/chunk-XK7BNA4U.js", "/build/_shared/chunk-N2P4UVFW.js"] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "module": "/build/root-RQPKAPTA.js", "imports": ["/build/_shared/chunk-POVZYMEF.js", "/build/_shared/chunk-E7SKMB7I.js"], "hasAction": false, "hasLoader": true, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/active-circles": { "id": "routes/about/active-circles", "parentId": "root", "path": "about/active-circles", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/active-circles-DBLH4R73.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/about-me-blurb": { "id": "routes/about/blurbs/about-me-blurb", "parentId": "root", "path": "about/blurbs/about-me-blurb", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/about-me-blurb-JFGQ7RSR.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/blurb-divider": { "id": "routes/about/blurbs/blurb-divider", "parentId": "root", "path": "about/blurbs/blurb-divider", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/blurb-divider-PNJWAFKB.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/career-blurb": { "id": "routes/about/blurbs/career-blurb", "parentId": "root", "path": "about/blurbs/career-blurb", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/career-blurb-26CTZW3X.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/career-items/cycle": { "id": "routes/about/blurbs/career-items/cycle", "parentId": "root", "path": "about/blurbs/career-items/cycle", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/career-items/cycle-WRXHW74L.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/career-items/index": { "id": "routes/about/blurbs/career-items/index", "parentId": "root", "path": "about/blurbs/career-items", "index": true, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/career-items/index-QMPQEVXT.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/career-items/square-8": { "id": "routes/about/blurbs/career-items/square-8", "parentId": "root", "path": "about/blurbs/career-items/square-8", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/career-items/square-8-KKMXTDN3.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/content-blurb": { "id": "routes/about/blurbs/content-blurb", "parentId": "root", "path": "about/blurbs/content-blurb", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/content-blurb-ZWVL3RCK.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/education-blurb": { "id": "routes/about/blurbs/education-blurb", "parentId": "root", "path": "about/blurbs/education-blurb", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/education-blurb-E6465KCD.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/index": { "id": "routes/about/blurbs/index", "parentId": "root", "path": "about/blurbs", "index": true, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/index-H2L26YHT.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/circle-items": { "id": "routes/about/circle-items", "parentId": "root", "path": "about/circle-items", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/circle-items-XQQWWFGJ.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/circles": { "id": "routes/about/circles", "parentId": "root", "path": "about/circles", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/circles-54QQASQA.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/descriptions": { "id": "routes/about/descriptions", "parentId": "root", "path": "about/descriptions", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/descriptions-KGM5MMQI.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/index": { "id": "routes/about/index", "parentId": "root", "path": "about", "index": true, "caseSensitive": void 0, "module": "/build/routes/about/index-6HKLPJVF.js", "imports": ["/build/_shared/chunk-NV7UJRXY.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/hero/animated-hello": { "id": "routes/hero/animated-hello", "parentId": "root", "path": "hero/animated-hello", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/hero/animated-hello-3BK53ZN3.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/hero/hero": { "id": "routes/hero/hero", "parentId": "root", "path": "hero/hero", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/hero/hero-NCKF7SM5.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/hero/index": { "id": "routes/hero/index", "parentId": "root", "path": "hero", "index": true, "caseSensitive": void 0, "module": "/build/routes/hero/index-BNFXDADF.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/hero/languages": { "id": "routes/hero/languages", "parentId": "root", "path": "hero/languages", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/hero/languages-OCUYLAAC.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/index": { "id": "routes/index", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "module": "/build/routes/index-E4VUTQX6.js", "imports": ["/build/_shared/chunk-NV7UJRXY.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/index": { "id": "routes/projects/index", "parentId": "root", "path": "projects", "index": true, "caseSensitive": void 0, "module": "/build/routes/projects/index-EPLP2VOK.js", "imports": ["/build/_shared/chunk-NV7UJRXY.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loaders/HaloCountdown": { "id": "routes/projects/loaders/HaloCountdown", "parentId": "root", "path": "projects/loaders/HaloCountdown", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loaders/HaloCountdown-ZSLKTTT5.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loaders/Spinners": { "id": "routes/projects/loaders/Spinners", "parentId": "root", "path": "projects/loaders/Spinners", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loaders/Spinners-D3AMSO63.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loaders/index": { "id": "routes/projects/loaders/index", "parentId": "root", "path": "projects/loaders", "index": true, "caseSensitive": void 0, "module": "/build/routes/projects/loaders/index-ZVKV27G4.js", "imports": ["/build/_shared/chunk-NV7UJRXY.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/helpers/centered-text-item": { "id": "routes/projects/loot-crate/crates/helpers/centered-text-item", "parentId": "root", "path": "projects/loot-crate/crates/helpers/centered-text-item", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/helpers/centered-text-item-U3U4H77U.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/helpers/character-modal": { "id": "routes/projects/loot-crate/crates/helpers/character-modal", "parentId": "root", "path": "projects/loot-crate/crates/helpers/character-modal", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/helpers/character-modal-25TGUTOU.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/helpers/crate-info-item": { "id": "routes/projects/loot-crate/crates/helpers/crate-info-item", "parentId": "root", "path": "projects/loot-crate/crates/helpers/crate-info-item", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/helpers/crate-info-item-P6PJ56K7.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/helpers/index": { "id": "routes/projects/loot-crate/crates/helpers/index", "parentId": "root", "path": "projects/loot-crate/crates/helpers", "index": true, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/helpers/index-3WZS3LOW.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/index": { "id": "routes/projects/loot-crate/crates/index", "parentId": "root", "path": "projects/loot-crate/crates", "index": true, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/index-64Y6N2XR.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/naive-box": { "id": "routes/projects/loot-crate/crates/naive-box", "parentId": "root", "path": "projects/loot-crate/crates/naive-box", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/naive-box-EMY3NJVQ.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/open-box": { "id": "routes/projects/loot-crate/crates/open-box", "parentId": "root", "path": "projects/loot-crate/crates/open-box", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/open-box-3G5KGHFY.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/weighted-box": { "id": "routes/projects/loot-crate/crates/weighted-box", "parentId": "root", "path": "projects/loot-crate/crates/weighted-box", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/weighted-box-M6F4252F.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/index": { "id": "routes/projects/loot-crate/index", "parentId": "root", "path": "projects/loot-crate", "index": true, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/index-BB5TCOJK.js", "imports": ["/build/_shared/chunk-NV7UJRXY.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/project-items": { "id": "routes/projects/project-items", "parentId": "root", "path": "projects/project-items", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/project-items-6F4QKAGP.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/theme/mode": { "id": "routes/theme/mode", "parentId": "root", "path": "theme/mode", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/theme/mode-LHRTX733.js", "imports": void 0, "hasAction": true, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false } }, "url": "/build/manifest-DDC5510A.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var entry = { module: entry_server_exports };
