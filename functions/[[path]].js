@@ -50588,6 +50588,10 @@ var stitches = q({
       triangle: "$blue",
       logo: "$lgray",
       headerIcons: "$black",
+      headerText: "$black",
+      headerName: "$dteal",
+      headerAboutMeButton: "$lteal2",
+      headerProjectButton: "$lgray",
       tabText: "$lteal",
       tabBg: "$dteal",
       tabBorder: "$dteal",
@@ -50626,6 +50630,10 @@ var darkTheme = Q("dark", {
     triangle: "rgb(0, 0, 0)",
     logo: "$white",
     headerIcons: "$white",
+    headerText: "$white",
+    headerName: "$lteal2",
+    headerAboutMeButton: "$lteal",
+    headerProjectButton: "$dgray",
     tabText: "$orange",
     tabBg: "$orange",
     tabBorder: "$orange",
@@ -50971,6 +50979,9 @@ var StyledButton = styled("button", {
   "fontFamily": "$accent",
   "padding": "8px 20px",
   "borderRadius": "20px",
+  "border": 0,
+  "cursor": "pointer",
+  "fontSize": "16px",
   "color": "$text",
   "transition": "color 250ms ease-in-out",
   "&:disabled": {
@@ -58689,9 +58700,9 @@ var AnimatedHello = () => {
     setLength(((_a = valueRef.current) == null ? void 0 : _a.clientWidth) || helloInLanguages.length);
   }, [index]);
   return /* @__PURE__ */ import_react52.default.createElement("span", {
-    className: "absolute"
+    style: { position: "absolute", fontWeight: 500 }
   }, /* @__PURE__ */ import_react52.default.createElement("span", {
-    className: "relative"
+    style: { position: "relative" }
   }, transitions((styles, i4) => /* @__PURE__ */ import_react52.default.createElement(animated.span, {
     ref: valueRef,
     style: __spreadProps(__spreadValues({}, styles), { position: "absolute" })
@@ -59201,9 +59212,9 @@ var AnimatedHello2 = () => {
     setLength(((_a = valueRef.current) == null ? void 0 : _a.clientWidth) || helloInLanguages.length);
   }, [index]);
   return /* @__PURE__ */ import_react55.default.createElement("span", {
-    className: "absolute"
+    style: { position: "absolute", fontWeight: 500 }
   }, /* @__PURE__ */ import_react55.default.createElement("span", {
-    className: "relative"
+    style: { position: "relative" }
   }, transitions((styles, i4) => /* @__PURE__ */ import_react55.default.createElement(animated.span, {
     ref: valueRef,
     style: __spreadProps(__spreadValues({}, styles), { position: "absolute" })
@@ -59217,25 +59228,66 @@ var AnimatedHello2 = () => {
 };
 
 // app/routes/hero/hero.tsx
+var HeroWrapper = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  gap: "24px",
+  alignItems: "center",
+  width: "max-content",
+  height: "max-content",
+  zIndex: 30,
+  position: "fixed",
+  top: "50%",
+  left: "25vw",
+  transform: "translateY(-60%)"
+});
+var Heading = styled("h1", {
+  fontFamily: "$accent",
+  color: "$headerText",
+  display: "grid",
+  gridTemplateRows: "64px auto",
+  height: "max-content",
+  lineHeight: "1",
+  fontSize: "48px",
+  marginBottom: "48px"
+});
+var Name = styled("span", {
+  fontWeight: "600",
+  color: "$headerName",
+  marginTop: "48px",
+  paddingTop: "16px",
+  height: "max-content"
+});
+var ButtonWrapper = styled("div", {
+  width: "100%",
+  display: "flex",
+  justifyContent: "space-evenly"
+});
+var AboutMeButton = styled(PillButton, {
+  "backgroundColor": "$headerAboutMeButton",
+  "transition": "color 200ms ease-in-out, background-color 200ms ease-in-out",
+  "color": "$headerText",
+  "&:hover": {
+    color: "$white",
+    backgroundColor: "$dteal"
+  }
+});
+var ProjectsButton = styled(PillButton, {
+  "backgroundColor": "$headerProjectButton",
+  "transition": "color 200ms ease-in-out, background-color 200ms ease-in-out",
+  "color": "$headerText",
+  "&:hover": {
+    color: "$white",
+    backgroundColor: "$blue"
+  }
+});
 var Hero = () => {
-  const [mode] = useTheme();
-  return /* @__PURE__ */ React.createElement("div", {
-    className: "flex flex-col items-center fixed w-90 top-2/4 left-[25vw] z-30 translate-y-[-60%] h-max"
-  }, /* @__PURE__ */ React.createElement("h1", {
-    className: "text-5xl font-accent dark:text-theme-white text-theme-black relative"
-  }, /* @__PURE__ */ React.createElement(AnimatedHello2, null), /* @__PURE__ */ React.createElement("p", {
-    className: "font-semibold dark:text-theme-lteal2 text-theme-dteal pt-4 mt-[48px]"
-  }, "Kevin Carlos")), /* @__PURE__ */ React.createElement(Divider, {
-    className: "my-6",
+  return /* @__PURE__ */ React.createElement(HeroWrapper, null, /* @__PURE__ */ React.createElement(Heading, null, /* @__PURE__ */ React.createElement(AnimatedHello2, null), /* @__PURE__ */ React.createElement(Name, null, "Kevin Carlos")), /* @__PURE__ */ React.createElement(Divider, {
     orientation: "horizontal"
-  }), /* @__PURE__ */ React.createElement("div", {
-    className: "space-x-6"
-  }, /* @__PURE__ */ React.createElement(PillButton, {
-    to: links2.aboutMe(),
-    className: "bg-theme-lteal2 dark:bg-theme-lteal hover:!text-theme-white hover:!bg-theme-dteal"
-  }, "About Me"), /* @__PURE__ */ React.createElement(PillButton, {
-    to: links2.projects().root(),
-    className: "bg-theme-lgray dark:bg-theme-dgray hover:!text-theme-white hover:!bg-theme-blue"
+  }), /* @__PURE__ */ React.createElement(ButtonWrapper, null, /* @__PURE__ */ React.createElement(AboutMeButton, {
+    to: links2.aboutMe()
+  }, "About Me"), /* @__PURE__ */ React.createElement(ProjectsButton, {
+    to: links2.projects().root()
   }, "Projects")));
 };
 
@@ -59264,25 +59316,66 @@ __export(hero_exports2, {
   Hero: () => Hero2
 });
 init_react();
+var HeroWrapper2 = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  gap: "24px",
+  alignItems: "center",
+  width: "max-content",
+  height: "max-content",
+  zIndex: 30,
+  position: "fixed",
+  top: "50%",
+  left: "25vw",
+  transform: "translateY(-60%)"
+});
+var Heading2 = styled("h1", {
+  fontFamily: "$accent",
+  color: "$headerText",
+  display: "grid",
+  gridTemplateRows: "64px auto",
+  height: "max-content",
+  lineHeight: "1",
+  fontSize: "48px",
+  marginBottom: "48px"
+});
+var Name2 = styled("span", {
+  fontWeight: "600",
+  color: "$headerName",
+  marginTop: "48px",
+  paddingTop: "16px",
+  height: "max-content"
+});
+var ButtonWrapper2 = styled("div", {
+  width: "100%",
+  display: "flex",
+  justifyContent: "space-evenly"
+});
+var AboutMeButton2 = styled(PillButton, {
+  "backgroundColor": "$headerAboutMeButton",
+  "transition": "color 200ms ease-in-out, background-color 200ms ease-in-out",
+  "color": "$headerText",
+  "&:hover": {
+    color: "$white",
+    backgroundColor: "$dteal"
+  }
+});
+var ProjectsButton2 = styled(PillButton, {
+  "backgroundColor": "$headerProjectButton",
+  "transition": "color 200ms ease-in-out, background-color 200ms ease-in-out",
+  "color": "$headerText",
+  "&:hover": {
+    color: "$white",
+    backgroundColor: "$blue"
+  }
+});
 var Hero2 = () => {
-  const [mode] = useTheme();
-  return /* @__PURE__ */ React.createElement("div", {
-    className: "flex flex-col items-center fixed w-90 top-2/4 left-[25vw] z-30 translate-y-[-60%] h-max"
-  }, /* @__PURE__ */ React.createElement("h1", {
-    className: "text-5xl font-accent dark:text-theme-white text-theme-black relative"
-  }, /* @__PURE__ */ React.createElement(AnimatedHello2, null), /* @__PURE__ */ React.createElement("p", {
-    className: "font-semibold dark:text-theme-lteal2 text-theme-dteal pt-4 mt-[48px]"
-  }, "Kevin Carlos")), /* @__PURE__ */ React.createElement(Divider, {
-    className: "my-6",
+  return /* @__PURE__ */ React.createElement(HeroWrapper2, null, /* @__PURE__ */ React.createElement(Heading2, null, /* @__PURE__ */ React.createElement(AnimatedHello2, null), /* @__PURE__ */ React.createElement(Name2, null, "Kevin Carlos")), /* @__PURE__ */ React.createElement(Divider, {
     orientation: "horizontal"
-  }), /* @__PURE__ */ React.createElement("div", {
-    className: "space-x-6"
-  }, /* @__PURE__ */ React.createElement(PillButton, {
-    to: links2.aboutMe(),
-    className: "bg-theme-lteal2 dark:bg-theme-lteal hover:!text-theme-white hover:!bg-theme-dteal"
-  }, "About Me"), /* @__PURE__ */ React.createElement(PillButton, {
-    to: links2.projects().root(),
-    className: "bg-theme-lgray dark:bg-theme-dgray hover:!text-theme-white hover:!bg-theme-blue"
+  }), /* @__PURE__ */ React.createElement(ButtonWrapper2, null, /* @__PURE__ */ React.createElement(AboutMeButton2, {
+    to: links2.aboutMe()
+  }, "About Me"), /* @__PURE__ */ React.createElement(ProjectsButton2, {
+    to: links2.projects().root()
   }, "Projects")));
 };
 
@@ -59462,7 +59555,7 @@ function Index4() {
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
 init_react();
-var assets_manifest_default = { "version": "ddc5510a", "entry": { "module": "/build/entry.client-N2ALYBKA.js", "imports": ["/build/_shared/chunk-AYUUTK2F.js", "/build/_shared/chunk-XK7BNA4U.js", "/build/_shared/chunk-N2P4UVFW.js"] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "module": "/build/root-RQPKAPTA.js", "imports": ["/build/_shared/chunk-POVZYMEF.js", "/build/_shared/chunk-E7SKMB7I.js"], "hasAction": false, "hasLoader": true, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/active-circles": { "id": "routes/about/active-circles", "parentId": "root", "path": "about/active-circles", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/active-circles-DBLH4R73.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/about-me-blurb": { "id": "routes/about/blurbs/about-me-blurb", "parentId": "root", "path": "about/blurbs/about-me-blurb", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/about-me-blurb-JFGQ7RSR.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/blurb-divider": { "id": "routes/about/blurbs/blurb-divider", "parentId": "root", "path": "about/blurbs/blurb-divider", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/blurb-divider-PNJWAFKB.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/career-blurb": { "id": "routes/about/blurbs/career-blurb", "parentId": "root", "path": "about/blurbs/career-blurb", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/career-blurb-26CTZW3X.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/career-items/cycle": { "id": "routes/about/blurbs/career-items/cycle", "parentId": "root", "path": "about/blurbs/career-items/cycle", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/career-items/cycle-WRXHW74L.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/career-items/index": { "id": "routes/about/blurbs/career-items/index", "parentId": "root", "path": "about/blurbs/career-items", "index": true, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/career-items/index-QMPQEVXT.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/career-items/square-8": { "id": "routes/about/blurbs/career-items/square-8", "parentId": "root", "path": "about/blurbs/career-items/square-8", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/career-items/square-8-KKMXTDN3.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/content-blurb": { "id": "routes/about/blurbs/content-blurb", "parentId": "root", "path": "about/blurbs/content-blurb", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/content-blurb-ZWVL3RCK.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/education-blurb": { "id": "routes/about/blurbs/education-blurb", "parentId": "root", "path": "about/blurbs/education-blurb", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/education-blurb-E6465KCD.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/index": { "id": "routes/about/blurbs/index", "parentId": "root", "path": "about/blurbs", "index": true, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/index-H2L26YHT.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/circle-items": { "id": "routes/about/circle-items", "parentId": "root", "path": "about/circle-items", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/circle-items-XQQWWFGJ.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/circles": { "id": "routes/about/circles", "parentId": "root", "path": "about/circles", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/circles-54QQASQA.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/descriptions": { "id": "routes/about/descriptions", "parentId": "root", "path": "about/descriptions", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/descriptions-KGM5MMQI.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/index": { "id": "routes/about/index", "parentId": "root", "path": "about", "index": true, "caseSensitive": void 0, "module": "/build/routes/about/index-6HKLPJVF.js", "imports": ["/build/_shared/chunk-NV7UJRXY.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/hero/animated-hello": { "id": "routes/hero/animated-hello", "parentId": "root", "path": "hero/animated-hello", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/hero/animated-hello-3BK53ZN3.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/hero/hero": { "id": "routes/hero/hero", "parentId": "root", "path": "hero/hero", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/hero/hero-NCKF7SM5.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/hero/index": { "id": "routes/hero/index", "parentId": "root", "path": "hero", "index": true, "caseSensitive": void 0, "module": "/build/routes/hero/index-BNFXDADF.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/hero/languages": { "id": "routes/hero/languages", "parentId": "root", "path": "hero/languages", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/hero/languages-OCUYLAAC.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/index": { "id": "routes/index", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "module": "/build/routes/index-E4VUTQX6.js", "imports": ["/build/_shared/chunk-NV7UJRXY.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/index": { "id": "routes/projects/index", "parentId": "root", "path": "projects", "index": true, "caseSensitive": void 0, "module": "/build/routes/projects/index-EPLP2VOK.js", "imports": ["/build/_shared/chunk-NV7UJRXY.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loaders/HaloCountdown": { "id": "routes/projects/loaders/HaloCountdown", "parentId": "root", "path": "projects/loaders/HaloCountdown", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loaders/HaloCountdown-ZSLKTTT5.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loaders/Spinners": { "id": "routes/projects/loaders/Spinners", "parentId": "root", "path": "projects/loaders/Spinners", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loaders/Spinners-D3AMSO63.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loaders/index": { "id": "routes/projects/loaders/index", "parentId": "root", "path": "projects/loaders", "index": true, "caseSensitive": void 0, "module": "/build/routes/projects/loaders/index-ZVKV27G4.js", "imports": ["/build/_shared/chunk-NV7UJRXY.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/helpers/centered-text-item": { "id": "routes/projects/loot-crate/crates/helpers/centered-text-item", "parentId": "root", "path": "projects/loot-crate/crates/helpers/centered-text-item", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/helpers/centered-text-item-U3U4H77U.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/helpers/character-modal": { "id": "routes/projects/loot-crate/crates/helpers/character-modal", "parentId": "root", "path": "projects/loot-crate/crates/helpers/character-modal", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/helpers/character-modal-25TGUTOU.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/helpers/crate-info-item": { "id": "routes/projects/loot-crate/crates/helpers/crate-info-item", "parentId": "root", "path": "projects/loot-crate/crates/helpers/crate-info-item", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/helpers/crate-info-item-P6PJ56K7.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/helpers/index": { "id": "routes/projects/loot-crate/crates/helpers/index", "parentId": "root", "path": "projects/loot-crate/crates/helpers", "index": true, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/helpers/index-3WZS3LOW.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/index": { "id": "routes/projects/loot-crate/crates/index", "parentId": "root", "path": "projects/loot-crate/crates", "index": true, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/index-64Y6N2XR.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/naive-box": { "id": "routes/projects/loot-crate/crates/naive-box", "parentId": "root", "path": "projects/loot-crate/crates/naive-box", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/naive-box-EMY3NJVQ.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/open-box": { "id": "routes/projects/loot-crate/crates/open-box", "parentId": "root", "path": "projects/loot-crate/crates/open-box", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/open-box-3G5KGHFY.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/weighted-box": { "id": "routes/projects/loot-crate/crates/weighted-box", "parentId": "root", "path": "projects/loot-crate/crates/weighted-box", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/weighted-box-M6F4252F.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/index": { "id": "routes/projects/loot-crate/index", "parentId": "root", "path": "projects/loot-crate", "index": true, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/index-BB5TCOJK.js", "imports": ["/build/_shared/chunk-NV7UJRXY.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/project-items": { "id": "routes/projects/project-items", "parentId": "root", "path": "projects/project-items", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/project-items-6F4QKAGP.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/theme/mode": { "id": "routes/theme/mode", "parentId": "root", "path": "theme/mode", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/theme/mode-LHRTX733.js", "imports": void 0, "hasAction": true, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false } }, "url": "/build/manifest-DDC5510A.js" };
+var assets_manifest_default = { "version": "01ca29d1", "entry": { "module": "/build/entry.client-43BP3VAU.js", "imports": ["/build/_shared/chunk-KQNJIRNM.js", "/build/_shared/chunk-MRLH7MYJ.js", "/build/_shared/chunk-N2P4UVFW.js"] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "module": "/build/root-NFVRY6CZ.js", "imports": ["/build/_shared/chunk-POVZYMEF.js", "/build/_shared/chunk-E7SKMB7I.js"], "hasAction": false, "hasLoader": true, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/active-circles": { "id": "routes/about/active-circles", "parentId": "root", "path": "about/active-circles", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/active-circles-DBLH4R73.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/about-me-blurb": { "id": "routes/about/blurbs/about-me-blurb", "parentId": "root", "path": "about/blurbs/about-me-blurb", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/about-me-blurb-JFGQ7RSR.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/blurb-divider": { "id": "routes/about/blurbs/blurb-divider", "parentId": "root", "path": "about/blurbs/blurb-divider", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/blurb-divider-PNJWAFKB.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/career-blurb": { "id": "routes/about/blurbs/career-blurb", "parentId": "root", "path": "about/blurbs/career-blurb", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/career-blurb-26CTZW3X.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/career-items/cycle": { "id": "routes/about/blurbs/career-items/cycle", "parentId": "root", "path": "about/blurbs/career-items/cycle", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/career-items/cycle-WRXHW74L.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/career-items/index": { "id": "routes/about/blurbs/career-items/index", "parentId": "root", "path": "about/blurbs/career-items", "index": true, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/career-items/index-QMPQEVXT.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/career-items/square-8": { "id": "routes/about/blurbs/career-items/square-8", "parentId": "root", "path": "about/blurbs/career-items/square-8", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/career-items/square-8-KKMXTDN3.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/content-blurb": { "id": "routes/about/blurbs/content-blurb", "parentId": "root", "path": "about/blurbs/content-blurb", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/content-blurb-ZWVL3RCK.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/education-blurb": { "id": "routes/about/blurbs/education-blurb", "parentId": "root", "path": "about/blurbs/education-blurb", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/education-blurb-E6465KCD.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/index": { "id": "routes/about/blurbs/index", "parentId": "root", "path": "about/blurbs", "index": true, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/index-H2L26YHT.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/circle-items": { "id": "routes/about/circle-items", "parentId": "root", "path": "about/circle-items", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/circle-items-XQQWWFGJ.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/circles": { "id": "routes/about/circles", "parentId": "root", "path": "about/circles", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/circles-54QQASQA.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/descriptions": { "id": "routes/about/descriptions", "parentId": "root", "path": "about/descriptions", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/descriptions-KGM5MMQI.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/index": { "id": "routes/about/index", "parentId": "root", "path": "about", "index": true, "caseSensitive": void 0, "module": "/build/routes/about/index-SMH6AIUT.js", "imports": ["/build/_shared/chunk-U2SWS4LA.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/hero/animated-hello": { "id": "routes/hero/animated-hello", "parentId": "root", "path": "hero/animated-hello", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/hero/animated-hello-3BK53ZN3.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/hero/hero": { "id": "routes/hero/hero", "parentId": "root", "path": "hero/hero", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/hero/hero-NCKF7SM5.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/hero/index": { "id": "routes/hero/index", "parentId": "root", "path": "hero", "index": true, "caseSensitive": void 0, "module": "/build/routes/hero/index-BNFXDADF.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/hero/languages": { "id": "routes/hero/languages", "parentId": "root", "path": "hero/languages", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/hero/languages-OCUYLAAC.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/index": { "id": "routes/index", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "module": "/build/routes/index-IPT7QJAG.js", "imports": ["/build/_shared/chunk-U2SWS4LA.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/index": { "id": "routes/projects/index", "parentId": "root", "path": "projects", "index": true, "caseSensitive": void 0, "module": "/build/routes/projects/index-3WGTFVJT.js", "imports": ["/build/_shared/chunk-U2SWS4LA.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loaders/HaloCountdown": { "id": "routes/projects/loaders/HaloCountdown", "parentId": "root", "path": "projects/loaders/HaloCountdown", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loaders/HaloCountdown-ZSLKTTT5.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loaders/Spinners": { "id": "routes/projects/loaders/Spinners", "parentId": "root", "path": "projects/loaders/Spinners", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loaders/Spinners-D3AMSO63.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loaders/index": { "id": "routes/projects/loaders/index", "parentId": "root", "path": "projects/loaders", "index": true, "caseSensitive": void 0, "module": "/build/routes/projects/loaders/index-33Z7SEQJ.js", "imports": ["/build/_shared/chunk-U2SWS4LA.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/helpers/centered-text-item": { "id": "routes/projects/loot-crate/crates/helpers/centered-text-item", "parentId": "root", "path": "projects/loot-crate/crates/helpers/centered-text-item", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/helpers/centered-text-item-U3U4H77U.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/helpers/character-modal": { "id": "routes/projects/loot-crate/crates/helpers/character-modal", "parentId": "root", "path": "projects/loot-crate/crates/helpers/character-modal", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/helpers/character-modal-25TGUTOU.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/helpers/crate-info-item": { "id": "routes/projects/loot-crate/crates/helpers/crate-info-item", "parentId": "root", "path": "projects/loot-crate/crates/helpers/crate-info-item", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/helpers/crate-info-item-P6PJ56K7.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/helpers/index": { "id": "routes/projects/loot-crate/crates/helpers/index", "parentId": "root", "path": "projects/loot-crate/crates/helpers", "index": true, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/helpers/index-3WZS3LOW.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/index": { "id": "routes/projects/loot-crate/crates/index", "parentId": "root", "path": "projects/loot-crate/crates", "index": true, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/index-64Y6N2XR.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/naive-box": { "id": "routes/projects/loot-crate/crates/naive-box", "parentId": "root", "path": "projects/loot-crate/crates/naive-box", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/naive-box-EMY3NJVQ.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/open-box": { "id": "routes/projects/loot-crate/crates/open-box", "parentId": "root", "path": "projects/loot-crate/crates/open-box", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/open-box-3G5KGHFY.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/weighted-box": { "id": "routes/projects/loot-crate/crates/weighted-box", "parentId": "root", "path": "projects/loot-crate/crates/weighted-box", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/weighted-box-M6F4252F.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/index": { "id": "routes/projects/loot-crate/index", "parentId": "root", "path": "projects/loot-crate", "index": true, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/index-4RS76TCM.js", "imports": ["/build/_shared/chunk-U2SWS4LA.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/project-items": { "id": "routes/projects/project-items", "parentId": "root", "path": "projects/project-items", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/project-items-6F4QKAGP.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/theme/mode": { "id": "routes/theme/mode", "parentId": "root", "path": "theme/mode", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/theme/mode-LHRTX733.js", "imports": void 0, "hasAction": true, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false } }, "url": "/build/manifest-01CA29D1.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var entry = { module: entry_server_exports };

@@ -6,6 +6,9 @@ const StyledButton = styled('button', {
   'fontFamily': '$accent',
   'padding': '8px 20px',
   'borderRadius': '20px',
+  'border': 0,
+  'cursor': 'pointer',
+  'fontSize': '16px',
 
   'color': '$text',
   'transition': 'color 250ms ease-in-out',
