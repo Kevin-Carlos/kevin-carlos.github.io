@@ -1,37 +1,86 @@
 import { links } from '~/common/links';
 import { PillButton } from '~/common/ui-elements';
 import { Divider } from '~/common/ui-elements/library';
-import { useTheme } from '~/useTheme';
+import { styled } from '~/stitches';
 import { AnimatedHello } from './animated-hello';
 
+const HeroWrapper = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '24px',
+  alignItems: 'center',
+  width: 'max-content',
+  height: 'max-content',
+  zIndex: 30,
+
+  position: 'fixed',
+  top: '50%',
+  left: '25vw',
+  transform: 'translateY(-60%)',
+});
+
+const Heading = styled('h1', {
+  fontFamily: '$accent',
+  color: '$headerText',
+
+  display: 'grid',
+  gridTemplateRows: '64px auto',
+  height: 'max-content',
+  lineHeight: '1',
+  fontSize: '48px',
+  marginBottom: '48px',
+});
+
+const Name = styled('span', {
+  fontWeight: '600',
+  color: '$headerName',
+  marginTop: '48px',
+  paddingTop: '16px',
+  height: 'max-content',
+});
+
+const ButtonWrapper = styled('div', {
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'space-evenly',
+});
+
+const AboutMeButton = styled(PillButton, {
+  'backgroundColor': '$headerAboutMeButton',
+  'transition': 'color 200ms ease-in-out, background-color 200ms ease-in-out',
+  'color': '$headerText',
+
+  '&:hover': {
+    color: '$white',
+    backgroundColor: '$dteal',
+  },
+});
+
+const ProjectsButton = styled(PillButton, {
+  'backgroundColor': '$headerProjectButton',
+  'transition': 'color 200ms ease-in-out, background-color 200ms ease-in-out',
+  'color': '$headerText',
+
+  '&:hover': {
+    color: '$white',
+    backgroundColor: '$blue',
+  },
+});
+
 export const Hero = () => {
-  const [mode] = useTheme();
-
   return (
-    <div className="flex flex-col items-center fixed w-90 top-2/4 left-[25vw] z-30 translate-y-[-60%] h-max">
-      <h1 className="text-5xl font-accent dark:text-theme-white text-theme-black relative">
+    <HeroWrapper>
+      <Heading>
         <AnimatedHello />
-        <p className="font-semibold dark:text-theme-lteal2 text-theme-dteal pt-4 mt-[48px]">
-          Kevin Carlos
-        </p>
-      </h1>
+        <Name>Kevin Carlos</Name>
+      </Heading>
 
-      <Divider className="my-6" orientation="horizontal" />
+      <Divider orientation="horizontal" />
 
-      <div className="space-x-6">
-        <PillButton
-          to={links.aboutMe()}
-          className="bg-theme-lteal2 dark:bg-theme-lteal hover:!text-theme-white hover:!bg-theme-dteal"
-        >
-          About Me
-        </PillButton>
-        <PillButton
-          to={links.projects().root()}
-          className="bg-theme-lgray dark:bg-theme-dgray hover:!text-theme-white hover:!bg-theme-blue"
-        >
-          Projects
-        </PillButton>
-      </div>
-    </div>
+      <ButtonWrapper>
+        <AboutMeButton to={links.aboutMe()}>About Me</AboutMeButton>
+        <ProjectsButton to={links.projects().root()}>Projects</ProjectsButton>
+      </ButtonWrapper>
+    </HeroWrapper>
   );
 };

@@ -56,8 +56,8 @@ export const AnimatedHello = () => {
   }, [index]);
 
   return (
-    <span className="absolute">
-      <span className="relative">
+    <span style={{ position: 'absolute', fontWeight: 500 }}>
+      <span style={{ position: 'relative' }}>
         {transitions((styles, i) => (
           <animated.span
             ref={valueRef}
