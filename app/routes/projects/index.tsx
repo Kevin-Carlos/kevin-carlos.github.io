@@ -1,15 +1,35 @@
 import { Layout } from '~/common/layout';
 import { Card, CardList } from '~/common/ui-elements';
+import { styled } from '~/stitches';
 import { projectItems } from './project-items';
+
+const ProjectsLayout = styled('div', {
+  height: '100%',
+  width: '100%',
+  padding: '40px 20px',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'flex-start',
+});
+
+const Wrapper = styled('div', {
+  width: '70rem',
+  margin: '0 auto',
+});
+
+const Heading = styled('h1', {
+  fontSize: '60px',
+  color: '$headerText',
+  margin: '0 auto',
+  marginBottom: '20px',
+});
 
 export default function Index() {
   return (
     <Layout>
-      <div className="h-full w-full px-5 pt-10 flex justify-center align-center">
-        <div className="w-[70rem] mx-auto">
-          <h1 className="text-6xl dark:text-theme-white mx-auto mb-5">
-            Projects
-          </h1>
+      <ProjectsLayout>
+        <Wrapper>
+          <Heading>Projects</Heading>
           <CardList>
             {projectItems.map((project) => (
               <Card key={project.name} title={project.name} to={project.path}>
@@ -17,8 +37,8 @@ export default function Index() {
               </Card>
             ))}
           </CardList>
-        </div>
-      </div>
+        </Wrapper>
+      </ProjectsLayout>
     </Layout>
   );
 }

@@ -14,8 +14,8 @@ const OverlayTriangle = styled('div', {
   'pointerEvents': 'none',
   'opacity': 0.2,
 
-  '@media screen and (min-width: 640px)': {
-    transform: 'skewY(-25deg)',
+  '@media (min-width: 768px)': {
+    transform: 'skewY(348deg)',
   },
 
   '&::before': {

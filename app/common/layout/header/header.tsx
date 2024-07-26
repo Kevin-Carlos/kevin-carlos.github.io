@@ -3,6 +3,7 @@ import { Moon, Sun } from 'phosphor-react';
 import { Fragment, useCallback, useRef, useState } from 'react';
 import { useClickOutside } from '~/common/hooks/events';
 import { LinkText } from '~/common/ui-elements';
+import { IconButton } from '~/common/ui-elements/button/icon-button';
 import { Switch } from '~/common/ui-elements/library';
 import { styled } from '~/stitches';
 import { useTheme } from '~/useTheme';
@@ -102,13 +103,15 @@ export const Header = () => {
             gap: '8px',
           }}
         >
-          <StyledMoon
-            size={ICON_SIZE}
-            style={{ cursor: 'pointer' }}
-            onClick={() => {
-              onThemeToggle('dark');
-            }}
-          />
+          <IconButton>
+            <StyledMoon
+              size={ICON_SIZE}
+              style={{ cursor: 'pointer' }}
+              onClick={() => {
+                onThemeToggle('dark');
+              }}
+            />
+          </IconButton>
           <Switch
             checked={mode === 'light' ? true : false}
             onCheckedChange={(checked) => {
@@ -116,13 +119,15 @@ export const Header = () => {
               onThemeToggle(mode);
             }}
           />
-          <StyledSun
-            size={ICON_SIZE}
-            style={{ cursor: 'pointer' }}
-            onClick={() => {
-              onThemeToggle('light');
-            }}
-          />
+          <IconButton>
+            <StyledSun
+              size={ICON_SIZE}
+              style={{ cursor: 'pointer' }}
+              onClick={() => {
+                onThemeToggle('light');
+              }}
+            />
+          </IconButton>
         </div>
       </LogoAndModeWrapper>
       <Nav role="navigation">

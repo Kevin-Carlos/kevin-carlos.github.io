@@ -1966,7 +1966,7 @@ var init_cookies = __esm({
 // node_modules/@web3-storage/multipart-parser/esm/src/utils.js
 function stringToArray(s3) {
   const utf8 = unescape(encodeURIComponent(s3));
-  return Uint8Array.from(utf8, (_, i4) => utf8.charCodeAt(i4));
+  return Uint8Array.from(utf8, (_2, i4) => utf8.charCodeAt(i4));
 }
 function arrayToString(a3) {
   const utf8 = String.fromCharCode.apply(null, a3);
@@ -2091,7 +2091,7 @@ var init_search = __esm({
               tokens.push(this._lookbehind.slice(0, bytesToCutOff));
               this._lookbehind = this._lookbehind.slice(bytesToCutOff);
             }
-            this._lookbehind = Uint8Array.from(new Array(this._lookbehind.length + data.length), (_, i4) => this._charAt(data, i4 - this._lookbehind.length));
+            this._lookbehind = Uint8Array.from(new Array(this._lookbehind.length + data.length), (_2, i4) => this._charAt(data, i4 - this._lookbehind.length));
             return [
               data.length,
               ...tokens
@@ -3038,7 +3038,7 @@ function compilePath(path, caseSensitive, end) {
   }
   true ? warning(path === "*" || !path.endsWith("*") || path.endsWith("/*"), 'Route path "' + path + '" will be treated as if it were ' + ('"' + path.replace(/\*$/, "/*") + '" because the `*` character must ') + "always follow a `/` in the pattern. To get rid of this warning, " + ('please change the route path to "' + path.replace(/\*$/, "/*") + '".')) : void 0;
   let paramNames = [];
-  let regexpSource = "^" + path.replace(/\/*\*?$/, "").replace(/^\/*/, "/").replace(/[\\.*+^$?{}|()[\]]/g, "\\$&").replace(/:(\w+)/g, (_, paramName) => {
+  let regexpSource = "^" + path.replace(/\/*\*?$/, "").replace(/^\/*/, "/").replace(/[\\.*+^$?{}|()[\]]/g, "\\$&").replace(/:(\w+)/g, (_2, paramName) => {
     paramNames.push(paramName);
     return "([^\\/]+)";
   });
@@ -5356,7 +5356,7 @@ function format(f2) {
       case "%j":
         try {
           return JSON.stringify(args[i4++]);
-        } catch (_) {
+        } catch (_2) {
           return "[Circular]";
         }
       default:
@@ -10277,7 +10277,7 @@ var require_react_dom_server_node_development = __commonJS({
           var warnedForNaNValue = false;
           var warnedForInfinityValue = false;
           var camelize = function(string) {
-            return string.replace(hyphenPattern, function(_, character) {
+            return string.replace(hyphenPattern, function(_2, character) {
               return character.toUpperCase();
             });
           };
@@ -14659,7 +14659,7 @@ var require_react_dom_development = __commonJS({
           var warnedForNaNValue = false;
           var warnedForInfinityValue = false;
           var camelize = function(string) {
-            return string.replace(hyphenPattern, function(_, character) {
+            return string.replace(hyphenPattern, function(_2, character) {
               return character.toUpperCase();
             });
           };
@@ -49858,6 +49858,7 @@ var q = (e7) => {
 };
 var K = () => X || (X = q());
 var Q = (...e7) => K().createTheme(...e7);
+var _ = (...e7) => K().globalCss(...e7);
 var ee = (...e7) => K().keyframes(...e7);
 var re = (...e7) => K().styled(...e7);
 
@@ -49979,20 +49980,20 @@ function _wrapNativeSuper(Class) {
     if (typeof _cache !== "undefined") {
       if (_cache.has(Class2))
         return _cache.get(Class2);
-      _cache.set(Class2, Wrapper3);
+      _cache.set(Class2, Wrapper4);
     }
-    function Wrapper3() {
+    function Wrapper4() {
       return _construct(Class2, arguments, _getPrototypeOf(this).constructor);
     }
-    Wrapper3.prototype = Object.create(Class2.prototype, {
+    Wrapper4.prototype = Object.create(Class2.prototype, {
       constructor: {
-        value: Wrapper3,
+        value: Wrapper4,
         enumerable: false,
         writable: true,
         configurable: true
       }
     });
-    return _setPrototypeOf(Wrapper3, Class2);
+    return _setPrototypeOf(Wrapper4, Class2);
   };
   return _wrapNativeSuper(Class);
 }
@@ -50568,6 +50569,16 @@ var curriedLighten = /* @__PURE__ */ curry(lighten);
 var curriedLighten$1 = curriedLighten;
 
 // app/stitches/stitches.config.ts
+var globalStyles = _({
+  h1: {
+    fontWeight: 400
+  },
+  ul: {
+    listStyle: "none",
+    margin: 0,
+    padding: 0
+  }
+});
 var primaryLightTeal = "rgb(57, 153, 142)";
 var stitches = q({
   theme: {
@@ -50583,6 +50594,7 @@ var stitches = q({
       dteal: "rgb(43, 77, 89)",
       text: "$white",
       body: "$white",
+      icon: "$black",
       bg: "$dteal",
       links: "$black",
       triangle: "$blue",
@@ -50592,6 +50604,7 @@ var stitches = q({
       headerName: "$dteal",
       headerAboutMeButton: "$lteal2",
       headerProjectButton: "$lgray",
+      footerIconHover: "$blue",
       tabText: "$lteal",
       tabBg: "$dteal",
       tabBorder: "$dteal",
@@ -50626,6 +50639,7 @@ var darkTheme = Q("dark", {
     text: "$black",
     body: "$black",
     bg: "$orange",
+    icon: "$white",
     links: "$white",
     triangle: "rgb(0, 0, 0)",
     logo: "$white",
@@ -50634,6 +50648,7 @@ var darkTheme = Q("dark", {
     headerName: "$lteal2",
     headerAboutMeButton: "$lteal",
     headerProjectButton: "$dgray",
+    footerIconHover: "$orange",
     tabText: "$orange",
     tabBg: "$orange",
     tabBorder: "$orange",
@@ -50747,6 +50762,7 @@ function App() {
   const { colorScheme } = useLoaderData();
   const [themeMode, setThemeMode] = useDarkMode();
   (0, import_react11.useEffect)(() => {
+    globalStyles();
     setThemeMode(colorScheme);
   }, [colorScheme]);
   const clientStyleData = (0, import_react11.useContext)(ClientStyleContext);
@@ -53391,10 +53407,10 @@ var s2 = __toESM(require_react());
 var [l4, u2] = createContextScope("Switch");
 var [p2, m2] = l4("Switch");
 var Switch = /* @__PURE__ */ s2.forwardRef((r4, o5) => {
-  const _a = r4, { __scopeSwitch: c6, "aria-labelledby": l5, name: u3, checked: m3, defaultChecked: f2, required: x2, disabled: k2, value: w2 = "on", onCheckedChange: v2 } = _a, S2 = __objRest(_a, ["__scopeSwitch", "aria-labelledby", "name", "checked", "defaultChecked", "required", "disabled", "value", "onCheckedChange"]), [y2, E2] = s2.useState(null), C2 = useComposedRefs(o5, (e7) => E2(e7)), g2 = useLabelContext(y2), R2 = l5 || g2, T2 = s2.useRef(false), P2 = !y2 || Boolean(y2.closest("form")), [_ = false, q2] = useControllableState({ prop: m3, defaultProp: f2, onChange: v2 });
-  return s2.createElement(p2, { scope: c6, checked: _, disabled: k2 }, /* @__PURE__ */ s2.createElement(Primitive.button, _extends6({ type: "button", role: "switch", "aria-checked": _, "aria-labelledby": R2, "aria-required": x2, "data-state": h2(_), "data-disabled": k2 ? "" : void 0, disabled: k2, value: w2 }, S2, { ref: C2, onClick: composeEventHandlers2(r4.onClick, (e7) => {
+  const _a = r4, { __scopeSwitch: c6, "aria-labelledby": l5, name: u3, checked: m3, defaultChecked: f2, required: x2, disabled: k2, value: w2 = "on", onCheckedChange: v2 } = _a, S2 = __objRest(_a, ["__scopeSwitch", "aria-labelledby", "name", "checked", "defaultChecked", "required", "disabled", "value", "onCheckedChange"]), [y2, E2] = s2.useState(null), C2 = useComposedRefs(o5, (e7) => E2(e7)), g2 = useLabelContext(y2), R2 = l5 || g2, T2 = s2.useRef(false), P2 = !y2 || Boolean(y2.closest("form")), [_2 = false, q2] = useControllableState({ prop: m3, defaultProp: f2, onChange: v2 });
+  return s2.createElement(p2, { scope: c6, checked: _2, disabled: k2 }, /* @__PURE__ */ s2.createElement(Primitive.button, _extends6({ type: "button", role: "switch", "aria-checked": _2, "aria-labelledby": R2, "aria-required": x2, "data-state": h2(_2), "data-disabled": k2 ? "" : void 0, disabled: k2, value: w2 }, S2, { ref: C2, onClick: composeEventHandlers2(r4.onClick, (e7) => {
     q2((e8) => !e8), P2 && (T2.current = e7.isPropagationStopped(), T2.current || e7.stopPropagation());
-  }) })), P2 && /* @__PURE__ */ s2.createElement(b2, { control: y2, bubbles: !T2.current, name: u3, value: w2, checked: _, required: x2, disabled: k2, style: { transform: "translateX(-100%)" } }));
+  }) })), P2 && /* @__PURE__ */ s2.createElement(b2, { control: y2, bubbles: !T2.current, name: u3, value: w2, checked: _2, required: x2, disabled: k2, style: { transform: "translateX(-100%)" } }));
 });
 var SwitchThumb = /* @__PURE__ */ s2.forwardRef((e7, r4) => {
   const _a = e7, { __scopeSwitch: o5 } = _a, a3 = __objRest(_a, ["__scopeSwitch"]), c6 = m2("SwitchThumb", o5);
@@ -54632,7 +54648,7 @@ var parseCSSVariable = (current) => {
   return [token, fallback];
 };
 var namedColorRegex;
-var rgbaRound = (_, p1, p22, p3, p4) => `rgba(${Math.round(p1)}, ${Math.round(p22)}, ${Math.round(p3)}, ${p4})`;
+var rgbaRound = (_2, p1, p22, p3, p4) => `rgba(${Math.round(p1)}, ${Math.round(p22)}, ${Math.round(p3)}, ${p4})`;
 var createStringInterpolator = (config3) => {
   if (!namedColorRegex)
     namedColorRegex = colors$1 ? new RegExp(`(${Object.keys(colors$1).join("|")})(?!\\w)`, "g") : /^\b$/;
@@ -54640,7 +54656,7 @@ var createStringInterpolator = (config3) => {
     return getFluidValue(value).replace(cssVariableRegex, variableToRgba).replace(colorRegex, colorToRgba).replace(namedColorRegex, colorToRgba);
   });
   const keyframes = output.map((value) => value.match(numberRegex).map(Number));
-  const outputRanges = keyframes[0].map((_, i4) => keyframes.map((values) => {
+  const outputRanges = keyframes[0].map((_2, i4) => keyframes.map((values) => {
     if (!(i4 in values)) {
       throw Error('The arity of each "output" value must be equal');
     }
@@ -55169,7 +55185,7 @@ function computeGoal(value) {
   })(1) : value;
 }
 function hasProps(props) {
-  for (const _ in props)
+  for (const _2 in props)
     return true;
   return false;
 }
@@ -57002,7 +57018,7 @@ function useTransition2(data, props, deps) {
       });
     }
   }, [context]);
-  each(changes, (_, t5) => {
+  each(changes, (_2, t5) => {
     if (exitingTransitions.current.size) {
       const ind = transitions.findIndex((state) => state.key === t5.key);
       transitions.splice(ind, 1);
@@ -57887,12 +57903,48 @@ var links2 = {
 
 // app/common/layout/menu-items.tsx
 var ICON_SIZE = 24;
-var ImageIcons = (_a) => {
-  var props = __objRest(_a, []);
-  return /* @__PURE__ */ import_react45.default.createElement("img", __spreadValues({
-    className: "max-w-[30px] md:mr-5 transition opacity duration-[250] ease-in-out"
-  }, props));
-};
+var ImageIcons = styled("img", {
+  "maxWidth": "30px",
+  "transition": "opacity 250ms ease-in-out",
+  "@media screen and (min-width: 768px)": {
+    marginRight: "20px"
+  }
+});
+var StyledCode = styled(Code_esm_default, {
+  "color": "$icon",
+  "transition": "color 250ms ease-in-out",
+  "&:hover": {
+    color: "$footerIconHover"
+  }
+});
+var StyledUserFocus = styled(UserFocus_esm_default, {
+  "color": "$icon",
+  "transition": "color 250ms ease-in-out",
+  "&:hover": {
+    color: "$footerIconHover"
+  }
+});
+var StyledLinkedInLogo = styled(LinkedinLogo_esm_default, {
+  "color": "$icon",
+  "transition": "color 250ms ease-in-out",
+  "&:hover": {
+    color: "$footerIconHover"
+  }
+});
+var StyledGithubLogo = styled(GithubLogo_esm_default, {
+  "color": "$icon",
+  "transition": "color 250ms ease-in-out",
+  "&:hover": {
+    color: "$footerIconHover"
+  }
+});
+var StyledGitlabLogo = styled(GitlabLogo_esm_default, {
+  "color": "$icon",
+  "transition": "color 250ms ease-in-out",
+  "&:hover": {
+    color: "$footerIconHover"
+  }
+});
 var menuItems = [
   {
     name: "Home",
@@ -57908,51 +57960,46 @@ var menuItems = [
   {
     name: "Projects",
     path: links2.projects().root(),
-    icon: /* @__PURE__ */ import_react45.default.createElement(Code_esm_default, {
+    icon: /* @__PURE__ */ import_react45.default.createElement(StyledCode, {
       size: ICON_SIZE,
       weight: "duotone",
-      "aria-label": "Projects",
-      className: "dark:text-theme-white text-theme-black hover:!text-theme-blue dark:hover:!text-theme-orange transition-colors duration-[250ms] ease-in-out"
+      "aria-label": "Projects"
     })
   },
   {
     name: "About Me",
     path: links2.aboutMe(),
-    icon: /* @__PURE__ */ import_react45.default.createElement(UserFocus_esm_default, {
+    icon: /* @__PURE__ */ import_react45.default.createElement(StyledUserFocus, {
       size: ICON_SIZE,
       weight: "duotone",
-      "aria-label": "About Me",
-      className: "dark:text-theme-white text-theme-black hover:!text-theme-blue dark:hover:!text-theme-orange transition-colors duration-[250ms] ease-in-out"
+      "aria-label": "About Me"
     })
   },
   {
     name: "LinkedIn",
     path: links2.linkedIn(),
-    icon: /* @__PURE__ */ import_react45.default.createElement(LinkedinLogo_esm_default, {
+    icon: /* @__PURE__ */ import_react45.default.createElement(StyledLinkedInLogo, {
       size: ICON_SIZE,
       weight: "duotone",
-      "aria-label": "LinkedIn logo",
-      className: "dark:text-theme-white text-theme-black hover:!text-theme-blue dark:hover:!text-theme-orange transition-colors duration-[250ms] ease-in-out"
+      "aria-label": "LinkedIn logo"
     })
   },
   {
     name: "GitHub",
     path: links2.github(),
-    icon: /* @__PURE__ */ import_react45.default.createElement(GithubLogo_esm_default, {
+    icon: /* @__PURE__ */ import_react45.default.createElement(StyledGithubLogo, {
       size: ICON_SIZE,
       weight: "duotone",
-      "aria-label": "Github logo",
-      className: "dark:text-theme-white text-theme-black hover:!text-theme-blue dark:hover:!text-theme-orange transition-colors duration-[250ms] ease-in-out"
+      "aria-label": "Github logo"
     })
   },
   {
     name: "GitLab",
     path: links2.gitlab(),
-    icon: /* @__PURE__ */ import_react45.default.createElement(GitlabLogo_esm_default, {
+    icon: /* @__PURE__ */ import_react45.default.createElement(StyledGitlabLogo, {
       size: ICON_SIZE,
       weight: "duotone",
-      "aria-label": "GitLab logo",
-      className: "dark:text-theme-white text-theme-black hover:!text-theme-blue dark:hover:!text-theme-orange transition-colors duration-[250ms] ease-in-out"
+      "aria-label": "GitLab logo"
     })
   }
 ];
@@ -58226,13 +58273,25 @@ init_react();
 
 // app/common/layout/footer/footer.tsx
 init_react();
+var StyledFooter = styled("footer", {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "flex-end",
+  width: "100vw",
+  paddingBottom: "12px"
+});
+var FooterNav = styled("nav", {
+  "display": "flex",
+  "justifyContent": "space-evenly",
+  "& > a": {
+    margin: "0 12px"
+  }
+});
 var Footer = () => {
-  return /* @__PURE__ */ React.createElement("footer", {
-    role: "contentinfo",
-    className: "flex justify-center w-screen items-end pb-3"
-  }, /* @__PURE__ */ React.createElement("nav", {
-    role: "navigation",
-    className: "flex justify-evenly space-x-4"
+  return /* @__PURE__ */ React.createElement(StyledFooter, {
+    role: "contentinfo"
+  }, /* @__PURE__ */ React.createElement(FooterNav, {
+    role: "navigation"
   }, menuItems.map((mi) => {
     if (mi.path === links2.home()) {
       return;
@@ -58255,8 +58314,8 @@ var OverlayTriangle = styled("div", {
   "zIndex": 10,
   "pointerEvents": "none",
   "opacity": 0.2,
-  "@media screen and (min-width: 640px)": {
-    transform: "skewY(-25deg)"
+  "@media (min-width: 768px)": {
+    transform: "skewY(348deg)"
   },
   "&::before": {
     content: "",
@@ -59044,14 +59103,26 @@ var projectItems2 = [
 ];
 
 // route:/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/app/routes/projects/index.tsx
+var ProjectsLayout = styled("div", {
+  height: "100%",
+  width: "100%",
+  padding: "40px 20px",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "flex-start"
+});
+var Wrapper3 = styled("div", {
+  width: "70rem",
+  margin: "0 auto"
+});
+var Heading = styled("h1", {
+  fontSize: "60px",
+  color: "$headerText",
+  margin: "0 auto",
+  marginBottom: "20px"
+});
 function Index3() {
-  return /* @__PURE__ */ React.createElement(Layout, null, /* @__PURE__ */ React.createElement("div", {
-    className: "h-full w-full px-5 pt-10 flex justify-center align-center"
-  }, /* @__PURE__ */ React.createElement("div", {
-    className: "w-[70rem] mx-auto"
-  }, /* @__PURE__ */ React.createElement("h1", {
-    className: "text-6xl dark:text-theme-white mx-auto mb-5"
-  }, "Projects"), /* @__PURE__ */ React.createElement(CardList, null, projectItems2.map((project) => /* @__PURE__ */ React.createElement(Card, {
+  return /* @__PURE__ */ React.createElement(Layout, null, /* @__PURE__ */ React.createElement(ProjectsLayout, null, /* @__PURE__ */ React.createElement(Wrapper3, null, /* @__PURE__ */ React.createElement(Heading, null, "Projects"), /* @__PURE__ */ React.createElement(CardList, null, projectItems2.map((project) => /* @__PURE__ */ React.createElement(Card, {
     key: project.name,
     title: project.name,
     to: project.path
@@ -59241,7 +59312,7 @@ var HeroWrapper = styled("div", {
   left: "25vw",
   transform: "translateY(-60%)"
 });
-var Heading = styled("h1", {
+var Heading2 = styled("h1", {
   fontFamily: "$accent",
   color: "$headerText",
   display: "grid",
@@ -59282,7 +59353,7 @@ var ProjectsButton = styled(PillButton, {
   }
 });
 var Hero = () => {
-  return /* @__PURE__ */ React.createElement(HeroWrapper, null, /* @__PURE__ */ React.createElement(Heading, null, /* @__PURE__ */ React.createElement(AnimatedHello2, null), /* @__PURE__ */ React.createElement(Name, null, "Kevin Carlos")), /* @__PURE__ */ React.createElement(Divider, {
+  return /* @__PURE__ */ React.createElement(HeroWrapper, null, /* @__PURE__ */ React.createElement(Heading2, null, /* @__PURE__ */ React.createElement(AnimatedHello2, null), /* @__PURE__ */ React.createElement(Name, null, "Kevin Carlos")), /* @__PURE__ */ React.createElement(Divider, {
     orientation: "horizontal"
   }), /* @__PURE__ */ React.createElement(ButtonWrapper, null, /* @__PURE__ */ React.createElement(AboutMeButton, {
     to: links2.aboutMe()
@@ -59329,7 +59400,7 @@ var HeroWrapper2 = styled("div", {
   left: "25vw",
   transform: "translateY(-60%)"
 });
-var Heading2 = styled("h1", {
+var Heading3 = styled("h1", {
   fontFamily: "$accent",
   color: "$headerText",
   display: "grid",
@@ -59370,7 +59441,7 @@ var ProjectsButton2 = styled(PillButton, {
   }
 });
 var Hero2 = () => {
-  return /* @__PURE__ */ React.createElement(HeroWrapper2, null, /* @__PURE__ */ React.createElement(Heading2, null, /* @__PURE__ */ React.createElement(AnimatedHello2, null), /* @__PURE__ */ React.createElement(Name2, null, "Kevin Carlos")), /* @__PURE__ */ React.createElement(Divider, {
+  return /* @__PURE__ */ React.createElement(HeroWrapper2, null, /* @__PURE__ */ React.createElement(Heading3, null, /* @__PURE__ */ React.createElement(AnimatedHello2, null), /* @__PURE__ */ React.createElement(Name2, null, "Kevin Carlos")), /* @__PURE__ */ React.createElement(Divider, {
     orientation: "horizontal"
   }), /* @__PURE__ */ React.createElement(ButtonWrapper2, null, /* @__PURE__ */ React.createElement(AboutMeButton2, {
     to: links2.aboutMe()
@@ -59555,7 +59626,7 @@ function Index4() {
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
 init_react();
-var assets_manifest_default = { "version": "01ca29d1", "entry": { "module": "/build/entry.client-43BP3VAU.js", "imports": ["/build/_shared/chunk-KQNJIRNM.js", "/build/_shared/chunk-MRLH7MYJ.js", "/build/_shared/chunk-N2P4UVFW.js"] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "module": "/build/root-NFVRY6CZ.js", "imports": ["/build/_shared/chunk-POVZYMEF.js", "/build/_shared/chunk-E7SKMB7I.js"], "hasAction": false, "hasLoader": true, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/active-circles": { "id": "routes/about/active-circles", "parentId": "root", "path": "about/active-circles", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/active-circles-DBLH4R73.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/about-me-blurb": { "id": "routes/about/blurbs/about-me-blurb", "parentId": "root", "path": "about/blurbs/about-me-blurb", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/about-me-blurb-JFGQ7RSR.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/blurb-divider": { "id": "routes/about/blurbs/blurb-divider", "parentId": "root", "path": "about/blurbs/blurb-divider", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/blurb-divider-PNJWAFKB.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/career-blurb": { "id": "routes/about/blurbs/career-blurb", "parentId": "root", "path": "about/blurbs/career-blurb", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/career-blurb-26CTZW3X.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/career-items/cycle": { "id": "routes/about/blurbs/career-items/cycle", "parentId": "root", "path": "about/blurbs/career-items/cycle", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/career-items/cycle-WRXHW74L.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/career-items/index": { "id": "routes/about/blurbs/career-items/index", "parentId": "root", "path": "about/blurbs/career-items", "index": true, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/career-items/index-QMPQEVXT.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/career-items/square-8": { "id": "routes/about/blurbs/career-items/square-8", "parentId": "root", "path": "about/blurbs/career-items/square-8", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/career-items/square-8-KKMXTDN3.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/content-blurb": { "id": "routes/about/blurbs/content-blurb", "parentId": "root", "path": "about/blurbs/content-blurb", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/content-blurb-ZWVL3RCK.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/education-blurb": { "id": "routes/about/blurbs/education-blurb", "parentId": "root", "path": "about/blurbs/education-blurb", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/education-blurb-E6465KCD.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/index": { "id": "routes/about/blurbs/index", "parentId": "root", "path": "about/blurbs", "index": true, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/index-H2L26YHT.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/circle-items": { "id": "routes/about/circle-items", "parentId": "root", "path": "about/circle-items", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/circle-items-XQQWWFGJ.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/circles": { "id": "routes/about/circles", "parentId": "root", "path": "about/circles", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/circles-54QQASQA.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/descriptions": { "id": "routes/about/descriptions", "parentId": "root", "path": "about/descriptions", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/descriptions-KGM5MMQI.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/index": { "id": "routes/about/index", "parentId": "root", "path": "about", "index": true, "caseSensitive": void 0, "module": "/build/routes/about/index-SMH6AIUT.js", "imports": ["/build/_shared/chunk-U2SWS4LA.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/hero/animated-hello": { "id": "routes/hero/animated-hello", "parentId": "root", "path": "hero/animated-hello", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/hero/animated-hello-3BK53ZN3.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/hero/hero": { "id": "routes/hero/hero", "parentId": "root", "path": "hero/hero", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/hero/hero-NCKF7SM5.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/hero/index": { "id": "routes/hero/index", "parentId": "root", "path": "hero", "index": true, "caseSensitive": void 0, "module": "/build/routes/hero/index-BNFXDADF.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/hero/languages": { "id": "routes/hero/languages", "parentId": "root", "path": "hero/languages", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/hero/languages-OCUYLAAC.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/index": { "id": "routes/index", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "module": "/build/routes/index-IPT7QJAG.js", "imports": ["/build/_shared/chunk-U2SWS4LA.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/index": { "id": "routes/projects/index", "parentId": "root", "path": "projects", "index": true, "caseSensitive": void 0, "module": "/build/routes/projects/index-3WGTFVJT.js", "imports": ["/build/_shared/chunk-U2SWS4LA.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loaders/HaloCountdown": { "id": "routes/projects/loaders/HaloCountdown", "parentId": "root", "path": "projects/loaders/HaloCountdown", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loaders/HaloCountdown-ZSLKTTT5.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loaders/Spinners": { "id": "routes/projects/loaders/Spinners", "parentId": "root", "path": "projects/loaders/Spinners", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loaders/Spinners-D3AMSO63.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loaders/index": { "id": "routes/projects/loaders/index", "parentId": "root", "path": "projects/loaders", "index": true, "caseSensitive": void 0, "module": "/build/routes/projects/loaders/index-33Z7SEQJ.js", "imports": ["/build/_shared/chunk-U2SWS4LA.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/helpers/centered-text-item": { "id": "routes/projects/loot-crate/crates/helpers/centered-text-item", "parentId": "root", "path": "projects/loot-crate/crates/helpers/centered-text-item", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/helpers/centered-text-item-U3U4H77U.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/helpers/character-modal": { "id": "routes/projects/loot-crate/crates/helpers/character-modal", "parentId": "root", "path": "projects/loot-crate/crates/helpers/character-modal", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/helpers/character-modal-25TGUTOU.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/helpers/crate-info-item": { "id": "routes/projects/loot-crate/crates/helpers/crate-info-item", "parentId": "root", "path": "projects/loot-crate/crates/helpers/crate-info-item", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/helpers/crate-info-item-P6PJ56K7.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/helpers/index": { "id": "routes/projects/loot-crate/crates/helpers/index", "parentId": "root", "path": "projects/loot-crate/crates/helpers", "index": true, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/helpers/index-3WZS3LOW.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/index": { "id": "routes/projects/loot-crate/crates/index", "parentId": "root", "path": "projects/loot-crate/crates", "index": true, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/index-64Y6N2XR.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/naive-box": { "id": "routes/projects/loot-crate/crates/naive-box", "parentId": "root", "path": "projects/loot-crate/crates/naive-box", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/naive-box-EMY3NJVQ.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/open-box": { "id": "routes/projects/loot-crate/crates/open-box", "parentId": "root", "path": "projects/loot-crate/crates/open-box", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/open-box-3G5KGHFY.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/weighted-box": { "id": "routes/projects/loot-crate/crates/weighted-box", "parentId": "root", "path": "projects/loot-crate/crates/weighted-box", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/weighted-box-M6F4252F.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/index": { "id": "routes/projects/loot-crate/index", "parentId": "root", "path": "projects/loot-crate", "index": true, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/index-4RS76TCM.js", "imports": ["/build/_shared/chunk-U2SWS4LA.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/project-items": { "id": "routes/projects/project-items", "parentId": "root", "path": "projects/project-items", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/project-items-6F4QKAGP.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/theme/mode": { "id": "routes/theme/mode", "parentId": "root", "path": "theme/mode", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/theme/mode-LHRTX733.js", "imports": void 0, "hasAction": true, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false } }, "url": "/build/manifest-01CA29D1.js" };
+var assets_manifest_default = { "version": "2d56954a", "entry": { "module": "/build/entry.client-Q5HQTVWN.js", "imports": ["/build/_shared/chunk-KQNJIRNM.js", "/build/_shared/chunk-GWNLASAE.js", "/build/_shared/chunk-N2P4UVFW.js"] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "module": "/build/root-3ENQ35XH.js", "imports": ["/build/_shared/chunk-POVZYMEF.js", "/build/_shared/chunk-E7SKMB7I.js"], "hasAction": false, "hasLoader": true, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/active-circles": { "id": "routes/about/active-circles", "parentId": "root", "path": "about/active-circles", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/active-circles-DBLH4R73.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/about-me-blurb": { "id": "routes/about/blurbs/about-me-blurb", "parentId": "root", "path": "about/blurbs/about-me-blurb", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/about-me-blurb-JFGQ7RSR.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/blurb-divider": { "id": "routes/about/blurbs/blurb-divider", "parentId": "root", "path": "about/blurbs/blurb-divider", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/blurb-divider-PNJWAFKB.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/career-blurb": { "id": "routes/about/blurbs/career-blurb", "parentId": "root", "path": "about/blurbs/career-blurb", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/career-blurb-26CTZW3X.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/career-items/cycle": { "id": "routes/about/blurbs/career-items/cycle", "parentId": "root", "path": "about/blurbs/career-items/cycle", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/career-items/cycle-WRXHW74L.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/career-items/index": { "id": "routes/about/blurbs/career-items/index", "parentId": "root", "path": "about/blurbs/career-items", "index": true, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/career-items/index-QMPQEVXT.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/career-items/square-8": { "id": "routes/about/blurbs/career-items/square-8", "parentId": "root", "path": "about/blurbs/career-items/square-8", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/career-items/square-8-KKMXTDN3.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/content-blurb": { "id": "routes/about/blurbs/content-blurb", "parentId": "root", "path": "about/blurbs/content-blurb", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/content-blurb-ZWVL3RCK.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/education-blurb": { "id": "routes/about/blurbs/education-blurb", "parentId": "root", "path": "about/blurbs/education-blurb", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/education-blurb-E6465KCD.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/blurbs/index": { "id": "routes/about/blurbs/index", "parentId": "root", "path": "about/blurbs", "index": true, "caseSensitive": void 0, "module": "/build/routes/about/blurbs/index-H2L26YHT.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/circle-items": { "id": "routes/about/circle-items", "parentId": "root", "path": "about/circle-items", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/circle-items-XQQWWFGJ.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/circles": { "id": "routes/about/circles", "parentId": "root", "path": "about/circles", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/circles-54QQASQA.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/descriptions": { "id": "routes/about/descriptions", "parentId": "root", "path": "about/descriptions", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/about/descriptions-KGM5MMQI.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/about/index": { "id": "routes/about/index", "parentId": "root", "path": "about", "index": true, "caseSensitive": void 0, "module": "/build/routes/about/index-URNAOHQQ.js", "imports": ["/build/_shared/chunk-QJCOU4XE.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/hero/animated-hello": { "id": "routes/hero/animated-hello", "parentId": "root", "path": "hero/animated-hello", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/hero/animated-hello-3BK53ZN3.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/hero/hero": { "id": "routes/hero/hero", "parentId": "root", "path": "hero/hero", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/hero/hero-NCKF7SM5.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/hero/index": { "id": "routes/hero/index", "parentId": "root", "path": "hero", "index": true, "caseSensitive": void 0, "module": "/build/routes/hero/index-BNFXDADF.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/hero/languages": { "id": "routes/hero/languages", "parentId": "root", "path": "hero/languages", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/hero/languages-OCUYLAAC.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/index": { "id": "routes/index", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "module": "/build/routes/index-6ZX63F45.js", "imports": ["/build/_shared/chunk-QJCOU4XE.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/index": { "id": "routes/projects/index", "parentId": "root", "path": "projects", "index": true, "caseSensitive": void 0, "module": "/build/routes/projects/index-QWWP3MA3.js", "imports": ["/build/_shared/chunk-QJCOU4XE.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loaders/HaloCountdown": { "id": "routes/projects/loaders/HaloCountdown", "parentId": "root", "path": "projects/loaders/HaloCountdown", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loaders/HaloCountdown-ZSLKTTT5.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loaders/Spinners": { "id": "routes/projects/loaders/Spinners", "parentId": "root", "path": "projects/loaders/Spinners", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loaders/Spinners-D3AMSO63.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loaders/index": { "id": "routes/projects/loaders/index", "parentId": "root", "path": "projects/loaders", "index": true, "caseSensitive": void 0, "module": "/build/routes/projects/loaders/index-7HJYTY5Q.js", "imports": ["/build/_shared/chunk-QJCOU4XE.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/helpers/centered-text-item": { "id": "routes/projects/loot-crate/crates/helpers/centered-text-item", "parentId": "root", "path": "projects/loot-crate/crates/helpers/centered-text-item", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/helpers/centered-text-item-U3U4H77U.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/helpers/character-modal": { "id": "routes/projects/loot-crate/crates/helpers/character-modal", "parentId": "root", "path": "projects/loot-crate/crates/helpers/character-modal", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/helpers/character-modal-25TGUTOU.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/helpers/crate-info-item": { "id": "routes/projects/loot-crate/crates/helpers/crate-info-item", "parentId": "root", "path": "projects/loot-crate/crates/helpers/crate-info-item", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/helpers/crate-info-item-P6PJ56K7.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/helpers/index": { "id": "routes/projects/loot-crate/crates/helpers/index", "parentId": "root", "path": "projects/loot-crate/crates/helpers", "index": true, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/helpers/index-3WZS3LOW.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/index": { "id": "routes/projects/loot-crate/crates/index", "parentId": "root", "path": "projects/loot-crate/crates", "index": true, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/index-64Y6N2XR.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/naive-box": { "id": "routes/projects/loot-crate/crates/naive-box", "parentId": "root", "path": "projects/loot-crate/crates/naive-box", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/naive-box-EMY3NJVQ.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/open-box": { "id": "routes/projects/loot-crate/crates/open-box", "parentId": "root", "path": "projects/loot-crate/crates/open-box", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/open-box-3G5KGHFY.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/crates/weighted-box": { "id": "routes/projects/loot-crate/crates/weighted-box", "parentId": "root", "path": "projects/loot-crate/crates/weighted-box", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/crates/weighted-box-M6F4252F.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/loot-crate/index": { "id": "routes/projects/loot-crate/index", "parentId": "root", "path": "projects/loot-crate", "index": true, "caseSensitive": void 0, "module": "/build/routes/projects/loot-crate/index-YFXNIOLU.js", "imports": ["/build/_shared/chunk-QJCOU4XE.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/projects/project-items": { "id": "routes/projects/project-items", "parentId": "root", "path": "projects/project-items", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/projects/project-items-6F4QKAGP.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/theme/mode": { "id": "routes/theme/mode", "parentId": "root", "path": "theme/mode", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/theme/mode-LHRTX733.js", "imports": void 0, "hasAction": true, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false } }, "url": "/build/manifest-2D56954A.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var entry = { module: entry_server_exports };

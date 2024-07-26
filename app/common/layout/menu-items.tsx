@@ -5,11 +5,12 @@ import {
   LinkedinLogo,
   UserFocus,
 } from 'phosphor-react';
-import React, { FC } from 'react';
+import React from 'react';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import SiteLogo from '~/common/assets/images/logo-dark.png';
 import { links } from '~/common/links';
+import { styled } from '~/stitches';
 
 const ICON_SIZE = 24;
 
@@ -26,12 +27,64 @@ type NavItems = {
   mobileOnly?: boolean;
 };
 
-const ImageIcons: FC<JSX.IntrinsicElements['img']> = ({ ...props }) => (
-  <img
-    className="max-w-[30px] md:mr-5 transition opacity duration-[250] ease-in-out"
-    {...props}
-  />
-);
+const ImageIcons = styled('img', {
+  'maxWidth': '30px',
+  'transition': 'opacity 250ms ease-in-out',
+
+  '@media screen and (min-width: 768px)': {
+    marginRight: '20px',
+  },
+});
+
+const StyledCode = styled(Code, {
+  'color': '$icon',
+
+  'transition': 'color 250ms ease-in-out',
+
+  '&:hover': {
+    color: '$footerIconHover',
+  },
+});
+
+const StyledUserFocus = styled(UserFocus, {
+  'color': '$icon',
+
+  'transition': 'color 250ms ease-in-out',
+
+  '&:hover': {
+    color: '$footerIconHover',
+  },
+});
+
+const StyledLinkedInLogo = styled(LinkedinLogo, {
+  'color': '$icon',
+
+  'transition': 'color 250ms ease-in-out',
+
+  '&:hover': {
+    color: '$footerIconHover',
+  },
+});
+
+const StyledGithubLogo = styled(GithubLogo, {
+  'color': '$icon',
+
+  'transition': 'color 250ms ease-in-out',
+
+  '&:hover': {
+    color: '$footerIconHover',
+  },
+});
+
+const StyledGitlabLogo = styled(GitlabLogo, {
+  'color': '$icon',
+
+  'transition': 'color 250ms ease-in-out',
+
+  '&:hover': {
+    color: '$footerIconHover',
+  },
+});
 
 export const menuItems: NavItems[] = [
   {
@@ -51,23 +104,17 @@ export const menuItems: NavItems[] = [
     name: 'Projects',
     path: links.projects().root(),
     icon: (
-      <Code
-        size={ICON_SIZE}
-        weight="duotone"
-        aria-label="Projects"
-        className="dark:text-theme-white text-theme-black hover:!text-theme-blue dark:hover:!text-theme-orange transition-colors duration-[250ms] ease-in-out"
-      />
+      <StyledCode size={ICON_SIZE} weight="duotone" aria-label="Projects" />
     ),
   },
   {
     name: 'About Me',
     path: links.aboutMe(),
     icon: (
-      <UserFocus
+      <StyledUserFocus
         size={ICON_SIZE}
         weight="duotone"
         aria-label="About Me"
-        className="dark:text-theme-white text-theme-black hover:!text-theme-blue dark:hover:!text-theme-orange transition-colors duration-[250ms] ease-in-out"
       />
     ),
   },
@@ -75,11 +122,10 @@ export const menuItems: NavItems[] = [
     name: 'LinkedIn',
     path: links.linkedIn(),
     icon: (
-      <LinkedinLogo
+      <StyledLinkedInLogo
         size={ICON_SIZE}
         weight="duotone"
         aria-label="LinkedIn logo"
-        className="dark:text-theme-white text-theme-black hover:!text-theme-blue dark:hover:!text-theme-orange transition-colors duration-[250ms] ease-in-out"
       />
     ),
   },
@@ -87,11 +133,10 @@ export const menuItems: NavItems[] = [
     name: 'GitHub',
     path: links.github(),
     icon: (
-      <GithubLogo
+      <StyledGithubLogo
         size={ICON_SIZE}
         weight="duotone"
         aria-label="Github logo"
-        className="dark:text-theme-white text-theme-black hover:!text-theme-blue dark:hover:!text-theme-orange transition-colors duration-[250ms] ease-in-out"
       />
     ),
   },
@@ -99,11 +144,10 @@ export const menuItems: NavItems[] = [
     name: 'GitLab',
     path: links.gitlab(),
     icon: (
-      <GitlabLogo
+      <StyledGitlabLogo
         size={ICON_SIZE}
         weight="duotone"
         aria-label="GitLab logo"
-        className="dark:text-theme-white text-theme-black hover:!text-theme-blue dark:hover:!text-theme-orange transition-colors duration-[250ms] ease-in-out"
       />
     ),
   },

@@ -1,14 +1,29 @@
 import { links } from '~/common/links';
 import { LinkIcon } from '~/common/ui-elements';
+import { styled } from '~/stitches';
 import { menuItems } from '../menu-items';
+
+const StyledFooter = styled('footer', {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'flex-end',
+  width: '100vw',
+  paddingBottom: '12px',
+});
+
+const FooterNav = styled('nav', {
+  'display': 'flex',
+  'justifyContent': 'space-evenly',
+
+  '& > a': {
+    margin: '0 12px',
+  },
+});
 
 export const Footer = () => {
   return (
-    <footer
-      role="contentinfo"
-      className="flex justify-center w-screen items-end pb-3"
-    >
-      <nav role="navigation" className="flex justify-evenly space-x-4">
+    <StyledFooter role="contentinfo">
+      <FooterNav role="navigation">
         {menuItems.map((mi) => {
           if (mi.path === links.home()) {
             return;
@@ -20,7 +35,7 @@ export const Footer = () => {
             </LinkIcon>
           );
         })}
-      </nav>
-    </footer>
+      </FooterNav>
+    </StyledFooter>
   );
 };
