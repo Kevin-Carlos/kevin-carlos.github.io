@@ -23,8 +23,8 @@ const Root = styled(RadixSwitch.Root, {
   'borderRadius': '9999px',
   'margin': '0 8px',
 
-  'button': {
-    border: '1px solid red',
+  '&:focus': {
+    outline: '1px solid red',
   },
 
   '&[data-state=checked]': {

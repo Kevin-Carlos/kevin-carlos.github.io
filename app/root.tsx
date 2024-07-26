@@ -15,7 +15,12 @@ import {
 import { useContext, useEffect } from 'react';
 import { useDarkMode } from './common/hooks/theme';
 import { getColorScheme } from './cookies';
-import { ClientStyleContext, darkTheme, styled } from './stitches';
+import {
+  ClientStyleContext,
+  darkTheme,
+  globalStyles,
+  styled,
+} from './stitches';
 import { ThemeCtx } from './ThemeContext';
 
 const Body = styled('body', {
@@ -33,6 +38,7 @@ export const headers: HeadersFunction = () => ({
 
 export const loader: LoaderFunction = async ({ request }) => {
   const cs = await getColorScheme(request);
+  console.log('COLOR', cs);
 
   return { colorScheme: cs };
 };
@@ -62,6 +68,7 @@ export default function App() {
   const [themeMode, setThemeMode] = useDarkMode();
 
   useEffect(() => {
+    globalStyles();
     setThemeMode(colorScheme);
   }, [colorScheme]);
 

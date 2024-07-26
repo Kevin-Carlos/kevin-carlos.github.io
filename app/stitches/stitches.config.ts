@@ -1,5 +1,17 @@
-import { createStitches, createTheme } from '@stitches/react';
+import { createStitches, createTheme, globalCss } from '@stitches/react';
 import { lighten } from 'polished';
+
+const globalStyles = globalCss({
+  h1: {
+    fontWeight: 400,
+  },
+
+  ul: {
+    listStyle: 'none',
+    margin: 0,
+    padding: 0,
+  },
+});
 
 const primaryLightTeal = 'rgb(57, 153, 142)';
 
@@ -23,6 +35,7 @@ const stitches = createStitches({
       // Aliases
       text: '$white',
       body: '$white',
+      icon: '$black',
       bg: '$dteal',
       links: '$black',
 
@@ -34,6 +47,7 @@ const stitches = createStitches({
       headerName: '$dteal',
       headerAboutMeButton: '$lteal2',
       headerProjectButton: '$lgray',
+      footerIconHover: '$blue',
       tabText: '$lteal',
       tabBg: '$dteal',
       tabBorder: '$dteal',
@@ -74,6 +88,7 @@ const darkTheme = createTheme('dark', {
     text: '$black',
     body: '$black',
     bg: '$orange',
+    icon: '$white',
     links: '$white',
 
     // custom
@@ -84,6 +99,7 @@ const darkTheme = createTheme('dark', {
     headerName: '$lteal2',
     headerAboutMeButton: '$lteal',
     headerProjectButton: '$dgray',
+    footerIconHover: '$orange',
     tabText: '$orange',
     tabBg: '$orange',
     tabBorder: '$orange',
@@ -95,4 +111,4 @@ const darkTheme = createTheme('dark', {
 
 const { theme, styled, getCssText } = stitches;
 
-export { theme, styled, getCssText, darkTheme };
+export { theme, styled, getCssText, darkTheme, globalStyles };

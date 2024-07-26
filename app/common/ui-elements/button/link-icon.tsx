@@ -1,7 +1,8 @@
 import { Link } from '@remix-run/react';
-import { FC } from 'react';
+import { type FC, type ReactNode } from 'react';
 
 type LinkIconProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
+  children: ReactNode;
   animateScale?: boolean;
 };
 
