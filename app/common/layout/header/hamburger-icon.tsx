@@ -1,66 +1,19 @@
+import clsx from 'clsx';
 import { type FC } from 'react';
-import { styled } from '~/stitches';
-
-const HamburgerSlice = styled('div', {
-  position: 'relative',
-  width: '24px',
-  height: '2.5px',
-  borderRadius: '8px',
-  transformOrigin: '1px',
-  transition: 'transform 250ms ease-in-out',
-  backgroundColor: '$headerIcons',
-
-  variants: {
-    num: {
-      '1': {},
-      '2': {},
-      '3': {},
-    },
-    isOpen: {
-      true: {},
-    },
-  },
-
-  compoundVariants: [
-    {
-      num: '1',
-      isOpen: true,
-      css: {
-        transform: 'rotate(45deg)',
-      },
-    },
-    {
-      num: '2',
-      isOpen: true,
-      css: {
-        transform: 'translateX(20px)',
-        opacity: 0,
-      },
-    },
-    {
-      num: '3',
-      isOpen: true,
-      css: {
-        transform: 'rotate(-45deg)',
-      },
-    },
-  ],
-});
 
 const HamburgerBar: FC<{ isOpen: boolean; number: number }> = ({
   isOpen,
   number,
 }) => {
-  return <HamburgerSlice isOpen={isOpen} num={number} />;
-};
+  return <div className={clsx(
+    "relative w-[24px] h-[4px] rounded-lg origin-[1px] transition-transform",
+    "bg-theme-black dark:bg-theme-white",
 
-const HamburgerButton = styled('button', {
-  zIndex: 50,
-  position: 'relative',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'space-evenly',
-});
+    number === 1 && isOpen && "rotate-45",
+    number === 2 && isOpen && "translate-x-[20px] opacity-0",
+    number === 3 && isOpen && "-rotate-45"
+  )} />;
+};
 
 type HamburgerIconProps = {
   isOpen: boolean;
@@ -72,10 +25,10 @@ export const HamburgerIcon: FC<HamburgerIconProps> = ({
   setIsOpen,
 }) => {
   return (
-    <HamburgerButton onClick={() => setIsOpen(!isOpen)}>
+    <button onClick={() => setIsOpen(!isOpen)} className="z-[100] relative flex flex-col justify-evenly">
       <HamburgerBar isOpen={isOpen} number={1} />
       <HamburgerBar isOpen={isOpen} number={2} />
       <HamburgerBar isOpen={isOpen} number={3} />
-    </HamburgerButton>
+    </button>
   );
 };

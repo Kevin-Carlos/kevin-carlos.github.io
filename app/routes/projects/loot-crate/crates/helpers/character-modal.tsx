@@ -1,4 +1,4 @@
-import { type FC } from 'react';
+import { ReactNode, type FC } from 'react';
 
 const ModalOverlay = () => {
   return (
@@ -9,7 +9,7 @@ const ModalOverlay = () => {
 /**
  * Expects to be used underneath a `position: relative` container
  */
-export const CharacterModal: FC = ({ children }) => {
+export const CharacterModal: FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <div role="dialog" className="absolute top-0 bottom-0 left-0 right-0">
       <ModalOverlay />

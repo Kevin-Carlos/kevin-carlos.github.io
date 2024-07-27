@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["browser-route-module:/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/app/routes/projects/loaders/index.tsx?browser", "../../../../../app/routes/projects/loaders/index.tsx"],
+  "sourcesContent": ["export { default } from \"/Users/kevincarlos/Documents/projects/kevin-carlos.github.io/app/routes/projects/loaders/index.tsx\";", "import { Layout } from '~/common/layout';\n\nexport default function Index() {\n  return (\n    <Layout>\n      <div className=\"h-full w-full flex justify-center items-center\">\n        {/* <HaloCountdown /> */}\n      </div>\n    </Layout>\n  );\n}\n"],
+  "mappings": ";;;;;;;;;;;;AAAA;;;ACAA;AAEe,iBAAiB;AAC9B,SACE,oCAAC,QAAD,MACE,oCAAC,OAAD;AAAA,IAAK,WAAU;AAAA;AAAA;",
+  "names": []
+}

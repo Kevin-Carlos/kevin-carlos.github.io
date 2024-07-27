@@ -1,10 +1,11 @@
-import { type ReactChild } from 'react';
+import { ReactNode } from 'react';
 import { links } from '~/common/links';
 
 type ProjectItem = {
   name: string;
-  description: ReactChild;
+  description: ReactNode;
   path: string;
+  linkText: string;
 };
 
 export const projectItems: ProjectItem[] = [
@@ -17,10 +18,12 @@ export const projectItems: ProjectItem[] = [
       </p>
     ),
     path: links.projects().project().lootCrate(),
+    linkText: "Loot Crate Demo"
   },
   {
     name: 'Loaders',
     description: <p>Building loading spinners / indicators for fun.</p>,
     path: links.projects().project().loaders(),
+    linkText: "Loading Spinner Demo"
   },
 ];

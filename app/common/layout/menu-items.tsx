@@ -10,7 +10,6 @@ import React from 'react';
 // @ts-ignore
 import SiteLogo from '~/common/assets/images/logo-dark.png';
 import { links } from '~/common/links';
-import { styled } from '~/stitches';
 
 const ICON_SIZE = 24;
 
@@ -27,75 +26,75 @@ type NavItems = {
   mobileOnly?: boolean;
 };
 
-const ImageIcons = styled('img', {
-  'maxWidth': '30px',
-  'transition': 'opacity 250ms ease-in-out',
+// const ImageIcons = styled('img', {
+//   'maxWidth': '30px',
+//   'transition': 'opacity 250ms ease-in-out',
 
-  '@media screen and (min-width: 768px)': {
-    marginRight: '20px',
-  },
-});
+//   '@media screen and (min-width: 768px)': {
+//     marginRight: '20px',
+//   },
+// });
 
-const StyledCode = styled(Code, {
-  'color': '$icon',
+// const StyledCode = styled(Code, {
+//   'color': '$icon',
 
-  'transition': 'color 250ms ease-in-out',
+//   'transition': 'color 250ms ease-in-out',
 
-  '&:hover': {
-    color: '$footerIconHover',
-  },
-});
+//   '&:hover': {
+//     color: '$footerIconHover',
+//   },
+// });
 
-const StyledUserFocus = styled(UserFocus, {
-  'color': '$icon',
+// const StyledUserFocus = styled(UserFocus, {
+//   'color': '$icon',
 
-  'transition': 'color 250ms ease-in-out',
+//   'transition': 'color 250ms ease-in-out',
 
-  '&:hover': {
-    color: '$footerIconHover',
-  },
-});
+//   '&:hover': {
+//     color: '$footerIconHover',
+//   },
+// });
 
-const StyledLinkedInLogo = styled(LinkedinLogo, {
-  'color': '$icon',
+// const StyledLinkedInLogo = styled(LinkedinLogo, {
+//   'color': '$icon',
 
-  'transition': 'color 250ms ease-in-out',
+//   'transition': 'color 250ms ease-in-out',
 
-  '&:hover': {
-    color: '$footerIconHover',
-  },
-});
+//   '&:hover': {
+//     color: '$footerIconHover',
+//   },
+// });
 
-const StyledGithubLogo = styled(GithubLogo, {
-  'color': '$icon',
+// const StyledGithubLogo = styled(GithubLogo, {
+//   'color': '$icon',
 
-  'transition': 'color 250ms ease-in-out',
+//   'transition': 'color 250ms ease-in-out',
 
-  '&:hover': {
-    color: '$footerIconHover',
-  },
-});
+//   '&:hover': {
+//     color: '$footerIconHover',
+//   },
+// });
 
-const StyledGitlabLogo = styled(GitlabLogo, {
-  'color': '$icon',
+// const StyledGitlabLogo = styled(GitlabLogo, {
+//   'color': '$icon',
 
-  'transition': 'color 250ms ease-in-out',
+//   'transition': 'color 250ms ease-in-out',
 
-  '&:hover': {
-    color: '$footerIconHover',
-  },
-});
+//   '&:hover': {
+//     color: '$footerIconHover',
+//   },
+// });
 
 export const menuItems: NavItems[] = [
   {
     name: 'Home',
     path: links.home(),
     icon: (
-      <ImageIcons
+      <img
         src={SiteLogo}
         alt="Kevin Carlos logo"
         aria-label="Kevin Carlos logo"
-        style={{ backgroundColor: 'white', borderRadius: '50%' }}
+        style={{ backgroundColor: 'white', borderRadius: '50%', height: "40px", width: "40px" }}
       />
     ),
     mobileOnly: true,
@@ -104,14 +103,14 @@ export const menuItems: NavItems[] = [
     name: 'Projects',
     path: links.projects().root(),
     icon: (
-      <StyledCode size={ICON_SIZE} weight="duotone" aria-label="Projects" />
+      <Code size={ICON_SIZE} weight="duotone" aria-label="Projects" />
     ),
   },
   {
     name: 'About Me',
     path: links.aboutMe(),
     icon: (
-      <StyledUserFocus
+      <UserFocus
         size={ICON_SIZE}
         weight="duotone"
         aria-label="About Me"
@@ -122,7 +121,7 @@ export const menuItems: NavItems[] = [
     name: 'LinkedIn',
     path: links.linkedIn(),
     icon: (
-      <StyledLinkedInLogo
+      <LinkedinLogo
         size={ICON_SIZE}
         weight="duotone"
         aria-label="LinkedIn logo"
@@ -133,7 +132,7 @@ export const menuItems: NavItems[] = [
     name: 'GitHub',
     path: links.github(),
     icon: (
-      <StyledGithubLogo
+      <GithubLogo
         size={ICON_SIZE}
         weight="duotone"
         aria-label="Github logo"
@@ -144,7 +143,7 @@ export const menuItems: NavItems[] = [
     name: 'GitLab',
     path: links.gitlab(),
     icon: (
-      <StyledGitlabLogo
+      <GitlabLogo
         size={ICON_SIZE}
         weight="duotone"
         aria-label="GitLab logo"

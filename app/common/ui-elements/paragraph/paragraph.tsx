@@ -1,5 +1,4 @@
-import { type FC } from 'react';
 
-export const Paragraph: FC = ({ children }) => {
+export const Paragraph = ({ children }: {children: string}) => {
   return <p className="mb-5">{children}</p>;
 };

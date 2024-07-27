@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../app/entry.client.tsx"],
+  "sourcesContent": ["import { RemixBrowser } from '@remix-run/react';\nimport { useCallback, useState, type ReactNode } from 'react';\nimport { hydrate } from 'react-dom';\nimport { ClientStyleContext, getCssText } from './stitches';\n\ntype ClientCacheProviderProps = {\n  children: ReactNode;\n};\n\nfunction ClientCacheProvider({ children }: ClientCacheProviderProps) {\n  const [sheet, setSheet] = useState(getCssText());\n\n  const reset = useCallback(() => {\n    setSheet(getCssText());\n  }, []);\n\n  return (\n    <ClientStyleContext.Provider value={{ reset, sheet }}>\n      {children}\n    </ClientStyleContext.Provider>\n  );\n}\n\nhydrate(\n  <ClientCacheProvider>\n    <RemixBrowser />\n  </ClientCacheProvider>,\n  document\n);\n"],
+  "mappings": ";;;;;;;;;;;;;;;;;;AAAA;AACA,oBAAsD;AACtD,uBAAwB;AAOxB,6BAA6B,EAAE,YAAsC;AACnE,QAAM,CAAC,OAAO,YAAY,4BAAS;AAEnC,QAAM,QAAQ,+BAAY,MAAM;AAC9B,aAAS;AAAA,KACR;AAEH,SACE,oCAAC,mBAAmB,UAApB;AAAA,IAA6B,OAAO,EAAE,OAAO;AAAA,KAC1C;AAAA;AAKP,8BACE,oCAAC,qBAAD,MACE,oCAAC,cAAD,QAEF;",
+  "names": []
+}

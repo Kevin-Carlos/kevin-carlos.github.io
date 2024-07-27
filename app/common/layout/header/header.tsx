@@ -5,7 +5,6 @@ import { useClickOutside } from '~/common/hooks/events';
 import { LinkText } from '~/common/ui-elements';
 import { IconButton } from '~/common/ui-elements/button/icon-button';
 import { Switch } from '~/common/ui-elements/library';
-import { styled } from '~/stitches';
 import { useTheme } from '~/useTheme';
 import { menuItems } from '../menu-items';
 import { HamburgerIcon } from './hamburger-icon';
@@ -14,61 +13,10 @@ import { Logo } from './logo';
 
 const ICON_SIZE = 24;
 
-const StyledHeader = styled('header', {
-  display: 'flex',
-  padding: '8px 24px',
-  zIndex: 40,
-
-  color: '$text',
-});
-
-const LogoAndModeWrapper = styled('div', {
-  display: 'grid',
-  gridTemplateColumns: 'auto 1fr',
-  gridGap: '16px',
-});
-
-const Nav = styled('nav', {
-  'display': 'none',
-  'flexGrow': 1,
-  'alignItems': 'center',
-  'justifyContent': 'flex-end',
-
-  '& > a': {
-    margin: '0 8px',
-  },
-
-  '@media screen and (min-width: 640px)': {
-    display: 'flex',
-  },
-});
-
-const HamburgerWrapper = styled('div', {
-  'display': 'flex',
-  'justifyContent': 'flex-end',
-  'flexGrow': 1,
-
-  '@media screen and (min-width: 640px)': {
-    display: 'none',
-  },
-});
-
-const StyledMoon = styled(Moon, {
-  '& > path': {
-    stroke: '$headerIcons',
-  },
-});
-
-const StyledSun = styled(Sun, {
-  '& > circle, & > line': {
-    stroke: '$headerIcons',
-  },
-});
-
 export const Header = () => {
   const [mode, setMode] = useTheme();
 
-  const themeMode = useFetcher();
+  const themeMode = useFetcher({ key: "theme" });
 
   const [mobileNav, toggleMobileNav] = useState(false);
 
@@ -83,8 +31,8 @@ export const Header = () => {
     themeMode.submit(
       { mode: mode, url: window.location.pathname },
       {
-        method: 'post',
-        action: '/theme/mode',
+        method: 'POST',
+        action: '/theme',
       }
     );
 
@@ -92,25 +40,16 @@ export const Header = () => {
   };
 
   return (
-    <StyledHeader role="banner">
-      <LogoAndModeWrapper>
+    <header className='flex py-2 px-6 z-40 h-[56px] text-theme-black dark:text-theme-white sticky top-0 bg-theme-white dark:bg-theme-black border-b-2 border-b-theme-dteal md:border-b-0'>
+      <div className="grid grid-cols-[40px_1fr] gap-4">
         <Logo />
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '8px',
-          }}
-        >
-          <IconButton>
-            <StyledMoon
-              size={ICON_SIZE}
-              style={{ cursor: 'pointer' }}
-              onClick={() => {
-                onThemeToggle('dark');
-              }}
-            />
+        <div className="flex items-center justify-center gap-2">
+          <IconButton
+            onClick={() => {
+              onThemeToggle('dark');
+            }}
+          >
+            <Moon size={ICON_SIZE} />
           </IconButton>
           <Switch
             checked={mode === 'light' ? true : false}
@@ -119,18 +58,16 @@ export const Header = () => {
               onThemeToggle(mode);
             }}
           />
-          <IconButton>
-            <StyledSun
-              size={ICON_SIZE}
-              style={{ cursor: 'pointer' }}
-              onClick={() => {
-                onThemeToggle('light');
-              }}
-            />
+          <IconButton
+            onClick={() => {
+              onThemeToggle('light');
+            }}
+          >
+            <Sun size={ICON_SIZE} />
           </IconButton>
         </div>
-      </LogoAndModeWrapper>
-      <Nav role="navigation">
+      </div>
+      <nav className="hidden grow-[1] items-center justify-end sm:flex h-[40px]">
         {menuItems.map((mi) => {
           if (mi.mobileOnly) {
             return;
@@ -138,15 +75,15 @@ export const Header = () => {
 
           return (
             <Fragment key={`header-${mi.name}`}>
-              <LinkText href={mi.path}>{mi.name}</LinkText>
+              <LinkText href={mi.path} className="mx-4 last:mr-0">{mi.name}</LinkText>
             </Fragment>
           );
         })}
-      </Nav>
-      <HamburgerWrapper ref={menuRef}>
+      </nav>
+      <div ref={menuRef} className="flex justify-end grow sm:hidden">
         <HamburgerIcon isOpen={mobileNav} setIsOpen={setIsOpen} />
-        <HamburgerMenu isOpen={mobileNav} setIsOpen={setIsOpen} />
-      </HamburgerWrapper>
-    </StyledHeader>
+        {mobileNav && <HamburgerMenu isOpen={mobileNav} setIsOpen={setIsOpen} />}
+      </div>
+    </header>
   );
 };

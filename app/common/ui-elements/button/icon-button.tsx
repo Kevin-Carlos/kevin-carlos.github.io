@@ -1,16 +1,10 @@
 import { ReactElement } from 'react';
-import { styled } from '~/stitches';
-
-const ICB = styled('button', {
-  '&:focus': {
-    outlineColor: '$orange',
-  },
-});
 
 type IconButtonProps = {
   children: ReactElement;
+  onClick: () => void;
 };
 
-export const IconButton = ({ children }: IconButtonProps): ReactElement => {
-  return <ICB>{children}</ICB>;
+export const IconButton = ({ children, onClick }: IconButtonProps): ReactElement => {
+  return <button className="focus:outline-theme-orange focus:outline-2 focus:outline rounded-md hover:opacity-60 transition-opacity" onClick={onClick}>{children}</button>;
 };

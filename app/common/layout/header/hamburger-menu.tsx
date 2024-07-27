@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { animated, useSpring } from 'react-spring';
 import { LinkText } from '~/common/ui-elements';
 import { menuItems } from '../menu-items';
@@ -41,7 +41,7 @@ export const HamburgerMenu: FC<HamburgerMenuProps> = ({
   return (
     <animated.menu
       style={spring}
-      className="bg-theme-lteal absolute top-0 right-0 h-screen w-screen z-40"
+      className="bg-theme-lteal absolute top-0 right-0 bottom-0 h-screen w-screen z-50"
     >
       <nav role="navigation" className="h-full w-full">
         <ul className="h-full w-full space-y-4 flex flex-col justify-center items-center">
@@ -53,8 +53,7 @@ export const HamburgerMenu: FC<HamburgerMenuProps> = ({
               <LinkText
                 href={i.path}
                 className="text-2xl"
-                childrenClassName="grid grid-cols-[1fr_200px] justify-items-center"
-                // childrenClassName="grid grid-cols-[1fr_1fr] justify-items-end space-x-4"
+                childrenClassName="grid grid-cols-[40px_200px] justify-items-center"
                 animateScale={false}
               >
                 {i.icon}
