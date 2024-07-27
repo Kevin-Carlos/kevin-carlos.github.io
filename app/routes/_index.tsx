@@ -38,6 +38,12 @@ export default function Index() {
           fpsLimit: 60,
           detectRetina: true,
           retina_detect: true,
+          motion: {
+            reduce: {
+              factor: 10,
+              value: !motion,
+            },
+          },
           interactivity: {
             detect_on: 'canvas',
             events: {
@@ -161,7 +167,7 @@ export default function Index() {
   return (
     <Layout hideFooter>
       <Hero />
-      {motion && (
+   
         <Particles
           id="tsparticles-home-bg"
           options={getParticleOptions(mode)}
@@ -175,7 +181,7 @@ export default function Index() {
             zIndex: 10,
           }}
         />
-      )}
+      
     </Layout>
   );
 }
