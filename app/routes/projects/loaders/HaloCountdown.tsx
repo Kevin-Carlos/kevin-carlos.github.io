@@ -7,7 +7,7 @@ const COUNTDOWN = 3;
 export const HaloCountdown = () => {
   const [currentTime, setCurrentTime] = useState(COUNTDOWN);
   const [showCountdown, setShowCountdown] = useState(false);
-  const intervalRef = useRef<NodeJS.Timer | null>(null);
+  const intervalRef = useRef<number | null>(null);
 
   const springInStyles = useSpring({
     from: {
@@ -64,7 +64,7 @@ export const HaloCountdown = () => {
   }, [currentTime]);
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center gap-5">
       <div className="w-full h-[40px] dark:text-theme-white text-theme-black text-lg relative">
         <animated.div
           className="w-[1px] bg-theme-orange h-full absolute scale-0 left-[50%] translate-x-[-50%]"
@@ -91,7 +91,7 @@ export const HaloCountdown = () => {
           }
 
           setShowCountdown(true);
-          startLeftBorderSpring().start();
+          
           startLeftBorderSlideSpring.start();
         }}
       >

@@ -1,17 +1,13 @@
 import { Pen } from 'phosphor-react';
-import { type FC } from 'react';
-import { useDarkMode } from '~/common/hooks/theme';
-import { colors, Divider } from '../library';
+import { ReactNode, type FC } from 'react';
+import { Divider } from '../library';
 
 type BlockquoteProps = {
   author: string;
+  children: ReactNode;
 };
 
 export const Blockquote: FC<BlockquoteProps> = ({ children, author }) => {
-  const [mode] = useDarkMode();
-
-  const colorToUse = mode === 'dark' ? colors.orange : colors.black;
-
   return (
     <div className="grid grid-cols-[auto_1fr] mb-5">
       <Divider orientation="vertical" className="mr-5" />
@@ -22,7 +18,7 @@ export const Blockquote: FC<BlockquoteProps> = ({ children, author }) => {
             <Pen
               weight="duotone"
               style={{ marginRight: '8px' }}
-              color={colorToUse}
+              className="text-theme-black dark:text-theme-white"
             />
             {author}
           </span>

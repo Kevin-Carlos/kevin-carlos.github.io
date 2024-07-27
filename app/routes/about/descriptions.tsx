@@ -1,40 +1,20 @@
 import { useState } from 'react';
-import { styled } from '~/stitches';
 import { ContentBlurb } from './blurbs';
 import { circleItems } from './circle-items';
 import { Circles } from './circles';
 
-const StyledDiv = styled('div', {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-
-  borderRadius: '8px',
-
-  height: '100%',
-  width: '100%',
-
-  // TODO STITCHES breakpoints
-  // 'md:w-[60vw]',
-  // 'md:flex-row'
-});
-
-const ContentWrapper = styled('div', {
-  color: '$text',
-  display: 'flex',
-  justifyContent: 'center',
-});
-
 export const Descriptions = () => {
   const [index, setIndex] = useState(0);
 
+  console.log(index)
+
   return (
-    <StyledDiv>
+    <div className="flex flex-col md:flex-row justify-center items-center rounded-lg h-full w-full m-auto pt-60 md:pt-0">
       <Circles index={index} setIndex={(n) => setIndex(n)} />
       {/* Conditionally set height if career bubble is chosen */}
-      <ContentWrapper>
+      <div className="text-theme-black dark:text-theme-white flex justify-center w-full md:max-w-[40vw]">
         <ContentBlurb type={circleItems[index].key} />
-      </ContentWrapper>
-    </StyledDiv>
+      </div>
+    </div>
   );
 };

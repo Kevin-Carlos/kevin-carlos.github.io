@@ -1,53 +1,12 @@
 import { Link } from '@remix-run/react';
+import clsx from 'clsx';
 import {
   Fragment,
+  useMemo,
   type AnchorHTMLAttributes,
   type FC,
   type ReactNode,
 } from 'react';
-import { styled } from '~/stitches';
-
-const UnderLine = styled('hr', {
-  backgroundColor: '$orange',
-  width: 0,
-  height: '2px',
-  transition: 'width 200ms ease-in-out',
-  borderWidth: 0,
-
-  position: 'absolute',
-  bottom: '-12px',
-  left: 0,
-});
-
-const OutsideLink = styled('a', {
-  'position': 'relative',
-  'color': '$links',
-  'textDecoration': 'none',
-  'transition': 'transform 200ms ease-in-out',
-
-  '&:hover': {
-    transform: 'scale(1.05)',
-
-    [`& ${UnderLine}`]: {
-      width: '28px',
-    },
-  },
-});
-
-const RemixLink = styled(Link, {
-  'position': 'relative',
-  'color': '$links',
-  'textDecoration': 'none',
-  'transition': 'transform 200ms ease-in-out',
-
-  '&:hover': {
-    transform: 'scale(1.05)',
-
-    [`& ${UnderLine}`]: {
-      width: '28px',
-    },
-  },
-});
 
 type LinkText = AnchorHTMLAttributes<HTMLAnchorElement> & {
   children: ReactNode;
@@ -62,31 +21,67 @@ export const LinkText: FC<LinkText> = ({
   animateScale = true,
   ...props
 }) => {
+  const className = useMemo(() => {
+    return clsx(
+      "group",
+      "relative",
+      "text-theme-black",
+      "dark:text-theme-white",
+      "no-underline",
+      "transition-all",
+      "hover:scale(1.05)",
+      "rounded-md",
+      "focus:outline-theme-dteal",
+      "focus:outline",
+      "focus:outline-offset-[-1px]",
+      "dark:focus:outline-theme-orange",
+      props.className,
+    )
+  }, [])
+
   const LinkChildren = () => {
     return (
       <Fragment>
         <span className={childrenClassName}>{children}</span>
-        {animateScale ? <UnderLine /> : null}
+        {animateScale ? <hr
+          className={clsx(
+            "bg-theme-dteal",
+            "dark:bg-theme-orange",
+            "w-0",
+            "h-0.5",
+            "transition-all",
+            "absolute",
+            "bottom-[-4px]",
+            "left-0",
+            "border-0",
+            "group-hover:w-[28px]",
+          )}
+        /> : null}
       </Fragment>
     );
   };
 
   if (href?.includes('http')) {
     return (
-      <OutsideLink
+      <a
         {...props}
         href={href}
         target={href?.includes('http') ? '_blank' : undefined}
-        className={props.className}
+        rel="noreferrer"
+        className={className}
       >
         <LinkChildren />
-      </OutsideLink>
+      </a>
     );
   }
 
   return (
-    <RemixLink {...props} className={props.className} to={href ?? ''}>
+    <Link
+      {...props}
+      className={className}
+      to={href ?? ''}
+    >
       <LinkChildren />
-    </RemixLink>
+    </Link>
   );
 };

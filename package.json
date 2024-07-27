@@ -1,76 +1,57 @@
 {
-  "name": "site",
+  "name": "my-remix-app",
   "private": true,
-  "description": "",
-  "license": "",
   "sideEffects": false,
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{ts,tsx,json}": [
-      "yarn format",
-      "yarn lint"
-    ]
-  },
+  "type": "module",
   "scripts": {
-    "build": "yarn build:css && remix build",
-    "dev:remix": "remix watch",
-    "dev:wrangler": "cross-env NODE_ENV=development wrangler pages dev ./public",
-    "dev": "remix build && concurrently \"npm:dev:*\" ",
-    "start": "cross-env NODE_ENV=production yarn dev:wrangler",
-    "format": "prettier --write",
-    "format:all": "prettier --write \"packages/**/*.{js,jsx,ts,tsx,json}\"",
-    "lint": "eslint --fix",
-    "lint:all": "eslint --fix \"packages/**/*.{js,jsx,ts,tsx,json}\"",
-    "updateSDKs": "yarn dlx @yarnpkg/sdks vscode"
+    "build": "remix vite:build",
+    "deploy": "pnpm run build && wrangler pages deploy",
+    "dev": "remix vite:dev",
+    "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
+    "start": "wrangler pages dev ./build/client",
+    "typecheck": "tsc",
+    "typegen": "wrangler types",
+    "preview": "pnpm run build && wrangler pages dev",
+    "cf-typegen": "wrangler types"
   },
   "dependencies": {
-    "@radix-ui/react-select": "0.1.1",
-    "@radix-ui/react-separator": "0.1.4",
-    "@radix-ui/react-switch": "0.1.5",
-    "@remix-run/cloudflare": "1.6.3",
-    "@remix-run/cloudflare-pages": "1.6.3",
-    "@remix-run/react": "1.6.3",
-    "@stitches/react": "1.2.8",
-    "cross-env": "7.0.3",
+    "@radix-ui/react-select": "2.1.1",
+    "@radix-ui/react-separator": "1.1.0",
+    "@radix-ui/react-switch": "1.1.0",
+    "@remix-run/cloudflare": "^2.10.3",
+    "@remix-run/cloudflare-pages": "^2.10.3",
+    "@remix-run/react": "^2.10.3",
+    "isbot": "^4.1.0",
     "phosphor-react": "1.4.0",
-    "polished": "4.1.4",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-spring": "9.4.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-spring": "9.7.4",
     "react-tsparticles": "1.35.2"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "3.4.0",
-    "@remix-run/dev": "1.4.3",
-    "@remix-run/eslint-config": "1.4.3",
-    "@types/react": "17.0.24",
-    "@types/react-dom": "17.0.9",
-    "@typescript-eslint/eslint-plugin": "5.9.0",
-    "@typescript-eslint/parser": "5.9.0",
-    "concurrently": "7.0.0",
-    "eslint": "8.6.0",
-    "eslint-config-prettier": "8.3.0",
-    "eslint-config-react-app": "7.0.0",
-    "eslint-plugin-flowtype": "8.0.3",
-    "eslint-plugin-import": "2.25.4",
-    "eslint-plugin-jsx-a11y": "6.5.1",
-    "eslint-plugin-prettier": "4.0.0",
-    "eslint-plugin-react": "7.28.0",
-    "eslint-plugin-react-hooks": "4.3.0",
-    "husky": "7.0.4",
-    "lint-staged": "12.1.7",
-    "npm-run-all": "4.1.5",
-    "pinst": "2.0.0",
-    "prettier": "2.5.1",
-    "typescript": "4.5.5",
-    "wrangler": "beta"
+    "@cloudflare/workers-types": "^4.20240725.0",
+    "@remix-run/dev": "^2.10.3",
+    "@types/react": "^18.2.20",
+    "@types/react-dom": "^18.2.7",
+    "@typescript-eslint/eslint-plugin": "^6.7.4",
+    "@typescript-eslint/parser": "^6.7.4",
+    "autoprefixer": "^10.4.19",
+    "clsx": "^2.1.1",
+    "eslint": "^8.38.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "polished": "^4.3.1",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.4",
+    "typescript": "^5.1.6",
+    "vite": "^5.1.0",
+    "vite-tsconfig-paths": "^4.2.1",
+    "wrangler": "3.57.1"
   },
   "engines": {
-    "node": ">=14"
-  },
-  "packageManager": "yarn@3.1.1"
+    "node": ">=20.0.0"
+  }
 }

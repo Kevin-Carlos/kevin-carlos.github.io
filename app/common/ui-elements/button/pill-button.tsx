@@ -1,22 +1,6 @@
 import { Link, type LinkProps } from '@remix-run/react';
-import { type FC } from 'react';
-import { styled } from '~/stitches';
-
-const StyledButton = styled('button', {
-  'fontFamily': '$accent',
-  'padding': '8px 20px',
-  'borderRadius': '20px',
-  'border': 0,
-  'cursor': 'pointer',
-  'fontSize': '16px',
-
-  'color': '$text',
-  'transition': 'color 250ms ease-in-out',
-
-  '&:disabled': {
-    opacity: '0.5',
-  },
-});
+import clsx from 'clsx';
+import { useMemo, type FC } from 'react';
 
 type PillButtonProps = Omit<JSX.IntrinsicElements['button'], 'ref'> & {
   to?: LinkProps['to'];
@@ -32,19 +16,39 @@ export const PillButton: FC<PillButtonProps> = ({
   disabled,
   ...props
 }) => {
-  const MainButton = () => (
-    <StyledButton {...props} disabled={disabled} className={props.className}>
-      {children}
-    </StyledButton>
-  );
+  const className = useMemo(() => {
+    return clsx(
+      "font-accent",
+      "py-2",
+      "px-5",
+      "rounded-full",
+      "cursor-pointer",
+      "border-0",
+      "text-base",
+      "text-theme-black",
+      "dark:text-theme-white",
+      "transition-colors",
+      "focus:outline",
+      "focus:outline-2",
+      "focus:outline-theme-dteal",
+      "focus:outline-offset-2",
+      "dark:focus:outline-theme-orange",
+      "disabled:opacity-50",
+      props.className,
+    )
+  }, []);
 
   if (to) {
     return (
-      <Link to={to}>
-        <MainButton />
+      <Link to={to} className={className}>
+        {children}
       </Link>
     );
   }
 
-  return <MainButton />;
+  return (
+    <button {...props} disabled={disabled} className={className}>
+      {children}
+    </button>
+  );
 };

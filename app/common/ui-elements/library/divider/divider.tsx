@@ -1,5 +1,5 @@
 import * as Separator from '@radix-ui/react-separator';
-import { styled } from '~/stitches/stitches.config';
+import clsx from 'clsx';
 
 export type DividerProps = Pick<
   Separator.SeparatorProps,
@@ -8,70 +8,24 @@ export type DividerProps = Pick<
   className?: string;
 };
 
-const StyledDivider = styled(Separator.Root, {
-  'backgroundColor': '$bg',
-
-  '&::before': {
-    content: '',
-    backgroundColor: '$bg',
-  },
-
-  '&::after': {
-    content: '',
-    backgroundColor: '$bg',
-  },
-
-  'variants': {
-    orientation: {
-      vertical: {
-        'width': '2px',
-        'height': '100%',
-        'position': 'relative',
-
-        '&::before': {
-          position: 'absolute',
-          top: 0,
-          left: '-1px',
-          height: '4px',
-          width: '4px',
-        },
-
-        '&::after': {
-          position: 'absolute',
-          bottom: 0,
-          left: '-1px',
-          height: '4px',
-          width: '4px',
-        },
-      },
-      horizontal: {
-        'height': '2px',
-        'width': '100%',
-        'position': 'relative',
-
-        '&::before': {
-          position: 'absolute',
-          left: 0,
-          top: '-1px',
-          height: '4px',
-          width: '4px',
-        },
-
-        '&::after': {
-          position: 'absolute',
-          right: 0,
-          top: '-1px',
-          height: '4px',
-          width: '4px',
-        },
-      },
-    },
-  },
-  'defaultVariants': {
-    orientation: 'horizontal',
-  },
-});
-
-export const Divider = ({ orientation, className }: DividerProps) => {
-  return <StyledDivider orientation={orientation} className={className} />;
+export const Divider = ({ orientation = "horizontal", className }: DividerProps) => {
+  return (
+    <Separator.Root
+      orientation={orientation}
+      className={clsx(
+'dark:bg-theme-orange',
+        'dark:before:bg-theme-orange',
+        'dark:after:bg-theme-orange',
+        'bg-theme-dteal',
+        'before:bg-theme-dteal',
+        'after:bg-theme-dteal',
+        'relative',
+        'before:absolute',
+        'after:absolute',
+        orientation === 'vertical' && 'w-0.5 h-full before:top-0 before:left-[-1px] before:h-1 before:w-1 after:bottom-0 after:left-[-1px] after:h-1 after:w-1',
+        orientation === "horizontal" && "h-0.5 w-full before:left-0 before:top-[-1px] before:h-1 before:w-1 after:right-0 after:top-[-1px] after:h-1 after:w-1",
+        className
+      )}
+    />
+  );
 };

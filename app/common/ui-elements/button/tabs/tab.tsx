@@ -1,44 +1,36 @@
+import clsx from 'clsx';
 import { type FC } from 'react';
-import { styled } from '~/stitches';
 
-const TabListItem = styled('li', {
-  'cursor': 'pointer',
-  'padding': '20px 8px 8px',
-  'position': 'relative',
-
-  'transition': 'color 250ms ease-in-out',
-
-  '&:hover': {
-    color: '$tabText',
-  },
-
-  '&::before': {
-    backgroundColor: '$tabBg',
-  },
-
-  'variants': {
-    active: {
-      true: {
-        '&::before': {
-          content: '',
-          position: 'absolute',
-          bottom: '-2px',
-          height: '3px',
-          width: 'calc(100% - 16px)', // 16px is the horizontal padding
-        },
-      },
-    },
-  },
-});
-
-export type TabProps = Omit<JSX.IntrinsicElements['li'], 'ref'> & {
+export type TabProps = Omit<JSX.IntrinsicElements['div'], 'ref'> & {
   active: boolean;
 };
 
 export const Tab: FC<TabProps> = ({ children, active, className, ...rest }) => {
   return (
-    <TabListItem {...rest} active={active} className={className}>
+    <div role="tab" tabIndex={active ? 0 : -1} {...rest} className={clsx(
+      "relative",
+      "cursor-pointer",
+      "pt-5",
+      "pb-2",
+      "px-2",
+
+      "transition-colors",
+
+      "hover:text-theme-lteal",
+      "dark:hover:text-theme-orange",
+
+      "before:bg-theme-black",
+      "dark:before:bg-theme-orange",
+
+      "mr-2",
+      "last:mr-0",
+
+      "rounded-md",
+
+      // 16px is the horizontal padding
+      active && "before:absolute before:bottom-[-2px] before:h-1 before:w-[calc(100%-16px)]"
+    )}>
       {children}
-    </TabListItem>
+    </div>
   );
 };

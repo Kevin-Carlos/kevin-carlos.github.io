@@ -1,16 +1,9 @@
+import clsx from 'clsx';
 import { type FC, type ReactNode } from 'react';
-import { styled } from '~/stitches';
-
-const Wrapper = styled('div', {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  padding: '16px',
-});
 
 export const CenteredTextItem: FC<{
   children: ReactNode;
   className?: string;
 }> = ({ className, children }) => {
-  return <Wrapper className={className}>{children}</Wrapper>;
+  return <div className={clsx("flex items-center justify-center p-4", className)}>{children}</div>;
 };

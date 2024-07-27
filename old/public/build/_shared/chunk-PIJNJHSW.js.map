@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../app/stitches/client.context.ts", "../../../app/stitches/index.ts"],
+  "sourcesContent": ["import { createContext } from 'react';\n\nexport type ClientStyleContextData = {\n  reset: () => void;\n  sheet: string;\n};\n\nconst ClientStyleContext = createContext<ClientStyleContextData>({\n  reset: () => null,\n  sheet: '',\n});\n\nexport { ClientStyleContext };\n", "export {\n  ClientStyleContext,\n  type ClientStyleContextData,\n} from './client.context';\nexport * from './stitches.config';\n"],
+  "mappings": ";;;;;;;AAAA;AAAA,mBAA8B;AAO9B,IAAM,qBAAqB,gCAAsC;AAAA,EAC/D,OAAO,MAAM;AAAA,EACb,OAAO;AAAA;;;ACTT;",
+  "names": []
+}

@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Tab, TabsList } from '~/common/ui-elements';
+import { Tab } from '~/common/ui-elements/button/tabs/tab';
+import { TabsList } from '~/common/ui-elements/button/tabs/tabs-list';
 import { Cycle, Square8 } from './career-items';
 
 export const CareerBlurb = () => {

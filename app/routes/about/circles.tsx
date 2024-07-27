@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { type FC } from 'react';
 import { animated, useTransition } from 'react-spring';
 import { ActiveCircle1, ActiveCircle2, ActiveCircle3 } from './active-circles';
@@ -43,9 +44,9 @@ const Bubbles: FC<CirclesProps> = ({ index, setIndex }) => {
 
   return (
     <ul className="flex flex-wrap justify-center md:flex-nowrap">
-      {transitionedHeaderItems((styles, item) => {
+      {transitionedHeaderItems((style, item) => {
         return (
-          <li className="relative hover:scale-105 transition-transform ease-in-out">
+          <li className="relative transition-transform ease-in-out hover:scale-105">
             {index === 0 && item.key === circleItems[index].key ? (
               <div className="absolute top-[6px] left-[2px]">
                 <ActiveCircle1 />
@@ -63,31 +64,31 @@ const Bubbles: FC<CirclesProps> = ({ index, setIndex }) => {
             ) : null}
             <animated.div
               style={{
-                ...styles,
+                ...style,
+                opacity: style.opacity,
+                width: item.size,
+                height: item.size,
                 boxShadow: '8px 6px 10px rgb(0 0 0 / 20%)',
               }}
               onClick={(ev) => {
                 createRipple(ev);
 
-                // setHeaderType(item.key);
                 setIndex(circleItems.findIndex((c) => c.key === item.key));
               }}
-              // TODO STITCHES
-              // className={clsx([
-              //   item.color,
-              //   item.size,
-              //   'rounded-full',
-              //   'dark:text-theme-white',
-              //   'flex',
-              //   'items-center',
-              //   'justify-center',
-              //   'cursor-pointer',
-              //   'm-3',
-              //   'font-semibold',
-              //   'relative',
-              //   'overflow-hidden',
-              //   'transition-colors',
-              // ])}
+              className={clsx([
+                item.color,
+                'rounded-full',
+                'dark:text-theme-white',
+                'flex',
+                'items-center',
+                'justify-center',
+                'cursor-pointer',
+                'm-3',
+                'font-semibold',
+                'relative',
+                'overflow-hidden',
+                'transition-colors',
+              ])}
             >
               <h1>{item.title}</h1>
             </animated.div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BlurbDivider } from './blurb-divider';
+import { Divider } from '~/common/ui-elements/library/divider/divider';
 
 export const EducationBlurb = (): React.ReactElement => {
   return (
@@ -18,10 +18,11 @@ export const EducationBlurb = (): React.ReactElement => {
             Reno with a Bachelors in Computer Science and Engineering and a
             minor in Mathematics.
           </p>
-
-          <div>
-            <BlurbDivider />
-          </div>
+          
+          <Divider
+            orientation='horizontal'
+            className="my-5"
+          />
 
           <p>
             My coursework and area of interest was in Machine Learning and A.I.

@@ -1,0 +1,230 @@
+@keyframes rotateClockwise {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotateCounterClockwise {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+.alternate-spinner {
+  position: relative;
+}
+
+.altSpin1 {
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  border-top-color: transparent;
+  border-radius: 9999px;
+
+  animation: rotateClockwise 1s infinite;
+}
+
+.altSpin2 {
+  position: absolute;
+  margin: 5px;
+  height: 30px;
+  width: 30px;
+  border-radius: 9999px;
+
+  animation: rotateCounterClockwise 1s infinite;
+}
+
+.spinLight {
+  border: 1px solid rgb(1 38 48);
+  border-bottom-color: transparent;
+}
+
+.spinDark {
+  border: 1px solid rgb(230 155 28);
+  border-bottom-color: transparent;
+}
+
+@keyframes pulse1 {
+  0% {
+    transform: scale(1);
+  }
+
+  25% {
+    transform: scale(1.3);
+  }
+
+  50% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse2 {
+  0% {
+    transform: scale(1);
+  }
+
+  25% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.3);
+  }
+
+  75% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse3 {
+  0% {
+    transform: scale(1);
+  }
+
+  25% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1);
+  }
+
+  75% {
+    transform: scale(1.3);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.pulsing {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 8px;
+}
+
+.dot {
+  height: 12px;
+  width: 12px;
+  background: rgb(57, 153, 142);
+  border-radius: 9999px; 
+}
+
+.pulseDot1 {
+  animation: pulse1 2s infinite;
+}
+
+.pulseDot2 {
+  animation: pulse2 2s infinite;
+}
+
+.pulseDot3 {
+  animation: pulse3 2s infinite;
+}
+
+@keyframes slide1 {
+  0% {
+    transform: translateX(20px) scale(1.3);
+  }
+  5% {
+    transform: translateX(20) scale(1);
+  }
+  25% {
+    transform: translateX(20px);
+  }
+  50% {
+    transform: translateX(0px);
+  }
+  60% {
+    transform: scale(1.3);
+  }
+  70% {
+    transform: scale(1);
+  }
+}
+
+@keyframes slide2 {
+  0% {
+    transform: scale(1.3);
+  }
+  5% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1);
+  }
+  60% {
+    transform: scale(1);
+  }
+  70% {
+    transform: scale(1.3);
+  }
+  80% {
+    transform: scale(1)
+  }
+}
+
+@keyframes slide3 {
+  0% {
+    transform: translateX(-20px) scale(1.3);
+  }
+  5% {
+    transform: translateX(-20px) scale(1);
+  }
+  25% {
+    transform: translateX(-20px) scale(1);
+  }
+  50% {
+    transform: translateX(0px);
+  }
+  60% {
+    transform: translateX(0px);
+  }
+  70% {
+    transform: scale(1);
+  }
+  80% {
+    transform: scale(1.3)
+  }
+  90% {
+    transform: scale(1);
+  }
+}
+
+.slideDot1 {
+  animation: slide1 4s infinite;
+  animation-direction: alternate;
+  margin-right: 8px;
+}
+
+.slideDot2 {
+  animation: slide2 4s infinite;
+  animation-direction: alternate;
+  margin-right: 8px;
+}
+
+.slideDot3 {
+  animation: slide3 4s infinite;
+  animation-direction: alternate;
+}

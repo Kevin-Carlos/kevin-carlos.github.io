@@ -1,11 +1,13 @@
 import React from 'react';
 import { Paragraph } from '~/common/ui-elements';
-import { BlurbDivider } from './blurb-divider';
+import { Divider } from '~/common/ui-elements/library/divider/divider';
 
 export const AboutMeBlurb = (): React.ReactElement => {
   return (
     <div>
-      <BlurbDivider />
+            <Divider
+              className="my-5"
+            />
       <Paragraph>{`Hi, I'm Kevin!`}</Paragraph>
       <Paragraph>
         From an early age, I was introduced to Halo by a friend and got hooked
@@ -25,12 +27,11 @@ export const AboutMeBlurb = (): React.ReactElement => {
         become a Frontend Software Engineer and in doing so have found that
         there are more ways to impact and shape the world!
       </Paragraph>
-      {/* <p> */}
-      {/* <a href="/resume.pdf" target="_blank" rel="noreferrer">
-          See my resume
-        </a>
-      </p> */}
-      <BlurbDivider />
+
+
+                 <Divider
+              className="my-5"
+            />
     </div>
   );
 };
