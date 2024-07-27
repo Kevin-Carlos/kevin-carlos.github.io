@@ -5,9 +5,7 @@ import { Divider } from '~/common/ui-elements/library/divider/divider';
 export const AboutMeBlurb = (): React.ReactElement => {
   return (
     <div>
-            <Divider
-              className="my-5"
-            />
+      <Divider className='my-5' />
       <Paragraph>{`Hi, I'm Kevin!`}</Paragraph>
       <Paragraph>
         From an early age, I was introduced to Halo by a friend and got hooked
@@ -28,10 +26,7 @@ export const AboutMeBlurb = (): React.ReactElement => {
         there are more ways to impact and shape the world!
       </Paragraph>
 
-
-                 <Divider
-              className="my-5"
-            />
+      <Divider className='my-5' />
     </div>
   );
 };

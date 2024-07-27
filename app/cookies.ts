@@ -7,13 +7,15 @@ export const colorSchemeCookie = createCookie('color-scheme');
 export const getColorSchemeToken = async (request: Request) =>
   await colorSchemeCookie.parse(request.headers.get('Cookie'));
 
-export const getColorScheme = async (request: Request): Promise<"light" | "dark"> => {
+export const getColorScheme = async (
+  request: Request,
+): Promise<'light' | 'dark'> => {
   // Manually selected theme
   const userSelectedColorScheme = await getColorSchemeToken(request);
 
   // System preferred color scheme header
   const systemPreferredColorScheme = request.headers.get(
-    'Sec-CH-Prefers-Color-Scheme'
+    'Sec-CH-Prefers-Color-Scheme',
   );
 
   // Return the manually selected theme

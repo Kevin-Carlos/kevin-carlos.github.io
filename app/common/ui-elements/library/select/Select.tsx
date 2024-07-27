@@ -1,11 +1,10 @@
 import * as RadixSelect from '@radix-ui/react-select';
-import React from 'react';
 
 export type SelectProps = {
   className?: string;
 } & RadixSelect.SelectProps;
 
-export const Select = ({ className, ...selectProps }: SelectProps) => {
+export const Select = ({ ...selectProps }: SelectProps) => {
   return (
     <RadixSelect.Root {...selectProps}>
       <RadixSelect.Trigger>
@@ -16,7 +15,8 @@ export const Select = ({ className, ...selectProps }: SelectProps) => {
       <RadixSelect.Content>
         <RadixSelect.ScrollUpButton />
         <RadixSelect.Viewport>
-          {/* <RadixSelect.Item>
+          {
+            /* <RadixSelect.Item>
             <RadixSelect.ItemText />
             <RadixSelect.ItemIndicator />
           </RadixSelect.Item>
@@ -27,7 +27,8 @@ export const Select = ({ className, ...selectProps }: SelectProps) => {
               <RadixSelect.ItemText />
               <RadixSelect.ItemIndicator />
             </RadixSelect.Item>
-          </RadixSelect.Group> */}
+          </RadixSelect.Group> */
+          }
 
           <RadixSelect.Separator />
         </RadixSelect.Viewport>

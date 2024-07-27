@@ -23,8 +23,8 @@ export const ContentBlurb: FC<ContentBlurbProps> = ({ type }) => {
     <animated.div
       style={spring}
       className={clsx(
-        "relative p-5 w-full",
-        type === "career" ? "h-full" : ""
+        'relative p-5 w-full',
+        type === 'career' ? 'h-full' : '',
       )}
     >
       {type === 'about' && <AboutMeBlurb />}

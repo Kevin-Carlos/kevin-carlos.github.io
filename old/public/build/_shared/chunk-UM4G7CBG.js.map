@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../app/ThemeContext.ts"],
-  "sourcesContent": ["import { createContext } from 'react';\n\nexport type Theme = 'light' | 'dark';\n\nexport const ThemeCtx = createContext<\n  | {\n      mode: Theme;\n      setMode: (m: Theme) => void;\n    }\n  | undefined\n>(undefined);\n"],
-  "mappings": ";;;;;;;AAAA;AAAA,mBAA8B;AAIvB,IAAM,WAAW,gCAMtB;",
-  "names": []
-}

@@ -16,7 +16,7 @@ const ICON_SIZE = 24;
 export const Header = () => {
   const [mode, setMode] = useTheme();
 
-  const themeMode = useFetcher({ key: "theme" });
+  const themeMode = useFetcher({ key: 'theme' });
 
   const [mobileNav, toggleMobileNav] = useState(false);
 
@@ -33,7 +33,7 @@ export const Header = () => {
       {
         method: 'POST',
         action: '/theme',
-      }
+      },
     );
 
     setMode(mode);
@@ -41,9 +41,9 @@ export const Header = () => {
 
   return (
     <header className='flex py-2 px-6 z-40 h-[56px] text-theme-black dark:text-theme-white sticky top-0 bg-theme-white dark:bg-theme-black border-b-2 border-b-theme-dteal md:border-b-0'>
-      <div className="grid grid-cols-[40px_1fr] gap-4">
+      <div className='grid grid-cols-[40px_1fr] gap-4'>
         <Logo />
-        <div className="flex items-center justify-center gap-2">
+        <div className='flex items-center justify-center gap-2'>
           <IconButton
             onClick={() => {
               onThemeToggle('dark');
@@ -67,7 +67,7 @@ export const Header = () => {
           </IconButton>
         </div>
       </div>
-      <nav className="hidden grow-[1] items-center justify-end sm:flex h-[40px]">
+      <nav className='hidden grow-[1] items-center justify-end sm:flex h-[40px]'>
         {menuItems.map((mi) => {
           if (mi.mobileOnly) {
             return;
@@ -75,14 +75,21 @@ export const Header = () => {
 
           return (
             <Fragment key={`header-${mi.name}`}>
-              <LinkText href={mi.path} className="mx-4 last:mr-0">{mi.name}</LinkText>
+              <LinkText href={mi.path} className='mx-4 last:mr-0'>
+                {mi.name}
+              </LinkText>
             </Fragment>
           );
         })}
       </nav>
-      <div ref={menuRef} className="flex justify-end grow sm:hidden">
+      <div ref={menuRef} className='flex justify-end grow sm:hidden'>
         <HamburgerIcon isOpen={mobileNav} setIsOpen={setIsOpen} />
-        {mobileNav && <HamburgerMenu isOpen={mobileNav} setIsOpen={setIsOpen} />}
+        {mobileNav && (
+          <HamburgerMenu
+            isOpen={mobileNav}
+            setIsOpen={setIsOpen}
+          />
+        )}
       </div>
     </header>
   );

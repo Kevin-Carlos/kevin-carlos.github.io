@@ -43,25 +43,31 @@ const Bubbles: FC<CirclesProps> = ({ index, setIndex }) => {
   };
 
   return (
-    <ul className="flex flex-wrap justify-center md:flex-nowrap">
+    <ul className='flex flex-wrap justify-center md:flex-nowrap'>
       {transitionedHeaderItems((style, item) => {
         return (
-          <li className="relative transition-transform ease-in-out hover:scale-105">
-            {index === 0 && item.key === circleItems[index].key ? (
-              <div className="absolute top-[6px] left-[2px]">
-                <ActiveCircle1 />
-              </div>
-            ) : null}
-            {index === 1 && item.key === circleItems[index].key ? (
-              <div className="absolute top-[-3px] left-[-6px]">
-                <ActiveCircle2 />
-              </div>
-            ) : null}
-            {index === 2 && item.key === circleItems[index].key ? (
-              <div className="absolute top-[-4px] left-[6px]">
-                <ActiveCircle3 />
-              </div>
-            ) : null}
+          <li className='relative transition-transform ease-in-out hover:scale-105'>
+            {index === 0 && item.key === circleItems[index].key
+              ? (
+                <div className='absolute top-[6px] left-[2px]'>
+                  <ActiveCircle1 />
+                </div>
+              )
+              : null}
+            {index === 1 && item.key === circleItems[index].key
+              ? (
+                <div className='absolute top-[-3px] left-[-6px]'>
+                  <ActiveCircle2 />
+                </div>
+              )
+              : null}
+            {index === 2 && item.key === circleItems[index].key
+              ? (
+                <div className='absolute top-[-4px] left-[6px]'>
+                  <ActiveCircle3 />
+                </div>
+              )
+              : null}
             <animated.div
               style={{
                 ...style,
@@ -106,7 +112,7 @@ type CirclesProps = {
 
 export const Circles: FC<CirclesProps> = ({ index, setIndex }) => {
   return (
-    <div className="mb-5 md:mr-5">
+    <div className='mb-5 md:mr-5'>
       <Bubbles index={index} setIndex={setIndex} />
     </div>
   );

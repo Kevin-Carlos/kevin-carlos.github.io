@@ -92,9 +92,14 @@ export const menuItems: NavItems[] = [
     icon: (
       <img
         src={SiteLogo}
-        alt="Kevin Carlos logo"
-        aria-label="Kevin Carlos logo"
-        style={{ backgroundColor: 'white', borderRadius: '50%', height: "40px", width: "40px" }}
+        alt='Kevin Carlos logo'
+        aria-label='Kevin Carlos logo'
+        style={{
+          backgroundColor: 'white',
+          borderRadius: '50%',
+          height: '40px',
+          width: '40px',
+        }}
       />
     ),
     mobileOnly: true,
@@ -102,9 +107,7 @@ export const menuItems: NavItems[] = [
   {
     name: 'Projects',
     path: links.projects().root(),
-    icon: (
-      <Code size={ICON_SIZE} weight="duotone" aria-label="Projects" />
-    ),
+    icon: <Code size={ICON_SIZE} weight='duotone' aria-label='Projects' />,
   },
   {
     name: 'About Me',
@@ -112,8 +115,8 @@ export const menuItems: NavItems[] = [
     icon: (
       <UserFocus
         size={ICON_SIZE}
-        weight="duotone"
-        aria-label="About Me"
+        weight='duotone'
+        aria-label='About Me'
       />
     ),
   },
@@ -123,8 +126,8 @@ export const menuItems: NavItems[] = [
     icon: (
       <LinkedinLogo
         size={ICON_SIZE}
-        weight="duotone"
-        aria-label="LinkedIn logo"
+        weight='duotone'
+        aria-label='LinkedIn logo'
       />
     ),
   },
@@ -134,8 +137,8 @@ export const menuItems: NavItems[] = [
     icon: (
       <GithubLogo
         size={ICON_SIZE}
-        weight="duotone"
-        aria-label="Github logo"
+        weight='duotone'
+        aria-label='Github logo'
       />
     ),
   },
@@ -145,8 +148,8 @@ export const menuItems: NavItems[] = [
     icon: (
       <GitlabLogo
         size={ICON_SIZE}
-        weight="duotone"
-        aria-label="GitLab logo"
+        weight='duotone'
+        aria-label='GitLab logo'
       />
     ),
   },
