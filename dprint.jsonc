@@ -1,0 +1,26 @@
+{
+  "lineWidth": 80,
+  "typescript": {
+    // This applies to both JavaScript & TypeScript
+    "quoteStyle": "preferSingle",
+    "binaryExpression.operatorPosition": "sameLine",
+  },
+  "json": {
+    "indentWidth": 2,
+  },
+  "excludes": [
+    "**/node_modules",
+    "**/*-lock.json",
+    "**/functions/**",
+    "build/**",
+    ".wrangler/**",
+    ".cache/**",
+  ],
+  "plugins": [
+    "https://plugins.dprint.dev/typescript-0.91.4.wasm",
+    "https://plugins.dprint.dev/json-0.19.3.wasm",
+    "https://plugins.dprint.dev/g-plane/malva-v0.5.1.wasm",
+    "https://plugins.dprint.dev/g-plane/markup_fmt-v0.11.0.wasm",
+    "https://plugins.dprint.dev/g-plane/pretty_yaml-v0.4.0.wasm",
+  ],
+}

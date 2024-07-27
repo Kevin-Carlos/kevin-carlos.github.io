@@ -1,7 +1,8 @@
 import { useEffect, useLayoutEffect, useState } from 'react';
 
-const useIsomorphicLayoutEffect =
-  typeof window !== undefined ? useLayoutEffect : useEffect;
+const useIsomorphicLayoutEffect = typeof window !== 'undefined'
+  ? useLayoutEffect
+  : useEffect;
 
 export const useReducedMotion = () => {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);

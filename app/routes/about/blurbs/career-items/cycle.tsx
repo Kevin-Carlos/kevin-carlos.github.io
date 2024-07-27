@@ -6,9 +6,7 @@ export const Cycle: FC = () => {
     <div>
       <Paragraph>In October of 2019, I joined Cycle.</Paragraph>
 
-      <Blockquote
-        author="Cycle"
-        // color={colors.orange}
+      <Blockquote author='Cycle' // color={colors.orange}
         // highlightColor={colors.light_gray}
       >
         <Paragraph>

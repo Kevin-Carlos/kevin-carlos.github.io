@@ -1,4 +1,4 @@
-import { useEffect, useState, type FC } from 'react';
+import { type FC, useEffect, useState } from 'react';
 import { PillButton } from '~/common/ui-elements';
 import { CenteredTextItem, CharacterModal, CrateInfoItem } from './helpers';
 import { openBox } from './open-box';
@@ -30,23 +30,23 @@ export const WeightedBox: FC = () => {
 
   return (
     <CrateInfoItem>
-      <h1 className="mb-5 text-2xl">Weighted-Random Box</h1>
-      <div className="grid grid-cols-2 mb-5">
-        <CenteredTextItem className="bg-theme-orange">
+      <h1 className='mb-5 text-2xl'>Weighted-Random Box</h1>
+      <div className='grid grid-cols-2 mb-5'>
+        <CenteredTextItem className='bg-theme-orange'>
           Mythical (0.4%)
         </CenteredTextItem>
-        <div className="grid grid-rows-4">
-          <CenteredTextItem className="bg-theme-blue row-span-2">
+        <div className='grid grid-rows-4'>
+          <CenteredTextItem className='bg-theme-blue row-span-2'>
             Legendary (1.3%)
           </CenteredTextItem>
-          <CenteredTextItem className="bg-theme-lteal2">
+          <CenteredTextItem className='bg-theme-lteal2'>
             Epic (5.3%)
           </CenteredTextItem>
-          <div className="grid grid-cols-2">
-            <CenteredTextItem className="dark:bg-theme-dgray bg-theme-lgray">
+          <div className='grid grid-cols-2'>
+            <CenteredTextItem className='dark:bg-theme-dgray bg-theme-lgray'>
               Rare (19%)
             </CenteredTextItem>
-            <CenteredTextItem className="dark:bg-theme-dteal bg-theme-lteal">
+            <CenteredTextItem className='dark:bg-theme-dteal bg-theme-lteal'>
               Common (74%)
             </CenteredTextItem>
           </div>
@@ -55,7 +55,7 @@ export const WeightedBox: FC = () => {
 
       <div>
         <PillButton
-          className="bg-theme-lteal hover:bg-theme-lteal2 w-full"
+          className='bg-theme-lteal hover:bg-theme-lteal2 w-full'
           onClick={openBoxHandler}
         >
           Open
@@ -63,9 +63,9 @@ export const WeightedBox: FC = () => {
       </div>
 
       {/* 'Modal' to display opened item */}
-      {charOpened ? (
-        <CharacterModal>{charOpened.toLocaleUpperCase()}</CharacterModal>
-      ) : null}
+      {charOpened
+        ? <CharacterModal>{charOpened.toLocaleUpperCase()}</CharacterModal>
+        : null}
     </CrateInfoItem>
   );
 };

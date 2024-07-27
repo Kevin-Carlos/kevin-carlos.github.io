@@ -1,4 +1,3 @@
-
 import { lighten } from 'polished';
 
 const primaryLightTeal = 'rgb(57, 153, 142)';
@@ -56,4 +55,4 @@ module.exports = {
   },
   variants: {},
   plugins: [],
-} 
+};

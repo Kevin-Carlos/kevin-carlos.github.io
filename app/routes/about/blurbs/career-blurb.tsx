@@ -7,7 +7,7 @@ export const CareerBlurb = () => {
   const [tab, setTab] = useState<'sq8' | 'cycle'>('sq8');
 
   return (
-    <div className="flex flex-col">
+    <div className='flex flex-col'>
       <TabsList>
         <Tab active={tab === 'sq8'} onClick={() => setTab('sq8')}>
           <span>Square 8</span>

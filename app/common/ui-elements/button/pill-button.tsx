@@ -1,6 +1,6 @@
 import { Link, type LinkProps } from '@remix-run/react';
 import clsx from 'clsx';
-import { useMemo, type FC } from 'react';
+import { type FC, useMemo } from 'react';
 
 type PillButtonProps = Omit<JSX.IntrinsicElements['button'], 'ref'> & {
   to?: LinkProps['to'];
@@ -18,24 +18,24 @@ export const PillButton: FC<PillButtonProps> = ({
 }) => {
   const className = useMemo(() => {
     return clsx(
-      "font-accent",
-      "py-2",
-      "px-5",
-      "rounded-full",
-      "cursor-pointer",
-      "border-0",
-      "text-base",
-      "text-theme-black",
-      "dark:text-theme-white",
-      "transition-colors",
-      "focus:outline",
-      "focus:outline-2",
-      "focus:outline-theme-dteal",
-      "focus:outline-offset-2",
-      "dark:focus:outline-theme-orange",
-      "disabled:opacity-50",
+      'font-accent',
+      'py-2',
+      'px-5',
+      'rounded-full',
+      'cursor-pointer',
+      'border-0',
+      'text-base',
+      'text-theme-black',
+      'dark:text-theme-white',
+      'transition-colors',
+      'focus:outline',
+      'focus:outline-2',
+      'focus:outline-theme-dteal',
+      'focus:outline-offset-2',
+      'dark:focus:outline-theme-orange',
+      'disabled:opacity-50',
       props.className,
-    )
+    );
   }, []);
 
   if (to) {

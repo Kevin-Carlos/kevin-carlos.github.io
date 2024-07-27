@@ -4,7 +4,7 @@ type Theme = 'light' | 'dark';
 
 export const useDarkMode: () => [
   mode: Theme,
-  setMode: (theme: Theme) => void
+  setMode: (theme: Theme) => void,
 ] = () => {
   const [mode, setM] = useState<'dark' | 'light'>('dark');
 

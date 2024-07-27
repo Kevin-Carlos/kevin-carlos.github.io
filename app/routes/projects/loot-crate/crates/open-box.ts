@@ -3,7 +3,7 @@
  * @returns the key of the best-matched odd
  */
 export const openBox = <T extends Record<string, number>>(
-  odds: T
+  odds: T,
 ): Extract<keyof T, string> | undefined => {
   let sum = 0;
 

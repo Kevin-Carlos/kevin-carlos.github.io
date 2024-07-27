@@ -18,12 +18,12 @@ export const projectItems: ProjectItem[] = [
       </p>
     ),
     path: links.projects().project().lootCrate(),
-    linkText: "Loot Crate Demo"
+    linkText: 'Loot Crate Demo',
   },
   {
     name: 'Loaders',
     description: <p>Building loading spinners / indicators for fun.</p>,
     path: links.projects().project().loaders(),
-    linkText: "Loading Spinner Demo"
+    linkText: 'Loading Spinner Demo',
   },
 ];

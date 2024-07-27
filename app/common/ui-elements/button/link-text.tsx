@@ -1,11 +1,11 @@
 import { Link } from '@remix-run/react';
 import clsx from 'clsx';
 import {
-  Fragment,
-  useMemo,
   type AnchorHTMLAttributes,
   type FC,
+  Fragment,
   type ReactNode,
+  useMemo,
 } from 'react';
 
 type LinkText = AnchorHTMLAttributes<HTMLAnchorElement> & {
@@ -23,40 +23,44 @@ export const LinkText: FC<LinkText> = ({
 }) => {
   const className = useMemo(() => {
     return clsx(
-      "group",
-      "relative",
-      "text-theme-black",
-      "dark:text-theme-white",
-      "no-underline",
-      "transition-all",
-      "hover:scale(1.05)",
-      "rounded-md",
-      "focus:outline-theme-dteal",
-      "focus:outline",
-      "focus:outline-offset-[-1px]",
-      "dark:focus:outline-theme-orange",
+      'group',
+      'relative',
+      'text-theme-black',
+      'dark:text-theme-white',
+      'no-underline',
+      'transition-all',
+      'hover:scale(1.05)',
+      'rounded-md',
+      'focus:outline-theme-dteal',
+      'focus:outline',
+      'focus:outline-offset-[-1px]',
+      'dark:focus:outline-theme-orange',
       props.className,
-    )
-  }, [])
+    );
+  }, []);
 
   const LinkChildren = () => {
     return (
       <Fragment>
         <span className={childrenClassName}>{children}</span>
-        {animateScale ? <hr
-          className={clsx(
-            "bg-theme-dteal",
-            "dark:bg-theme-orange",
-            "w-0",
-            "h-0.5",
-            "transition-all",
-            "absolute",
-            "bottom-[-4px]",
-            "left-0",
-            "border-0",
-            "group-hover:w-[28px]",
-          )}
-        /> : null}
+        {animateScale
+          ? (
+            <hr
+              className={clsx(
+                'bg-theme-dteal',
+                'dark:bg-theme-orange',
+                'w-0',
+                'h-0.5',
+                'transition-all',
+                'absolute',
+                'bottom-[-4px]',
+                'left-0',
+                'border-0',
+                'group-hover:w-[28px]',
+              )}
+            />
+          )
+          : null}
       </Fragment>
     );
   };
@@ -67,7 +71,7 @@ export const LinkText: FC<LinkText> = ({
         {...props}
         href={href}
         target={href?.includes('http') ? '_blank' : undefined}
-        rel="noreferrer"
+        rel='noreferrer'
         className={className}
       >
         <LinkChildren />

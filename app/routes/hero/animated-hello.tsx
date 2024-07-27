@@ -14,7 +14,7 @@ export const AnimatedHello = () => {
     helloInLanguages
       .map((hi) => ({ value: hi, sort: Math.random() }))
       .sort((a, b) => a.sort - b.sort)
-      .map((v) => v.value)
+      .map((v) => v.value),
   );
 
   const [index, setIndex] = useState(0);

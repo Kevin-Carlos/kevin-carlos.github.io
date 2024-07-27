@@ -4,8 +4,8 @@ import { Divider } from '~/common/ui-elements/library/divider/divider';
 export const EducationBlurb = (): React.ReactElement => {
   return (
     <>
-      <h2 className="mb-2 text-xl">University of Nevada, Reno</h2>
-      <div className="flex flex-col items-center h-full">
+      <h2 className='mb-2 text-xl'>University of Nevada, Reno</h2>
+      <div className='flex flex-col items-center h-full'>
         <div
           style={{
             display: 'flex',
@@ -18,10 +18,10 @@ export const EducationBlurb = (): React.ReactElement => {
             Reno with a Bachelors in Computer Science and Engineering and a
             minor in Mathematics.
           </p>
-          
+
           <Divider
             orientation='horizontal'
-            className="my-5"
+            className='my-5'
           />
 
           <p>
