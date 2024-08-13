@@ -4,7 +4,6 @@ import { Fragment, useCallback, useRef, useState } from 'react';
 import { useClickOutside } from '~/common/hooks/events';
 import { LinkText } from '~/common/ui-elements';
 import { IconButton } from '~/common/ui-elements/button/icon-button';
-import { Switch } from '~/common/ui-elements/library';
 import { useTheme } from '~/useTheme';
 import { menuItems } from '../menu-items';
 import { HamburgerIcon } from './hamburger-icon';
@@ -14,9 +13,11 @@ import { Logo } from './logo';
 const ICON_SIZE = 24;
 
 export const Header = () => {
+  const themeMode = useFetcher({ key: 'theme' });
+
   const [mode, setMode] = useTheme();
 
-  const themeMode = useFetcher({ key: 'theme' });
+  const [disabled, setDisabled] = useState(false);
 
   const [mobileNav, toggleMobileNav] = useState(false);
 
@@ -27,45 +28,49 @@ export const Header = () => {
     toggleMobileNav(!mobileNav);
   }, [mobileNav]);
 
-  const onThemeToggle = (mode: 'light' | 'dark') => {
+  const onThemeToggle = (m: 'light' | 'dark') => {
+    setMode(m);
+    setDisabled(true);
+
     themeMode.submit(
-      { mode: mode, url: window.location.pathname },
+      { mode: m, url: window.location.pathname },
       {
         method: 'POST',
         action: '/theme',
       },
     );
 
-    setMode(mode);
+    setTimeout(() => {
+      setDisabled(false);
+    }, 500);
   };
 
   return (
     <header className='flex py-2 px-6 z-40 h-[56px] text-theme-black dark:text-theme-white sticky top-0 bg-theme-white dark:bg-theme-black border-b-2 border-b-theme-dteal md:border-b-0'>
-      <div className='grid grid-cols-[40px_1fr] gap-4'>
+      <div className='flex gap-[16px] justify-center items-center'>
         <Logo />
-        <div className='flex items-center justify-center gap-2'>
-          <IconButton
-            onClick={() => {
-              onThemeToggle('dark');
-            }}
-          >
-            <Moon size={ICON_SIZE} />
-          </IconButton>
-          <Switch
-            checked={mode === 'light' ? true : false}
-            onCheckedChange={(checked) => {
-              const mode = checked ? 'light' : 'dark';
-              onThemeToggle(mode);
-            }}
-          />
-          <IconButton
-            onClick={() => {
-              onThemeToggle('light');
-            }}
-          >
-            <Sun size={ICON_SIZE} />
-          </IconButton>
-        </div>
+
+        <IconButton
+          disabled={disabled}
+          onClick={() => {
+            mode === 'light' ? onThemeToggle('dark') : onThemeToggle('light');
+          }}
+          className='bg-theme-lgray dark:bg-theme-dteal rounded-full h-8 w-8 flex justify-center items-center z-10 hover:opacity-100 disabled:opacity-100 group'
+        >
+          {mode === 'light'
+            ? (
+              <Moon
+                size={ICON_SIZE}
+                className='group-hover:opacity-40 group-disabled:opacity-40'
+              />
+            )
+            : (
+              <Sun
+                size={ICON_SIZE}
+                className='group-hover:opacity-40 group-disabled:opacity-40'
+              />
+            )}
+        </IconButton>
       </div>
       <nav className='hidden grow-[1] items-center justify-end sm:flex h-[40px]'>
         {menuItems.map((mi) => {
