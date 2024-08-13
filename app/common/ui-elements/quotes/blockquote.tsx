@@ -3,7 +3,7 @@ import { type FC, ReactNode } from 'react';
 import { Divider } from '../library';
 
 type BlockquoteProps = {
-  author: string;
+  author: string | null;
   children: ReactNode;
 };
 
@@ -13,16 +13,19 @@ export const Blockquote: FC<BlockquoteProps> = ({ children, author }) => {
       <Divider orientation='vertical' className='mr-5' />
       <blockquote className='text-sm'>
         {children}
-        <p className='italic font-semibold'>
-          <span className='flex items-center'>
-            <Pen
-              weight='duotone'
-              style={{ marginRight: '8px' }}
-              className='text-theme-black dark:text-theme-white'
-            />
-            {author}
-          </span>
-        </p>
+
+        {!!author && (
+          <p className='italic font-semibold'>
+            <span className='flex items-center'>
+              <Pen
+                weight='duotone'
+                style={{ marginRight: '8px' }}
+                className='text-theme-black dark:text-theme-white'
+              />
+              {author}
+            </span>
+          </p>
+        )}
       </blockquote>
     </div>
   );

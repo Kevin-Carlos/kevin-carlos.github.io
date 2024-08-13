@@ -15,7 +15,7 @@ export const EducationBlurb = (): React.ReactElement => {
         >
           <p>
             I graduated in the winter of 2019 from the University of Nevada,
-            Reno with a Bachelors in Computer Science and Engineering and a
+            Reno with a Bachelors in Computer Science and Engineering with a
             minor in Mathematics.
           </p>
 
