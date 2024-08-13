@@ -25,14 +25,14 @@ const Bubbles: FC<CirclesProps> = ({ index, setIndex }) => {
                 </div>
               )
               : null}
-            {index === 1 && item.key === circleItems[index].key
+            {index === 2 && item.key === circleItems[index].key
               ? (
                 <div className='absolute top-[-3px] left-[-6px]'>
                   <ActiveCircle2 />
                 </div>
               )
               : null}
-            {index === 2 && item.key === circleItems[index].key
+            {index === 1 && item.key === circleItems[index].key
               ? (
                 <div className='absolute top-[-4px] left-[6px]'>
                   <ActiveCircle3 />
