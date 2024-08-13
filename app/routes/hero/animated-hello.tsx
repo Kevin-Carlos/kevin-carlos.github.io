@@ -2,6 +2,10 @@ import { useEffect, useRef, useState } from 'react';
 import { animated, useSpring, useTransition } from 'react-spring';
 import { helloInLanguages } from './languages';
 
+const randomInteger = (min: number, max: number): number => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
 /**
  * Controls the animations for 'Hello' and animating the margin of `I'm`
  *
@@ -10,12 +14,7 @@ import { helloInLanguages } from './languages';
 export const AnimatedHello = () => {
   const valueRef = useRef<HTMLSpanElement | null>(null);
 
-  const [items] = useState(
-    helloInLanguages
-      .map((hi) => ({ value: hi, sort: Math.random() }))
-      .sort((a, b) => a.sort - b.sort)
-      .map((v) => v.value),
-  );
+  const [items] = useState(helloInLanguages);
 
   const [index, setIndex] = useState(0);
   const [length, setLength] = useState(helloInLanguages[index].length);
@@ -46,7 +45,7 @@ export const AnimatedHello = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setIndex((prevIndex) => (prevIndex + 1) % helloInLanguages.length);
+      setIndex(randomInteger(0, helloInLanguages.length - 1));
     }, 1000 * 2);
     return () => clearInterval(interval);
   }, []);

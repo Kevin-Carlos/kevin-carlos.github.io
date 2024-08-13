@@ -1,25 +1,30 @@
-import * as RadixSwitch from '@radix-ui/react-switch';
 import clsx from 'clsx';
 import { FC, useState } from 'react';
+import {
+  Switch as RACSwitch,
+  type SwitchProps as RACSwitchProps,
+} from 'react-aria-components';
 
-export type SwitchProps = RadixSwitch.SwitchProps;
+export type SwitchProps = RACSwitchProps;
 
 export const Switch: FC<SwitchProps> = ({ ...props }) => {
-  const [isChecked, setIsChecked] = useState(props.checked ?? false);
+  const [isChecked, setIsChecked] = useState(props.isSelected ?? false);
 
   return (
-    <RadixSwitch.Root
+    <RACSwitch
       {...props}
-      onCheckedChange={(c) => {
-        if (props.onCheckedChange) {
-          props.onCheckedChange(c);
+      onChange={(c) => {
+        if (props.onChange) {
+          props.onChange(c);
         }
 
         setIsChecked(c);
       }}
-      checked={isChecked}
+      isSelected={isChecked}
       className={clsx(
         '[all=unset]',
+        'flex',
+        'items-center',
         'rounded-full',
         'cursor-pointer',
         'relative',
@@ -30,17 +35,24 @@ export const Switch: FC<SwitchProps> = ({ ...props }) => {
         'focus:outline-2',
         'focus:outline',
         'focus:outline-offset-2',
-        'focus:outline-theme-blue',
-        'dark:focus:outline-theme-orange',
-        'data-[state=checked]:bg-theme-blue',
+        'data-[focus-visible]:outline-theme-blue',
+        'data-[focus-visible]:dark:outline-theme-orange', // TODO Fix,
+        'data-[selected]:bg-theme-blue',
         'transition-all',
         props.className,
       )}
     >
-      <RadixSwitch.Thumb
-        className='block w-[21px] h-[21px] bg-theme-white rounded-full transition-all translate-x-[3px] data-[state=checked]:translate-x-[27px]'
-        style={{ boxShadow: '2px 5px 5px rgba(0, 0, 0, 0.2)' }}
-      />
-    </RadixSwitch.Root>
+      {({ isSelected }) => {
+        return (
+          <div
+            className={clsx(
+              'block w-[21px] h-[21px] bg-theme-white rounded-full transition-all translate-x-[3px]',
+              isSelected && 'translate-x-[27px]',
+            )}
+            style={{ boxShadow: '2px 5px 5px rgba(0, 0, 0, 0.2)' }}
+          />
+        );
+      }}
+    </RACSwitch>
   );
 };

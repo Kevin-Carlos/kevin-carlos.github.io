@@ -1,8 +1,10 @@
 import { Link, type LinkProps } from '@remix-run/react';
 import clsx from 'clsx';
-import { type FC, useMemo } from 'react';
+import { type FC, ReactNode, useMemo } from 'react';
+import { Button, ButtonProps } from 'react-aria-components';
 
-type PillButtonProps = Omit<JSX.IntrinsicElements['button'], 'ref'> & {
+type PillButtonProps = ButtonProps & {
+  children: ReactNode;
   to?: LinkProps['to'];
 };
 
@@ -13,7 +15,7 @@ type PillButtonProps = Omit<JSX.IntrinsicElements['button'], 'ref'> & {
 export const PillButton: FC<PillButtonProps> = ({
   children,
   to,
-  disabled,
+  isDisabled,
   ...props
 }) => {
   const className = useMemo(() => {
@@ -47,8 +49,8 @@ export const PillButton: FC<PillButtonProps> = ({
   }
 
   return (
-    <button {...props} disabled={disabled} className={className}>
+    <Button {...props} isDisabled={isDisabled} className={className}>
       {children}
-    </button>
+    </Button>
   );
 };

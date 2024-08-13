@@ -13,35 +13,6 @@ const Bubbles: FC<CirclesProps> = ({ index, setIndex }) => {
     leave: { opacity: 0, transform: 'scale(0)' },
   });
 
-  const createRipple = (event: React.MouseEvent<HTMLDivElement>) => {
-    event.preventDefault();
-
-    const button = event.currentTarget;
-
-    const circle = document.createElement('div');
-    const diameter = Math.max(button.clientWidth, button.clientHeight);
-    const radius = diameter / 2;
-
-    circle.style.position = 'absolute';
-    circle.style.borderRadius = '50%';
-    circle.style.transform = 'scale(0)';
-    circle.style.backgroundColor = 'rgba(255, 255, 255, 0.7)';
-    circle.style.zIndex = '1000';
-    circle.className += 'animate-ripple';
-
-    circle.style.width = circle.style.height = `${diameter}px`;
-    circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
-    circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
-
-    const ripple = button.getElementsByClassName('ripple')[0];
-
-    if (ripple) {
-      ripple.remove();
-    }
-
-    button.appendChild(circle);
-  };
-
   return (
     <ul className='flex flex-wrap justify-center md:flex-nowrap'>
       {transitionedHeaderItems((style, item) => {
@@ -68,7 +39,7 @@ const Bubbles: FC<CirclesProps> = ({ index, setIndex }) => {
                 </div>
               )
               : null}
-            <animated.div
+            <animated.button
               style={{
                 ...style,
                 opacity: style.opacity,
@@ -76,9 +47,7 @@ const Bubbles: FC<CirclesProps> = ({ index, setIndex }) => {
                 height: item.size,
                 boxShadow: '8px 6px 10px rgb(0 0 0 / 20%)',
               }}
-              onClick={(ev) => {
-                createRipple(ev);
-
+              onClick={() => {
                 setIndex(circleItems.findIndex((c) => c.key === item.key));
               }}
               className={clsx([
@@ -94,10 +63,15 @@ const Bubbles: FC<CirclesProps> = ({ index, setIndex }) => {
                 'relative',
                 'overflow-hidden',
                 'transition-colors',
+                'outline-none',
+                'focus:outline-theme-black',
+                'focus:outline-2',
+                'focus:outline-offset-2',
+                'dark:focus:outline-theme-orange',
               ])}
             >
               <h1>{item.title}</h1>
-            </animated.div>
+            </animated.button>
           </li>
         );
       })}

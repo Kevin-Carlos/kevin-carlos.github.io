@@ -1,15 +1,17 @@
 import clsx from 'clsx';
 import { type FC } from 'react';
+import { TabList as RACTabList } from 'react-aria-components';
 
 export type TabsListProps = {
   children: JSX.Element[];
   className?: string;
 };
 
-export const TabsList: FC<TabsListProps> = ({ children, className }) => {
+export const TabsList: FC<TabsListProps> = (
+  { children, className, ...rest },
+) => {
   return (
-    <div
-      role='tablist'
+    <RACTabList
       className={clsx(
         'relative',
         'max-w-max',
@@ -36,8 +38,9 @@ export const TabsList: FC<TabsListProps> = ({ children, className }) => {
         'dark:after:bg-theme-orange',
         className,
       )}
+      {...rest}
     >
       {Array.isArray(children) ? children.map((c) => c) : children}
-    </div>
+    </RACTabList>
   );
 };

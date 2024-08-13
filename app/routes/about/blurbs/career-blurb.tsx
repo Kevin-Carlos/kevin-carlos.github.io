@@ -1,24 +1,26 @@
-import { useState } from 'react';
+import { TabPanel, Tabs } from 'react-aria-components';
 import { Tab } from '~/common/ui-elements/button/tabs/tab';
 import { TabsList } from '~/common/ui-elements/button/tabs/tabs-list';
 import { Cycle, Square8 } from './career-items';
 
 export const CareerBlurb = () => {
-  const [tab, setTab] = useState<'sq8' | 'cycle'>('sq8');
-
   return (
-    <div className='flex flex-col'>
-      <TabsList>
-        <Tab active={tab === 'sq8'} onClick={() => setTab('sq8')}>
+    <Tabs>
+      <TabsList aria-label="Companies I've worked for">
+        <Tab id='Square8'>
           <span>Square 8</span>
         </Tab>
-        <Tab active={tab === 'cycle'} onClick={() => setTab('cycle')}>
+        <Tab id='Cycle'>
           <span>Cycle</span>
         </Tab>
       </TabsList>
 
-      {tab === 'sq8' ? <Square8 /> : null}
-      {tab === 'cycle' ? <Cycle /> : null}
-    </div>
+      <TabPanel id='Square8'>
+        <Square8 />
+      </TabPanel>
+      <TabPanel id='Cycle'>
+        <Cycle />
+      </TabPanel>
+    </Tabs>
   );
 };
