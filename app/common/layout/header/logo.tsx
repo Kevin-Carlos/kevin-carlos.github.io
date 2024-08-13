@@ -1,28 +1,43 @@
 import { Link } from '@remix-run/react';
+import clsx from 'clsx';
 import darkLogo from '~/common/assets/images/logo-dark.png';
 import { links } from '~/common/links';
-
-// const LogoWrapper = styled('div', {
-//   'position': 'relative',
-//   'width': '40px',
-//   'height': '40px',
-
-//   '&:hover': {
-//     '& > a > div': {
-//       opacity: 0.4,
-//     },
-//   },
-// });
+import * as styles from './anim.module.css';
 
 export const Logo = () => {
   return (
-    <Link
-      to={links.home()}
-      className='focus:outline-theme-dteal dark:focus:outline-theme-orange rounded-full focus:outline-offset-2 focus:outline focus:outline-2'
-    >
-      <div className='w-[40px] h-[40px] rounded-full border-0 bg-theme-lgray dark:bg-theme-white absolute transition-opacity'>
-        <img src={darkLogo} style={{ position: 'absolute', width: '40px' }} />
+    <div className='w-[40px] h-[40px] relative'>
+      <Link
+        aria-label='Home'
+        to={links.home()}
+        className='focus:outline-theme-dteal dark:focus:outline-theme-orange rounded-full focus:outline-offset-2 focus:outline focus:outline-2 z-10'
+      >
+        <div className='w-[40px] h-[40px] rounded-full border-0 bg-theme-lgray dark:bg-theme-white absolute transition-opacity'>
+          <img src={darkLogo} style={{ position: 'absolute', width: '40px' }} />
+        </div>
+      </Link>
+
+      {/* border-2 border-theme-orange rounded-full */}
+      <div className='absolute inset-0 z-0 pointer-events-none'>
+        <div className='relative h-full w-full'>
+          <div
+            className={clsx(
+              // @ts-expect-error css module typings
+              styles.spinFast,
+              'border-2 border-theme-dteal dark:border-theme-orange w-[65px] h-[65px] rounded-full absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]',
+              'before:h-[8px] before:w-[8px] before:rounded-full before:bg-theme-black dark:before:bg-theme-lteal2 before:flex before:translate-y-[10px] before:shadow-lg dark:before:shadow-[2px_5px_5px_rgba(0,0,0,0.8)]',
+            )}
+          />
+          <div
+            className={clsx(
+              // @ts-expect-error css module typings
+              styles.spinSlow,
+              'border-2 border-theme-dteal dark:border-theme-orange w-[115px] h-[115px] rounded-full absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]',
+              'before:h-[8px] before:w-[8px] before:rounded-full before:bg-theme-black dark:before:bg-theme-lteal2 before:flex before:translate-y-[29px] before:shadow-lg dark:before:shadow-[2px_5px_5px_rgba(0,0,0,0.8)]',
+            )}
+          />
+        </div>
       </div>
-    </Link>
+    </div>
   );
 };
