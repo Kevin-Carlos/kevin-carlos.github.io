@@ -86,8 +86,8 @@ export const HaloCountdown = () => {
 
       <PillButton
         className='bg-theme-blue'
-        disabled={showCountdown === true}
-        onClick={() => {
+        isDisabled={showCountdown === true}
+        onPress={() => {
           if (showCountdown) {
             return;
           }

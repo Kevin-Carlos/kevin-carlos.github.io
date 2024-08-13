@@ -7,22 +7,24 @@ export const Spinners = () => {
 
   return (
     <>
-      {/* @ts-expect-error typing modules */}
       <div
+        // @ts-expect-error typing modules
         className={styles['alternate-spinner']}
         style={{ height: '41px', width: '41px' }}
       >
-        {/* @ts-expect-error typing modules */}
         <div
           className={clsx(
+            // @ts-expect-error typing modules
             mode === 'light' ? styles.spinLight : styles.spinDark,
+            // @ts-expect-error typing modules
             styles.altSpin1,
           )}
         />
-        {/* @ts-expect-error typing modules */}
         <div
           className={clsx(
+            // @ts-expect-error typing modules
             mode === 'light' ? styles.spinLight : styles.spinDark,
+            // @ts-expect-error typing modules
             styles.altSpin2,
           )}
         />
@@ -39,8 +41,11 @@ export const Spinners = () => {
       </div>
 
       <div style={{ display: 'flex', flexDirection: 'row' }}>
+        {/* @ts-expect-error typing modules */}
         <div className={clsx(styles.dot, styles.slideDot1)} />
+        {/* @ts-expect-error typing modules */}
         <div className={clsx(styles.dot, styles.slideDot2)} />
+        {/* @ts-expect-error typing modules */}
         <div className={clsx(styles.dot, styles.slideDot3)} />
       </div>
     </>

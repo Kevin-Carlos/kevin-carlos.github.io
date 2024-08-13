@@ -56,7 +56,7 @@ export const WeightedBox: FC = () => {
       <div>
         <PillButton
           className='bg-theme-lteal hover:bg-theme-lteal2 w-full'
-          onClick={openBoxHandler}
+          onPress={openBoxHandler}
         >
           Open
         </PillButton>
