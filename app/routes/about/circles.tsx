@@ -64,10 +64,10 @@ const Bubbles: FC<CirclesProps> = ({ index, setIndex }) => {
                 'overflow-hidden',
                 'transition-colors',
                 'outline-none',
-                'focus:outline-theme-black',
-                'focus:outline-2',
-                'focus:outline-offset-2',
-                'dark:focus:outline-theme-orange',
+                'focus-visible:outline-theme-black',
+                'focus-visible:outline-2',
+                'focus-visible:outline-offset-2',
+                'dark:focus-visible:outline-theme-orange',
               ])}
             >
               <h1>{item.title}</h1>
