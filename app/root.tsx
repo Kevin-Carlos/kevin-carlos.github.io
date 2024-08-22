@@ -6,12 +6,21 @@ import {
   Scripts,
   ScrollRestoration,
   useLoaderData,
+  useNavigate
 } from '@remix-run/react';
 import clsx from 'clsx';
 import { useState } from 'react';
+import { RouterProvider } from 'react-aria-components';
 import { getColorScheme } from './cookies';
 import './tailwind.css';
 import { ThemeCtx } from './ThemeContext';
+
+declare module 'react-aria-components' {
+  interface RouterConfig {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    routerOptions: any;
+  }
+}
 
 type Loader = {
   colorScheme: Awaited<ReturnType<typeof getColorScheme>>;
@@ -47,6 +56,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
   const [mode, setMode] = useState(loader?.colorScheme);
 
+  const navigate = useNavigate();
+
   return (
     <html
       lang='en'
@@ -65,7 +76,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <ThemeCtx.Provider
           value={{ mode: mode ?? 'light', setMode: (m) => setMode(m) }}
         >
-          {children}
+          <RouterProvider navigate={navigate}>
+            {children}
+          </RouterProvider>
         </ThemeCtx.Provider>
         <ScrollRestoration />
         <Scripts />

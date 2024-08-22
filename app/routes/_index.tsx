@@ -1,11 +1,12 @@
 import type { HeadersFunction, LoaderFunction } from '@remix-run/cloudflare';
 import { useLoaderData } from '@remix-run/react';
-import { useCallback } from 'react';
+import { IOptions, RecursivePartial } from '@tsparticles/engine';
 import Particles, {
-  type IOptions,
-  type IParticlesProps,
-  type RecursivePartial,
-} from 'react-tsparticles';
+  initParticlesEngine,
+  IParticlesProps,
+} from '@tsparticles/react';
+import { loadSlim } from '@tsparticles/slim';
+import { useCallback, useEffect, useState } from 'react';
 import { Layout } from '~/common/layout';
 import { useTheme } from '~/useTheme';
 import { Hero } from './hero/hero';
@@ -31,11 +32,29 @@ export default function Index() {
 
   const [mode] = useTheme();
 
+  const [init, setInit] = useState(false);
+
+  // this should be run only once per application lifetime
+  useEffect(() => {
+    initParticlesEngine(async (engine) => {
+      // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
+      // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
+      // starting from v2 you can add only the features you need reducing the bundle size
+      // await loadAll(engine);
+      // await loadFull(engine);
+      await loadSlim(engine);
+      // await loadBasic(engine);
+    }).then(() => {
+      setInit(true);
+    });
+  }, []);
+
   const getParticleOptions: (
     mode: 'light' | 'dark',
   ) => RecursivePartial<IOptions> = useCallback(
     (mode: 'light' | 'dark') => {
       const opts: IParticlesProps['options'] = {
+        preset: 'stars',
         fpsLimit: 60,
         detectRetina: true,
         retina_detect: true,
@@ -56,7 +75,7 @@ export default function Index() {
               enable: true,
               mode: 'push',
             },
-            resize: true,
+            resize: { enable: true },
           },
           modes: {
             grab: {
@@ -86,10 +105,9 @@ export default function Index() {
         },
         particles: {
           number: {
-            value: 27,
+            value: 100,
             density: {
               enable: true,
-              area: 789,
             },
           },
           color: {
@@ -112,21 +130,15 @@ export default function Index() {
             value: 0.7,
             animation: {
               enable: false,
-              minimumValue: 0.1,
               sync: false,
               speed: 1,
             },
           },
           size: {
             value: 3,
-            random: {
-              enable: true,
-              minimumValue: 1,
-            },
             animation: {
               enable: true,
               speed: 2.4,
-              minimumValue: 0.1,
               sync: true,
             },
           },
@@ -150,11 +162,6 @@ export default function Index() {
               right: 'bounce',
               top: 'bounce',
             },
-            attract: {
-              enable: false,
-              rotateX: 600,
-              rotateY: 1200,
-            },
           },
         },
       };
@@ -168,19 +175,21 @@ export default function Index() {
     <Layout hideFooter>
       <Hero />
 
-      <Particles
-        id='tsparticles-home-bg'
-        options={getParticleOptions(mode)}
-        style={{
-          position: 'fixed',
-          top: 0,
-          bottom: 0,
-          right: 0,
-          left: 0,
-          height: '100vh',
-          zIndex: 10,
-        }}
-      />
+      {init && (
+        <Particles
+          id='tsparticles'
+          options={getParticleOptions(mode)}
+          style={{
+            position: 'fixed',
+            top: 0,
+            bottom: 0,
+            right: 0,
+            left: 0,
+            height: '100vh',
+            zIndex: 10,
+          }}
+        />
+      )}
     </Layout>
   );
 }

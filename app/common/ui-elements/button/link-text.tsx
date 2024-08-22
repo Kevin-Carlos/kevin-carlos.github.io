@@ -1,14 +1,8 @@
-import { Link } from '@remix-run/react';
 import clsx from 'clsx';
-import {
-  type AnchorHTMLAttributes,
-  type FC,
-  Fragment,
-  type ReactNode,
-  useMemo,
-} from 'react';
+import { type FC, Fragment, type ReactNode, useMemo } from 'react';
+import { Link, LinkProps } from 'react-aria-components';
 
-type LinkText = AnchorHTMLAttributes<HTMLAnchorElement> & {
+type LinkText = LinkProps & {
   children: ReactNode;
   animateScale?: boolean;
   childrenClassName?: string;
@@ -23,7 +17,7 @@ export const LinkText: FC<LinkText> = ({
 }) => {
   const className = useMemo(() => {
     return clsx(
-      'group',
+      'group/root',
       'relative',
       'text-theme-black',
       'dark:text-theme-white',
@@ -31,10 +25,11 @@ export const LinkText: FC<LinkText> = ({
       'transition-all',
       'hover:scale(1.05)',
       'rounded-md',
-      'focus:outline-theme-dteal',
-      'focus:outline',
-      'focus:outline-offset-[-1px]',
-      'dark:focus:outline-theme-orange',
+      'focus:outline-none',
+      'data-[focus-visible]:outline-theme-dteal',
+      'dark:data-[focus-visible]:outline-theme-orange',
+      'data-[focus-visible]:outline',
+      'data-[focus-visible]:outline-offset-[3.5px]',
       props.className,
     );
   }, []);
@@ -56,7 +51,9 @@ export const LinkText: FC<LinkText> = ({
                 'bottom-[-4px]',
                 'left-0',
                 'border-0',
-                'group-hover:w-[28px]',
+                'group-data-[focus-visible]/root:w-[28px]',
+                'group-data-[focus-visible]/root:rounded-sm',
+                'group-hover/root:w-[28px]',
               )}
             />
           )
@@ -67,7 +64,7 @@ export const LinkText: FC<LinkText> = ({
 
   if (href?.includes('http')) {
     return (
-      <a
+      <Link
         {...props}
         href={href}
         target={href?.includes('http') ? '_blank' : undefined}
@@ -75,7 +72,7 @@ export const LinkText: FC<LinkText> = ({
         className={className}
       >
         <LinkChildren />
-      </a>
+      </Link>
     );
   }
 
@@ -83,7 +80,7 @@ export const LinkText: FC<LinkText> = ({
     <Link
       {...props}
       className={className}
-      to={href ?? ''}
+      href={href ?? ''}
     >
       <LinkChildren />
     </Link>
