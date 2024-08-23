@@ -19,7 +19,7 @@ export const Header = () => {
   }, [mobileNav]);
 
   return (
-    <header className='flex py-2 px-6 z-40 h-[56px] text-theme-black dark:text-theme-white sticky top-0 bg-theme-white dark:bg-theme-black border-b-2 border-b-theme-dteal md:border-b-0'>
+    <header className='flex py-2 px-6 z-40 h-[56px] text-theme-black dark:text-theme-white sticky top-0 border-b-2 border-b-theme-dteal md:border-b-0'>
       <div className='flex gap-[16px] justify-center items-center'>
         <Logo>
           <ThemeButton

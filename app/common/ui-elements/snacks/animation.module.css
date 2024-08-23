@@ -1,0 +1,69 @@
+@keyframes slide {
+  from {
+    transform: translateX(0%);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.slideOut:before {
+  animation: slide 5s forwards;
+}
+
+@keyframes popin {
+  from {
+    transform: rotate(220deg) translate3d(0, 0, 0) rotate(-220deg) scale(0);
+  }
+
+  to {
+    transform: rotate(220deg) translate3d(50px, 0, 0) rotate(-220deg) scale(1);
+  }
+}
+
+@keyframes popout {
+  from {
+    transform: rotate(220deg) translate3d(50px, 0, 0) rotate(-220deg) scale(1);
+  }
+
+  to {
+    transform: rotate(220deg) translate3d(0, 0, 0) rotate(-220deg) scale(0);
+  }
+}
+
+.popIn1 {
+  animation: popin 0.2s ease-in-out forwards;
+}
+
+.popOut1 {
+  animation: popout 0.2s ease-in-out forwards;
+}
+
+@keyframes popin2 {
+  from {
+    transform: rotate(160deg) translate3d(0, 0, 0) rotate(-160deg) scale(0);
+  }
+
+  to {
+    transform: rotate(160deg) translate3d(50px, 0, 0) rotate(-160deg) scale(1);
+  }
+}
+
+@keyframes popout2 {
+  from {
+    transform: rotate(160deg) translate3d(50px, 0, 0) rotate(-160deg) scale(1);
+  }
+
+  to {
+    transform: rotate(160deg) translate3d(0, 0, 0) rotate(-160deg) scale(0);
+  }
+}
+
+.popIn2 {
+  animation: popin2 0.2s ease-in-out forwards;
+}
+
+.popOut2 {
+  animation: popout2 0.2s ease-in-out forwards;
+}

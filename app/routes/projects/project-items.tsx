@@ -5,6 +5,12 @@ type ProjectItem = CardProps;
 
 export const projectItems: ProjectItem[] = [
   {
+    title: 'Toast Center',
+    children: <p>A take on a notification center via toasts</p>,
+    to: links.projects().project().snackCenter(),
+    linkText: 'Toast Center Demo',
+  },
+  {
     title: 'Loot Crates',
     children: (
       <p>
@@ -20,11 +26,5 @@ export const projectItems: ProjectItem[] = [
     children: <p>Building loading spinners / indicators for fun.</p>,
     to: links.projects().project().loaders(),
     linkText: 'Loading Spinner Demo',
-  },
-  {
-    title: 'Toast Center',
-    children: <p>A take on a notification center via toasts</p>,
-    to: links.projects().project().snackCenter(),
-    linkText: 'Toast Center Demo',
   },
 ];
