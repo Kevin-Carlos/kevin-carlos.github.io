@@ -32,6 +32,8 @@ export const Tab: FC<TabProps> = ({ children, ...rest }) => {
         'data-[selected]:before:bottom-[-2px]',
         'data-[selected]:before:h-1',
         'data-[selected]:before:w-[calc(100%-16px)]',
+        'data-[disabled]:opacity-40',
+        'data-[disabled]:pointer-events-none',
       )}
     >
       {children}

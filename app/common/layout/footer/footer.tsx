@@ -13,7 +13,7 @@ import { menuItems } from '../menu-items';
 
 export const Footer = () => {
   return (
-    <footer className='flex justify-center items-center w-full sticky bottom-0 md:[position:initial] z-20 bg-theme-white dark:bg-theme-black border-t-2 border-t-theme-dteal md:border-t-0'>
+    <footer className='flex justify-center items-center w-full sticky bottom-0 md:[position:initial] z-20 border-t-2 border-t-theme-dteal md:border-t-0'>
       <nav className='flex justify-evenly py-3'>
         {menuItems.map((mi) => {
           if (mi.path === links.home()) {

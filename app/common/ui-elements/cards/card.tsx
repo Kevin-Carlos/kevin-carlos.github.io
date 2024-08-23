@@ -11,7 +11,7 @@ const MaybeLinkedContent: FC<{ to: string; children: string }> = (
   return (
     <Link
       to={to}
-      className='self-end text-theme-dteal dark:text-theme-orange focus:outline-none rounded-md before:absolute before:inset-0 focus:before:outline focus:before:outline-2 focus:before:outline-offset-4 focus:before:outline-theme-black dark:focus:before:outline-theme-orange focus:before:rounded-md'
+      className='self-end text-theme-black dark:text-theme-orange focus:outline-none rounded-md before:absolute before:inset-0 focus:before:outline focus:before:outline-2 focus:before:outline-offset-4 focus:before:outline-theme-black dark:focus:before:outline-theme-orange focus:before:rounded-md'
     >
       {children}
     </Link>

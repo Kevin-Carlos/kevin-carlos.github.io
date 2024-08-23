@@ -11,6 +11,7 @@ import {
 import clsx from 'clsx';
 import { useState } from 'react';
 import { RouterProvider } from 'react-aria-components';
+import { Header } from './common/layout/header/header';
 import { getColorScheme } from './cookies';
 import './tailwind.css';
 import { ThemeCtx } from './ThemeContext';
@@ -72,11 +73,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body className='m0 font-body dark:bg-theme-black bg-theme-white grid grid-rows-[56px_1fr_40px] h-[100vh]'>
+      <body className='m-0 font-body dark:bg-theme-black bg-theme-white grid grid-rows-[56px_1fr_40px] h-[100vh]'>
         <ThemeCtx.Provider
           value={{ mode: mode ?? 'light', setMode: (m) => setMode(m) }}
         >
           <RouterProvider navigate={navigate}>
+            <Header />
             {children}
           </RouterProvider>
         </ThemeCtx.Provider>
