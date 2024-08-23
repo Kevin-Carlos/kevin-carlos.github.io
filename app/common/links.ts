@@ -10,6 +10,7 @@ export const links = {
       loaders: () => `/projects/loaders`,
       lootCrate: () => `/projects/loot-crate`,
       flashcards: () => `/projects/flashcards`,
+      snackCenter: () => `/projects/snack-center`,
     }),
   }),
 };

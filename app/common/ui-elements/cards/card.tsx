@@ -1,5 +1,4 @@
 import { Link } from '@remix-run/react';
-import clsx from 'clsx';
 import { type FC, ReactNode } from 'react';
 
 const MaybeLinkedContent: FC<{ to: string; children: string }> = (
@@ -19,7 +18,7 @@ const MaybeLinkedContent: FC<{ to: string; children: string }> = (
   );
 };
 
-type CardProps = {
+export type CardProps = {
   children: ReactNode;
   title: string;
   to?: string;
@@ -28,33 +27,12 @@ type CardProps = {
 
 export const Card: FC<CardProps> = ({ title, to, children, linkText }) => {
   return (
-    <li
-      className={clsx(
-        'p-4',
-        'relative',
-        'cursor-pointer',
-        'transition-transform',
-        'bg-theme-lteal',
-        'dark:bg-theme-black',
-        'bg-opacity-40',
-        'flex',
-        'flex-col',
-        'gap-5',
-        'border-2',
-        'border-solid',
-        'border-theme-dteal',
-        'rounded-md',
-        'shadow-md',
-        'before:absolute before:top-0 before:left-0 before:right-0 before:w-full before:h-[4px]',
-        'before:bg-theme-black dark:before:bg-theme-orange before:rounded-t-md',
-        'hover:scale-105',
-      )}
-    >
+    <div className='relative z-[1] p-4 rounded-md bg-theme-lteal dark:bg-theme-black flex flex-col gap-5 before:absolute before:inset-[0_.4px_.4px] before:h-[4px] before:bg-theme-black dark:before:bg-theme-orange before:rounded-t-md'>
       <h1 className='text-xl tracking-wider'>{title}</h1>
       {children}
       {!!(to && linkText) && (
         <MaybeLinkedContent to={to}>{linkText}</MaybeLinkedContent>
       )}
-    </li>
+    </div>
   );
 };

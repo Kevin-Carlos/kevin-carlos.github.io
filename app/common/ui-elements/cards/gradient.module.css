@@ -1,0 +1,15 @@
+.dgradient:before {
+  background: radial-gradient(
+    250px circle at var(--x) var(--y),
+    #2b4d59 0,
+    transparent 100%
+  );
+}
+
+.lgradient:before {
+  background: radial-gradient(
+    250px circle at var(--x) var(--y),
+    #e69b1c 0,
+    transparent 100%
+  );
+}

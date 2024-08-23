@@ -6,7 +6,7 @@ import {
   Scripts,
   ScrollRestoration,
   useLoaderData,
-  useNavigate
+  useNavigate,
 } from '@remix-run/react';
 import clsx from 'clsx';
 import { useState } from 'react';
