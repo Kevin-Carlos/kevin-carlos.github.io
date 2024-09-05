@@ -84,7 +84,7 @@ export default function Index() {
     <Layout hideFooter>
       <Hero helloIndex={helloIndex} />
 
-      <div className='fixed right-[-200px]'>
+      <div className='fixed right-[-200px] top-[50%] translate-y-[-50%]'>
         <div className='invisible md:visible relative rounded-full h-[800px] w-[800px] bg-theme-lteal dark:bg-theme-black shadow-xl'>
           <Suspense fallback={null}>
             <ClientOnly
