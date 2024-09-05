@@ -1,5 +1,5 @@
 import { Link } from '@remix-run/react';
-import { type FC, ReactNode } from 'react';
+import type { FC, ReactNode } from 'react';
 
 const MaybeLinkedContent: FC<{ to: string; children: string }> = (
   { to, children },

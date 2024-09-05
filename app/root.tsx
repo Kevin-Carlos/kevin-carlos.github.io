@@ -1,4 +1,4 @@
-import { HeadersFunction, LoaderFunction } from '@remix-run/cloudflare';
+import type { HeadersFunction, LoaderFunction } from '@remix-run/cloudflare';
 import {
   Links,
   Meta,

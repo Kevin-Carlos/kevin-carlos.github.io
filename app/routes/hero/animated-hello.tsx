@@ -2,25 +2,24 @@ import { useEffect, useRef, useState } from 'react';
 import { animated, useSpring, useTransition } from 'react-spring';
 import { helloInLanguages } from './languages';
 
-const randomInteger = (min: number, max: number): number => {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-};
-
 /**
  * Controls the animations for 'Hello' and animating the margin of `I'm`
  *
  * Separating it into this component isolates the re-renders
  */
-export const AnimatedHello = () => {
+export const AnimatedHello = ({
+  helloIndex,
+}: {
+  helloIndex: number;
+}) => {
   const valueRef = useRef<HTMLSpanElement | null>(null);
 
-  const [items] = useState(helloInLanguages);
-
-  const [index, setIndex] = useState(0);
-  const [length, setLength] = useState(helloInLanguages[index].length);
+  const [length, setLength] = useState(
+    helloInLanguages[helloIndex].greeting.length,
+  );
 
   // Transition the 'hiItems' to fade in and out
-  const transitions = useTransition(index, {
+  const transitions = useTransition(helloIndex, {
     from: { opacity: 0, width: 'max-content' },
     enter: { opacity: 1 },
     leave: { opacity: 0 },
@@ -44,15 +43,8 @@ export const AnimatedHello = () => {
   });
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex(randomInteger(0, helloInLanguages.length - 1));
-    }, 1000 * 2);
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
     setLength(valueRef.current?.clientWidth || helloInLanguages.length);
-  }, [index]);
+  }, [helloIndex]);
 
   return (
     <span style={{ position: 'absolute', fontWeight: 500 }}>
@@ -62,7 +54,7 @@ export const AnimatedHello = () => {
             ref={valueRef}
             style={{ ...styles, position: 'absolute' }}
           >
-            {items[i]},
+            {helloInLanguages[i].greeting},
           </animated.span>
         ))}
         <animated.span

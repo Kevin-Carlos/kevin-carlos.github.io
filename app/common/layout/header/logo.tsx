@@ -1,6 +1,6 @@
 import { Link } from '@remix-run/react';
 import clsx from 'clsx';
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import darkLogo from '~/common/assets/images/logo-dark.png';
 import { links } from '~/common/links';
 import * as styles from './anim.module.css';

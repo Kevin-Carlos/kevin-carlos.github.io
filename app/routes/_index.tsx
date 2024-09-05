@@ -2,11 +2,29 @@ import type {
   HeadersFunction,
   LoaderFunctionArgs,
 } from '@remix-run/cloudflare';
-import { useLoaderData } from '@remix-run/react';
-import { Suspense, useState } from 'react';
+import { Suspense, useEffect, useMemo, useState } from 'react';
+import { ClientOnly } from 'remix-utils/client-only';
 import { Layout } from '~/common/layout';
-import { Globe } from './globe/Globe.client';
+import { MyGlobe } from './globe/Globe.client';
 import { Hero } from './hero/hero';
+import { helloInLanguages } from './hero/languages';
+
+const randomInteger = (min: number, max: number): number => {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
+const shuffleArray = <T extends unknown[]>(array: T): T => {
+  const tmp = [...array] as T;
+
+  for (let i = array.length - 1; i >= 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [tmp[i], tmp[j]] = [tmp[j], tmp[i]];
+  }
+
+  return tmp;
+};
 
 type Loader = {
   motion: boolean;
@@ -25,47 +43,60 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 };
 
 export default function Index() {
-  const { motion } = useLoaderData<typeof loader>();
+  // TODO, I should do something with this.
+  // const { motion } = useLoaderData<typeof loader>();
 
-  const [active, setActive] = useState<[number, number]>([0, 0]);
+  const [helloIndex, setIndex] = useState(0);
+
+  useEffect(() => {
+    const asIndexes = helloInLanguages.map((_, idx) => idx);
+
+    let shuffled = shuffleArray(asIndexes);
+
+    const interval = setInterval(() => {
+      let next = shuffled.shift();
+
+      if (next === undefined) {
+        shuffled = shuffleArray(asIndexes);
+        next = shuffled.shift() || 0;
+      }
+
+      setIndex(next);
+    }, 3_000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const coord = useMemo(() => {
+    const coord = helloInLanguages[helloIndex].coord;
+
+    if (!Array.isArray(coord)) {
+      return coord;
+    }
+
+    // Otherwise pick a random coordinate from the array
+    const randomCoord = randomInteger(0, coord.length - 1);
+
+    return coord[randomCoord];
+  }, [helloIndex]);
 
   return (
     <Layout hideFooter>
-      <Hero />
+      <Hero helloIndex={helloIndex} />
 
-      <button
-        onClick={() => {
-          setActive([39.5299, 119.8143]);
-        }}
-      >
-        Reno
-      </button>
-      <button
-        onClick={() => {
-          setActive([35.652832, 139.839478]);
-        }}
-      >
-        Tokyo
-      </button>
-      <button
-        onClick={() => {
-          setActive([-34.920345, -57.969559]);
-        }}
-      >
-        Buenos Aires
-      </button>
-
-      <div className='fixed right-[-0px]'>
-        <div
-          id='canvas-container'
-          // className='rounded-full h-[800px] w-[800px] bg-theme-lteal dark:bg-theme-black shadow-xl relative'
-          className='rounded-full h-[800px] w-[800px]'
-        >
-          {typeof document !== 'undefined' && (
-            <Suspense fallback={null}>
-              <Globe active={active} />
-            </Suspense>
-          )}
+      <div className='fixed right-[-200px]'>
+        <div className='invisible md:visible relative rounded-full h-[800px] w-[800px] bg-theme-lteal dark:bg-theme-black shadow-xl'>
+          <Suspense fallback={null}>
+            <ClientOnly
+              fallback={
+                <div className='relative rounded-full h-[800px] w-[800px] bg-theme-lteal dark:bg-theme-black shadow-xl' />
+              }
+            >
+              {() => {
+                return <MyGlobe coord={coord} />;
+              }}
+            </ClientOnly>
+          </Suspense>
         </div>
       </div>
     </Layout>

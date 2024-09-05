@@ -13,6 +13,8 @@ module.exports = {
   rules: {
     'spaced-comment': ['warn', 'always'],
     'no-console': 'warn',
+
+    '@typescript-eslint/consistent-type-imports': 'error',
   },
   ignorePatterns: ['remix.config.js'],
 };

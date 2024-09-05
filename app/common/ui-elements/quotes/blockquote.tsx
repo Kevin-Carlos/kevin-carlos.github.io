@@ -1,5 +1,5 @@
 import { Pen } from 'phosphor-react';
-import { type FC, ReactNode } from 'react';
+import type { FC, ReactNode } from 'react';
 import { Divider } from '../library';
 
 type BlockquoteProps = {

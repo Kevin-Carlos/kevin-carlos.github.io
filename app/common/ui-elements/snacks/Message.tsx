@@ -3,7 +3,7 @@ import { Info, WarningCircle, X } from 'phosphor-react';
 import { useEffect, useState } from 'react';
 import { IconButton } from '../button/icon-button';
 import * as styles from './animation.module.css';
-import { Toast, useToast } from './SnackContext';
+import { type Toast, useToast } from './SnackContext';
 
 export const Message = (
   { toast, position }: { toast: Toast; position: number },

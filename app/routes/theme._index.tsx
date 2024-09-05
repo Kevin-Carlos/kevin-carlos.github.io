@@ -1,4 +1,4 @@
-import { ActionFunction, redirect } from '@remix-run/cloudflare';
+import { type ActionFunction, redirect } from '@remix-run/cloudflare';
 import { colorSchemeCookie, getColorScheme } from '~/cookies';
 
 export const action: ActionFunction = async ({ request }) => {

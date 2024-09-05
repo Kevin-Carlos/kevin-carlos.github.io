@@ -1,57 +1,38 @@
-import { Canvas, useThree } from '@react-three/fiber';
-import { ReactElement, Suspense, useEffect } from 'react';
-import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { Dots } from './Dots.client';
-import { Sphere } from './Sphere.client';
+import { lazy, Suspense, useEffect, useState } from 'react';
 
-const CameraController = () => {
-  const { camera, gl } = useThree();
+const LazyGlobe = lazy(() =>
+  import('./ActualGlobe.client').then((mod) => ({ default: mod._Globe }))
+);
 
-  useEffect(
-    () => {
-      const controls = new OrbitControls(camera, gl.domElement);
-
-      controls.minDistance = 3;
-      controls.maxDistance = 20;
-      return () => {
-        controls.dispose();
-      };
-    },
-    [camera, gl],
-  );
-
-  return null;
+type GlobeProps = {
+  coord: { lat: number; long: number };
 };
 
-export const Globe = ({
-  active,
-}: {
-  active: [number, number];
-}): ReactElement => {
+export const MyGlobe = ({
+  coord,
+}: GlobeProps) => {
+  const [hide, setHide] = useState(false);
+
+  useEffect(() => {
+    const onHide = () => {
+      setHide(window.innerWidth < 768 ? true : false);
+    };
+
+    window.addEventListener('resize', onHide, false);
+
+    return () => {
+      window.removeEventListener('resize', onHide, false);
+    };
+  }, []);
+
+  // On smaller screen widths I don't want this to even render
+  if (hide) {
+    return null;
+  }
+
   return (
-    <Canvas
-      camera={{
-        aspect: window.innerWidth / window.innerHeight,
-        fov: 75,
-        near: 1,
-        far: 2000,
-        position: new THREE.Vector3(0, 0, 9),
-      }}
-    >
-      <CameraController />
-      {
-        /* <ambientLight intensity={0.1} />
-      <directionalLight color='#ffffff' position={[0, 0, 5]} /> */
-      }
-      
-      <Suspense fallback={null}>
-        <Sphere />
-      </Suspense> 
-      
-      <Suspense fallback={null}>
-        <Dots active={active} />
-      </Suspense>
-    </Canvas>
+    <Suspense fallback={null}>
+      <LazyGlobe coord={coord} />
+    </Suspense>
   );
 };
