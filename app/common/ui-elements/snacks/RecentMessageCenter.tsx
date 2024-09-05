@@ -1,4 +1,4 @@
-import { ReactElement, useMemo } from 'react';
+import { type ReactElement, useMemo } from 'react';
 import {
   Dialog,
   Modal,
@@ -10,7 +10,7 @@ import { PillButton } from '../button/pill-button';
 import { Tab } from '../button/tabs/tab';
 import { TabsList } from '../button/tabs/tabs-list';
 import { TabMessages } from './Message';
-import { Toast } from './SnackContext';
+import type { Toast } from './SnackContext';
 
 type RecentMessageCenterProps = {
   openValue: 'info' | 'important';

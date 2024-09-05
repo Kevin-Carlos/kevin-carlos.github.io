@@ -1,7 +1,7 @@
 import { Link, type LinkProps } from '@remix-run/react';
 import clsx from 'clsx';
-import { type FC, ReactNode, useMemo } from 'react';
-import { Button, ButtonProps } from 'react-aria-components';
+import { type FC, type ReactNode, useMemo } from 'react';
+import { Button, type ButtonProps } from 'react-aria-components';
 
 type PillButtonProps = ButtonProps & {
   children: ReactNode;

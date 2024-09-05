@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { type FC, Fragment, type ReactNode, useMemo } from 'react';
-import { Link, LinkProps } from 'react-aria-components';
+import { Link, type LinkProps } from 'react-aria-components';
 
 type LinkText = LinkProps & {
   children: ReactNode;

@@ -1,5 +1,5 @@
 import type { CSSProperties, ReactElement } from 'react';
-import { Button, ButtonRenderProps } from 'react-aria-components';
+import { Button, type ButtonRenderProps } from 'react-aria-components';
 import { twMerge } from 'tailwind-merge';
 
 type IconButtonProps = {

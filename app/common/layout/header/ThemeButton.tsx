@@ -1,9 +1,9 @@
 import { useFetcher } from '@remix-run/react';
 import { Moon, Sun } from 'phosphor-react';
-import { ReactElement, useCallback, useRef, useState } from 'react';
+import { type ReactElement, useCallback, useRef, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { IconButton } from '~/common/ui-elements/button/icon-button';
-import { Theme } from '~/ThemeContext';
+import type { Theme } from '~/ThemeContext';
 import { useTheme } from '~/useTheme';
 import * as styles from './anim.module.css';
 

@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { type FC, useEffect } from 'react';
 import { animated, useSpring } from 'react-spring';
 import { LinkText } from '~/common/ui-elements';
 import { menuItems } from '../menu-items';
