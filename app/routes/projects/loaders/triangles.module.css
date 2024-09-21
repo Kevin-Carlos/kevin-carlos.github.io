@@ -1,0 +1,55 @@
+@keyframes blink {
+  0% {
+    transform: scale(0.5);
+  }
+
+  80%, 100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes blinkTip {
+  0% {
+    transform: scale(0.5) translateX(-50%);
+  }
+
+  80%, 100% {
+    transform: scale(1) translateX(-50%);
+  }
+}
+
+@keyframes blink1 {
+  0% {
+    transform: scale(1);
+  }
+
+  80%, 100% {
+    transform: scale(0.5);
+  }
+}
+
+@keyframes blinkTip1 {
+  0% {
+    transform: scale(1) translateX(-50%);
+  }
+
+  80%, 100% {
+    transform: scale(0.5) translateX(-50%);
+  }
+}
+
+.triangle1 {
+  animation: blink1 1s ease-in-out infinite alternate-reverse;
+}
+
+.tip1 {
+  animation: blinkTip1 1s ease-in-out infinite alternate-reverse;
+}
+
+.triangle2 {
+  animation: blink 1s ease-in-out infinite alternate-reverse;
+}
+
+.tip2 {
+  animation: blinkTip 1s ease-in-out infinite alternate-reverse;
+}
