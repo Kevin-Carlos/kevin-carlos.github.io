@@ -5,8 +5,14 @@ type ProjectItem = CardProps;
 
 export const projectItems: ProjectItem[] = [
   {
+    title: 'Connect4',
+    children: 'Classic Connect4',
+    to: links.projects().project().connect4(),
+    linkText: 'Connect4 Game',
+  },
+  {
     title: 'Toast Center',
-    children: <p>A take on a notification center via toasts</p>,
+    children: <p>An (incomplete) take on a notification center via toasts.</p>,
     to: links.projects().project().snackCenter(),
     linkText: 'Toast Center Demo',
   },

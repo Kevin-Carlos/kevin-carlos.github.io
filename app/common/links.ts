@@ -11,6 +11,7 @@ export const links = {
       lootCrate: () => `/projects/loot-crate`,
       flashcards: () => `/projects/flashcards`,
       snackCenter: () => `/projects/snack-center`,
+      connect4: () => `/projects/connect-4`,
     }),
   }),
 };
