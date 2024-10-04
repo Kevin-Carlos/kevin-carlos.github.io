@@ -7,7 +7,7 @@ const COUNTDOWN = 3;
 export const HaloCountdown = () => {
   const [currentTime, setCurrentTime] = useState(COUNTDOWN);
   const [showCountdown, setShowCountdown] = useState(false);
-  const intervalRef = useRef<number | null>(null);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const springInStyles = useSpring({
     from: {
@@ -38,13 +38,13 @@ export const HaloCountdown = () => {
         left: 0,
       },
       ref: borderLeftSlideSpringRef,
-    }),
+    })
   );
 
   useChain(
     showCountdown
       ? [borderLeftSpringRef, borderLeftSlideSpringRef]
-      : [borderLeftSlideSpringRef, borderLeftSpringRef],
+      : [borderLeftSlideSpringRef, borderLeftSpringRef]
   );
 
   useEffect(() => {
@@ -66,13 +66,13 @@ export const HaloCountdown = () => {
   }, [currentTime]);
 
   return (
-    <div className='flex flex-col items-center gap-5'>
-      <div className='w-full h-[40px] dark:text-theme-white text-theme-black text-lg relative'>
+    <div className="flex flex-col items-center gap-5">
+      <div className="w-full h-[40px] dark:text-theme-white text-theme-black text-lg relative">
         <animated.div
-          className='w-[1px] bg-theme-orange h-full absolute scale-0 left-[50%] translate-x-[-50%]'
+          className="w-[1px] bg-theme-orange h-full absolute scale-0 left-[50%] translate-x-[-50%]"
           style={showCountdown ? { ...springInLeftBorderStyles } : undefined}
         />
-        <animated.div className='w-[1px] bg-theme-orange h-full absolute right-0' />
+        <animated.div className="w-[1px] bg-theme-orange h-full absolute right-0" />
         <animated.div
           style={{
             position: 'absolute',
@@ -85,7 +85,7 @@ export const HaloCountdown = () => {
       </div>
 
       <PillButton
-        className='bg-theme-blue'
+        className="bg-theme-blue"
         isDisabled={showCountdown === true}
         onPress={() => {
           if (showCountdown) {
