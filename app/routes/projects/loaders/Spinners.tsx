@@ -7,7 +7,10 @@ import * as triangles from './triangles.module.css';
 const TriangleDot = ({
   className,
   style,
-}: { className?: string; style: CSSProperties }) => {
+}: {
+  className?: string;
+  style: CSSProperties;
+}) => {
   return (
     <div
       className={clsx(
@@ -17,7 +20,7 @@ const TriangleDot = ({
         'w-[10px]',
         'bg-theme-black',
         'dark:bg-theme-white',
-        className,
+        className
       )}
       style={style}
     />
@@ -29,14 +32,12 @@ export const Spinners = () => {
 
   return (
     <>
-      {
-        /*
+      {/*
         Each row should be 60/4
         Each col should be 60/3
-      */
-      }
+      */}
       <div
-        className='relative h-[60px] w-[60px] grid items-center justify-items-center'
+        className="relative h-[60px] w-[60px] grid items-center justify-items-center"
         style={{
           gridTemplateColumns: 'repeat(3, calc(60px / 3))',
           gridTemplateRows: 'repeat(4, calc(60px / 4))',
@@ -90,7 +91,7 @@ export const Spinners = () => {
 
       <div
         // @ts-expect-error typing modules
-        className={styles['alternate-spinner']}
+        className={styles.altSpinner}
         style={{ height: '41px', width: '41px' }}
       >
         <div
@@ -98,7 +99,7 @@ export const Spinners = () => {
             // @ts-expect-error typing modules
             mode === 'light' ? styles.spinLight : styles.spinDark,
             // @ts-expect-error typing modules
-            styles.altSpin1,
+            styles.altSpin1
           )}
         />
         <div
@@ -106,7 +107,7 @@ export const Spinners = () => {
             // @ts-expect-error typing modules
             mode === 'light' ? styles.spinLight : styles.spinDark,
             // @ts-expect-error typing modules
-            styles.altSpin2,
+            styles.altSpin2
           )}
         />
       </div>
