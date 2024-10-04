@@ -5,10 +5,10 @@
   },
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "eslint.nodePath": ".yarn/sdks",
-  "prettier.prettierPath": ".yarn/sdks/prettier/index.js",
+  "dprint.path": "node_modules/dprint/dprint",
+  "editor.defaultFormatter": "dprint.dprint",
+  "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit",
-    "source.organizeImports": "explicit"
-  }
+    "source.organizeImports": "explicit",
+  },
 }
