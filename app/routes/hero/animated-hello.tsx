@@ -7,15 +7,11 @@ import { helloInLanguages } from './languages';
  *
  * Separating it into this component isolates the re-renders
  */
-export const AnimatedHello = ({
-  helloIndex,
-}: {
-  helloIndex: number;
-}) => {
+export const AnimatedHello = ({ helloIndex }: { helloIndex: number }) => {
   const valueRef = useRef<HTMLSpanElement | null>(null);
 
   const [length, setLength] = useState(
-    helloInLanguages[helloIndex].greeting.length,
+    helloInLanguages[helloIndex].greeting.length
   );
 
   // Transition the 'hiItems' to fade in and out
